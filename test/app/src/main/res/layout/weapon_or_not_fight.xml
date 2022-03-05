@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout7"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_and_fragments.WeaponOrNotFight"
+    android:background="#1B1A22">
+
+    <FrameLayout
+        android:id="@+id/frameLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#050414"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:background="#050414"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:srcCompat="@drawable/back"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/CyberHelper"
+            style="@style/Text.H2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Cyber Helper" />
+    </FrameLayout>
+
+    <TextView
+        android:layout_margin="20dp"
+        android:id="@+id/textView2"
+        style="@style/Text.H2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Выберите оружие"
+        android:textColor="@color/yellow"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout3" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/weaponFight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

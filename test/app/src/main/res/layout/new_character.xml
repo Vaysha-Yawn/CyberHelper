@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1B1A22"
+    tools:context=".activity_and_fragments.new_character.NewCharacter">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#050414">
+
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:background="#050414"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                app:srcCompat="@drawable/back"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/CyberHelper"
+                style="@style/Text.H2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Cyber Helper" />
+
+        </FrameLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/NewCharacter_NameCharacter"
+                    style="@style/Text.H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:text="Имя персонажа" />
+
+                <EditText
+                    android:id="@+id/NewCharacter_EditNameCharacter"
+                    style="@style/Text.H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:hint="Имя персонажа"
+                    android:inputType="text"
+                    android:maxLength="30"
+                    android:minHeight="48dp"
+                    android:textColorHint="#626262" />
+
+                <TextView
+                    android:id="@+id/newCharacter_HealthPoint"
+                    style="@style/Text.H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:text="Начальное кол-во ОЗ, не более " />
+
+                <EditText
+                    android:id="@+id/NewCharacter_EditHealthPoint"
+                    style="@style/Text.H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:hint="Начальное кол-во ОЗ"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:minHeight="48dp"
+                    android:textColorHint="#626262" />
+
+                <TextView
+                    android:id="@+id/newCharacter_SkillLevel"
+                    style="@style/Text.H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:text="Уровень навыка, не более " />
+
+                <EditText
+                    android:id="@+id/NewCharacter_EditSkillLevel"
+                    style="@style/Text.H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:hint="Уровень тестового навыка"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:minHeight="48dp"
+                    android:textColorHint="#626262" />
+
+                <TextView
+                    android:id="@+id/newCharacter_Armor"
+                    style="@style/Text.H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:text="Значение брони, не более " />
+
+                <EditText
+                    android:id="@+id/NewCharacter_EditArmor"
+                    style="@style/Text.H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:hint="Значение брони"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:minHeight="48dp"
+                    android:textColorHint="#626262" />
+
+                <TextView
+                    android:id="@+id/newCharacter_Weapon"
+                    style="@style/Text.H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:text="Кол-во d6 при поподании, не более " />
+
+                <EditText
+                    android:id="@+id/NewCharacter_EditWeapon"
+                    style="@style/Text.H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:hint="Кол-во d6 при поподании"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:minHeight="48dp"
+                    android:textColorHint="#626262" />
+
+                <Button
+                    android:id="@+id/NewCharacter_Done"
+                    style="@style/Text.H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#00FC92"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="Готово"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>

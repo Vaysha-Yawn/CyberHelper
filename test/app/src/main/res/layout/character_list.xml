@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_and_fragments.character_list.CharacterList"
+    android:background="#1B1A22">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#050414">
+
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:background="#050414"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                app:srcCompat="@drawable/back"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/CyberHelper"
+                style="@style/Text.H2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Cyber Helper" />
+
+            <Button
+                android:id="@+id/CharacterMenu_Delete"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:layout_margin="5dp"
+                android:background="@drawable/delete"
+                tools:ignore="RtlHardcoded,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#292833"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                app:srcCompat="@drawable/avatar"
+                android:layout_marginTop="10dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/CharacterList_Text"
+                    style="@style/Text.H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="Лист персонажа" />
+
+                <TextView
+                    android:id="@+id/CharacterList_NameCharacter"
+                    style="@style/Text.H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="Эмгыр Вар Эмрейс"
+                    android:textColor="@color/white"
+                    android:textFontWeight="500" />
+            </LinearLayout>
+        </LinearLayout>
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/Character_list_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/CharacterList_Menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemIconTint="@drawable/character_list_nav_selector"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/character_list_menu"
+        app:itemTextColor="@color/white"
+        android:background="#292833"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

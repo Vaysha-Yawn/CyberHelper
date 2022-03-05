@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/load_naw"
+    app:startDestination="@id/loadGame">
+
+    <fragment
+        android:id="@+id/loadGame"
+        android:name="com.example.test.activity_and_fragments.LoadGame"
+        android:label="LoadGame" >
+        <action
+            android:id="@+id/action_loadGame_to_delete4"
+            app:destination="@id/delete4" />
+    </fragment>
+    <fragment
+        android:id="@+id/delete4"
+        android:name="com.example.test.activity_and_fragments.Delete"
+        android:label="Delete" >
+        <action
+            android:id="@+id/action_delete4_to_loadGame"
+            app:destination="@id/loadGame" />
+    </fragment>
+</navigation>

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark">
+
+    <FrameLayout
+        android:id="@+id/frameLayout8"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#050414"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:background="#050414"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:srcCompat="@drawable/back"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/CyberHelper"
+            style="@style/Text.H2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Cyber Helper" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="30dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout8"
+            app:layout_constraintVertical_bias="0.0">
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Проверка вождения" />
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="start"
+                android:text="Сложность"
+                android:textColor="@color/yellow" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/dropDownDifficult"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2" />
+
+                <EditText
+                    android:id="@+id/edit"
+                    style="@style/Text.H2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_grey_circle"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:text="30"
+                    android:textColor="@color/yellow"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="start"
+                android:text="Модификатор"
+                android:textColor="@color/cyan" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/dropDownModifier"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2" />
+
+                <EditText
+                    android:id="@+id/editModifier"
+                    style="@style/Text.H2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_grey_circle"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:text="30"
+                    android:textColor="@color/cyan"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Text.H2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="1d10"
+                        android:textColor="@color/yellow" />
+
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/frPlusMinusSmallYellow1D10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/critText"
+                        style="@style/Text.H2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Критический"
+                        android:textColor="@color/light_grey" />
+
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/frPlusMinusSmallGreyCritical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp" />
+
+                    <LinearLayout
+                        android:id="@+id/plmingrey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp"
+                        tools:context=".widgets.PlusAndMinus"
+                        android:layout_gravity="center">
+
+                        <Button
+                            android:id="@+id/plus_and_minus_minus"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="5dp"
+                            android:background="@drawable/btn_grey_minus"
+                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                        <FrameLayout
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="@color/black">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/grey"
+                                android:text="0"
+                                style="@style/Text.H2"
+                                android:paddingVertical="10dp"/>
+                        </FrameLayout>
+
+                        <Button
+                            android:id="@+id/plus_and_minus_plus"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/btn_grey_plus"
+                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btn_next"
+                style="@style/Button_green_full"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
+                android:text="Рассчитать"
+                app:drawableEndCompat="@drawable/ic_next"
+                app:layout_constraintBottom_toBottomOf="@+id/scrollView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

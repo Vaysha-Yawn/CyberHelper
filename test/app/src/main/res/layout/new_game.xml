@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1B1A22"
+    tools:context=".activity_and_fragments.NewGame">
+
+
+    <FrameLayout
+        android:id="@+id/frameLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#050414"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:background="#050414"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:srcCompat="@drawable/back"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/CyberHelper"
+            style="@style/Text.H2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Cyber Helper" />
+
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/NewGame_EditNameGame"
+        style="@style/Text.H2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="6dp"
+        android:hint="Введите название игры"
+        android:inputType="text"
+        android:maxLength="30"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/NewGame_Grid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout6"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <GridView
+        android:id="@+id/NewGame_Grid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginVertical="20dp"
+        android:layout_marginHorizontal="40dp"
+        android:numColumns="3"
+        app:layout_constraintBottom_toTopOf="@+id/NewGame_Clear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NewGame_EditNameGame" />
+
+    <Button
+        android:id="@+id/NewGame_Clear"
+        style="@style/Text"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/btn_orange_outline"
+        android:text="Очистить"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/red_orange"
+        app:layout_constraintBottom_toTopOf="@+id/NewGame_NewCharacter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/NewGame_NewCharacter"
+        style="@style/Button_plus_green"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Добавить персонажа"
+        app:layout_constraintBottom_toTopOf="@+id/NewGame_Done"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/NewGame_Done"
+        style="@style/Text"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:background="@color/green"
+        android:text="Готово"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

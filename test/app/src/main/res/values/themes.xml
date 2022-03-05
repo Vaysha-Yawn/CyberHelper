@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Test" parent="Theme.AppCompat.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#050414</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">#3CFDFD</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>

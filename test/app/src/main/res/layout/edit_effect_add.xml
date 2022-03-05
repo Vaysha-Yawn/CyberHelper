@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1B1A22"
+    android:padding="40dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/key"
+                style="@style/Text.Title.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Редактирование эффекта влияния"
+                android:textColor="@color/light_grey"
+                android:textSize="26sp"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginTop="0dp"/>
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:gravity="start"
+                android:text="Тип эффекта"
+                android:textColor="@color/light_grey" />
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/permanent_true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Постоянный"
+                    style="@style/Button_green_outline"
+                    />
+               <Space
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"/>
+
+                <Button
+                    android:id="@+id/permanent_false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Временный"
+                    style="@style/Button_green_full"
+                    />
+            </LinearLayout>
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:gravity="start"
+                android:text="Характеристика, на которую оказывается влияние:"
+                android:textColor="@color/light_grey" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/property"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="Степень влияния"
+                android:textColor="@color/light_grey" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <Button
+                    android:id="@+id/sign"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/btn_sign_plus_green"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="SpeakableTextPresentCheck"
+                    android:layout_marginEnd="20dp"/>
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/impact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:id="@+id/lin_permanent_false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    style="@style/Text.H2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:text="Длительность эффекта"
+                    android:textColor="@color/light_grey" />
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp" />
+
+                <TextView
+                    style="@style/Text.H2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:text="Откат"
+                    android:textColor="@color/light_grey" />
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/rollback"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp" />
+            </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            style="@style/Text.H2"
+            android:id="@+id/weapon_edit_close"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_green_outline"
+            android:text="Отмена"
+            android:textAllCaps="false"
+            android:textColor="@color/green"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            style="@style/Text.H2"
+            android:id="@+id/weapon_edit_apply"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_green_full"
+            android:text="Сохранить"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

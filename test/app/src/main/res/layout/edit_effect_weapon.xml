@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1B1A22"
+    android:padding="40dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/key"
+                style="@style/Text.Title.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Редактирование эффекта атаки"
+                android:textColor="@color/light_grey"
+                android:textSize="26sp"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginTop="0dp"/>
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:gravity="start"
+                android:text="Тип оружия"
+                android:textColor="@color/light_grey" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/weapon_edit_type_RV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:gravity="start"
+                android:text="Количество кубиков урона"
+                android:textColor="@color/light_grey" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/weapon_edit_plus_and_minus_num_count"
+                android:name="com.example.test.widgets.PlusAndMinus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:gravity="start"
+                android:text="Максимальный урон одного кубика (d X)"
+                android:textColor="@color/light_grey" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/weapon_edit_plus_and_minus_dx"
+                android:name="com.example.test.widgets.PlusAndMinus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:gravity="start"
+                android:text="Максимальное количество использований"
+                android:textColor="@color/light_grey" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/weapon_edit_plus_and_minus_wearout"
+                android:name="com.example.test.widgets.PlusAndMinus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:gravity="start"
+                android:text="* Ноль - без ограничений."
+                android:textSize="18sp"
+                android:textColor="@color/grey" />
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            style="@style/Text.H2"
+            android:id="@+id/weapon_edit_close"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_green_outline"
+            android:text="Отмена"
+            android:textAllCaps="false"
+            android:textColor="@color/green"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            style="@style/Text.H2"
+            android:id="@+id/weapon_edit_apply"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_green_full"
+            android:text="Сохранить"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

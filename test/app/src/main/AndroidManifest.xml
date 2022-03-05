@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.test"
+    tools:ignore="MissingLeanbackLauncher">
+
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+    <application
+        android:name=".data_base.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Test"
+        android:fullBackupContent="@xml/backup_descriptor">
+        <activity
+            android:name=".activity_and_fragments.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity_and_fragments.about.About" />
+        <activity android:name=".activity_and_fragments.hosts.PresentHost" />
+        <activity android:name=".activity_and_fragments.hosts.LoadHost" />
+        <activity android:name=".activity_and_fragments.hosts.NewHost" />
+    </application>
+</manifest>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".widgets.PlusAndMinus"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/plus_and_minus_minus"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/btn_blue_minus"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <FrameLayout
+        android:layout_gravity="center_vertical"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bcg_rectangle_round"
+        android:backgroundTint="@color/black">
+
+        <EditText
+            android:id="@+id/plus_and_minus_edit"
+            style="@style/Text.H2"
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/cyan"
+            android:inputType="number"
+            android:maxLength="4"
+            android:text="0"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/plus_and_minus_plus"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/btn_blue_plus"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+</LinearLayout>

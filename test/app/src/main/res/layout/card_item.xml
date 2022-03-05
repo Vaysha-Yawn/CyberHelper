@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:background="#292833"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="90dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/Text.H2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:paddingBottom="10dp"
+                android:text="“Агент”" />
+
+            <TextView
+                android:id="@+id/description"
+                style="@style/Text"
+                android:textColor="@color/light_grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:text="Карманное устройство, выполняющее функции компьютера и телефона"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:minHeight="90dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/delete"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/delete"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/edit"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/name_num_RV"
+        style="@style/Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="start"
+        android:layout_marginStart="10dp"
+        android:text="Числовые атрибуты"
+        android:textColor="@color/white" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/num_gv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/name_str_RV"
+        style="@style/Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="start"
+        android:layout_marginStart="10dp"
+        android:text="Строковые атрибуты"
+        android:textColor="@color/white" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/str_RV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/name_options_RV"
+        style="@style/Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="start"
+        android:layout_marginStart="10dp"
+        android:text="Атрибуты опций"
+        android:textColor="@color/white" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/options_RV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/name_effect_add_RV"
+        style="@style/Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="start"
+        android:layout_marginStart="10dp"
+        android:text="Эффекты влияния"
+        android:textColor="@color/white" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/effect_add_RV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/name_effect_weapon_RV"
+        style="@style/Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="start"
+        android:layout_marginStart="10dp"
+        android:text="Эффекты атаки"
+        android:textColor="@color/white" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/effect_weapon_RV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"/>
+
+</LinearLayout>

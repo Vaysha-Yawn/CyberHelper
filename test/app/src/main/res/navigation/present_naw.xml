@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/present_naw"
+    app:startDestination="@id/home2">
+
+    <fragment
+        android:id="@+id/pres_delete"
+        android:name="com.example.test.activity_and_fragments.Delete"
+        android:label="Delete">
+        <action
+            android:id="@+id/action_delete2_to_characterList2"
+            app:destination="@id/pres_characterList" />
+        <action
+            android:id="@+id/action_pres_delete_to_home2"
+            app:destination="@id/home2" />
+    </fragment>
+    <fragment
+        android:id="@+id/pres_itemEdit"
+        android:name="com.example.test.activity_and_fragments.EditItem"
+        android:label="WeaponEdit"
+        tools:layout="@layout/edit_item">
+        <action
+            android:id="@+id/action_weaponEdit_to_characterList2"
+            app:destination="@id/pres_characterList" />
+        <action
+            android:id="@+id/action_pres_itemEdit_to_pres_editEffectAdd"
+            app:destination="@id/pres_editEffectAdd" />
+        <action
+            android:id="@+id/action_pres_itemEdit_to_pres_editEffectWeapon"
+            app:destination="@id/pres_editEffectWeapon" />
+        <action
+            android:id="@+id/action_pres_itemEdit_to_pres_editEffectAdd2"
+            app:destination="@id/pres_editEffectAdd" />
+        <action
+            android:id="@+id/action_pres_itemEdit_to_pres_editEffectWeapon2"
+            app:destination="@id/pres_editEffectWeapon" />
+        <action
+            android:id="@+id/action_pres_itemEdit_to_pres_editEffectWeapon3"
+            app:destination="@id/pres_editEffectWeapon" />
+        <action
+            android:id="@+id/action_pres_itemEdit_to_pres_delete"
+            app:destination="@id/pres_delete" />
+        <action
+            android:id="@+id/action_pres_itemEdit_to_pres_editEffectAdd3"
+            app:destination="@id/pres_editEffectAdd" />
+        <action
+            android:id="@+id/action_pres_itemEdit_to_pres_editEffectAdd4"
+            app:destination="@id/pres_editEffectAdd" />
+        <action
+            android:id="@+id/action_pres_itemEdit_to_pres_delete2"
+            app:destination="@id/pres_delete" />
+        <action
+            android:id="@+id/action_pres_itemEdit_to_pres_addNewParamItem"
+            app:destination="@id/pres_addNewParamItem" />
+        <action
+            android:id="@+id/action_pres_itemEdit_to_pres_delete3"
+            app:destination="@id/pres_delete" />
+        <action
+            android:id="@+id/action_pres_itemEdit_to_pres_edit_number"
+            app:destination="@id/pres_edit_number" />
+        <action
+            android:id="@+id/action_pres_itemEdit_to_pres_edit_string"
+            app:destination="@id/pres_edit_string" />
+        <action
+            android:id="@+id/action_pres_itemEdit_to_pres_dropDownEdit"
+            app:destination="@id/pres_dropDownEdit" />
+    </fragment>
+    <fragment
+        android:id="@+id/pres_edit_number"
+        android:name="com.example.test.activity_and_fragments.Edit_number"
+        tools:layout="@layout/edit_number"
+        android:label="edit_number">
+        <action
+            android:id="@+id/action_edit_number2_to_characterList2"
+            app:destination="@id/pres_characterList" />
+    </fragment>
+    <fragment
+        android:id="@+id/pres_edit_string"
+        android:name="com.example.test.activity_and_fragments.Edit_string"
+        tools:layout="@layout/edit_string"
+        android:label="edit_string">
+        <action
+            android:id="@+id/action_edit_string2_to_home2"
+            app:destination="@id/home2" />
+        <action
+            android:id="@+id/action_edit_string2_to_characterList2"
+            app:destination="@id/pres_characterList" />
+    </fragment>
+    <fragment
+        android:id="@+id/pres_characterList"
+        android:name="com.example.test.activity_and_fragments.character_list.CharacterList"
+        android:label="CharacterList">
+        <action
+            android:id="@+id/action_characterList_to_characterMenu2"
+            app:destination="@id/characterMenu" />
+        <action
+            android:id="@+id/action_characterList_to_edit_string22"
+            app:destination="@id/pres_edit_string" />
+        <action
+            android:id="@+id/action_characterList_to_delete23"
+            app:destination="@id/pres_delete" />
+        <action
+            android:id="@+id/action_characterList_to_weaponEdit2"
+            app:destination="@id/pres_itemEdit" />
+        <action
+            android:id="@+id/action_characterList_to_edit_number22"
+            app:destination="@id/pres_edit_number" />
+        <action
+            android:id="@+id/action_characterList_to_edit_string23"
+            app:destination="@id/pres_edit_string" />
+        <action
+            android:id="@+id/action_pres_characterList_to_pres_delete"
+            app:destination="@id/pres_delete" />
+        <action
+            android:id="@+id/action_pres_characterList_to_pres_edit_number"
+            app:destination="@id/pres_edit_number" />
+        <action
+            android:id="@+id/action_pres_characterList_to_pres_edit_string"
+            app:destination="@id/pres_edit_string" />
+        <action
+            android:id="@+id/action_pres_characterList_to_pres_delete2"
+            app:destination="@id/pres_delete" />
+        <action
+            android:id="@+id/action_pres_characterList_to_pres_weaponEdit"
+            app:destination="@id/pres_itemEdit" />
+        <action
+            android:id="@+id/action_pres_characterList_to_pres_dropDownEdit"
+            app:destination="@id/pres_dropDownEdit" />
+        <action
+            android:id="@+id/action_pres_characterList_to_pres_dropDownEdit2"
+            app:destination="@id/pres_dropDownEdit" />
+        <action
+            android:id="@+id/action_pres_characterList_to_pres_delete3"
+            app:destination="@id/pres_delete" />
+        <action
+            android:id="@+id/action_pres_characterList_to_pres_dropDownEdit3"
+            app:destination="@id/pres_dropDownEdit" />
+        <action
+            android:id="@+id/action_pres_characterList_to_pres_itemEdit"
+            app:destination="@id/pres_itemEdit" />
+        <action
+            android:id="@+id/action_pres_characterList_to_pres_addNewParamItem"
+            app:destination="@id/pres_addNewParamItem" />
+        <action
+            android:id="@+id/action_pres_characterList_to_pres_itemEdit2"
+            app:destination="@id/pres_itemEdit" />
+    </fragment>
+    <fragment
+        android:id="@+id/pres_choiceTemplate"
+        android:name="com.example.test.activity_and_fragments.new_character.ChoiceTemplate"
+        android:label="ChoiceTemplate">
+        <action
+            android:id="@+id/action_choiceTemplate_to_home2"
+            app:destination="@id/home2" />
+        <action
+            android:id="@+id/action_choiceTemplate_to_newCharacterByTemplate2"
+            app:destination="@id/pres_newCharacterByTemplate" />
+        <action
+            android:id="@+id/action_choiceTemplate_to_newCharacter2"
+            app:destination="@id/pres_newCharacter" />
+        <action
+            android:id="@+id/action_pres_choiceTemplate_to_pres_newCharacter"
+            app:destination="@id/pres_newCharacter" />
+        <action
+            android:id="@+id/action_pres_choiceTemplate_to_pres_newCharacterByTemplate"
+            app:destination="@id/pres_newCharacterByTemplate" />
+    </fragment>
+    <fragment
+        android:id="@+id/pres_newCharacter"
+        android:name="com.example.test.activity_and_fragments.new_character.NewCharacter"
+        android:label="NewCharacter">
+        <action
+            android:id="@+id/action_newCharacter_to_choiceTemplate2"
+            app:destination="@id/pres_choiceTemplate" />
+        <action
+            android:id="@+id/action_pres_newCharacter_to_home2"
+            app:destination="@id/home2" />
+    </fragment>
+    <fragment
+        android:id="@+id/pres_newCharacterByTemplate"
+        android:name="com.example.test.activity_and_fragments.new_character.NewCharacterByTemplate"
+        android:label="NewCharacterByTemplate">
+        <action
+            android:id="@+id/action_newCharacterByTemplate_to_choiceTemplate2"
+            app:destination="@id/pres_choiceTemplate" />
+        <action
+            android:id="@+id/action_pres_newCharacterByTemplate_to_home2"
+            app:destination="@id/home2" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterMenu"
+        android:name="com.example.test.activity_and_fragments.CharacterMenu"
+        android:label="CharacterMenu">
+        <action
+            android:id="@+id/action_characterMenu2_to_home2"
+            app:destination="@id/home2" />
+        <action
+            android:id="@+id/action_characterMenu2_to_characterList"
+            app:destination="@id/pres_characterList" />
+        <action
+            android:id="@+id/action_characterMenu_to_pres_characterList"
+            app:destination="@id/pres_characterList" />
+        <action
+            android:id="@+id/action_characterMenu_to_pres_skillTest"
+            app:destination="@id/pres_skillTest" />
+        <action
+            android:id="@+id/action_characterMenu_to_weaponOrNotFight"
+            app:destination="@id/weaponOrNotFight" />
+    </fragment>
+     <fragment
+        android:id="@+id/home2"
+        android:name="com.example.test.activity_and_fragments.Home"
+        android:label="Home">
+        <action
+            android:id="@+id/action_home2_to_choiceTemplate"
+            app:destination="@id/pres_choiceTemplate" />
+        <action
+            android:id="@+id/action_home2_to_characterMenu2"
+            app:destination="@id/characterMenu" />
+        <action
+            android:id="@+id/action_home2_to_edit_string2"
+            app:destination="@id/pres_edit_string" />
+        <action
+            android:id="@+id/action_home2_to_characterMenu"
+            app:destination="@id/characterMenu" />
+    </fragment>
+    <fragment
+        android:id="@+id/pres_dropDownEdit"
+        android:name="com.example.test.activity_and_fragments.Edit_Options"
+        android:label="drop_down_edit"
+        tools:layout="@layout/edit_option" >
+        <action
+            android:id="@+id/action_pres_dropDownEdit_to_pres_characterList"
+            app:destination="@id/pres_characterList" />
+    </fragment>
+    <fragment
+        android:id="@+id/pres_editEffectAdd"
+        android:name="com.example.test.activity_and_fragments.EditEffectAdd"
+        android:label="EditEffectAdd" >
+        <action
+            android:id="@+id/action_pres_editEffectAdd_to_pres_itemEdit"
+            app:destination="@id/pres_itemEdit" />
+    </fragment>
+    <fragment
+        android:id="@+id/pres_editEffectWeapon"
+        android:name="com.example.test.activity_and_fragments.EditEffectWeapon"
+        android:label="EditEffectWeapon" >
+        <action
+            android:id="@+id/action_pres_editEffectWeapon_to_pres_itemEdit"
+            app:destination="@id/pres_itemEdit" />
+    </fragment>
+    <fragment
+        android:id="@+id/pres_addNewParamItem"
+        android:name="com.example.test.activity_and_fragments.AddNewParam"
+        android:label="add_new_param_iem"
+        tools:layout="@layout/add_new_param_item" >
+        <action
+            android:id="@+id/action_pres_addNewParamItem_to_pres_itemEdit"
+            app:destination="@id/pres_itemEdit" />
+        <action
+            android:id="@+id/action_pres_addNewParamItem_to_pres_edit_number"
+            app:destination="@id/pres_edit_number" />
+        <action
+            android:id="@+id/action_pres_addNewParamItem_to_pres_edit_string"
+            app:destination="@id/pres_edit_string" />
+        <action
+            android:id="@+id/action_pres_addNewParamItem_to_pres_dropDownEdit"
+            app:destination="@id/pres_dropDownEdit" />
+    </fragment>
+    <fragment
+        android:id="@+id/pres_skillTest"
+        android:name="com.example.test.activity_and_fragments.SkillTest"
+        android:label="SkillTest" >
+        <action
+            android:id="@+id/action_pres_skillTest_to_skillResult"
+            app:destination="@id/skillResult" />
+    </fragment>
+    <fragment
+        android:id="@+id/skillResult"
+        android:name="com.example.test.activity_and_fragments.SkillResult"
+        android:label="SkillResult" />
+    <fragment
+        android:id="@+id/weaponOrNotFight"
+        android:name="com.example.test.activity_and_fragments.WeaponOrNotFight"
+        android:label="weapon_or_not_fight"
+        tools:layout="@layout/weapon_or_not_fight" />
+</navigation>

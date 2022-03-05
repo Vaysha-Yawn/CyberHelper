@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1B1A22"
+    android:orientation="vertical"
+    tools:context=".activity_and_fragments.CharacterMenu"
+    tools:ignore="HardcodedText">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#050414">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:background="#050414"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:srcCompat="@drawable/back"
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/CyberHelper"
+            style="@style/Text.H2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Cyber Helper" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#292833"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="30dp"
+            android:contentDescription="avatar"
+            app:srcCompat="@drawable/avatar"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginEnd="20dp">
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Меню персонажа"
+                android:textFontWeight="500" />
+            <TextView
+                android:id="@+id/CharacterMenu_NameCharacter"
+                style="@style/Text.H2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Эмгыр Вар Эмрейс"
+                android:textColor="@color/yellow"
+                android:textFontWeight="500" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/CharacterMenu_OpenCharacterList"
+        style="@style/Text.H2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-20dp"
+        android:background="@drawable/btn_bcg_dark_blue"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Открыть лист персонажа"
+        android:textAllCaps="false"
+        android:textColor="@color/cyan" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_marginTop="10dp"
+        android:id="@+id/CharacterMenu_CheckLevel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"/>
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        app:columnCount="2"
+        app:useDefaultMargins="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/CharacterMenu_Fight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#1B1A22"
+                app:srcCompat="@drawable/group_fight"
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/textView7"
+                style="@style/Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:maxWidth="120dp"
+                android:text="Бой оружием, рукопашный" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/CharacterMenu_Choke"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                android:background="#1B1A22"
+                android:contentDescription="Choke"
+                app:srcCompat="@drawable/choke"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/textView8"
+                style="@style/Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:maxWidth="150dp"
+                android:text="Захват, удушение, метание" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/CharacterMenu_Netrunning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#1B1A22"
+                android:contentDescription="Netrunning"
+                app:srcCompat="@drawable/netrunning"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/textView9"
+                style="@style/Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:maxWidth="150dp"
+                android:text="Нетраннинг" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/CharacterMenu_Face"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#1B1A22"
+                android:contentDescription="Faces"
+                app:srcCompat="@drawable/face_to_face"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/textView6"
+                style="@style/Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:maxWidth="150dp"
+                android:text="Поединок взглядов" />
+
+        </LinearLayout>
+
+    </androidx.gridlayout.widget.GridLayout>
+
+    <Button
+        android:id="@+id/CharacterMenu_UseItem"
+        style="@style/Text.H2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-10dp"
+        android:background="@drawable/btn_bcg_dark_blue"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="Использовать предмет"
+        android:textAllCaps="false"
+        android:textColor="@color/cyan" />
+
+    <Button
+        android:id="@+id/CharacterMenu_EndMove"
+        style="@style/Text.H2"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_orange_outline"
+        android:minHeight="48dp"
+        android:text="Завершить ход"
+        android:textAllCaps="false"
+        android:textColor="@color/red_orange"
+        tools:ignore="TouchTargetSizeCheck" />
+</LinearLayout>

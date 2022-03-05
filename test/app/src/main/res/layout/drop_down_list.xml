@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/main"
+        style="@style/Text.H2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner_yellow"
+        android:gravity="center"
+        android:paddingVertical="10dp"
+        android:text="Выберите что-то там"
+        android:textColor="@color/black"
+        app:drawableRightCompat="@drawable/more"
+        android:paddingEnd="20dp"
+        android:paddingStart="10dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

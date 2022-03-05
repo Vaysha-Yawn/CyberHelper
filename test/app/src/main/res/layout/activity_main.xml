@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#070B26"
+    tools:context=".activity_and_fragments.MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout5"
+        app:srcCompat="@drawable/girl_copy"
+        tools:ignore="ContentDescription" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#050414"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/CyberHelper"
+            style="@style/Text.H2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Cyber Helper" />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/Main_Continue"
+        style="@style/Text"
+        android:layout_marginBottom="20dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/black"
+        android:text="Продолжить"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/Main_NewGame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:layout_marginBottom="20dp"
+        android:textAllCaps="false"
+        android:id="@+id/Main_NewGame"
+        style="@style/Text"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/black"
+        android:text="Новая игра"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/Main_Load"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/Main_Load"
+        style="@style/Text"
+        android:layout_width="200dp"
+        android:textAllCaps="false"
+        android:layout_marginBottom="20dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/black"
+        android:minHeight="48dp"
+        android:text="Загрузить игру"
+        android:textColor="@color/white"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/Main_Settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/Main_Settings"
+        style="@style/Text"
+        android:layout_width="200dp"
+        android:layout_marginBottom="20dp"
+        android:textAllCaps="false"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/black"
+        android:text="Настройки"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/Main_About"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/Main_About"
+        style="@style/Text"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:background="@color/black"
+        android:text="О приложении"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
