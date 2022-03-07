@@ -12,6 +12,8 @@ import androidx.fragment.app.commit
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.data_base.SpecialGameData
+import com.example.test.databinding.FightAttackBinding
+import com.example.test.databinding.SkillTest2Binding
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.widgets.DropDownList
@@ -31,19 +33,22 @@ class SkillTest : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.skill_test, container, false)
+        val view = inflater.inflate(R.layout.skill_test2, container, false)
+
+        val characterId = mCharacterVM.characterId
+        val arg = this.arguments
+        val txtitle = arg?.getString("title") ?: ""
+
+        val binding = SkillTest2Binding.bind(view)
+        fun bind() = with(binding) {
+            title.text = txtitle
+        }
+        bind()
+
         try {
-            val back = view.findViewById<ImageButton>(R.id.back)
-            val tvTitle = view.findViewById<TextView>(R.id.title)
+            /*val back = view.findViewById<ImageButton>(R.id.back)
             val tvEdit = view.findViewById<TextView>(R.id.edit)
             val tvEditMod = view.findViewById<TextView>(R.id.editModifier)
-
-            val characterId = mCharacterVM.characterId
-            val arg = this.arguments
-            val title = arg?.getString("title") ?: ""
-
-            // начальная настройка
-            tvTitle.text = title
 
             // подключаем фрагмент для выбора сложности
             val arr = SpecialGameData().difficultName
@@ -180,7 +185,7 @@ class SkillTest : Fragment() {
 
                 view.findNavController()
                     .navigate(R.id.action_pres_skillTest_to_skillResult, bundleF)
-            }
+            }*/
 
         } catch (e: Exception) {
             Toast.makeText(view.context, "$e", Toast.LENGTH_LONG).show()

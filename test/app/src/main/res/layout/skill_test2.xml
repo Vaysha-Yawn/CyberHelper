@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout7"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1B1A22"
-    tools:context=".activity_and_fragments.FightAttack">
+    android:background="@color/dark">
 
     <FrameLayout
-        android:id="@+id/frameLayout3"
+        android:id="@+id/frameLayout8"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#050414"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
@@ -22,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
             android:background="#050414"
             android:minWidth="48dp"
             android:minHeight="48dp"
@@ -40,54 +38,109 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout3"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="30dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout8"
+            app:layout_constraintVertical_bias="0.0">
 
             <TextView
                 android:id="@+id/title"
                 style="@style/Text.H2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Заменить Название боя" />
+                android:text="Проверка вождения" />
 
             <TextView
-                android:id="@+id/titleMod"
                 style="@style/Text.H2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Модификаторы атакующего"
-                android:textColor="@color/cyan" />
+                android:gravity="start"
+                android:text="Сложность"
+                android:textColor="@color/yellow" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/modRV"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/addMod"
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/dropDownDifficult"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2" />
+
+                <EditText
+                    android:id="@+id/edit"
+                    style="@style/Text.H2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_grey_circle"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:text="30"
+                    android:textColor="@color/yellow"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </LinearLayout>
+
+            <TextView
                 style="@style/Text.H2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/btn_bcg_dark_blue"
-                android:drawableEnd="@drawable/plus_cyan"
-                android:drawablePadding="20dp"
-                android:paddingHorizontal="40dp"
-                android:text="Добавить модификатор"
-                android:textAllCaps="false"
+                android:gravity="start"
+                android:text="Модификатор"
                 android:textColor="@color/cyan" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/dropDownModifier"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2" />
+
+                <EditText
+                    android:id="@+id/editModifier"
+                    style="@style/Text.H2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_grey_circle"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:text="30"
+                    android:textColor="@color/cyan"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -106,15 +159,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="1d10 атак."
+                        android:text="1d10"
                         android:textColor="@color/yellow" />
 
                     <androidx.fragment.app.FragmentContainerView
                         android:id="@+id/frPlusMinusSmallYellow1D10"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginTop="20dp" />
 
                 </LinearLayout>
 
@@ -138,49 +191,47 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginTop="20dp" />
 
                     <LinearLayout
                         android:id="@+id/plmingrey"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp"
+                        tools:context=".widgets.PlusAndMinus"
+                        android:layout_gravity="center">
 
                         <Button
+                            android:id="@+id/plus_and_minus_minus"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="10dp"
+                            android:layout_marginEnd="5dp"
                             android:background="@drawable/btn_grey_minus"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                         <FrameLayout
-                            android:layout_width="60dp"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:background="@drawable/bcg_rectangle_round"
-                            android:backgroundTint="@color/dark_grey">
+                            android:background="@color/black">
 
                             <TextView
-                                style="@style/Text.H2"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:backgroundTint="@color/grey"
-                                android:maxLength="2"
-                                android:minHeight="48dp"
-                                android:text="0"
                                 android:textColor="@color/grey"
-                                android:textSize="30sp" />
+                                android:text="0"
+                                style="@style/Text.H2"
+                                android:paddingVertical="10dp"/>
                         </FrameLayout>
 
                         <Button
+                            android:id="@+id/plus_and_minus_plus"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="5dp"
                             android:background="@drawable/btn_grey_plus"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                     </LinearLayout>
@@ -195,8 +246,12 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="20dp"
-                android:text="Далее"
-                app:drawableEndCompat="@drawable/ic_next" />
+                android:text="Рассчитать"
+                app:drawableEndCompat="@drawable/ic_next"
+                app:layout_constraintBottom_toBottomOf="@+id/scrollView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
         </LinearLayout>
     </ScrollView>
 
