@@ -16,6 +16,7 @@ open class EffectAdd(
 ):RealmObject()
 
 open class EffectWeapon(
+    var name: String = "",
     var fightType: String = "", // Ближний_бой    Дальний_бой   Автоматический_огонь   Взрывчатка, Нетраннинг против программ, Нетраннинг против людей, Нетраннинг против адских гончих,
     var numCount: Int = 0, // Колличество бросков кубика
     var dX: Int = 0, // d6 d4 d10 d12 и т.д. - это максимальное рандомное число урона от 1 до X

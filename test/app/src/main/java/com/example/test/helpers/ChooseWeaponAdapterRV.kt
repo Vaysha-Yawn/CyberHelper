@@ -12,14 +12,14 @@ import com.example.test.data_base.Item
 import com.example.test.databinding.CardWeaponFightBinding
 
 
-class WeaponFightAdapterRV(val map: Map<EffectWeapon, Item>, private val onClick: WeaponFightAdapterRV.TemplateHolder.OnItemClickListener) :
-    RecyclerView.Adapter<WeaponFightAdapterRV.TemplateHolder>() {
+class ChooseWeaponAdapterRV(val list: List<EffectWeapon>, private val onClick: ChooseWeaponAdapterRV.TemplateHolder.OnItemClickListener) :
+    RecyclerView.Adapter<ChooseWeaponAdapterRV.TemplateHolder>() {
 
-    class TemplateHolder(view: View, private val onClick: WeaponFightAdapterRV.TemplateHolder.OnItemClickListener) : RecyclerView.ViewHolder(view) {
+    class TemplateHolder(view: View, private val onClick: ChooseWeaponAdapterRV.TemplateHolder.OnItemClickListener) : RecyclerView.ViewHolder(view) {
         private val binding = CardWeaponFightBinding.bind(view)
 
         @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables")
-        fun bind( item: Item,effect: EffectWeapon) = with(binding) {
+        fun bind( effect: EffectWeapon) = with(binding) {
 
             when (effect.fightType) {
                 "Взрывчатка" -> {
@@ -43,14 +43,14 @@ class WeaponFightAdapterRV(val map: Map<EffectWeapon, Item>, private val onClick
                     text.background.setTint(text.context.getColor(R.color.cyan))
                 }
             }
-            text.text = item.name
+            text.text = effect.name
             text.setOnClickListener{
-                onClick.onItemClick(adapterPosition, item, effect)
+                onClick.onItemClick(adapterPosition, effect)
             }
         }
 
         interface OnItemClickListener{
-            fun onItemClick(position: Int, item: Item, effect: EffectWeapon)
+            fun onItemClick(position: Int, effect: EffectWeapon)
         }
 
     }
@@ -62,10 +62,10 @@ class WeaponFightAdapterRV(val map: Map<EffectWeapon, Item>, private val onClick
     }
 
     override fun onBindViewHolder(holder: TemplateHolder, position: Int) {
-        holder.bind(map.values.elementAt(position), map.keys.elementAt(position))
+        holder.bind(list[position])
     }
 
     override fun getItemCount(): Int {
-        return map.size
+        return list.size
     }
 }

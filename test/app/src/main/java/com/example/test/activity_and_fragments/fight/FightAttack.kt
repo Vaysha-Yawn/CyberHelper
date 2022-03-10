@@ -1,4 +1,4 @@
-package com.example.test.activity_and_fragments
+package com.example.test.activity_and_fragments.fight
 
 import android.os.Bundle
 import android.text.TextUtils.replace

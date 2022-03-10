@@ -283,7 +283,16 @@
         android:label="SkillResult" />
     <fragment
         android:id="@+id/weaponOrNotFight"
-        android:name="com.example.test.activity_and_fragments.WeaponOrNotFight"
+        android:name="com.example.test.activity_and_fragments.fight.ChooseWeapon"
         android:label="weapon_or_not_fight"
-        tools:layout="@layout/weapon_or_not_fight" />
+        tools:layout="@layout/choose_weapon" >
+        <action
+            android:id="@+id/action_weaponOrNotFight_to_fightAttack"
+            app:destination="@id/fightAttack" />
+    </fragment>
+    <fragment
+        android:id="@+id/fightAttack"
+        android:name="com.example.test.activity_and_fragments.fight.FightAttack"
+        android:label="fight_attack"
+        tools:layout="@layout/fight_attack" />
 </navigation>
