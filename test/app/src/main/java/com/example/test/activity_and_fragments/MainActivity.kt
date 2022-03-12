@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        try {
         val gameId = getSharedPreferences("id", 0).getString("PresentGame", "0")?.toInt()
         val load = findViewById<Button>(R.id.Main_Load)
         val vContinue = findViewById<Button>(R.id.Main_Continue)
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             val i = Intent(this, NewHost::class.java)
             startActivity(i)
         }
-        try {
+
             val vAbout = findViewById<Button>(R.id.Main_About)
             vAbout.setOnClickListener {
                 val i = Intent(this, About::class.java)

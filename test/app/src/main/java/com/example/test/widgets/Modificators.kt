@@ -8,11 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
 import com.example.test.data_base.SpecialGameData
-import com.example.test.databinding.FightAttackBinding
 import com.example.test.databinding.ModificatorsBinding
 import com.example.test.helpers.ModAdapterRV
 import com.example.test.helpers.ModTemplateHolder
@@ -57,7 +55,7 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment,  ModTemplateHol
     override fun loadFragment(position: Int, style: Boolean, value:Int, id:Int) {
         if (style){
             val bundle = Bundle()
-            bundle.putString("main", "Выберите можификатор")
+            bundle.putString("main", "Выберите модификатор")
             bundle.putString("them", "blue")
             bundle.putInt("indexMod", position)
             bundle.putString("goal", "modification")

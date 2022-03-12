@@ -6,7 +6,7 @@ import com.example.test.widgets.Mod
 
 class SkillTestVM:ViewModel() {
     var difficult = MutableLiveData<Int>()
-    val modification = MutableLiveData<MutableList<Mod>>()
+    val modification = MutableLiveData<MutableList<Mod>>() // mod.value = -1 , оно сохраняется с индексом на 1 больше, чтобы оставить при создании начальную фразу
     val m1d10 = MutableLiveData<Int>()
     val critical = MutableLiveData<Int>()
     val boolCritical = MutableLiveData<Boolean>()

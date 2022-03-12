@@ -98,6 +98,14 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
             LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
         itemsRV.adapter = adapterItems
 
+        if (goal == "modification"){
+            val value = mSkillVM.modification.value!![indexMod].value
+            if (indexMod >= 0 && value>0) {
+                tvMainTypeWeapon.text = list[value-1]
+            }
+
+        }
+
         return view
     }
 
@@ -134,8 +142,7 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
 
                 if (goal == "modification") {
                     if (indexMod >= 0) {
-                        mSkillVM.modification.value!![indexMod].value = position
-
+                        mSkillVM.modification.value!![indexMod].value = position+1
                     }
                 }
             } catch (e: Exception) {

@@ -69,8 +69,8 @@ class ModTemplateHolder(
             }
             Toast.makeText(
                 delete.context,
-                "This bind${mod.value}, $adapterPosition!",
-                Toast.LENGTH_SHORT
+                "This bind value ${mod.value}, position $adapterPosition, resId ${mod.resId},!",
+                Toast.LENGTH_LONG
             ).show()
         } catch (e: Exception) {
             Toast.makeText(delete.context, "$e", Toast.LENGTH_LONG).show()
