@@ -18,6 +18,7 @@ import com.example.test.viewModels.SkillTestVM
 import com.example.test.widgets.DropDownList
 import com.example.test.widgets.Modificators
 import com.example.test.widgets.m1D10
+import kotlin.reflect.typeOf
 
 
 class SkillTest : Fragment() {
@@ -73,8 +74,8 @@ class SkillTest : Fragment() {
         fun bind() = with(binding) {
             title.text = txtitle
 
-            mSkillVM.difficult.observe(viewLifecycleOwner) {
-                tvEdit.text = difficultValue[it]
+            mSkillVM.difBoolean.observe(viewLifecycleOwner) {
+                tvEdit.text = difficultValue[mSkillVM.dif.value!!]
             }
 
             back.setOnClickListener {
@@ -92,7 +93,7 @@ class SkillTest : Fragment() {
             val difficult = tvEdit.text.toString().toIntOrNull()
             if (difficult != null) {
                 try {
-                    mSkillVM.difficult.value = difficult
+                    mSkillVM.dif.value = difficult
                 } catch (e: Exception) {
                     Toast.makeText(view.context, "$e", Toast.LENGTH_LONG).show()
                 }

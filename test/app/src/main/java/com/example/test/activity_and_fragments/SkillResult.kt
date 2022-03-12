@@ -33,7 +33,7 @@ class SkillResult : Fragment() {
             val characterId = mCharacterVM.characterId
             val arg = this.arguments
             val title = arg?.getString("title") ?: ""
-            val difficult = mSkillVM.difficult.value!!
+            val difficult = mSkillVM.dif.value!!
             var mod = 0
             mSkillVM.modification.value?.forEach {
                 val res = if (it.style){

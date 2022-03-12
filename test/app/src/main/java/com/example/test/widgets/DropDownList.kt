@@ -137,7 +137,8 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
             )
             try {
                 if (goal == "difficult") {
-                    mSkillVM.difficult.value = position
+                    mSkillVM.dif.value = position.toInt()
+                    mSkillVM.difBoolean.value = !mSkillVM.difBoolean.value!!
                 }
 
                 if (goal == "modification") {

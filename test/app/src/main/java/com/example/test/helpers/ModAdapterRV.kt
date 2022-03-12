@@ -67,11 +67,11 @@ class ModTemplateHolder(
                 deleteMod.deleteMod(adapterPosition)
                 updViewr.updateView()
             }
-            Toast.makeText(
+            /*Toast.makeText(
                 delete.context,
                 "This bind value ${mod.value}, position $adapterPosition, resId ${mod.resId},!",
                 Toast.LENGTH_LONG
-            ).show()
+            ).show()*/
         } catch (e: Exception) {
             Toast.makeText(delete.context, "$e", Toast.LENGTH_LONG).show()
         }

@@ -41,7 +41,14 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment,  ModTemplateHol
                 adapter.setData(it)
             }
             addMod.setOnClickListener {
-                mSkillVM.modification.value!!.add( Mod(true, 0, 0))
+                var id = 0
+                if (mSkillVM.deletedIdByMod.isNotEmpty()){
+                    id = mSkillVM.deletedIdByMod.minOrNull()?:0
+                    if (id!=0){
+                        mSkillVM.deletedIdByMod.remove(id)
+                    }
+                }
+                mSkillVM.modification.value!!.add( Mod(true, 0, id))
                 adapter.notifyDataSetChanged()
             }
         }
@@ -86,6 +93,8 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment,  ModTemplateHol
     }
 
     override fun deleteMod(position: Int) {
+        val id =  mSkillVM.modification.value!![position].resId
+        mSkillVM.deletedIdByMod.add(id)
         mSkillVM.modification.value!!.removeAt(position)
     }
 
