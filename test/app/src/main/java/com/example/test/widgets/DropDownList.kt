@@ -4,17 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
+import com.example.test.data_base.SpecialGameData
 import com.example.test.helpers.DropDownAdapterRV
 import com.example.test.viewModels.SkillTestVM
 
-class DropDownList : Fragment() , DropDownAdapterRV.TemplateHolder.OnItemClickListener {
+class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickListener {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
     private lateinit var goal: String
@@ -23,7 +25,7 @@ class DropDownList : Fragment() , DropDownAdapterRV.TemplateHolder.OnItemClickLi
     private lateinit var list: ArrayList<String>
     private var more: Int = 0
     private var less: Int = 0
-    private lateinit var valToVM: String
+    private var indexMod: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +41,7 @@ class DropDownList : Fragment() , DropDownAdapterRV.TemplateHolder.OnItemClickLi
         val them = bundle.getString("them", "yellow")
         list = bundle.getStringArrayList("list")!!
         goal = bundle.getString("goal", "")
-        valToVM = bundle.getString("valToVM", "")
+        indexMod = bundle.getInt("indexMod", -1) ?: -1
 
         tvMainTypeWeapon = view.findViewById<TextView>(R.id.main)
         itemsRV = view.findViewById<RecyclerView>(R.id.items)
@@ -116,7 +118,7 @@ class DropDownList : Fragment() , DropDownAdapterRV.TemplateHolder.OnItemClickLi
             parentFragment?.view?.findNavController()
                 ?.navigate(R.id.action_characterMenu_to_pres_skillTest, bundleQ)
         }
-        if (goal == "toEdit") {
+        if (goal == "difficult" || goal == "modification") {
             tvMainTypeWeapon.text = list[position]
             itemsRV.visibility = View.GONE
             tvMainTypeWeapon.setCompoundDrawablesWithIntrinsicBounds(
@@ -125,29 +127,56 @@ class DropDownList : Fragment() , DropDownAdapterRV.TemplateHolder.OnItemClickLi
                 more,
                 0
             )
-            if (valToVM == "difficult") {
-                mSkillVM.difficult.value = position
-            }
-            if (valToVM == "modification") {
-                mSkillVM.modification.value = position
+            try {
+                if (goal == "difficult") {
+                    mSkillVM.difficult.value = position
+                }
+
+                if (goal == "modification") {
+                    if (indexMod >= 0) {
+                        mSkillVM.modification.value!![indexMod].value = position
+
+                    }
+                }
+            } catch (e: Exception) {
+                Toast.makeText(view?.context, "$e", Toast.LENGTH_LONG).show()
             }
         }
     }
+}
 
-    /*fun loadFragmentDropDown(main:String, them:String, list:ArrayList<String>, fragmentId:Int ){
+/*interface loadFragmentDropDown {
+    fun loadFragmentDropDown(main: String, them: String, goal: String) {
         val bundle = Bundle()
         bundle.putString("main", main)
         bundle.putString("them", them)
-        bundle.putStringArrayList("list", list)
+        bundle.putInt("indexMod", position)
+        bundle.putString("goal", goal)
+        val options = SpecialGameData().modName
+        bundle.putStringArrayList("list", options)
         val fragment = DropDownList()
         fragment.arguments = bundle
         childFragmentManager.commit {
-            replace(fragmentId, fragment)
+            replace(id, fragment)
             addToBackStack(null)
         }
-    }*/
+    }
+}*/
 
-}
+
+/*fun loadFragmentDropDown(main:String, them:String, list:ArrayList<String>, fragmentId:Int ){
+    val bundle = Bundle()
+    bundle.putString("main", main)
+    bundle.putString("them", them)
+    bundle.putStringArrayList("list", list)
+    val fragment = DropDownList()
+    fragment.arguments = bundle
+    childFragmentManager.commit {
+        replace(fragmentId, fragment)
+        addToBackStack(null)
+    }
+}*/
+
 /* используйте код ниже для:
 
 Подключения

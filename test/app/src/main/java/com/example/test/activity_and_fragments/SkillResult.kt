@@ -33,10 +33,21 @@ class SkillResult : Fragment() {
             val characterId = mCharacterVM.characterId
             val arg = this.arguments
             val title = arg?.getString("title") ?: ""
-            val difficult = arg?.getString("difficult") ?: ""
-            val mod = arg?.getString("mod") ?: ""
-            val res1d10 = arg?.getString("1d10") ?: ""
-            val crit = arg?.getString("crit") ?: ""
+            val difficult = mSkillVM.difficult.value!!
+            var mod = 0
+            mSkillVM.modification.value?.forEach {
+                val res = if (it.style){
+                    SpecialGameData().modValue[it.value].toInt()
+                }else{
+                    it.value
+                }
+                mod+= res
+            }
+            val res1d10 = mSkillVM.m1d10.value!!
+            var crit = 0
+            if (mSkillVM.boolCritical.value!!){
+                crit = mSkillVM.critical.value!!
+            }
 
             // взаимосвясь с навыком и параметром
             val skill = mCharacterVM.characterList.value?.singleOrNull { character ->
@@ -56,7 +67,7 @@ class SkillResult : Fragment() {
                 pn.name == tvParam
             }?.value ?: 0
 
-            val result = (param + skill + res1d10.toInt() + crit.toInt() - mod.toInt()).toString()
+            val result = (param + skill + res1d10 + crit - mod).toString()
 
             val back = view.findViewById<ImageButton>(R.id.back)
             val tvForResult = view.findViewById<TextView>(R.id.test_for_value)
@@ -65,10 +76,10 @@ class SkillResult : Fragment() {
             val tvSuccessOrFail = view.findViewById<ImageView>(R.id.imageView)
 
             tvTitle.text = title
-            tvForResult.text = difficult
+            tvForResult.text = difficult.toString()
             tvOppositeResult.text = result
 
-            if (difficult.toInt() >= result.toInt()) {
+            if (difficult >= result.toInt()) {
                 tvSuccessOrFail.setImageDrawable(resources.getDrawable(R.drawable.draw_fail))
             } else {
                 tvSuccessOrFail.setImageDrawable(resources.getDrawable(R.drawable.draw_success))

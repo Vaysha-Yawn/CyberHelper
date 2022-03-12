@@ -235,6 +235,7 @@ open class CharacterDAO : ViewModel() {
         titleGroup: String,
         indexItem: Int,
         indexEff: Int,
+        name: String,
         type: String,
         numCount: Int,
         dX: Int,
@@ -248,6 +249,7 @@ open class CharacterDAO : ViewModel() {
         if (list != null) {
             val effect = list[indexEff]!!
             realm.executeTransaction {
+                effect.name = name
                 effect.fightType = type
                 effect.numCount = numCount
                 effect.dX = dX
@@ -261,6 +263,7 @@ open class CharacterDAO : ViewModel() {
         titleGroup: String,
         indexItem: Int,
         indexEff: Int,
+        name: String,
         type: String,
         numCount: Int,
         dX: Int,
@@ -274,7 +277,7 @@ open class CharacterDAO : ViewModel() {
         if (list != null) {
             if (list.size >= indexEff || indexEff < 0) {// новый
                 val effect =
-                    EffectWeapon(type, numCount, dX, (if (wearout != 0) wearout else null))
+                    EffectWeapon(name, type, numCount, dX, (if (wearout != 0) wearout else null))
                 realm.executeTransaction {
                     list.add(effect)
                 }

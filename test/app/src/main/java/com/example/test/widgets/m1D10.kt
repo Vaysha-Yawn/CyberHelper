@@ -27,14 +27,13 @@ class m1D10 : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.m1_d10, container, false)
 
-
         // подключаем фрагмент плюс и минус 1 d 10
         val bundleD = Bundle()
         bundleD.putInt("value", 1)
         bundleD.putInt("minValue", 1)
         bundleD.putInt("maxValue", 10)
         bundleD.putString("them", "yellow")
-        bundleD.putString("goal", "skillTest")
+        bundleD.putString("goal", "1d10")
         val fragmentD = PlusAndMinus()
         fragmentD.arguments = bundleD
         childFragmentManager.commit {
@@ -53,6 +52,7 @@ class m1D10 : Fragment() {
         bundleC.putInt("minValue", 1)
         bundleC.putInt("maxValue", 10)
         bundleC.putString("them", "yellow")
+        bundleC.putString("goal", "critical")
         val fragmentC = PlusAndMinus()
         fragmentC.arguments = bundleC
         childFragmentManager.commit {
@@ -71,10 +71,12 @@ class m1D10 : Fragment() {
                 greyCritic.visibility = View.GONE
                 frCritic.visibility = View.VISIBLE
                 critText.setTextColor(resources.getColor(R.color.yellow))
+                mSkillVM.boolCritical.value = true
             } else {
                 greyCritic.visibility = View.VISIBLE
                 frCritic.visibility = View.GONE
                 critText.setTextColor(resources.getColor(R.color.grey))
+                mSkillVM.boolCritical.value = false
             }
         }
 

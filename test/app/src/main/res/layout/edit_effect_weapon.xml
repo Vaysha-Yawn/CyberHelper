@@ -36,6 +36,26 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="30dp"
                 android:gravity="start"
+                android:text="Название атаки"
+                android:textColor="@color/light_grey" />
+
+            <EditText
+                android:id="@+id/name"
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/cyan"
+                android:hint="Введите название атаки"
+                android:maxLength="20"
+                android:minHeight="48dp" />
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:gravity="start"
                 android:text="Тип оружия"
                 android:textColor="@color/light_grey" />
 

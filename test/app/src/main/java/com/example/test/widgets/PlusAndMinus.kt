@@ -3,13 +3,13 @@ package com.example.test.widgets
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.test.R
 import com.example.test.viewModels.SkillTestVM
@@ -34,20 +34,21 @@ class PlusAndMinus : Fragment() {
         val value = args?.getInt("value", 0) ?: 0
         var maxValue = args?.getInt("maxValue", -1)
         var minValue = args?.getInt("minValue", -1)
-        val them = args?.getString("them", "orange")?:"orange"
-        val goal = args?.getString("goal", "")?:""
+        val them = args?.getString("them", "orange") ?: "orange"
+        val goal = args?.getString("goal", "") ?: ""
+        val index = args?.getInt("indexMod", -1) ?: -1
 
-        when(them){
-            "orange"->{
+        when (them) {
+            "orange" -> {
                 view = inflater.inflate(R.layout.plus_and_minus_full_orange, container, false)
             }
-            "green"->{
+            "green" -> {
                 view = inflater.inflate(R.layout.plus_and_minus_small_green, container, false)
             }
-            "yellow"->{
+            "yellow" -> {
                 view = inflater.inflate(R.layout.plus_and_minus_small_yellow, container, false)
             }
-            "blue"->{
+            "blue" -> {
                 view = inflater.inflate(R.layout.plus_and_minus_small_blue, container, false)
             }
         }
@@ -56,23 +57,48 @@ class PlusAndMinus : Fragment() {
         val plus = view.findViewById<Button>(R.id.plus_and_minus_plus)
         val minus = view.findViewById<Button>(R.id.plus_and_minus_minus)
 
-        if (maxValue == -1){maxValue = null}
-        if (minValue == -1){minValue = null}
+        if (maxValue == -1) {
+            maxValue = null
+        }
+        if (minValue == -1) {
+            minValue = null
+        }
 
         edit.text = value.toString()
 
-        if (goal == "skillTest"){
+        if (goal == "1d10" || goal == "critical" || goal == "mod") {
             edit.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
                 }
+
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     val x = edit.text.toString().toIntOrNull()
-                    if (x!=null){
-                        mSkillVM.m1d10.value = x
+                    if (x != null) {
+                        when (goal) {
+                            "1d10" -> {
+                                mSkillVM.m1d10.value = x
+                            }
+                            "critical" -> {
+                                mSkillVM.critical.value = x
+                            }
+                            "mod" -> {
+                                if (index >= 0) {
+                                    mSkillVM.modification.value!![index].value = x
+                                }
+                            }
+                        }
                     }
                     // добавить невозможность ввести значение больше чем макс или мин или не число
                 }
+
+
                 override fun afterTextChanged(s: Editable?) {
+
                 }
             })
         }
@@ -84,8 +110,18 @@ class PlusAndMinus : Fragment() {
                 if (res < maxValue) {
                     res += 1
                     edit.text = res.toString()
-                    if (goal == "skillTest"){
-                        mSkillVM.m1d10.value = res
+                    when (goal) {
+                        "1d10" -> {
+                            mSkillVM.m1d10.value = res
+                        }
+                        "critical" -> {
+                            mSkillVM.critical.value = res
+                        }
+                        "mod" -> {
+                            if (index >= 0) {
+                                mSkillVM.modification.value!![index].value = res
+                            }
+                        }
                     }
                 } else {
                     Toast.makeText(
@@ -97,8 +133,18 @@ class PlusAndMinus : Fragment() {
                 var res = edit.text.toString().toInt()
                 res += 1
                 edit.text = res.toString()
-                if (goal == "skillTest"){
-                    mSkillVM.m1d10.value = res
+                when (goal) {
+                    "1d10" -> {
+                        mSkillVM.m1d10.value = res
+                    }
+                    "critical" -> {
+                        mSkillVM.critical.value = res
+                    }
+                    "mod" -> {
+                        if (index >= 0) {
+                            mSkillVM.modification.value!![index].value = res
+                        }
+                    }
                 }
             }
         }
@@ -109,8 +155,18 @@ class PlusAndMinus : Fragment() {
                 if (res > minValue) {
                     res -= 1
                     edit.text = res.toString()
-                    if (goal == "skillTest"){
-                        mSkillVM.m1d10.value = res
+                    when (goal) {
+                        "1d10" -> {
+                            mSkillVM.m1d10.value = res
+                        }
+                        "critical" -> {
+                            mSkillVM.critical.value = res
+                        }
+                        "mod" -> {
+                            if (index >= 0) {
+                                mSkillVM.modification.value!![index].value = res
+                            }
+                        }
                     }
                 } else {
                     Toast.makeText(
@@ -122,8 +178,18 @@ class PlusAndMinus : Fragment() {
                 var res = edit.text.toString().toInt()
                 res -= 1
                 edit.text = res.toString()
-                if (goal == "skillTest"){
-                    mSkillVM.m1d10.value = res
+                when (goal) {
+                    "1d10" -> {
+                        mSkillVM.m1d10.value = res
+                    }
+                    "critical" -> {
+                        mSkillVM.critical.value = res
+                    }
+                    "mod" -> {
+                        if (index >= 0) {
+                            mSkillVM.modification.value!![index].value = res
+                        }
+                    }
                 }
             }
         }

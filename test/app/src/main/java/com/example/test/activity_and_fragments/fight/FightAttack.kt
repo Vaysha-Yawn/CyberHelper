@@ -23,7 +23,7 @@ import com.example.test.widgets.DropDownList
 import com.example.test.widgets.PlusAndMinus
 
 
-class FightAttack : Fragment(), ModTemplateHolder.LoadFragment {
+class FightAttack : Fragment() {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
 
@@ -35,18 +35,18 @@ class FightAttack : Fragment(), ModTemplateHolder.LoadFragment {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fight_attack, container, false)
+
+        val arg = this.arguments
+        val name = arg?.getString("name", "") ?: ""
+        val fightType = arg?.getString("fightType", "") ?: ""
+        val dX = arg?.getInt("dX", -1) ?: -1
+        val numCount = arg?.getInt("numCount", -1) ?: -1
+        val wearout = arg?.getInt("wearout", -1) ?: -1
+
         val binding = FightAttackBinding.bind(view)
 
         fun bind() = with(binding) {
-
-            modRV.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
-            val list = mutableListOf<Boolean>()
-            val adapter = ModAdapterRV(list, this@FightAttack)
-            modRV.adapter = adapter
-
-            addMod.setOnClickListener {
-                adapter.addMod(true)// добавить выбор стиля true - DD, false - PM
-            }
+            title.text = fightType
 
             back.setOnClickListener {
                 view.findNavController().popBackStack()
@@ -58,31 +58,5 @@ class FightAttack : Fragment(), ModTemplateHolder.LoadFragment {
         return view
     }
 
-    override fun loadFragment(position: Int, style: Boolean) {
-        if (style){
-            val bundle = Bundle()
-            bundle.putString("main", "Выберите можификатор")
-            bundle.putString("them", "blue")
-            val options = SpecialGameData().modName
-            bundle.putStringArrayList("list", options)
-            val fragment = DropDownList()
-            fragment.arguments = bundle
-            childFragmentManager.commit {
-                replace(R.id.fr, fragment)
-                addToBackStack(null)
-            }
-        }else{
-            val bundle = Bundle()
-            bundle.putInt("value", 0)
-            bundle.putInt("minValue", 0)
-            bundle.putInt("maxValue", 30)
-            bundle.putString("them", "blue")
-            val fragment = PlusAndMinus()
-            fragment.arguments = bundle
-            childFragmentManager.commit {
-                replace(R.id.fr, fragment)
-                addToBackStack(null)
-            }
-        }
-    }
+
 }

@@ -152,10 +152,22 @@ class EditEffectWeapon : Fragment() {
                 ).show()
             }
 
+            val name = view.findViewById<EditText>(R.id.name).text.toString()
+
+            if (name == ""){
+                res = 0
+                Toast.makeText(
+                    view.context,
+                    "Введите название атаки",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
             if (res == 1) {// если проверка прошла успешно
                 if (indexEff == -1) {
                     mCharacterVM.LOCaddEffectWeaponItem(
                         EffectWeapon(
+                            name,
                             type,
                             numCount!!,
                             dX!!,
@@ -165,7 +177,7 @@ class EditEffectWeapon : Fragment() {
                 } else {
                     mCharacterVM.LOCupdateEffectWeaponItem(
                         indexEff,
-                        EffectWeapon(type, numCount!!, dX!!, wearout)
+                        EffectWeapon( name, type, numCount!!, dX!!, wearout)
                     )
                 }
                 view.findNavController().popBackStack()
