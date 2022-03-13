@@ -69,6 +69,26 @@ class PlusAndMinus : Fragment() {
 
         edit.text = value.toString()
 
+        fun setValueForSkillVM(goal:String, value:Int){
+            when (goal) {
+                "1d10" -> {
+                    mSkillVM.m1d10.value = value
+                }
+                "critical" -> {
+                    mSkillVM.critical.value = value
+                }
+                "mod" -> {
+                    if (index >= 0) {
+                        mSkillVM.modification.value!![index].value = value
+                    }
+                }
+                "luck" -> {
+                    mSkillVM.usingLuckyPoint = value
+                }
+            }
+        }
+
+
         if (goal == "1d10" || goal == "critical" || goal == "mod") {
             edit.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(
@@ -82,26 +102,11 @@ class PlusAndMinus : Fragment() {
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     val x = edit.text.toString().toIntOrNull()
                     if (x != null) {
-                        when (goal) {
-                            "1d10" -> {
-                                mSkillVM.m1d10.value = x
-                            }
-                            "critical" -> {
-                                mSkillVM.critical.value = x
-                            }
-                            "mod" -> {
-                                if (index >= 0) {
-                                    mSkillVM.modification.value!![index].value = x
-                                }
-                            }
-                        }
+                        setValueForSkillVM(goal, x)
                     }
                     // добавить невозможность ввести значение больше чем макс или мин или не число
                 }
-
-
                 override fun afterTextChanged(s: Editable?) {
-
                 }
             })
         }
@@ -113,19 +118,7 @@ class PlusAndMinus : Fragment() {
                 if (res < maxValue) {
                     res += 1
                     edit.text = res.toString()
-                    when (goal) {
-                        "1d10" -> {
-                            mSkillVM.m1d10.value = res
-                        }
-                        "critical" -> {
-                            mSkillVM.critical.value = res
-                        }
-                        "mod" -> {
-                            if (index >= 0) {
-                                mSkillVM.modification.value!![index].value = res
-                            }
-                        }
-                    }
+                    setValueForSkillVM(goal, res)
                 } else {
                     Toast.makeText(
                         view.context, "Значение параметра не должно превышать $maxValue",
@@ -136,19 +129,7 @@ class PlusAndMinus : Fragment() {
                 var res = edit.text.toString().toInt()
                 res += 1
                 edit.text = res.toString()
-                when (goal) {
-                    "1d10" -> {
-                        mSkillVM.m1d10.value = res
-                    }
-                    "critical" -> {
-                        mSkillVM.critical.value = res
-                    }
-                    "mod" -> {
-                        if (index >= 0) {
-                            mSkillVM.modification.value!![index].value = res
-                        }
-                    }
-                }
+                setValueForSkillVM(goal, res)
             }
         }
 
@@ -158,19 +139,7 @@ class PlusAndMinus : Fragment() {
                 if (res > minValue) {
                     res -= 1
                     edit.text = res.toString()
-                    when (goal) {
-                        "1d10" -> {
-                            mSkillVM.m1d10.value = res
-                        }
-                        "critical" -> {
-                            mSkillVM.critical.value = res
-                        }
-                        "mod" -> {
-                            if (index >= 0) {
-                                mSkillVM.modification.value!![index].value = res
-                            }
-                        }
-                    }
+                    setValueForSkillVM(goal, res)
                 } else {
                     Toast.makeText(
                         view.context, "Значение параметра не может быть меньше $minValue",
@@ -181,19 +150,7 @@ class PlusAndMinus : Fragment() {
                 var res = edit.text.toString().toInt()
                 res -= 1
                 edit.text = res.toString()
-                when (goal) {
-                    "1d10" -> {
-                        mSkillVM.m1d10.value = res
-                    }
-                    "critical" -> {
-                        mSkillVM.critical.value = res
-                    }
-                    "mod" -> {
-                        if (index >= 0) {
-                            mSkillVM.modification.value!![index].value = res
-                        }
-                    }
-                }
+                setValueForSkillVM(goal, res)
             }
         }
         return view

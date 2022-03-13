@@ -108,11 +108,7 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"/>
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/m1d10"
-                android:layout_marginTop="30dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+
 
             <LinearLayout
                 android:layout_marginTop="30dp"
@@ -126,7 +122,7 @@
                     android:text="Внимание! У вас нет подходящего навыка"
                     style="@style/Text.H2"
                     android:gravity="start"
-                    android:textColor="@color/red_orange"/>
+                    android:textColor="@color/orange"/>
                 <RadioGroup
                     android:id="@+id/luckyOrErudit"
                     android:layout_marginTop="20dp"
@@ -135,11 +131,12 @@
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:checked="true"
                         android:id="@+id/byLucky"
                         style="@style/Text.H2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/red_orange"
+                        android:buttonTint="@color/orange"
                         android:text="На удачу!"
                         tools:ignore="TouchTargetSizeCheck" />
 
@@ -149,7 +146,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:backgroundTint="@color/red_orange"
+                        android:buttonTint="@color/orange"
                         android:text="Общие знания"
                         tools:ignore="TouchTargetSizeCheck" />
                 </RadioGroup>
@@ -183,7 +180,23 @@
                     android:text="Осталось х очков удачи"
                     android:textColor="@color/light_grey"
                     android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/infoErudit"
+                    android:gravity="start"
+                    style="@style/Text.H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="При использовании 0 очков удачи будет автоматически использована общая эрудиция"
+                    android:textColor="@color/light_grey"
+                    android:textSize="14sp" />
             </LinearLayout>
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/m1d10"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/btn_next"

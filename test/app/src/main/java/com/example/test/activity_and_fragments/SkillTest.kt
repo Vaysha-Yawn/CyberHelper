@@ -41,6 +41,8 @@ class SkillTest : Fragment() {
         val arg = this.arguments
         val txtitle = arg?.getString("title") ?: ""
 
+        mSkillVM.title = txtitle
+
         val tvEdit = view.findViewById<TextView>(R.id.edit)
 
         val difficultValue = SpecialGameData().difficultValue
@@ -83,7 +85,8 @@ class SkillTest : Fragment() {
                 view.findNavController().popBackStack()
             }
 
-            // если нет навыка
+            // если нет навыка-------------------------------------------------------------------------
+
             val skill = mCharacterVM.characterList.value?.singleOrNull { character ->
                 character.id == characterId
             }?.attributes?.singleOrNull { gp ->
@@ -96,7 +99,6 @@ class SkillTest : Fragment() {
 
             if (skill==0){
                 ifNoSkill.visibility = View.VISIBLE
-
                 luckyOrErudit.setOnCheckedChangeListener { group, checkedId ->
                     when(checkedId){
                         R.id.byLucky->{
@@ -114,33 +116,44 @@ class SkillTest : Fragment() {
                         }
                     }
                 }
+                val luck = mCharacterVM.characterList.value?.singleOrNull { character ->
+                    character.id == characterId
+                }?.attributes?.singleOrNull { gp ->
+                    gp.title == "Параметры"
+                }?.attributes?.listParamNum?.singleOrNull { pn ->
+                    pn.name == "Удача"
+                }?.value ?: 0
+
+                luckLeft.text = "Осталось $luck очков удачи"
+                // подключаем плюс минус
+                val bundleD = Bundle()
+                bundleD.putInt("value", 0)
+                bundleD.putInt("minValue", 0)
+                bundleD.putInt("maxValue", luck)
+                bundleD.putString("them", "orange_small")
+                bundleD.putString("goal", "luck")
+                val fragmentD = PlusAndMinus()
+                fragmentD.arguments = bundleD
+                childFragmentManager.commit {
+                    replace(R.id.luckyPMfr, fragmentD)
+                    addToBackStack(null)
+                }
+
+                // на всякий ищем эрудицию
+                val erudit = mCharacterVM.characterList.value?.singleOrNull { character ->
+                    character.id == characterId
+                }?.attributes?.singleOrNull { gp ->
+                    gp.title == "Навыки"
+                }?.attributes?.listParamNum?.singleOrNull { pn ->
+                    pn.name == "Образование"
+                }?.value ?: 0
+
+                mSkillVM.erudit = erudit
             }else{
                 ifNoSkill.visibility = View.GONE
             }
 
-            val luck = mCharacterVM.characterList.value?.singleOrNull { character ->
-                character.id == characterId
-            }?.attributes?.singleOrNull { gp ->
-                gp.title == "Параметры"
-            }?.attributes?.listParamNum?.singleOrNull { pn ->
-                pn.name == "Удача"
-            }?.value ?: 0
-
-            luckLeft.text = "Осталось $luck очков удачи"
-            // подключаем плюс минус
-            val bundleD = Bundle()
-            bundleD.putInt("value", 0)
-            bundleD.putInt("minValue", 0)
-            bundleD.putInt("maxValue", luck)
-            bundleD.putString("them", "yellow")
-            bundleD.putString("goal", "1d10")
-            val fragmentD = PlusAndMinus()
-            fragmentD.arguments = bundleD
-            childFragmentManager.commit {
-                replace(R.id.frPlusMinusSmallYellow1D10, fragmentD)
-                addToBackStack(null)
-            }
-            luckyPMfr
+            //-------------------------------------------------------------------------------------------------------
         }
 
         bind()
@@ -152,22 +165,15 @@ class SkillTest : Fragment() {
             var res = 1
             val difficult = tvEdit.text.toString().toIntOrNull()
             if (difficult != null) {
-                try {
-                    mSkillVM.dif.value = difficult
-                } catch (e: Exception) {
-                    Toast.makeText(view.context, "$e", Toast.LENGTH_LONG).show()
-                }
+                mSkillVM.dif.value = difficult
             } else {
                 res = 0
             }
             if (res == 1) {
-                val bundleF = Bundle()
-                bundleF.putString("title", txtitle)
                 view.findNavController()
-                    .navigate(R.id.action_pres_skillTest_to_skillResult, bundleF)
+                    .navigate(R.id.action_pres_skillTest_to_skillResult)
             }
         }
-
 
         return view
     }

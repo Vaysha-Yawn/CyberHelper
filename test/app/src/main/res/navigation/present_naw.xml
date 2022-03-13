@@ -276,11 +276,21 @@
         <action
             android:id="@+id/action_pres_skillTest_to_skillResult"
             app:destination="@id/skillResult" />
+        <action
+            android:id="@+id/action_pres_skillTest_to_characterMenu"
+            app:destination="@id/characterMenu" />
     </fragment>
     <fragment
         android:id="@+id/skillResult"
         android:name="com.example.test.activity_and_fragments.SkillResult"
-        android:label="SkillResult" />
+        android:label="SkillResult" >
+        <action
+            android:id="@+id/action_skillResult_to_home2"
+            app:destination="@id/home2" />
+        <action
+            android:id="@+id/action_skillResult_to_pres_skillTest4"
+            app:destination="@id/pres_skillTest" />
+    </fragment>
     <fragment
         android:id="@+id/weaponOrNotFight"
         android:name="com.example.test.activity_and_fragments.fight.ChooseWeapon"

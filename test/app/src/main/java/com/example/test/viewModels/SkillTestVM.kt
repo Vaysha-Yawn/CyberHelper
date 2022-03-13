@@ -6,6 +6,8 @@ import com.example.test.widgets.Mod
 
 class SkillTestVM:ViewModel() {
 
+    var title = ""
+
     val modification = MutableLiveData<MutableList<Mod>>() // mod.value = -1 , оно сохраняется с индексом на 1 больше, чтобы оставить при создании начальную фразу
     val m1d10 = MutableLiveData<Int>()
     val critical = MutableLiveData<Int>()
@@ -14,9 +16,10 @@ class SkillTestVM:ViewModel() {
     val dif = MutableLiveData<Int>()
     val difBoolean = MutableLiveData<Boolean>()
 
-    var luckyOrErudit:Boolean? = null
+    var luckyOrErudit:Boolean = true
     var usingLuckyPoint:Int? = null
     var skill :Int? = null
+    var erudit :Int? = null
 
     init {
         m1d10.value = 1
