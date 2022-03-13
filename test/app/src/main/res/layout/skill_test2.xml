@@ -114,6 +114,77 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/ifNoSkill">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Внимание! У вас нет подходящего навыка"
+                    style="@style/Text.H2"
+                    android:gravity="start"
+                    android:textColor="@color/red_orange"/>
+                <RadioGroup
+                    android:id="@+id/luckyOrErudit"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/byLucky"
+                        style="@style/Text.H2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/red_orange"
+                        android:text="На удачу!"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <RadioButton
+                        android:id="@+id/byErudition"
+                        style="@style/Text.H2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:backgroundTint="@color/red_orange"
+                        android:text="Общие знания"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </RadioGroup>
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/byLuckyLinLay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:textSize="18sp"
+                        android:gravity="start"
+                        style="@style/Text.H2"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Сколько очков удачи ипользовать?"/>
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/luckyPMfr"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/luckLeft"
+                    style="@style/Text.H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Осталось х очков удачи"
+                    android:textColor="@color/light_grey"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/btn_next"
                 style="@style/Button_green_full"
@@ -130,5 +201,8 @@
 
         </LinearLayout>
     </ScrollView>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

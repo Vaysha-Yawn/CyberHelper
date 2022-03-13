@@ -13,6 +13,11 @@ class SkillTestVM:ViewModel() {
     val deletedIdByMod = mutableListOf<Int>()
     val dif = MutableLiveData<Int>()
     val difBoolean = MutableLiveData<Boolean>()
+
+    var luckyOrErudit:Boolean? = null
+    var usingLuckyPoint:Int? = null
+    var skill :Int? = null
+
     init {
         m1d10.value = 1
         dif.value = 0

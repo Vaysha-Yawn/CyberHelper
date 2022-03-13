@@ -17,6 +17,7 @@ import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.widgets.DropDownList
 import com.example.test.widgets.Modificators
+import com.example.test.widgets.PlusAndMinus
 import com.example.test.widgets.m1D10
 import kotlin.reflect.typeOf
 
@@ -81,6 +82,65 @@ class SkillTest : Fragment() {
             back.setOnClickListener {
                 view.findNavController().popBackStack()
             }
+
+            // если нет навыка
+            val skill = mCharacterVM.characterList.value?.singleOrNull { character ->
+                character.id == characterId
+            }?.attributes?.singleOrNull { gp ->
+                gp.title == "Навыки"
+            }?.attributes?.listParamNum?.singleOrNull { pn ->
+                pn.name == txtitle
+            }?.value ?: 0
+
+            mSkillVM.skill = skill
+
+            if (skill==0){
+                ifNoSkill.visibility = View.VISIBLE
+
+                luckyOrErudit.setOnCheckedChangeListener { group, checkedId ->
+                    when(checkedId){
+                        R.id.byLucky->{
+                            mSkillVM.luckyOrErudit = true
+
+                            byLuckyLinLay.visibility = View.VISIBLE
+                            luckLeft.visibility = View.VISIBLE
+
+                        }
+                        R.id.byErudition->{
+                            mSkillVM.luckyOrErudit = false
+
+                            byLuckyLinLay.visibility = View.GONE
+                            luckLeft.visibility = View.GONE
+                        }
+                    }
+                }
+            }else{
+                ifNoSkill.visibility = View.GONE
+            }
+
+            val luck = mCharacterVM.characterList.value?.singleOrNull { character ->
+                character.id == characterId
+            }?.attributes?.singleOrNull { gp ->
+                gp.title == "Параметры"
+            }?.attributes?.listParamNum?.singleOrNull { pn ->
+                pn.name == "Удача"
+            }?.value ?: 0
+
+            luckLeft.text = "Осталось $luck очков удачи"
+            // подключаем плюс минус
+            val bundleD = Bundle()
+            bundleD.putInt("value", 0)
+            bundleD.putInt("minValue", 0)
+            bundleD.putInt("maxValue", luck)
+            bundleD.putString("them", "yellow")
+            bundleD.putString("goal", "1d10")
+            val fragmentD = PlusAndMinus()
+            fragmentD.arguments = bundleD
+            childFragmentManager.commit {
+                replace(R.id.frPlusMinusSmallYellow1D10, fragmentD)
+                addToBackStack(null)
+            }
+            luckyPMfr
         }
 
         bind()

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.compose.ui.text.toLowerCase
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
@@ -35,28 +34,24 @@ class SkillResult : Fragment() {
             val title = arg?.getString("title") ?: ""
             val difficult = mSkillVM.dif.value!!
             var mod = 0
-            mSkillVM.modification.value?.forEach {
-                val res = if (it.style){
-                    SpecialGameData().modValue[it.value].toInt()
-                }else{
-                    it.value
+            val mods = mSkillVM.modification.value!!
+            for (m in mods) {
+                val res = if (m.style) {
+                    SpecialGameData().modValue[(m.value - 1)].toInt()
+                } else {
+                    m.value - 1
                 }
-                mod+= res
+                mod += res
             }
+
             val res1d10 = mSkillVM.m1d10.value!!
             var crit = 0
-            if (mSkillVM.boolCritical.value!!){
+            if (mSkillVM.boolCritical.value!!) {
                 crit = mSkillVM.critical.value!!
             }
 
             // взаимосвясь с навыком и параметром
-            val skill = mCharacterVM.characterList.value?.singleOrNull { character ->
-                character.id == characterId
-            }?.attributes?.singleOrNull { gp ->
-                gp.title == "Навыки"
-            }?.attributes?.listParamNum?.singleOrNull { pn ->
-                pn.name == title
-            }?.value ?: 0
+            val skill = mSkillVM.skill?:0
 
             val tvParam = SpecialGameData().mapParameterToSkill[title] ?: ""
             val param = mCharacterVM.characterList.value?.singleOrNull { character ->
@@ -110,9 +105,12 @@ class SkillResult : Fragment() {
             }
 
             val list = arrayOf(
-                "Сложность = $difficult", "1D10 = $res1d10",
-                "Критический = $crit", "Модификатор = $mod",
-                "Навык ${title.toLowerCase()} = $skill", "Параметр ${tvParam.toLowerCase()} = $param",
+                "Сложность = $difficult",
+                "1D10 = $res1d10",
+                "Критический = $crit",
+                "Модификатор = $mod",
+                "Навык ${title.toLowerCase()} = $skill",
+                "Параметр ${tvParam.toLowerCase()} = $param",
                 "Формула для подсчета суммы броска: параметр + навык + 1D10 + критический - модификатор"
             )
 

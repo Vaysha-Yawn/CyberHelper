@@ -42,6 +42,9 @@ class PlusAndMinus : Fragment() {
             "orange" -> {
                 view = inflater.inflate(R.layout.plus_and_minus_full_orange, container, false)
             }
+            "orange_small" -> {
+                view = inflater.inflate(R.layout.plus_and_minus_small_orange, container, false)
+            }
             "green" -> {
                 view = inflater.inflate(R.layout.plus_and_minus_small_green, container, false)
             }
