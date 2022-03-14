@@ -1,15 +1,15 @@
-package com.example.test.activity_and_fragments
+package com.example.test.activity_and_fragments.fight
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.navigation.findNavController
+import androidx.navigation.navGraphViewModels
 import com.example.test.R
 import com.example.test.data_base.SpecialGameData
 import com.example.test.databinding.SkillTest2Binding
@@ -19,7 +19,6 @@ import com.example.test.widgets.DropDownList
 import com.example.test.widgets.Modificators
 import com.example.test.widgets.PlusAndMinus
 import com.example.test.widgets.m1D10
-import kotlin.reflect.typeOf
 
 
 class SkillTest : Fragment() {

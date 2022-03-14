@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
@@ -19,6 +20,7 @@ import com.example.test.viewModels.SkillTestVM
 class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickListener {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
+
     private lateinit var goal: String
     private lateinit var tvMainTypeWeapon: TextView
     private lateinit var itemsRV: RecyclerView
@@ -110,7 +112,6 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
     }
 
     override fun onItemClick(position: Int) {
-        if (goal == "") {
             tvMainTypeWeapon.text = list[position]
             itemsRV.visibility = View.GONE
             tvMainTypeWeapon.setCompoundDrawablesWithIntrinsicBounds(
@@ -119,25 +120,18 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
                 more,
                 0
             )
-        }
+
         if (goal == "characterMenu") {
+            mSkillVM.clearVM()
             val bundleQ = Bundle()
             bundleQ.putString("title", list[position])
             parentFragment?.view?.findNavController()
                 ?.navigate(R.id.action_characterMenu_to_pres_skillTest, bundleQ)
         }
         if (goal == "difficult" || goal == "modification") {
-            tvMainTypeWeapon.text = list[position]
-            itemsRV.visibility = View.GONE
-            tvMainTypeWeapon.setCompoundDrawablesWithIntrinsicBounds(
-                0,
-                0,
-                more,
-                0
-            )
             try {
                 if (goal == "difficult") {
-                    mSkillVM.dif.value = position.toInt()
+                    mSkillVM.dif.value = position
                     mSkillVM.difBoolean.value = !mSkillVM.difBoolean.value!!
                 }
 

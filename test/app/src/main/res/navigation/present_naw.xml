@@ -203,11 +203,11 @@
             android:id="@+id/action_characterMenu_to_pres_characterList"
             app:destination="@id/pres_characterList" />
         <action
-            android:id="@+id/action_characterMenu_to_pres_skillTest"
-            app:destination="@id/pres_skillTest" />
-        <action
             android:id="@+id/action_characterMenu_to_weaponOrNotFight"
-            app:destination="@id/weaponOrNotFight" />
+            app:destination="@id/Attack" />
+        <action
+            android:id="@+id/action_characterMenu_to_pres_skillTest"
+            app:destination="@id/SkillTest" />
     </fragment>
      <fragment
         android:id="@+id/home2"
@@ -269,40 +269,46 @@
             android:id="@+id/action_pres_addNewParamItem_to_pres_dropDownEdit"
             app:destination="@id/pres_dropDownEdit" />
     </fragment>
-    <fragment
-        android:id="@+id/pres_skillTest"
-        android:name="com.example.test.activity_and_fragments.SkillTest"
-        android:label="SkillTest" >
-        <action
-            android:id="@+id/action_pres_skillTest_to_skillResult"
-            app:destination="@id/skillResult" />
-        <action
-            android:id="@+id/action_pres_skillTest_to_characterMenu"
-            app:destination="@id/characterMenu" />
-    </fragment>
-    <fragment
-        android:id="@+id/skillResult"
-        android:name="com.example.test.activity_and_fragments.SkillResult"
-        android:label="SkillResult" >
-        <action
-            android:id="@+id/action_skillResult_to_home2"
-            app:destination="@id/home2" />
-        <action
-            android:id="@+id/action_skillResult_to_pres_skillTest4"
-            app:destination="@id/pres_skillTest" />
-    </fragment>
-    <fragment
-        android:id="@+id/weaponOrNotFight"
-        android:name="com.example.test.activity_and_fragments.fight.ChooseWeapon"
-        android:label="weapon_or_not_fight"
-        tools:layout="@layout/choose_weapon" >
-        <action
-            android:id="@+id/action_weaponOrNotFight_to_fightAttack"
-            app:destination="@id/fightAttack" />
-    </fragment>
-    <fragment
-        android:id="@+id/fightAttack"
-        android:name="com.example.test.activity_and_fragments.fight.FightSecond"
-        android:label="fight_attack"
-        tools:layout="@layout/fight_second" />
+    <navigation android:id="@+id/SkillTest"
+        app:startDestination="@id/pres_skillTest">
+        <fragment
+            android:id="@+id/pres_skillTest"
+            android:name="com.example.test.activity_and_fragments.fight.SkillTest"
+            android:label="SkillTest">
+            <action
+                android:id="@+id/action_pres_skillTest_to_skillResult"
+                app:destination="@id/skillResult" />
+            <action
+                android:id="@+id/action_pres_skillTest_to_characterMenu"
+                app:destination="@id/characterMenu" />
+        </fragment>
+        <fragment
+            android:id="@+id/skillResult"
+            android:name="com.example.test.activity_and_fragments.fight.SkillResult"
+            android:label="SkillResult">
+            <action
+                android:id="@+id/action_skillResult_to_home2"
+                app:destination="@id/home2" />
+            <action
+                android:id="@+id/action_skillResult_to_pres_skillTest4"
+                app:destination="@id/pres_skillTest" />
+        </fragment>
+    </navigation>
+    <navigation android:id="@+id/Attack"
+        app:startDestination="@id/weaponOrNotFight">
+        <fragment
+            android:id="@+id/weaponOrNotFight"
+            android:name="com.example.test.activity_and_fragments.fight.ChooseWeapon"
+            android:label="weapon_or_not_fight"
+            tools:layout="@layout/choose_weapon">
+            <action
+                android:id="@+id/action_weaponOrNotFight_to_fightAttack"
+                app:destination="@id/fightAttack" />
+        </fragment>
+        <fragment
+            android:id="@+id/fightAttack"
+            android:name="com.example.test.activity_and_fragments.fight.FightSecond"
+            android:label="fight_attack"
+            tools:layout="@layout/fight_second" />
+    </navigation>
 </navigation>

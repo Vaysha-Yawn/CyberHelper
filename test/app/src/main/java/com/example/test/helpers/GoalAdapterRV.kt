@@ -4,24 +4,26 @@ package com.example.test.helpers
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.databinding.CardModBinding
+import com.example.test.widgets.Goal
 import com.example.test.widgets.Mod
 
 
-class ModAdapterRV(
-    private val deleteMod: ModTemplateHolder.DeleteMod,
-    private val loadFragment: ModTemplateHolder.LoadFragment,
-    private val updIdMode: ModTemplateHolder.updIdMod,
+class GoalAdapterRV(
+    private val deleteMod: GoalTemplateHolder.DeleteGoal,
+    private val loadFragment: GoalTemplateHolder.LoadFragment,
+    private val updIdMode: GoalTemplateHolder.updIdGoal,
 ) :
-    RecyclerView.Adapter<ModTemplateHolder>(), ModTemplateHolder.updView {
+    RecyclerView.Adapter<GoalTemplateHolder>(), GoalTemplateHolder.updView {
 
     var list = mutableListOf<Mod>()
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ModTemplateHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoalTemplateHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.card_mod, parent, false)
-        return ModTemplateHolder(view, deleteMod, loadFragment, this, updIdMode)
+        return GoalTemplateHolder(view, deleteMod, loadFragment, this, updIdMode)
     }
 
     override fun onBindViewHolder(holder: ModTemplateHolder, position: Int) {
@@ -43,52 +45,47 @@ class ModAdapterRV(
 
 }
 
-class ModTemplateHolder(
+class GoalTemplateHolder(
     view: View,
-    private val deleteMod: DeleteMod,
-    private val loadFragment: LoadFragment,
-    private val updViewr: updView,
-    private val updIdMode: updIdMod,
+    private val deleteGoal: GoalTemplateHolder.DeleteGoal,
+    private val loadFragment: GoalTemplateHolder.LoadFragment,
+    private val updViewr: GoalTemplateHolder.updView,
+    private val updId: GoalTemplateHolder.updIdGoal,
 ) : RecyclerView.ViewHolder(view) {
     private val binding = CardModBinding.bind(view)
 
-    fun bind(mod: Mod) = with(binding) {
+    fun bind(goal: Goal) = with(binding) {
         try {
-            val id =if(mod.resId == 0){
+            val id =if(goal.resId == 0){
                  View.generateViewId()
             }else{
-                mod.resId
+                goal.resId
             }
             fr.id = id
-            updIdMode.updIdMod(adapterPosition, id)
-            loadFragment.loadFragment(adapterPosition, mod.style, mod.value, id)
+            updId.updIdMod(adapterPosition, id)
+            loadFragment.loadFragment(adapterPosition, id, goal)
             delete.setOnClickListener { view ->
-                deleteMod.deleteMod(adapterPosition)
+                deleteGoal.deleteGoal(adapterPosition)
                 updViewr.updateView()
             }
-            /*Toast.makeText(
-                delete.context,
-                "This bind value ${mod.value}, position $adapterPosition, resId ${mod.resId},!",
-                Toast.LENGTH_LONG
-            ).show()*/
         } catch (e: Exception) {
             Toast.makeText(delete.context, "$e", Toast.LENGTH_LONG).show()
         }
     }
-
     interface updView {
         fun updateView()
     }
 
-    interface DeleteMod {
-        fun deleteMod(position: Int)
+    interface DeleteGoal {
+        fun deleteGoal(position: Int)
     }
 
     interface LoadFragment {
-        fun loadFragment(position: Int, style: Boolean, value: Int, id: Int)
+        fun loadFragment(position: Int, id: Int, goal: Goal)
     }
 
-    interface updIdMod {
+    interface updIdGoal {
         fun updIdMod(position: Int, id: Int)
     }
 }
+

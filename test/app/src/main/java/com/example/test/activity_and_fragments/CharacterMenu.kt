@@ -11,12 +11,14 @@ import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.navigation.findNavController
+import androidx.navigation.navGraphViewModels
 import com.example.test.R
 import com.example.test.data_base.SpecialGameData
 import com.example.test.data_base.TemplateParamNum
 import com.example.test.data_base.TemplateParamStr
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
+import com.example.test.viewModels.SkillTestVM
 import com.example.test.widgets.DropDownList
 
 
@@ -24,6 +26,7 @@ class CharacterMenu : Fragment() {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
+    private val mSkillVM: SkillTestVM by activityViewModels()
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -74,6 +77,7 @@ class CharacterMenu : Fragment() {
         /*}catch (e:Exception){Toast.makeText(view.context, "$e", Toast.LENGTH_LONG).show()}*/
 
         view.findViewById<ImageButton>(R.id.CharacterMenu_Fight).setOnClickListener {
+            mSkillVM.clearVM()
             view.findNavController()
                 .navigate(R.id.action_characterMenu_to_weaponOrNotFight)
         }

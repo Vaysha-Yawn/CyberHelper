@@ -1,4 +1,4 @@
-package com.example.test.activity_and_fragments
+package com.example.test.activity_and_fragments.fight
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.findNavController
+import androidx.navigation.navGraphViewModels
 import com.example.test.R
 import com.example.test.data_base.SpecialGameData
 import com.example.test.viewModels.CharacterDAO
@@ -40,7 +39,7 @@ class SkillResult : Fragment() {
             val res = if (m.style) {
                 SpecialGameData().modValue[(m.value - 1)].toInt()
             } else {
-                m.value - 1
+                m.value
             }
             mod += res
         }
@@ -158,6 +157,3 @@ class SkillResult : Fragment() {
     }
 
 }
-
-// TODO: при попытке из этого фрагмента вернться назад ошибка и вылет, не объясняет почему
-// может дело в том, что VM не обновляется, а может в сайд рагментах, хз

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.navigation.findNavController
+import androidx.navigation.navGraphViewModels
 import com.example.test.R
 import com.example.test.data_base.EffectWeapon
 import com.example.test.databinding.FightSecondBinding
