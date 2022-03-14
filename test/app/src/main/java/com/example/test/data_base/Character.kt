@@ -71,7 +71,7 @@ open class Character(
     var backgroundStory:String = "",// Прошлое
     var family:String = "", // Семья
     var motivation:String = "", //
-    var goals:String = "", //
+    var allGoals:String = "", //
     var friends:String = "", //
     var enemies:String = "", //
     var romance:String = "", //

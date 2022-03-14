@@ -100,10 +100,10 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
             LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
         itemsRV.adapter = adapterItems
 
-        if (goal == "modification"){
+        if (goal == "modification") {
             val value = mSkillVM.modification.value!![indexMod].value
-            if (indexMod >= 0 && value>0) {
-                tvMainTypeWeapon.text = list[value-1]
+            if (indexMod >= 0 && value > 0) {
+                tvMainTypeWeapon.text = list[value - 1]
             }
 
         }
@@ -112,14 +112,14 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
     }
 
     override fun onItemClick(position: Int) {
-            tvMainTypeWeapon.text = list[position]
-            itemsRV.visibility = View.GONE
-            tvMainTypeWeapon.setCompoundDrawablesWithIntrinsicBounds(
-                0,
-                0,
-                more,
-                0
-            )
+        tvMainTypeWeapon.text = list[position]
+        itemsRV.visibility = View.GONE
+        tvMainTypeWeapon.setCompoundDrawablesWithIntrinsicBounds(
+            0,
+            0,
+            more,
+            0
+        )
 
         if (goal == "characterMenu") {
             mSkillVM.clearVM()
@@ -128,24 +128,27 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
             parentFragment?.view?.findNavController()
                 ?.navigate(R.id.action_characterMenu_to_pres_skillTest, bundleQ)
         }
-        if (goal == "difficult" || goal == "modification") {
-            try {
-                if (goal == "difficult") {
-                    mSkillVM.dif.value = position
-                    mSkillVM.difBoolean.value = !mSkillVM.difBoolean.value!!
-                }
 
-                if (goal == "modification") {
-                    if (indexMod >= 0) {
-                        mSkillVM.modification.value!![indexMod].value = position+1
-                    }
-                }
-            } catch (e: Exception) {
-                Toast.makeText(view?.context, "$e", Toast.LENGTH_LONG).show()
+        if (goal == "difficult") {
+            mSkillVM.dif.value = position
+            mSkillVM.difBoolean.value = !mSkillVM.difBoolean.value!!
+        }
+
+        if (goal == "modification") {
+            if (indexMod >= 0) {
+                mSkillVM.modification.value!![indexMod].value = position + 1
+            }
+        }
+        if (goal == "goal") {
+            val chosenGoal = mSkillVM.allGoals.value?.get(position)
+            if (chosenGoal!=null){
+                mSkillVM.chosenGoals.value?.set(position, chosenGoal)
+                //mSkillVM.allGoals.value?.remove(chosenGoal)
             }
         }
     }
 }
+
 
 /*interface loadFragmentDropDown {
     fun loadFragmentDropDown(main: String, them: String, goal: String) {

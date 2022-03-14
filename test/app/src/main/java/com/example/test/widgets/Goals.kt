@@ -5,23 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
-import com.example.test.data_base.SpecialGameData
-import com.example.test.databinding.DialogChooseAddModificationBinding
+import com.example.test.databinding.GoalsBinding
 import com.example.test.databinding.ModificatorsBinding
 import com.example.test.helpers.GoalAdapterRV
-import com.example.test.helpers.ModAdapterRV
-import com.example.test.helpers.ModTemplateHolder
+import com.example.test.helpers.GoalTemplateHolder
+import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
 
-class Goals : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHolder.DeleteMod,
-    ModTemplateHolder.updIdMod {
-
+class Goals : Fragment(), GoalTemplateHolder.LoadFragment, GoalTemplateHolder.DeleteGoal,
+    GoalTemplateHolder.updIdGoal {
+    private val mCharacterDAO: CharacterDAO by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
     private val adapter = GoalAdapterRV(this, this, this)
 
@@ -33,69 +31,77 @@ class Goals : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHolder.Dele
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.modificators, container, false)
-        try {
-            val binding = ModificatorsBinding.bind(view)
+        val goalsList = mutableListOf<Goal>()
+        mCharacterDAO.characterList.value?.forEach {
+            if (it.gameId == mCharacterDAO.gameId) {
+                if (it.id != mCharacterDAO.characterId) {
+                    val goal = Goal()
+                    goal.characterId = it.id
+                    val name = it.attributes.singleOrNull { gp ->
+                        gp.title == "Базовые параметры"
+                    }?.attributes?.listParamStr?.singleOrNull { pn ->
+                        pn.name == "Имя персонажа"
+                    }?.value ?: ""
+                    goal.name = name
+                    goalsList.add(goal)
+                }
+            }
+        }
+        mSkillVM.allGoals.value = goalsList
+
+        val view = inflater.inflate(R.layout.goals, container, false)
+
+            val binding = GoalsBinding.bind(view)
 
             fun bind() = with(binding) {
                 modRV.layoutManager =
                     LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
                 modRV.adapter = adapter
-                mSkillVM.modification.observe(viewLifecycleOwner) {
+                mSkillVM.chosenGoals.observe(viewLifecycleOwner) {
                     adapter.setData(it)
+                    adapter.notifyDataSetChanged()
                 }
                 addMod.setOnClickListener {
+                    try {
                     addGoal()
+                    } catch (e: Exception) {
+                        Toast.makeText(view.context, "$e", Toast.LENGTH_LONG).show()
+                    }
                 }
             }
             bind()
-        } catch (e: Exception) {
-            Toast.makeText(view.context, "$e", Toast.LENGTH_LONG).show()
-        }
+
         return view
     }
 
-    override fun loadFragment(position: Int, id: Int, goal:Goal) {
-        if (style) {
-            val bundle = Bundle()
-            bundle.putString("main", "Выберите модификатор")
-            bundle.putString("them", "blue")
-            bundle.putInt("indexMod", position)
-            bundle.putString("goal", "modification")
-            bundle.putInt("value", value)
-            val options = SpecialGameData().modName
-            bundle.putStringArrayList("list", options)
-            val fragment = DropDownList()
-            fragment.arguments = bundle
-            childFragmentManager.commit {
-                replace(id, fragment)
-                addToBackStack(null)
-            }
-        } else {
-            val bundle = Bundle()
-            bundle.putInt("value", value)
-            bundle.putInt("minValue", 0)
-            bundle.putInt("maxValue", 30)
-            bundle.putString("them", "blue")
-            bundle.putString("goal", "mod")
-            bundle.putInt("indexMod", position)
-            val fragment = PlusAndMinus()
-            fragment.arguments = bundle
-            childFragmentManager.commit {
-                replace(id, fragment)
-                addToBackStack(null)
-            }
+    override fun loadFragment(position: Int, id: Int) {
+        val bundle = Bundle()
+        bundle.putString("main", "Выберите цель")
+        bundle.putString("them", "blue")
+        bundle.putInt("indexMod", position)
+        bundle.putString("goal", "goal")
+        val options = ArrayList<String>()
+        for (g in mSkillVM.allGoals.value!!){
+            options.add(g.name)
+        }
+        bundle.putStringArrayList("list", options)
+        val fragment = DropDownList()
+        fragment.arguments = bundle
+        childFragmentManager.commit {
+            replace(id, fragment)
+            addToBackStack(null)
         }
     }
 
-    override fun deleteMod(position: Int) {
-        val id = mSkillVM.goals.value!![position].resId
+    override fun deleteGoal(position: Int) {
+        val id = mSkillVM.chosenGoals.value!![position].resId
         mSkillVM.deletedIdByGoal.add(id)
-        mSkillVM.goals.value!!.removeAt(position)
+        mSkillVM.allGoals.value?.add(mSkillVM.chosenGoals.value!![position])
+        mSkillVM.chosenGoals.value!!.removeAt(position)
     }
 
     override fun updIdMod(position: Int, id: Int) {
-        mSkillVM.goals.value!![position].resId = id
+        mSkillVM.allGoals.value!![position].resId = id
     }
 
     fun addGoal() {
@@ -106,9 +112,9 @@ class Goals : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHolder.Dele
                 mSkillVM.deletedIdByGoal.remove(id)
             }
         }
-        mSkillVM.goals.value!!.add(Goal("", id, 0))
+        mSkillVM.chosenGoals.value?.add(Goal("randomName", id, 0))
         adapter.notifyDataSetChanged()
     }
 }
 
-data class Goal(var name:String, var resId:Int, var characterId:Int)
+data class Goal(var name: String = "", var resId: Int = 0, var characterId: Int = 0)

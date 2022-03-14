@@ -309,6 +309,14 @@
             android:id="@+id/fightAttack"
             android:name="com.example.test.activity_and_fragments.fight.FightSecond"
             android:label="fight_attack"
-            tools:layout="@layout/fight_second" />
+            tools:layout="@layout/fight_second" >
+            <action
+                android:id="@+id/action_fightAttack_to_fightThreeGoal"
+                app:destination="@id/fightThreeGoal" />
+        </fragment>
+        <fragment
+            android:id="@+id/fightThreeGoal"
+            android:name="com.example.test.activity_and_fragments.fight.FightThreeGoal"
+            android:label="FightThreeGoal" />
     </navigation>
 </navigation>

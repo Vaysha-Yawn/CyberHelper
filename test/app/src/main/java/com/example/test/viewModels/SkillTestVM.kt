@@ -11,7 +11,8 @@ class SkillTestVM:ViewModel() {
     var title = ""
 
     val modification = MutableLiveData<MutableList<Mod>>() // mod.value = -1 , оно сохраняется с индексом на 1 больше, чтобы оставить при создании начальную фразу
-    val goals = MutableLiveData<MutableList<Goal>>() // mod.value = -1 , оно сохраняется с индексом на 1 больше, чтобы оставить при создании начальную фразу
+    val allGoals = MutableLiveData<MutableList<Goal>>()
+    val chosenGoals = MutableLiveData<MutableList<Goal>>()
     val m1d10 = MutableLiveData<Int>()
     val critical = MutableLiveData<Int>()
     val boolCritical = MutableLiveData<Boolean>()
@@ -30,7 +31,8 @@ class SkillTestVM:ViewModel() {
         m1d10.value = 1
         dif.value = 0
         modification.value = mutableListOf<Mod>()
-        goals.value = mutableListOf<Goal>()
+        allGoals.value = mutableListOf<Goal>()
+        chosenGoals.value = mutableListOf<Goal>()
         critical.value = 0
         boolCritical.value = false
         difBoolean.value = false
