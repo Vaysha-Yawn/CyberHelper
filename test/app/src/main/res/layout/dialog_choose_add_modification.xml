@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#1B1A22"
+    android:padding="40dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Text.H2"
+        android:text="Выберите способ добавления модификатора"
+        android:gravity="start"
+        />
+
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:id="@+id/chooseModStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:paddingVertical="15dp"
+            android:id="@+id/modStylePM"
+            android:text="Указать числом"
+            style="@style/Text.H2"
+            android:textAllCaps="false"
+            android:paddingEnd="0dp"
+            android:textColor="@color/cyan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bcg_dark_blue"/>
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:paddingVertical="15dp"
+            android:id="@+id/modStyleDD"
+            android:text="Выбрать из списка"
+            style="@style/Text.H2"
+            android:textAllCaps="false"
+            android:paddingEnd="0dp"
+            android:textColor="@color/cyan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bcg_dark_blue"/>
+    </LinearLayout>
+
+</LinearLayout>

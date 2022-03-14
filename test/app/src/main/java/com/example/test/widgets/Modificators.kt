@@ -1,24 +1,28 @@
 package com.example.test.widgets
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
 import com.example.test.data_base.SpecialGameData
+import com.example.test.databinding.DialogChooseAddModificationBinding
 import com.example.test.databinding.ModificatorsBinding
 import com.example.test.helpers.ModAdapterRV
 import com.example.test.helpers.ModTemplateHolder
 import com.example.test.viewModels.SkillTestVM
 
-class Modificators : Fragment(), ModTemplateHolder.LoadFragment,  ModTemplateHolder.DeleteMod, ModTemplateHolder.updIdMod {
+class Modificators : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHolder.DeleteMod,
+    ModTemplateHolder.updIdMod, ModDialogFragment.AddMod {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
+    private val adapter = ModAdapterRV(this, this, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,38 +33,31 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment,  ModTemplateHol
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.modificators, container, false)
-        try{
-        val binding = ModificatorsBinding.bind(view)
+        try {
+            val binding = ModificatorsBinding.bind(view)
 
-
-        fun bind() = with(binding) {
-            modRV.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
-            val adapter = ModAdapterRV(this@Modificators, this@Modificators, this@Modificators,)
-            modRV.adapter = adapter
-            mSkillVM.modification.observe(viewLifecycleOwner){
-                adapter.setData(it)
-            }
-            addMod.setOnClickListener {
-                var id = 0
-                if (mSkillVM.deletedIdByMod.isNotEmpty()){
-                    id = mSkillVM.deletedIdByMod.minOrNull()?:0
-                    if (id!=0){
-                        mSkillVM.deletedIdByMod.remove(id)
-                    }
+            fun bind() = with(binding) {
+                modRV.layoutManager =
+                    LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
+                modRV.adapter = adapter
+                mSkillVM.modification.observe(viewLifecycleOwner) {
+                    adapter.setData(it)
                 }
-                mSkillVM.modification.value!!.add( Mod(true, 0, id))
-                adapter.notifyDataSetChanged()
+                addMod.setOnClickListener {
+                    val dialogFragment = ModDialogFragment(this@Modificators)
+                    dialogFragment.show(childFragmentManager, "chooseMod")
+
+                }
             }
-        }
-        bind()
+            bind()
         } catch (e: Exception) {
-        Toast.makeText(view.context, "$e", Toast.LENGTH_LONG).show()
-    }
+            Toast.makeText(view.context, "$e", Toast.LENGTH_LONG).show()
+        }
         return view
     }
 
-    override fun loadFragment(position: Int, style: Boolean, value:Int, id:Int) {
-        if (style){
+    override fun loadFragment(position: Int, style: Boolean, value: Int, id: Int) {
+        if (style) {
             val bundle = Bundle()
             bundle.putString("main", "Выберите модификатор")
             bundle.putString("them", "blue")
@@ -93,7 +90,7 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment,  ModTemplateHol
     }
 
     override fun deleteMod(position: Int) {
-        val id =  mSkillVM.modification.value!![position].resId
+        val id = mSkillVM.modification.value!![position].resId
         mSkillVM.deletedIdByMod.add(id)
         mSkillVM.modification.value!!.removeAt(position)
     }
@@ -102,6 +99,67 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment,  ModTemplateHol
         mSkillVM.modification.value!![position].resId = id
     }
 
+    override fun addMod(style: Boolean) {
+        when(style){
+            true->{
+                var id = 0
+                if (mSkillVM.deletedIdByMod.isNotEmpty()) {
+                    id = mSkillVM.deletedIdByMod.minOrNull() ?: 0
+                    if (id != 0) {
+                        mSkillVM.deletedIdByMod.remove(id)
+                    }
+                }
+                mSkillVM.modification.value!!.add(Mod(true, 0, id))
+                adapter.notifyDataSetChanged()
+            }
+            false->{
+                var id = 0
+                if (mSkillVM.deletedIdByMod.isNotEmpty()) {
+                    id = mSkillVM.deletedIdByMod.minOrNull() ?: 0
+                    if (id != 0) {
+                        mSkillVM.deletedIdByMod.remove(id)
+                    }
+                }
+                mSkillVM.modification.value!!.add(Mod(false, 0, id))
+                adapter.notifyDataSetChanged()
+            }
+        }
+    }
+
 }
 
-data class Mod(var style: Boolean, var value: Int , var resId: Int )
+class ModDialogFragment(private val addMod:AddMod) : DialogFragment() {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+        val view = inflater.inflate(R.layout.dialog_choose_add_modification, container, false)
+
+        val binding = DialogChooseAddModificationBinding.bind(view)
+        fun bind() = with(binding) {
+
+            modStyleDD.setOnClickListener {
+                addMod.addMod(true)
+                dismiss()
+            }
+
+            modStylePM.setOnClickListener {
+                addMod.addMod(false)
+                dismiss()
+            }
+        }
+
+        bind()
+
+        return view
+    }
+
+    interface AddMod{
+        fun addMod(style:Boolean)
+    }
+}
+
+data class Mod(var style: Boolean, var value: Int, var resId: Int)
