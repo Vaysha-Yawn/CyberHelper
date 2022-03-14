@@ -302,7 +302,7 @@
     </fragment>
     <fragment
         android:id="@+id/fightAttack"
-        android:name="com.example.test.activity_and_fragments.fight.FightAttack"
+        android:name="com.example.test.activity_and_fragments.fight.FightSecond"
         android:label="fight_attack"
-        tools:layout="@layout/fight_attack" />
+        tools:layout="@layout/fight_second" />
 </navigation>

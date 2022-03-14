@@ -9,7 +9,7 @@
     android:background="#1B1A22">
 
     <FrameLayout
-        android:id="@+id/frameLayout3"
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#050414"
@@ -46,7 +46,7 @@
         android:gravity="center"
         android:text="Выберите оружие"
         android:textColor="@color/yellow"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/weaponFight"

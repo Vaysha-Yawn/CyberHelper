@@ -74,7 +74,7 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHold
             }
         } else {
             val bundle = Bundle()
-            bundle.putInt("value", 0)
+            bundle.putInt("value", value)
             bundle.putInt("minValue", 0)
             bundle.putInt("maxValue", 30)
             bundle.putString("them", "blue")

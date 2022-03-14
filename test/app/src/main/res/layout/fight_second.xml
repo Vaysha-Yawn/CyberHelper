@@ -7,37 +7,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1B1A22"
-    tools:context=".activity_and_fragments.fight.FightAttack">
+    tools:context=".activity_and_fragments.fight.FightSecond">
 
-    <FrameLayout
-        android:id="@+id/frameLayout3"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#050414"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageButton
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="20dp"
-            android:background="#050414"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            app:srcCompat="@drawable/back"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <TextView
-            android:id="@+id/CyberHelper"
-            style="@style/Text.H2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Cyber Helper" />
-    </FrameLayout>
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,7 +23,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/header"
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
@@ -60,12 +38,23 @@
                 android:layout_height="wrap_content"
                 android:text="Заменить Название боя" />
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:isScrollContainer="false"
-                android:layout_marginTop="20dp"
-                android:id="@+id/viewPager2"
+            <androidx.fragment.app.FragmentContainerView
+                android:layout_marginTop="30dp"
+                android:id="@+id/modFr"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:layout_marginTop="30dp"
+                android:id="@+id/fr1d10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/btn_next"

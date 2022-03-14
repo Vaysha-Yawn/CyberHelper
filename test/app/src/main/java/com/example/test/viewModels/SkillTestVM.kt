@@ -2,6 +2,7 @@ package com.example.test.viewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.test.data_base.EffectWeapon
 import com.example.test.widgets.Mod
 
 class SkillTestVM:ViewModel() {
@@ -20,6 +21,7 @@ class SkillTestVM:ViewModel() {
     var usingLuckyPoint:Int? = null
     var skill :Int? = null
     var erudit :Int? = null
+    var attack:EffectWeapon? = null
 
     init {
         m1d10.value = 1

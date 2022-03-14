@@ -16,11 +16,13 @@ import com.example.test.data_base.EffectWeapon
 import com.example.test.data_base.Item
 import com.example.test.helpers.ChooseWeaponAdapterRV
 import com.example.test.viewModels.CharacterDAO
+import com.example.test.viewModels.SkillTestVM
 
 
 class ChooseWeapon : Fragment(), ChooseWeaponAdapterRV.TemplateHolder.OnItemClickListener {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mSkillVM: SkillTestVM by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +36,7 @@ class ChooseWeapon : Fragment(), ChooseWeaponAdapterRV.TemplateHolder.OnItemClic
         val RV = view.findViewById<RecyclerView>(R.id.weaponFight)
 
         val characterId = mCharacterVM.characterId
-        val listWeapon = mutableListOf( EffectWeapon(fightType = "Рукопашный бой"))
+        val listWeapon = mutableListOf( EffectWeapon(fightType = "Рукопашный бой", name = "Рукопашный бой"))
         mCharacterVM.characterList.value!!.singleOrNull { character ->
             character.id == characterId
         }?.attributes?.forEach { groupParam ->
@@ -57,14 +59,8 @@ class ChooseWeapon : Fragment(), ChooseWeaponAdapterRV.TemplateHolder.OnItemClic
     }
 
     override fun onItemClick(position: Int, effect: EffectWeapon) {
-        Toast.makeText(view?.context, "$position, ${effect.fightType}", Toast.LENGTH_SHORT).show()
-        val bundle = Bundle()
-        bundle.putString("name", effect.name)
-        bundle.putInt("dX", effect.dX)
-        bundle.putInt("numCount", effect.numCount)
-        bundle.putInt("wearout", effect.wearout?:0)
-        bundle.putString("fightType", effect.fightType)
-        view?.findNavController()?.navigate(R.id.action_weaponOrNotFight_to_fightAttack, bundle)
+        mSkillVM.attack = effect
+        view?.findNavController()?.navigate(R.id.action_weaponOrNotFight_to_fightAttack)
     }
 
 }
