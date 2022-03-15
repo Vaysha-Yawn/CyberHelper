@@ -110,6 +110,14 @@ class SpecialGameData() {
         "Проницательность" to "Эмпатия",
         "Игра на инструменте" to "Эмпатия",
     )
-
+    // TODO: требуется дороботка, возможно объединю цель, модиф, 1д10 в один фрагмент, при выборе огонь на подавления несколько таких целей
+    val mapFightTypeToFragment = mutableMapOf(
+        "Ближний бой" to listOf("radio header or body", "DD goal one", "Modificators", "m1d10")
+        , "Дальний бой" to listOf("radio header or body", "radio difficult by goal or by distance",
+            "DD goal one", "Modificators", "m1d10", "DD distance")
+        , "Автоматический огонь" to listOf("radio header or body", "radio difficult by goal on by distance",
+            "DD goal one", "Modificators", "m1d10", "DD distance", "radio type shoot", "radio number shoot")
+        , "Взрывчатка" to listOf("Goals")
+    )
 
 }
