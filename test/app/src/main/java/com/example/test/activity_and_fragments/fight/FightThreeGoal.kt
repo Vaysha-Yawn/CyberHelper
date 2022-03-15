@@ -32,43 +32,61 @@ class FightThreeGoal : Fragment() {
         val fightType = mSkillVM.attack?.fightType
         val listFragments = SpecialGameData().mapFightTypeToFragment[fightType] ?: emptyList()
 
+        fun loadDD(main:String, them:String, goal:String, list:ArrayList<String>, id:Int){
+            val fragment = DropDownList()
+            val bundle = Bundle()
+            bundle.putString("main", main)
+            bundle.putString("them", them)
+            bundle.putString("goal", goal)
+            bundle.putStringArrayList("list", list)
+            fragment.arguments = bundle
+            childFragmentManager.commit {
+                replace(id, fragment)
+                addToBackStack(null)
+            }
+        }
+
+        fun loadFragmentLight(fragment:Fragment, id:Int){
+            childFragmentManager.commit {
+                replace(id, fragment)
+                addToBackStack(null)
+            }
+        }
+
+        fun setVisibility(view:View, visible:Boolean){
+            if (visible){
+                view.visibility = View.VISIBLE
+            }else{
+                view.visibility = View.GONE
+            }
+        }
+
+        fun ifContainsLoad(view:View, fragment:Fragment, id:Int, title:String){
+            if (listFragments.contains(title)) {
+                loadFragmentLight(fragment, id)
+            } else {
+                setVisibility(view, false)
+            }
+        }
+
         val binding = FightThreeGoalBinding.bind(view)
         fun bind() = with(binding) {
 
-            if (listFragments.contains("Modificators")) {
-                val fragmentMod = Modificators()
-                childFragmentManager.commit {
-                    replace(R.id.modFr, fragmentMod)
-                    addToBackStack(null)
-                }
-            } else {
-                modFr.visibility = View.GONE
-            }
+            loadFragmentLight(Header(), R.id.header)
 
-            if (listFragments.contains("m1D10")) {
-                val fragmentM1d10 = m1D10()
-                childFragmentManager.commit {
-                    replace(R.id.fr1d10, fragmentM1d10)
-                    addToBackStack(null)
-                }
-            } else {
-                fr1d10.visibility = View.GONE
-            }
+            ifContainsLoad(modFr, Modificators(), R.id.modFr, "Modificators")
 
-            if (listFragments.contains("Goals")) {
-                val fragmentGoal = Goals()
-                childFragmentManager.commit {
-                    replace(R.id.goalFr, fragmentGoal)
-                    addToBackStack(null)
-                }
-            } else {
-                goalFr.visibility = View.GONE
-            }
-/////////////////////
+            ifContainsLoad(fr1d10, m1D10(), R.id.fr1d10, "m1D10")
+
+            ifContainsLoad(goalFr, Goals(), R.id.goalFr, "Goals")
+
+
+///////////////////// DD goal one
 
             if (listFragments.contains("DD goal one")) {
 
                 val list = ArrayList<String>()
+                //TODO: вынести characterDAO на domain layer , паци с нмереести во VM
                 val goalsList = mutableListOf<Goal>()
                 mCharacterVM.characterList.value?.forEach {
                     if (it.gameId == mCharacterVM.gameId) {
@@ -88,21 +106,16 @@ class FightThreeGoal : Fragment() {
                 }
                 mSkillVM.allGoals.value = goalsList
 
-                val fragmentGoal = DropDownList()
-                val bundle = Bundle()
-                bundle.putString("main", "Выберите цель")
-                bundle.putString("them", "yellow")
-                bundle.putString("goal", "goal")
-                bundle.putStringArrayList("list", list)
-                fragmentGoal.arguments = bundle
-                childFragmentManager.commit {
-                    replace(R.id.frDDoneGoal, fragmentGoal)
-                    addToBackStack(null)
+                if (list.isEmpty()){
+                    loadDD("Цели не найдены", "yellow", "goal", list, R.id.frDDoneGoal)
+                }else{
+                    loadDD("Выберите цель", "yellow", "goal", list, R.id.frDDoneGoal)
                 }
+
             } else {
-                frDDoneGoal.visibility = View.GONE
+                setVisibility(frDDoneGoal, false)
             }
-/////////////////////////////
+///////////////////////////// DD distance
             if (listFragments.contains("DD distance")) {
                 // TODO: вообще у оружия должны быть подтипы, которые мы выбираем из списка и эти подтипы являются ключами здесь
 
@@ -111,89 +124,112 @@ class FightThreeGoal : Fragment() {
                     ?: ""]?.keys?.forEach {
                     listOne.add(it)
                 }
-
-                val fragmentOne = DropDownList()
-                val bundleOne = Bundle()
-                bundleOne.putString("main", "Выберите расстояние")
-                bundleOne.putString("them", "blue")
-                bundleOne.putStringArrayList("list", listOne)
-                fragmentOne.arguments = bundleOne
-                childFragmentManager.commit {
-                    replace(R.id.frDDChoseDistanceOne, fragmentOne)
-                    addToBackStack(null)
+                if (listOne.isEmpty()){
+                    loadDD("Оружие не опознано", "blue", "", listOne, R.id.frDDChoseDistanceOne)
+                }else{
+                    loadDD("Выберите расстояние", "blue", "", listOne, R.id.frDDChoseDistanceOne)
                 }
 
+
                 if (listFragments.contains("howManyShoot")) {
+
+                    setVisibility(frDDChoseDistanceThree, false)
+
                     val listThree = ArrayList<String>()
                     SpecialGameData().mapDifficultByDistanceThreeShotBurst[mSkillVM.attack?.name
                         ?: ""]?.keys?.forEach {
                         listThree.add(it)
                     }
 
-                    val fragmentThree = DropDownList()
-                    val bundleThree = Bundle()
-                    bundleThree.putString("main", "Выберите расстояние")
-                    bundleThree.putString("them", "blue")
-                    bundleThree.putStringArrayList("list", listThree)
-                    fragmentThree.arguments = bundleThree
-                    childFragmentManager.commit {
-                        replace(R.id.frDDChoseDistanceThree, fragmentThree)
-                        addToBackStack(null)
+                    if (listThree.isEmpty()){
+                        loadDD("Оружие не опознано", "blue", "", listThree, R.id.frDDChoseDistanceThree)
+                    }else{
+                        loadDD("Выберите расстояние", "blue", "", listThree, R.id.frDDChoseDistanceThree)
                     }
+
                     howManyShoot.setOnCheckedChangeListener { group, checkedId ->
                         when (checkedId) {
                             R.id.oneShoot -> {
-                                frDDChoseDistanceOne.visibility = View.VISIBLE
-                                frDDChoseDistanceThree.visibility = View.GONE
+                                setVisibility(frDDChoseDistanceOne, true)
+                                setVisibility(frDDChoseDistanceThree, false)
                             }
                             R.id.threeShoot -> {
-                                frDDChoseDistanceOne.visibility = View.GONE
-                                frDDChoseDistanceThree.visibility = View.VISIBLE
+                                setVisibility(frDDChoseDistanceOne, false)
+                                setVisibility(frDDChoseDistanceThree, true)
                             }
                         }
                     }
                 }
             } else {
-                frDDChoseDistanceThree.visibility = View.GONE
-                frDDChoseDistanceOne.visibility = View.GONE
+                setVisibility(frDDChoseDistanceOne, false)
+                setVisibility(frDDChoseDistanceThree, false)
             }
-////////////////////////
-            val fragmentHeader = Header()
-            childFragmentManager.commit {
-                replace(R.id.header, fragmentHeader)
-                addToBackStack(null)
-            }
+//////////////////////// bodyOrHead
 
             if (listFragments.contains("bodyOrHead")) {
-                bodyOrHead.visibility = View.VISIBLE
-                textBodyOrHead.visibility = View.VISIBLE
+                setVisibility(bodyOrHead, true)
+                setVisibility(textBodyOrHead, true)
             } else {
-                bodyOrHead.visibility = View.GONE
-                textBodyOrHead.visibility = View.GONE
+                setVisibility(bodyOrHead, false)
+                setVisibility(textBodyOrHead, false)
             }
-
+//////////////////////// difficultByGoalOrDistance
             if (listFragments.contains("difficultByGoalOrDistance")) {
-                difficultByGoalOrDistance.visibility = View.VISIBLE
-                textDifficultByGoalOrDistance.visibility = View.VISIBLE
+                setVisibility(frDDChoseDistanceOne, false)
+                setVisibility(frDDChoseDistanceThree, false)
+                setVisibility(modFr, true)
+                // TODO: надо сделать это проще, а то черт ногу сломит в этой логике не логике
+                //  добавить функций и использовать их и сделать созависмости проще
+                difficultByGoalOrDistance.setOnCheckedChangeListener { group, checkedId ->
+                    when (checkedId) {
+                        R.id.difficultByGoal -> {
+                            setVisibility(modFr, true)
+                            setVisibility(frDDChoseDistanceOne, false)
+                            setVisibility(frDDChoseDistanceThree, false)
+                        }
+                        R.id.difficultByDistance -> {
+                            setVisibility(modFr, false)
+                            setVisibility(frDDChoseDistanceOne, true)
+                            setVisibility(frDDChoseDistanceThree, false)
+                        }
+                    }
+                }
+
             } else {
-                difficultByGoalOrDistance.visibility = View.GONE
-                textDifficultByGoalOrDistance.visibility = View.GONE
+                setVisibility(difficultByGoalOrDistance, false)
+                setVisibility(textDifficultByGoalOrDistance, false)
             }
 
+///////////////////// typeShoot
             if (listFragments.contains("typeShoot")) {
-                typeShoot.visibility = View.VISIBLE
-                textTypeShoot.visibility = View.VISIBLE
+                setVisibility(typeShoot, true)
+                setVisibility(textTypeShoot, true)
+
+                typeShoot.setOnCheckedChangeListener { group, checkedId ->
+                    when (checkedId) {
+                        R.id.justShoot -> {
+                        }
+                        R.id.hardShoot -> {
+                            //TODO: проработать подробнее
+                            setVisibility(frDDChoseDistanceOne, false)
+                            setVisibility(frDDChoseDistanceThree, false)
+                            setVisibility(modFr, true)
+                        }
+                    }
+                }
+
             } else {
-                typeShoot.visibility = View.GONE
-                textTypeShoot.visibility = View.GONE
+                setVisibility(typeShoot, false)
+                setVisibility(textTypeShoot, false)
             }
 
+///////////////////// howManyShoot
             if (listFragments.contains("howManyShoot")) {
-                howManyShoot.visibility = View.VISIBLE
-                textHowManyShoot.visibility = View.VISIBLE
+                setVisibility(howManyShoot, true)
+                setVisibility(textHowManyShoot, true)
             } else {
-                howManyShoot.visibility = View.GONE
-                textHowManyShoot.visibility = View.GONE
+                setVisibility(howManyShoot, false)
+                setVisibility(textHowManyShoot, false)
             }
 
         }
@@ -202,5 +238,7 @@ class FightThreeGoal : Fragment() {
         return view
     }
 
-
 }
+//TODO: вообще эта идея с ручным регулированием того, что показывать, а что - нет, это плохая затея
+// так будут проблемы с наложением и приоритетами
+//  стоит подробнее ориентироваться на тип атаки и подтип оружия
