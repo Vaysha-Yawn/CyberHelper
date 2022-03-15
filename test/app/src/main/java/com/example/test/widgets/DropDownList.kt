@@ -143,7 +143,7 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
             val chosenGoal = mSkillVM.allGoals.value?.get(position)
             if (chosenGoal!=null){
                 mSkillVM.chosenGoals.value?.set(position, chosenGoal)
-                //mSkillVM.allGoals.value?.remove(chosenGoal)
+                mSkillVM.allGoals.value?.remove(chosenGoal)
             }
         }
     }

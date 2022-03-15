@@ -112,12 +112,80 @@ class SpecialGameData() {
     )
     // TODO: требуется дороботка, возможно объединю цель, модиф, 1д10 в один фрагмент, при выборе огонь на подавления несколько таких целей
     val mapFightTypeToFragment = mutableMapOf(
-        "Ближний бой" to listOf("radio header or body", "DD goal one", "Modificators", "m1d10")
-        , "Дальний бой" to listOf("radio header or body", "radio difficult by goal or by distance",
+        "Рукопашный бой" to listOf("bodyOrHead", "DD goal one", "Modificators", "m1d10"),
+        "Ближний бой" to listOf("bodyOrHead", "DD goal one", "Modificators", "m1d10")
+        , "Дальний бой" to listOf("bodyOrHead", "difficultByGoalOrDistance",
             "DD goal one", "Modificators", "m1d10", "DD distance")
-        , "Автоматический огонь" to listOf("radio header or body", "radio difficult by goal on by distance",
-            "DD goal one", "Modificators", "m1d10", "DD distance", "radio type shoot", "radio number shoot")
+        , "Автоматический огонь" to listOf("bodyOrHead", "difficultByGoalOrDistance",
+            "DD goal one", "Modificators", "m1d10", "DD distance", "typeShoot", "howManyShoot")
         , "Взрывчатка" to listOf("Goals")
+    )
+
+    val mapDifficultByDistance = mapOf(
+        "Пистолет" to mapOf(
+            "0-12 м" to 15,
+            "13-25 м" to 20,
+            "26-50 м" to 25,
+            "51-100 м" to 30,
+            "101-200 м" to 30,
+        ),
+        "Пистолет-пулемет" to mapOf(
+            "0-12 м" to 15,
+            "13-25 м" to 15,
+            "26-50 м" to 20,
+            "51-100 м" to 25,
+            "101-200 м" to 25,
+            "201-400 м" to 30,
+        ),
+        "Дробовик" to mapOf(
+            "0-12 м" to 15,
+            "13-25 м" to 20,
+            "26-50 м" to 25,
+            "51-100 м" to 30,
+            "101-200 м" to 35,
+        ),
+        "Винтовка" to mapOf(
+            "0-12 м" to 15,
+            "13-25 м" to 10,
+            "26-50 м" to 10,
+            "51-100 м" to 15,
+            "101-200 м" to 20,
+            "201-400 м" to 25,
+            "401-800 м" to 30,
+        ),
+        "Автомат" to mapOf(
+            "0-12 м" to 15,
+            "13-25 м" to 10,
+            "26-50 м" to 10,
+            "51-100 м" to 15,
+            "101-200 м" to 20,
+            "201-400 м" to 25,
+            "401-800 м" to 30,
+        ),
+        "Ракетная установка" to mapOf(
+            "0-12 м" to 15,
+            "13-25 м" to 15,
+            "26-50 м" to 15,
+            "51-100 м" to 20,
+            "101-200 м" to 20,
+            "201-400 м" to 25,
+            "401-800 м" to 30,
+        )
+    )
+
+    val mapDifficultByDistanceThreeShotBurst = mapOf(
+        "Пистолет-пулемет" to mapOf(
+            "0-12 м" to 12,
+            "13-25 м" to 15,
+            "26-50 м" to 22,
+            "51-100 м" to 28,
+        ),
+        "Автомат" to mapOf(
+            "0-12 м" to 12,
+            "13-25 м" to 10,
+            "26-50 м" to 12,
+            "51-100 м" to 18,
+        ),
     )
 
 }
