@@ -37,7 +37,6 @@ class ParamOptionsAdapterRV() :
             mod: Int,
         ) = with(binding) {
             if (readOrEdit) {
-                name.setTextColor(android.graphics.Color.parseColor("#838383"))
                 background.background = background.context.getDrawable(R.drawable.background_black)
                 delete.visibility = View.GONE
                 edit.visibility = View.GONE

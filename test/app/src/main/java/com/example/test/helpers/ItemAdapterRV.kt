@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
@@ -84,12 +86,16 @@ class ItemAdapterRV() :
                 nameNumRV.visibility = View.GONE
                 numGv.visibility = View.GONE
             } else {
-                val adapterNum = ParamNumAdapterRV()
-                numGv.layoutManager =
-                    LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
-                numGv.adapter = adapterNum
-                val numList = item.otherParamNum
-                adapterNum.setData(numList, groupTitle, newOrPres,true, index,3)
+                val adapterNum = ItemNumAdapterRV()
+                try {
+                    numGv.layoutManager =
+                        GridLayoutManager(itemView.context, 3)
+                    numGv.adapter = adapterNum
+                    val numList = item.otherParamNum
+                    adapterNum.setData(numList)
+                }catch (e:Exception){
+                    Toast.makeText(numGv.context, "$e", Toast.LENGTH_LONG).show()
+                }
             }
 
             if (item.otherParamStr == RealmList<ParamStr>()) {

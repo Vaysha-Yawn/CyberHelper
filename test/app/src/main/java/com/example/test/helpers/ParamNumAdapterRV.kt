@@ -29,7 +29,6 @@ class ParamNumAdapterRV():
         @SuppressLint("UseCompatLoadingForDrawables")
         fun bind(param: ParamNum, groupTitle:String, newOrPres: Boolean, readOrEdit:Boolean, indexItem:Int, indexParam:Int, modEdit:Int) = with(binding){
             if (readOrEdit){
-                name.setTextColor(android.graphics.Color.parseColor("#838383"))
                 background.background = background.context.getDrawable(R.drawable.background_black)
                 delete.visibility = View.INVISIBLE
                 edit.visibility = View.GONE
