@@ -9,10 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.navigation.findNavController
-import androidx.navigation.navGraphViewModels
 import com.example.test.R
 import com.example.test.data_base.SpecialGameData
-import com.example.test.databinding.SkillTest2Binding
+import com.example.test.databinding.SkillTestBinding
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.widgets.DropDownList
@@ -34,7 +33,7 @@ class SkillTest : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.skill_test2, container, false)
+        val view = inflater.inflate(R.layout.skill_test, container, false)
 
         val characterId = mCharacterVM.characterId
         val arg = this.arguments
@@ -72,7 +71,7 @@ class SkillTest : Fragment() {
             addToBackStack(null)
         }
 
-        val binding = SkillTest2Binding.bind(view)
+        val binding = SkillTestBinding.bind(view)
         fun bind() = with(binding) {
             title.text = txtitle
 

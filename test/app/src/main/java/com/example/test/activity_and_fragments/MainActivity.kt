@@ -19,28 +19,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         try {
-        val gameId = getSharedPreferences("id", 0).getString("PresentGame", "0")?.toInt()
-        val load = findViewById<Button>(R.id.Main_Load)
-        val vContinue = findViewById<Button>(R.id.Main_Continue)
-        if (gameId != 0) {
-            load.setOnClickListener {
-                val i = Intent(this, LoadHost::class.java)
-                startActivity(i)
+            val gameId = getSharedPreferences("id", 0).getString("PresentGame", "0")?.toInt()
+            val load = findViewById<Button>(R.id.Main_Load)
+            val vContinue = findViewById<Button>(R.id.Main_Continue)
+            if (gameId != 0) {
+                load.setOnClickListener {
+                    val i = Intent(this, LoadHost::class.java)
+                    startActivity(i)
+                }
+                vContinue.setOnClickListener {
+                    val i = Intent(this, PresentHost::class.java)
+                    startActivity(i)
+                }
+            } else {
+                load.visibility = GONE
+                vContinue.visibility = GONE
             }
-            vContinue.setOnClickListener {
-                val i = Intent(this, PresentHost::class.java)
-                startActivity(i)
-            }
-        } else {
-            load.visibility = GONE
-            vContinue.visibility = GONE
-        }
 
-        val newGame = findViewById<Button>(R.id.Main_NewGame)
-        newGame.setOnClickListener {
-            val i = Intent(this, NewHost::class.java)
-            startActivity(i)
-        }
+            val newGame = findViewById<Button>(R.id.Main_NewGame)
+            newGame.setOnClickListener {
+                val i = Intent(this, NewHost::class.java)
+                startActivity(i)
+            }
 
             val vAbout = findViewById<Button>(R.id.Main_About)
             vAbout.setOnClickListener {
