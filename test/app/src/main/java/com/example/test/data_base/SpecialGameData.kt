@@ -111,15 +111,28 @@ class SpecialGameData() {
         "Игра на инструменте" to "Эмпатия",
     )
     // TODO: требуется дороботка, возможно объединю цель, модиф, 1д10 в один фрагмент, при выборе огонь на подавления несколько таких целей
-    val mapFightTypeToFragment = mutableMapOf(
-        "Рукопашный бой" to listOf("bodyOrHead", "DD goal one", "Modificators", "m1d10"),
-        "Ближний бой" to listOf("bodyOrHead", "DD goal one", "Modificators", "m1d10")
-        , "Дальний бой" to listOf("bodyOrHead", "difficultByGoalOrDistance",
+
+/*    val mapFightTypeToFragment = mutableMapOf(
+        "Рукопашный бой" to FightType (
+              name:String,
+         forAllOrItem:Boolean,
+     difficult:String,
+     roll: String,
+     successCommentBoolean: Boolean,
+     successCommentText: String,
+     successEffectAdd: RealmList<EffectAdd>,
+     successDamageBoolean: Boolean,
+     failCommentBoolean: Boolean,
+     failCommentText: String,
+     failEffectAdd: RealmList<EffectAdd>,
+    ),
+        "Ближний бой" to mapOf("bodyOrHead", "DD goal one", "Modificators", "m1d10")
+        , "Дальний бой" to mapOf("bodyOrHead", "difficultByGoalOrDistance",
             "DD goal one", "Modificators", "m1d10", "DD distance")
-        , "Автоматический огонь" to listOf("bodyOrHead", "difficultByGoalOrDistance",
+        , "Автоматический огонь" to mapOf("bodyOrHead", "difficultByGoalOrDistance",
             "DD goal one", "Modificators", "m1d10", "DD distance", "typeShoot", "howManyShoot")
-        , "Взрывчатка" to listOf("Goals")
-    )
+        , "Взрывчатка" to mapOf("Goals")
+    )*/
 
     val mapDifficultByDistance = mapOf(
         "Пистолет" to mapOf(

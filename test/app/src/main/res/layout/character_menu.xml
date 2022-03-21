@@ -252,4 +252,18 @@
         android:textAllCaps="false"
         android:textColor="@color/red_orange"
         tools:ignore="TouchTargetSizeCheck" />
+    <Button
+        android:id="@+id/editFightTypePrev"
+        style="@style/Text.H2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_bcg_dark_blue"
+        android:minHeight="48dp"
+        android:text="Превью редактирования типа боя"
+        android:textAllCaps="false"
+        android:padding="10dp"
+        android:textColor="@color/cyan"
+        tools:ignore="TouchTargetSizeCheck" />
 </LinearLayout>

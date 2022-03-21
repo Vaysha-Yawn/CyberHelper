@@ -30,7 +30,7 @@ class FightThreeGoal : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fight_three_goal, container, false)
         val fightType = mSkillVM.attack?.fightType
-        val listFragments = SpecialGameData().mapFightTypeToFragment[fightType] ?: emptyList()
+        val listFragments = listOf<String>()
 
         fun loadDD(main:String, them:String, goal:String, list:ArrayList<String>, id:Int){
             val fragment = DropDownList()

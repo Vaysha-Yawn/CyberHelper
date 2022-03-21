@@ -87,6 +87,10 @@ class CharacterMenu : Fragment() {
         view.findViewById<Button>(R.id.CharacterMenu_UseItem).setOnClickListener { }
         view.findViewById<Button>(R.id.CharacterMenu_EndMove).setOnClickListener { }
 
+        view.findViewById<Button>(R.id.editFightTypePrev).setOnClickListener {
+            view.findNavController().navigate(R.id.action_characterMenu_to_settingFightType)
+        }
+
         view.findViewById<ImageButton>(R.id.back).setOnClickListener {
             view.findNavController().popBackStack()
         }

@@ -208,6 +208,9 @@
         <action
             android:id="@+id/action_characterMenu_to_pres_skillTest"
             app:destination="@id/SkillTest" />
+        <action
+            android:id="@+id/action_characterMenu_to_settingFightType"
+            app:destination="@id/settingFightType" />
     </fragment>
      <fragment
         android:id="@+id/home2"
@@ -319,4 +322,9 @@
             android:name="com.example.test.activity_and_fragments.fight.FightThreeGoal"
             android:label="FightThreeGoal" />
     </navigation>
+    <fragment
+        android:id="@+id/settingFightType"
+        android:name="com.example.test.activity_and_fragments.setting.SettingFightType"
+        android:label="setting_fight_type"
+        tools:layout="@layout/setting_fight_type" />
 </navigation>

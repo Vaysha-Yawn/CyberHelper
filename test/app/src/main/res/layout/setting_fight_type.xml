@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark"
+    tools:context=".activity_and_fragments.setting.SettingFightType">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="100dp">
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:gravity="start"
+                android:text="Как рассчитывается сложность?" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/difficult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:gravity="start"
+                android:text="Как рассчитывается броск персонажа, совершающего проверку?" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/roll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:gravity="start"
+                android:text="Что происходит при успехе проверки?" />
+
+            <CheckBox
+                android:id="@+id/CheckBoxSuccessDamage"
+                style="@style/Text.H2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:minHeight="48dp"
+                android:buttonTint="@color/green"
+                android:text="Рассчитыавается урон броском" />
+
+            <CheckBox
+                android:id="@+id/CheckBoxSuccessComment"
+                style="@style/Text.H2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:minHeight="48dp"
+                android:buttonTint="@color/green"
+                android:text="Выводится комментарий" />
+
+            <EditText
+                android:id="@+id/editSuccessComment"
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/green"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Текст сообщения при успехе"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp" />
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="start"
+                android:text="Влияние на характеристики при успехе " />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/effect_add_RV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/add_effect_add"
+                style="@style/Button_plus_green"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:paddingHorizontal="20dp"
+                android:textSize="20sp"
+                android:text="Добавить влияние при успехе" />
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:gravity="start"
+                android:text="Что происходит при провале проверки?" />
+
+            <CheckBox
+                android:id="@+id/CheckBoxFailComment"
+                style="@style/Text.H2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:minHeight="48dp"
+                android:buttonTint="@color/green"
+                android:text="Выводится комментарий" />
+
+            <EditText
+                android:id="@+id/editSFailComment"
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/green"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Текст сообщения при успехе"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp" />
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="start"
+                android:text="Влияние на характеристики при провале " />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/FailEffect_add_RV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/FailAdd_effect_add"
+                style="@style/Button_plus_green"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:paddingHorizontal="20dp"
+                android:textSize="20sp"
+                android:text="Добавить влияние при провале" />
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="start"
+                android:text="Этот вид боя доступен" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_marginTop="10dp"
+                style="@style/Text.H2"
+                android:id="@+id/switchFor"
+                android:layout_width="match_parent"
+                android:gravity="start"
+                android:layout_height="wrap_content"
+                android:text="Всегда"
+                android:textColor="@color/green"
+                app:thumbTint="@color/green" />
+
+            <EditText
+                android:id="@+id/name"
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/green"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Название вида боя"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp" />
+
+            <Button
+                android:id="@+id/apply"
+                style="@style/Text.H2"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:drawableEnd="@drawable/ic_next"
+                android:drawableTint="@color/black"
+                android:background="@drawable/bcg_rectangle_round"
+                android:backgroundTint="@color/green"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:paddingHorizontal="20dp"
+                android:textSize="20sp"
+                android:text="Готово" />
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
