@@ -58,28 +58,6 @@
                 android:layout_height="wrap_content"
                 android:text="Добавьте элемент" />
 
-               <Spinner
-                   android:layout_marginTop="20dp"
-                    android:id="@+id/goalSpinner"
-                    style="@style/Text.H2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bcg_blue_line"
-                    android:padding="10dp"/>
-                    <!--android:text="Цель"
-                    android:textAllCaps="false"
-                    android:textColor="@color/cyan"-->
-                <Button
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/diceRoll"
-                    style="@style/Text.H2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bcg_blue_line"
-                    android:paddingHorizontal="10dp"
-                    android:text="Бросок кубика"
-                    android:textAllCaps="false"
-                    android:textColor="@color/cyan" />
         </LinearLayout>
     </ScrollView>
 
