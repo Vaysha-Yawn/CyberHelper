@@ -55,6 +55,23 @@ class FightThreeGoal : Fragment() {
             }
         }
 
+        fun loadPM(value:Int, minValue:Int, maxValue:Int?, resId:Int){
+            val bundleD = Bundle()
+            bundleD.putInt("value", value)
+            bundleD.putInt("minValue", minValue)
+            if (maxValue!=null){
+                bundleD.putInt("maxValue", maxValue)
+            }
+            bundleD.putString("them", "green")
+            bundleD.putString("goal", "")
+            val fragmentD = PlusAndMinus()
+            fragmentD.arguments = bundleD
+            childFragmentManager.commit {
+                replace(resId, fragmentD)
+                addToBackStack(null)
+            }
+        }
+
         fun setVisibility(view:View, visible:Boolean){
             if (visible){
                 view.visibility = View.VISIBLE
@@ -71,16 +88,22 @@ class FightThreeGoal : Fragment() {
 //////////////////
             when (fightType.difficult) {
                 "one roll" -> {
-                    loadDD("Выберите цель", "yellow", "goal", list, R.id.frDDoneGoal)
-                    loadFragmentLight(Roll(), R.id.mainFr)
+                    val fragment = Roll()
+                    val bundle = Bundle()
+                    bundle.putString("goal", "goal")
+                    fragment.arguments = bundle
+                    loadFragmentLight(fragment, R.id.mainFr)
                 }
                 "few roll" -> {
                     // VP2
-                    loadDD("Выберите цель", "yellow", "goal", list, R.id.frDDoneGoal)
-                    loadFragmentLight(fragment:Fragment, R.id.mainFr)
+                    val fragment = Roll()
+                    val bundle = Bundle()
+                    bundle.putString("goal", "goal")
+                    fragment.arguments = bundle
+                    loadFragmentLight(fragment, R.id.mainFr)
                 }
                 "arbitrary number" -> {
-                    loadPM(value:Int, minValue:Int, maxValue:Int, resId:Int)
+                    loadPM(0, 0, null, R.id.mainFr)
                 }
                 "DD by list" -> {
 
@@ -90,41 +113,6 @@ class FightThreeGoal : Fragment() {
 
                     loadDD(main:String, "green", goal:String, list:ArrayList<String>, resId:Int)
                 }
-            }
-
-///////////////////// DD goal one
-
-            if (listFragments.contains("DD goal one")) {
-
-                val list = ArrayList<String>()
-                //TODO: вынести characterDAO на domain layer , паци с нмереести во VM
-                val goalsList = mutableListOf<Goal>()
-                mCharacterVM.characterList.value?.forEach {
-                    if (it.gameId == mCharacterVM.gameId) {
-                        if (it.id != mCharacterVM.characterId) {
-                            val goal = Goal()
-                            goal.characterId = it.id
-                            val name = it.attributes.singleOrNull { gp ->
-                                gp.title == "Базовые параметры"
-                            }?.attributes?.listParamStr?.singleOrNull { pn ->
-                                pn.name == "Имя персонажа"
-                            }?.value ?: ""
-                            goal.name = name
-                            list.add(name)
-                            goalsList.add(goal)
-                        }
-                    }
-                }
-                mSkillVM.allGoals.value = goalsList
-
-                if (list.isEmpty()){
-                    loadDD("Цели не найдены", "yellow", "goal", list, R.id.frDDoneGoal)
-                }else{
-                    loadDD("Выберите цель", "yellow", "goal", list, R.id.frDDoneGoal)
-                }
-
-            } else {
-                setVisibility(frDDoneGoal, false)
             }
 ///////////////////////////// DD distance
             if (listFragments.contains("DD distance")) {

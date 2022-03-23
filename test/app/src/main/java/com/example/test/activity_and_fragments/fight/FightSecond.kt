@@ -71,8 +71,7 @@ class FightSecond : Fragment() {
             }
             "few roll" -> {
                 //здесь добавить VP2 в качестве отдельного фрагмента
-                loadDD("Выберите цель", "yellow", "goal", list, R.id.frDDoneGoal)
-                loadFragmentLight(FewRoll(), R.id.mainFr)
+                loadFragmentLight(Roll(), R.id.mainFr)
             }
             "arbitrary number" -> {
                 loadPM(0, 0, null, R.id.mainFr)

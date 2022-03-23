@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark">
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_marginTop="30dp"
+        android:id="@+id/goalFr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_marginTop="30dp"
+        android:id="@+id/modFr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_marginTop="30dp"
+        android:id="@+id/m1d10Fr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
