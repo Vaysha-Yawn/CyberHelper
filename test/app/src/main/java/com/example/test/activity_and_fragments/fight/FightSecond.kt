@@ -27,7 +27,22 @@ class FightSecond : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fight_second, container, false)
 
-
+        fun loadPM(value:Int, minValue:Int, maxValue:Int?, resId:Int){
+            val bundleD = Bundle()
+            bundleD.putInt("value", value)
+            bundleD.putInt("minValue", minValue)
+            if (maxValue!=null){
+                bundleD.putInt("maxValue", maxValue)
+            }
+            bundleD.putString("them", "green")
+            bundleD.putString("goal", "")
+            val fragmentD = PlusAndMinus()
+            fragmentD.arguments = bundleD
+            childFragmentManager.commit {
+                replace(resId, fragmentD)
+                addToBackStack(null)
+            }
+        }
         fun loadDD(main:String, them:String, goal:String, list:ArrayList<String>, id:Int){
             val fragment = DropDownList()
             val bundle = Bundle()
@@ -38,20 +53,6 @@ class FightSecond : Fragment() {
             fragment.arguments = bundle
             childFragmentManager.commit {
                 replace(id, fragment)
-                addToBackStack(null)
-            }
-        }
-        fun loadPM(value:Int, minValue:Int, maxValue:Int, resId:Int){
-            val bundleD = Bundle()
-            bundleD.putInt("value", value)
-            bundleD.putInt("minValue", minValue)
-            bundleD.putInt("maxValue", maxValue)
-            bundleD.putString("them", "green")
-            bundleD.putString("goal", "")
-            val fragmentD = PlusAndMinus()
-            fragmentD.arguments = bundleD
-            childFragmentManager.commit {
-                replace(resId, fragmentD)
                 addToBackStack(null)
             }
         }
@@ -66,21 +67,15 @@ class FightSecond : Fragment() {
         val attack = mSkillVM.attack ?: EffectWeapon()
         when (attack.fightType.roll) {
             "one roll" -> {
-                loadFragmentLight(fragment:Fragment, resId:Int)
+                loadFragmentLight(Roll(), R.id.mainFr)
             }
             "few roll" -> {
-                loadFragmentLight(fragment:Fragment, resId:Int)
+                //здесь добавить VP2 в качестве отдельного фрагмента
+                loadDD("Выберите цель", "yellow", "goal", list, R.id.frDDoneGoal)
+                loadFragmentLight(FewRoll(), R.id.mainFr)
             }
             "arbitrary number" -> {
-                loadPM(value:Int, minValue:Int, maxValue:Int, resId:Int)
-            }
-            "DD by list" -> {
-
-                loadDD(main:String, "green", goal:String, list:ArrayList<String>, resId:Int)
-            }
-            "DD by param" -> {
-
-                loadDD(main:String, "green", goal:String, list:ArrayList<String>, resId:Int)
+                loadPM(0, 0, null, R.id.mainFr)
             }
         }
 

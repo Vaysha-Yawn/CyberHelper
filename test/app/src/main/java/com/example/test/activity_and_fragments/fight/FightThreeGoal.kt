@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import com.example.test.R
+import com.example.test.data_base.EffectWeapon
+import com.example.test.data_base.FightType
 import com.example.test.data_base.SpecialGameData
 import com.example.test.databinding.FightThreeGoalBinding
 import com.example.test.viewModels.CharacterDAO
@@ -29,7 +31,7 @@ class FightThreeGoal : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fight_three_goal, container, false)
-        val fightType = mSkillVM.attack?.fightType
+        val fightType = mSkillVM.attack?.fightType?: FightType()
         val listFragments = listOf<String>()
 
         fun loadDD(main:String, them:String, goal:String, list:ArrayList<String>, id:Int){
@@ -61,19 +63,34 @@ class FightThreeGoal : Fragment() {
             }
         }
 
-        fun ifContainsLoad(view:View, fragment:Fragment, id:Int, title:String){
-            if (listFragments.contains(title)) {
-                loadFragmentLight(fragment, id)
-            } else {
-                setVisibility(view, false)
-            }
-        }
-
         val binding = FightThreeGoalBinding.bind(view)
         fun bind() = with(binding) {
 
             loadFragmentLight(Header(), R.id.header)
 
+//////////////////
+            when (fightType.difficult) {
+                "one roll" -> {
+                    loadDD("Выберите цель", "yellow", "goal", list, R.id.frDDoneGoal)
+                    loadFragmentLight(Roll(), R.id.mainFr)
+                }
+                "few roll" -> {
+                    // VP2
+                    loadDD("Выберите цель", "yellow", "goal", list, R.id.frDDoneGoal)
+                    loadFragmentLight(fragment:Fragment, R.id.mainFr)
+                }
+                "arbitrary number" -> {
+                    loadPM(value:Int, minValue:Int, maxValue:Int, resId:Int)
+                }
+                "DD by list" -> {
+
+                    loadDD(main:String, "green", goal:String, list:ArrayList<String>, resId:Int)
+                }
+                "DD by param" -> {
+
+                    loadDD(main:String, "green", goal:String, list:ArrayList<String>, resId:Int)
+                }
+            }
 
 ///////////////////// DD goal one
 

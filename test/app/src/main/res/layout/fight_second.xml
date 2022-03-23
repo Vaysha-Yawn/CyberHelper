@@ -40,16 +40,7 @@
 
             <androidx.fragment.app.FragmentContainerView
                 android:layout_marginTop="30dp"
-                android:id="@+id/modFr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.fragment.app.FragmentContainerView
-                android:layout_marginTop="30dp"
-                android:id="@+id/fr1d10"
+                android:id="@+id/mainFr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
