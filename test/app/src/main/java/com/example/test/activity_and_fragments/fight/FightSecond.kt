@@ -14,36 +14,76 @@ import com.example.test.data_base.EffectWeapon
 import com.example.test.databinding.FightSecondBinding
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
-import com.example.test.widgets.Header
-import com.example.test.widgets.Modificators
-import com.example.test.widgets.m1D10
+import com.example.test.widgets.*
 
 
 class FightSecond : Fragment() {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fight_second, container, false)
-        val attack = mSkillVM.attack?: EffectWeapon()
 
-        val fragmentMod = Modificators()
-        childFragmentManager.commit {
-            replace(R.id.modFr, fragmentMod)
-            addToBackStack(null)
+
+        fun loadDD(main:String, them:String, goal:String, list:ArrayList<String>, id:Int){
+            val fragment = DropDownList()
+            val bundle = Bundle()
+            bundle.putString("main", main)
+            bundle.putString("them", them)
+            bundle.putString("goal", goal)
+            bundle.putStringArrayList("list", list)
+            fragment.arguments = bundle
+            childFragmentManager.commit {
+                replace(id, fragment)
+                addToBackStack(null)
+            }
+        }
+        fun loadPM(value:Int, minValue:Int, maxValue:Int, resId:Int){
+            val bundleD = Bundle()
+            bundleD.putInt("value", value)
+            bundleD.putInt("minValue", minValue)
+            bundleD.putInt("maxValue", maxValue)
+            bundleD.putString("them", "green")
+            bundleD.putString("goal", "")
+            val fragmentD = PlusAndMinus()
+            fragmentD.arguments = bundleD
+            childFragmentManager.commit {
+                replace(resId, fragmentD)
+                addToBackStack(null)
+            }
         }
 
-        val fragmentM1d10 = m1D10()
-        childFragmentManager.commit {
-            replace(R.id.fr1d10, fragmentM1d10)
-            addToBackStack(null)
+        fun loadFragmentLight(fragment:Fragment, id:Int){
+            childFragmentManager.commit {
+                replace(id, fragment)
+                addToBackStack(null)
+            }
         }
+
+        val attack = mSkillVM.attack ?: EffectWeapon()
+        when (attack.fightType.roll) {
+            "one roll" -> {
+                loadFragmentLight(fragment:Fragment, resId:Int)
+            }
+            "few roll" -> {
+                loadFragmentLight(fragment:Fragment, resId:Int)
+            }
+            "arbitrary number" -> {
+                loadPM(value:Int, minValue:Int, maxValue:Int, resId:Int)
+            }
+            "DD by list" -> {
+
+                loadDD(main:String, "green", goal:String, list:ArrayList<String>, resId:Int)
+            }
+            "DD by param" -> {
+
+                loadDD(main:String, "green", goal:String, list:ArrayList<String>, resId:Int)
+            }
+        }
+
         val fragmentHeader = Header()
         childFragmentManager.commit {
             replace(R.id.header, fragmentHeader)
@@ -52,7 +92,7 @@ class FightSecond : Fragment() {
 
         val binding = FightSecondBinding.bind(view)
         fun bind() = with(binding) {
-            title.text = attack.fightType
+            title.text = attack.fightType.name
 
             btnNext.setOnClickListener {
                 view.findNavController().navigate(R.id.action_fightAttack_to_fightThreeGoal)

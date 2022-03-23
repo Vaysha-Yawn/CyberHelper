@@ -74,12 +74,6 @@ class FightThreeGoal : Fragment() {
 
             loadFragmentLight(Header(), R.id.header)
 
-            ifContainsLoad(modFr, Modificators(), R.id.modFr, "Modificators")
-
-            ifContainsLoad(fr1d10, m1D10(), R.id.fr1d10, "m1D10")
-
-            ifContainsLoad(goalFr, Goals(), R.id.goalFr, "Goals")
-
 
 ///////////////////// DD goal one
 
