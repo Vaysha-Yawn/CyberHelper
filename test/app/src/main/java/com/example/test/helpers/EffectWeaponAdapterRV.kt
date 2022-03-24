@@ -29,7 +29,7 @@ class EffectWeaponAdapterRV():
         private val binding = CardEffectWeaponBinding.bind(view)
         @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables")
         fun bind(effect: EffectWeapon, groupTitle:String, newOrPres: Boolean, readOrEdit: Boolean, indexItem:Int, indexEff:Int) = with(binding){
-            type.text = effect.fightType
+            type.text = effect.fightType.name
             damage.text = "${effect.numCount}d${effect.dX}"
             if (effect.wearout!=null){
                 wearout.text = "${effect.wearout} раз"

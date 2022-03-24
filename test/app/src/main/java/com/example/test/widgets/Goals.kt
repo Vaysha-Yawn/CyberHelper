@@ -11,8 +11,7 @@ import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
 import com.example.test.databinding.GoalsBinding
-import com.example.test.databinding.ModificatorsBinding
-import com.example.test.helpers.GoalAdapterRV
+import com.example.test.helpers.FragmentsAdapterRV
 import com.example.test.helpers.GoalTemplateHolder
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
@@ -21,7 +20,7 @@ class Goals : Fragment(), GoalTemplateHolder.LoadFragment, GoalTemplateHolder.De
     GoalTemplateHolder.updIdGoal {
     private val mCharacterDAO: CharacterDAO by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
-    private val adapter = GoalAdapterRV(this, this, this)
+    private val adapter = FragmentsAdapterRV(this, this, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
