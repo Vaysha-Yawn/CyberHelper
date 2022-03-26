@@ -3,16 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/layout/about.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/layout/card_fragments.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/layout/character_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/layout/edit_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/layout/fight_second.xml" value="0.33" />
+        <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/layout/fight_three.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/layout/fight_three_goal.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/layout/host_fight.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/layout/host_present_game.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/layout/radio_group_two.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/layout/roll.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/layout/setting_fight_type.xml" value="0.2689075630252101" />
         <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/layout/skill_result.xml" value="0.3425925925925926" />
-        <entry key="..\:/Users/vikto/AndroidStudioProjects/CyberHelper/test/app/src/main/res/layout/card_fragments.xml" value="0.3671875" />
+        <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/layout/skill_test2.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/vikto/AndroidStudioProjects/CyberHelper/test/app/src/main/res/layout/card_goal.xml" value="0.353125" />
         <entry key="..\:/Users/vikto/AndroidStudioProjects/CyberHelper/test/app/src/main/res/layout/choose_weapon.xml" value="0.3671875" />
-        <entry key="..\:/Users/vikto/AndroidStudioProjects/CyberHelper/test/app/src/main/res/layout/fight_three.xml" value="0.3671875" />
         <entry key="..\:/Users/vikto/AndroidStudioProjects/CyberHelper/test/app/src/main/res/layout/goals.xml" value="0.3671875" />
         <entry key="..\:/Users/vikto/AndroidStudioProjects/CyberHelper/test/app/src/main/res/layout/modificators.xml" value="0.353125" />
-        <entry key="..\:/Users/vikto/AndroidStudioProjects/CyberHelper/test/app/src/main/res/layout/setting_fight_type.xml" value="0.3671875" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/fight_attack.xml" value="0.25" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/fight_second.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/fight_three_goal.xml" value="0.190625" />
+        <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/goals.xml" value="0.190625" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/header.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/m1_d10.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/modificators.xml" value="0.20416666666666666" />

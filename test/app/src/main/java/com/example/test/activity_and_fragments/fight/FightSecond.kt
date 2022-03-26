@@ -7,15 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
+import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
 import com.example.test.data_base.EffectWeapon
 import com.example.test.databinding.FightSecondBinding
+import com.example.test.helpers.FragmentsAdapterRV
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.widgets.*
 
 
-class FightSecond : Fragment() {
+class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
 
@@ -24,6 +27,8 @@ class FightSecond : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fight_second, container, false)
+        mSkillVM.clearVM()
+        val attack = mSkillVM.attack ?: EffectWeapon()
 
         fun loadPM(value:Int, minValue:Int, maxValue:Int?, resId:Int){
             val bundleD = Bundle()
@@ -62,17 +67,28 @@ class FightSecond : Fragment() {
             }
         }
 
-        val attack = mSkillVM.attack ?: EffectWeapon()
-        when (attack.fightType.roll) {
+        val list = mutableListOf<String>()
+        val listFr = mutableListOf<Fragment>()
+
+        when (attack.fightType?.roll) {
             "one roll" -> {
-                loadFragmentLight(Roll(), R.id.mainFr)
+                // roll надо передать значения
+                //loadFragmentLight(Roll(), R.id.mainFr)
             }
             "few roll" -> {
                 //здесь добавить VP2 в качестве отдельного фрагмента
-                loadFragmentLight(Roll(), R.id.mainFr)
+                //loadFragmentLight(Roll(), R.id.mainFr)
             }
             "arbitrary number" -> {
-                loadPM(0, 0, null, R.id.mainFr)
+                val bundleD = Bundle()
+                bundleD.putInt("value", 0)
+                bundleD.putInt("minValue", 0)
+                bundleD.putString("them", "green")
+                val fragmentD = PlusAndMinus()
+                fragmentD.arguments = bundleD
+                list.add("")
+                listFr.add(fragmentD)
+
             }
         }
 
@@ -84,8 +100,10 @@ class FightSecond : Fragment() {
 
         val binding = FightSecondBinding.bind(view)
         fun bind() = with(binding) {
-            title.text = attack.fightType.name
-
+            title.text = attack.fightType?.name?:""
+            val adapterRV = FragmentsAdapterRV(list, listFr, this@FightSecond)
+            RV.adapter = adapterRV
+            RV.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
             btnNext.setOnClickListener {
                 view.findNavController().navigate(R.id.action_fightAttack_to_fightThreeGoal)
             }
@@ -95,6 +113,14 @@ class FightSecond : Fragment() {
 
         return view
     }
+
+    override fun loadFragment(position: Int, id: Int, fragment: Fragment) {
+        childFragmentManager.commit {
+            replace(id, fragment)
+            addToBackStack(null)
+        }
+    }
+
 
 
 }

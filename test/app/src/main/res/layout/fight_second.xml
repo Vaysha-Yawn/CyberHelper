@@ -37,14 +37,10 @@
                 android:layout_height="wrap_content"
                 android:text="Заменить Название боя" />
 
-            <androidx.fragment.app.FragmentContainerView
-                android:layout_marginTop="30dp"
-                android:id="@+id/mainFr"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RV"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="wrap_content"/>
 
             <Button
                 android:id="@+id/btn_next"

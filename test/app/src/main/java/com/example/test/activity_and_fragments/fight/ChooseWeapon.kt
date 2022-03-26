@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.data_base.EffectWeapon
+import com.example.test.data_base.FightType
 import com.example.test.data_base.Item
 import com.example.test.helpers.ChooseWeaponAdapterRV
 import com.example.test.viewModels.CharacterDAO
@@ -40,7 +41,7 @@ class ChooseWeapon : Fragment(), ChooseWeaponAdapterRV.TemplateHolder.OnItemClic
         val RV = view.findViewById<RecyclerView>(R.id.weaponFight)
 
         val characterId = mCharacterVM.characterId
-        val listWeapon = mutableListOf( EffectWeapon(fightType = "Рукопашный бой", name = "Рукопашный бой"))
+        val listWeapon = mutableListOf( EffectWeapon(fightType = FightType(), name = "Рукопашный бой"))
         mCharacterVM.characterList.value!!.singleOrNull { character ->
             character.id == characterId
         }?.attributes?.forEach { groupParam ->

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/group"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <RadioButton
+        android:id="@+id/radio1"
+        style="@style/Text.H2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:buttonTint="@color/yellow"
+        android:checked="true"
+        android:text="Бросока цели"
+        android:textSize="16sp"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <RadioButton
+        android:id="@+id/radio2"
+        style="@style/Text.H2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_weight="1"
+        android:buttonTint="@color/yellow"
+        android:text="Расстояния"
+        android:textSize="16sp"
+        tools:ignore="TouchTargetSizeCheck" />
+</RadioGroup>

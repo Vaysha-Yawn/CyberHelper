@@ -13,6 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.data_base.EffectWeapon
+import com.example.test.data_base.FightType
 import com.example.test.data_base.TemplateParamOptions
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.widgets.DropDownList
@@ -47,10 +48,10 @@ class EditEffectWeapon : Fragment() {
         // подключаем фрагмент выпадающего списка
         val bundle = Bundle()
         val typeWeapon = TemplateParamOptions().mapParamOptionsSupporting["Тип оружия"]
-        if (effectWeapon.fightType == "") {
+        if (effectWeapon.fightType == FightType()) {
             bundle.putString("main", typeWeapon?.defMain)
         } else {
-            bundle.putString("main", effectWeapon.fightType)
+            bundle.putString("main", effectWeapon.fightType?.name?:"")
         }
         bundle.putString("them", "green")
         val options = arrayListOf<String>()

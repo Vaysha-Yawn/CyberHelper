@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fight_nav"
+    app:startDestination="@id/chooseWeapon">
+
+    <fragment
+        android:id="@+id/chooseWeapon"
+        android:name="com.example.test.activity_and_fragments.fight.ChooseWeapon"
+        android:label="choose_weapon"
+        tools:layout="@layout/choose_weapon" >
+        <action
+            android:id="@+id/action_chooseWeapon_to_fightSecond"
+            app:destination="@id/fightSecond" />
+    </fragment>
+    <fragment
+        android:id="@+id/fightSecond"
+        android:name="com.example.test.activity_and_fragments.fight.FightSecond"
+        android:label="FightSecond" >
+        <action
+            android:id="@+id/action_fightSecond_to_fightThree"
+            app:destination="@id/fightThree" />
+    </fragment>
+    <fragment
+        android:id="@+id/fightThree"
+        android:name="com.example.test.activity_and_fragments.fight.FightThree"
+        android:label="FightThree" />
+</navigation>
