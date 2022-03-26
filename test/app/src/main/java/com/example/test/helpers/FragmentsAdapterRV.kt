@@ -48,10 +48,12 @@ class FragmentsAdapterRV(
 
         fun bind(textT: String, fragment:Fragment) = with(binding) {
             text.text = textT
-
+            val id = View.generateViewId()
+            fr.id = id
+            loadFragment.loadFragment(adapterPosition, id, fragment)
         }
         interface LoadFragment {
-            fun loadFragment(position: Int, id: Int)
+            fun loadFragment(position: Int, id: Int, fragment:Fragment)
         }
     }
 

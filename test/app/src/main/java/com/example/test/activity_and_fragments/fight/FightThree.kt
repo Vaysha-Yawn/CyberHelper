@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
-import com.example.test.data_base.EffectWeapon
 import com.example.test.data_base.FightType
-import com.example.test.data_base.SpecialGameData
-import com.example.test.databinding.FightThreeGoalBinding
+import com.example.test.databinding.FightThreeBinding
+import com.example.test.helpers.FragmentsAdapterRV
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.widgets.*
 
-class FightThreeGoal : Fragment() {
+class FightThree : Fragment() {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
@@ -30,9 +30,8 @@ class FightThreeGoal : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fight_three_goal, container, false)
+        val view = inflater.inflate(R.layout.fight_three, container, false)
         val fightType = mSkillVM.attack?.fightType?: FightType()
-        val listFragments = listOf<String>()
 
         fun loadDD(main:String, them:String, goal:String, list:ArrayList<String>, id:Int){
             val fragment = DropDownList()
@@ -80,10 +79,70 @@ class FightThreeGoal : Fragment() {
             }
         }
 
-        val binding = FightThreeGoalBinding.bind(view)
-        fun bind() = with(binding) {
+        val list = mutableListOf<String>()
+        val listFr = mutableListOf<Fragment>()
 
+        when(fightType.difficult){
+            "one roll" -> {
+                val fragment = Roll()
+                val bundle = Bundle()
+                bundle.putString("goal", "goal")
+                fragment.arguments = bundle
+                list.add("")
+                listFr.add(fragment)
+            }
+            "few roll" -> {
+                // VP2
+                val fragment = Roll()
+                val bundle = Bundle()
+                bundle.putString("goal", "goal")
+                fragment.arguments = bundle
+                list.add("")
+                listFr.add(fragment)
+            }
+            "arbitrary number" -> {
+                val bundleD = Bundle()
+                bundleD.putInt("value", 0)
+                bundleD.putInt("minValue", 0)
+                bundleD.putString("them", "green")
+                val fragmentD = PlusAndMinus()
+                fragmentD.arguments = bundleD
+                list.add("")
+                listFr.add(fragmentD)
+            }
+            "DD by list" -> {
+
+                //loadDD(main:String, "green", goal:String, list:ArrayList<String>, resId:Int)
+            }
+            "DD by param" -> {
+
+                //loadDD(main:String, "green", goal:String, list:ArrayList<String>, resId:Int)
+            }
+        }
+
+        val binding = FightThreeBinding.bind(view)
+        fun bind() = with(binding) {
             loadFragmentLight(Header(), R.id.header)
+            // todo: создать лист подписей и лист фрагментов с бандлами, где надо, и добавить loadFragment
+            val adapter = FragmentsAdapterRV(list, listFr, this@FightThree)
+            RV.layoutManager =
+                LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
+            RV.adapter = adapter
+
+        }
+        bind()
+
+        return view
+    }
+
+
+
+}
+//TODO: вообще эта идея с ручным регулированием того, что показывать, а что - нет, это плохая затея
+// так будут проблемы с наложением и приоритетами
+//  стоит подробнее ориентироваться на тип атаки и подтип оружия
+
+/*
 
 //////////////////
             when (fightType.difficult) {
@@ -230,14 +289,4 @@ class FightThreeGoal : Fragment() {
                 setVisibility(howManyShoot, false)
                 setVisibility(textHowManyShoot, false)
             }
-
-        }
-        bind()
-
-        return view
-    }
-
-}
-//TODO: вообще эта идея с ручным регулированием того, что показывать, а что - нет, это плохая затея
-// так будут проблемы с наложением и приоритетами
-//  стоит подробнее ориентироваться на тип атаки и подтип оружия
+*/

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout7"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1B1A22">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!--<TextView
+                android:textColor="@color/light_grey"
+                android:id="@+id/textDifficultByGoalOrDistance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Рассчитать сложность броска с помощью:"
+                style="@style/Text.H2"
+                android:gravity="start"/>
+            <RadioGroup
+                android:id="@+id/difficultByGoalOrDistance"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:textSize="16sp"
+                    android:checked="true"
+                    android:id="@+id/difficultByGoal"
+                    style="@style/Text.H2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/yellow"
+                    android:text="Бросока цели"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <RadioButton
+                    android:textSize="16sp"
+                    android:id="@+id/difficultByDistance"
+                    style="@style/Text.H2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:buttonTint="@color/yellow"
+                    android:text="Расстояния"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </RadioGroup>-->
+
+          <androidx.recyclerview.widget.RecyclerView
+              android:id="@+id/RV"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/btn_next"
+                style="@style/Button_green_full"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="100dp"
+                android:text="Далее"
+                app:drawableEndCompat="@drawable/ic_next" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

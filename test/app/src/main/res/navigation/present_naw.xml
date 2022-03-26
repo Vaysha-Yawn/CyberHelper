@@ -319,7 +319,7 @@
         </fragment>
         <fragment
             android:id="@+id/fightThreeGoal"
-            android:name="com.example.test.activity_and_fragments.fight.FightThreeGoal"
+            android:name="com.example.test.activity_and_fragments.fight.FightThree"
             android:label="FightThreeGoal" />
     </navigation>
     <fragment
