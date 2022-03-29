@@ -28,7 +28,7 @@ class FightResult : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.skill_result, container, false)
+        val view = inflater.inflate(R.layout.fight_result, container, false)
 
         val characterId = mCharacterVM.characterId
         val title = mSkillVM.title

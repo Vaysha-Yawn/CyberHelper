@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
 import com.example.test.data_base.FightType
@@ -33,49 +34,10 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment {
         val view = inflater.inflate(R.layout.fight_three, container, false)
         val fightType = mSkillVM.attack?.fightType?: FightType()
 
-        fun loadDD(main:String, them:String, goal:String, list:ArrayList<String>, id:Int){
-            val fragment = DropDownList()
-            val bundle = Bundle()
-            bundle.putString("main", main)
-            bundle.putString("them", them)
-            bundle.putString("goal", goal)
-            bundle.putStringArrayList("list", list)
-            fragment.arguments = bundle
-            childFragmentManager.commit {
-                replace(id, fragment)
-                addToBackStack(null)
-            }
-        }
-
         fun loadFragmentLight(fragment:Fragment, id:Int){
             childFragmentManager.commit {
                 replace(id, fragment)
                 addToBackStack(null)
-            }
-        }
-
-        fun loadPM(value:Int, minValue:Int, maxValue:Int?, resId:Int){
-            val bundleD = Bundle()
-            bundleD.putInt("value", value)
-            bundleD.putInt("minValue", minValue)
-            if (maxValue!=null){
-                bundleD.putInt("maxValue", maxValue)
-            }
-            bundleD.putString("them", "green")
-            bundleD.putString("goal", "")
-            val fragmentD = PlusAndMinus()
-            fragmentD.arguments = bundleD
-            childFragmentManager.commit {
-                replace(resId, fragmentD)
-                addToBackStack(null)
-            }
-        }
-
-        fun setVisibility(view:View, visible:Boolean){
-            if (visible){
-                view.visibility = View.VISIBLE
-            }else{
-                view.visibility = View.GONE
             }
         }
 
@@ -121,7 +83,9 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment {
             RV.layoutManager =
                 LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
             RV.adapter = adapter
-
+            btnNext.setOnClickListener {
+                view.findNavController().navigate(R.id.action_fightThreeGoal_to_fightResult)
+            }
         }
         bind()
 
@@ -134,6 +98,5 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment {
             addToBackStack(null)
         }
     }
-
 
 }

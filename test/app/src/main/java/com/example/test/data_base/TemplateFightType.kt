@@ -120,7 +120,7 @@ class TemplateFightType {
             defaultDamage = null,
             failComment = null,
             failEffectAdd = RealmList(),
-            variations = RealmList("В голову")
+            variations = RealmList("В голову", "Огонь на подавление", "Очередью из 3х выстрелов")
         ),
         )
 
