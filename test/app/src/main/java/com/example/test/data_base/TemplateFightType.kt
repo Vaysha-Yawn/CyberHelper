@@ -1,5 +1,6 @@
 package com.example.test.data_base
 
+import io.realm.Realm
 import io.realm.RealmList
 
 class TemplateFightType {
@@ -47,7 +48,7 @@ class TemplateFightType {
             defaultDamage = damageByTel(0),
             failComment = null,
             failEffectAdd = RealmList(),
-            variations = listOf("В голову")
+            variations = RealmList("В голову")
         ),
         "Бой оружием ближнего боя" to FightType(
             name = "Бой оружием ближнего боя",
@@ -65,7 +66,7 @@ class TemplateFightType {
             defaultDamage = damageByTel(0),
             failComment = null,
             failEffectAdd = RealmList(),
-            variations = listOf("В голову")
+            variations = RealmList("В голову")
         ),
         "Дальний бой" to FightType(
             name = "Дальний бой",
@@ -83,7 +84,7 @@ class TemplateFightType {
             defaultDamage = null,
             failComment = null,
             failEffectAdd = RealmList(),
-            variations = listOf("В голову")
+            variations = RealmList("В голову")
         ),
         "Дальний бой 2" to FightType(
             name = "Дальний бой 2",
@@ -101,7 +102,7 @@ class TemplateFightType {
             defaultDamage = null,
             failComment = null,
             failEffectAdd = RealmList(),
-            variations = listOf("В голову")
+            variations = RealmList("В голову")
         ),
         "Автоматический огонь" to FightType(
             name = "Автоматический огонь",
@@ -119,7 +120,7 @@ class TemplateFightType {
             defaultDamage = null,
             failComment = null,
             failEffectAdd = RealmList(),
-            variations = listOf("В голову")
+            variations = RealmList("В голову")
         ),
         )
 

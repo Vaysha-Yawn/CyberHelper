@@ -21,91 +21,91 @@ class TemplateItem() {
             "Киберрука",
             "",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Киберрука", "Ближний бой", 1, 6))
+            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Киберрука", TemplateFightType().mapFightType["Ближний бой"]?: FightType(), 1, 6))
         ),
 
         "Нож" to Item(
             "Нож",
             "",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Нож", "Ближний бой", 1, 6))
+            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Нож", TemplateFightType().mapFightType["Ближний бой"]?:FightType(), 1, 6))
         ),
 
         "Большие костяшки" to Item(
             "Большие костяшки",
             "",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Большие костяшки", "Ближний бой", 2, 6))
+            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Большие костяшки", TemplateFightType().mapFightType["Ближний бой"]?:FightType(), 2, 6))
         ),
 
         "Пистолет среднего калибра" to Item(
             "Пистолет среднего калибра",
             "",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Пистолет среднего калибра", "Дальний бой", 2, 6))
+            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Пистолет среднего калибра", TemplateFightType().mapFightType["Дальний бой"]?:FightType(), 2, 6))
         ),
 
         "Пистолет-пулемёт среднего калибра" to Item(
             "Пистолет-пулемёт среднего калибра",
             "",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Пистолет-пулемёт среднего калибра", "Автоматический огонь", 2, 6))
+            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Пистолет-пулемёт среднего калибра", TemplateFightType().mapFightType["Автоматический огонь"]?:FightType(), 2, 6))
         ),
 
         "Потрошители" to Item(
             "Потрошители",
             "",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Потрошители", "Ближний бой", 2, 6))
+            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Потрошители", TemplateFightType().mapFightType["Ближний бой"]?:FightType(), 2, 6))
         ),
 
         "Моноструна" to Item(
             "Моноструна",
             "",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Моноструна", "Ближний бой", 2, 6))
+            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Моноструна", TemplateFightType().mapFightType["Ближний бой"]?:FightType(), 2, 6))
         ),
 
         "Пистолет крупного калибра" to Item(
             "Пистолет крупного калибра",
             "",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Пистолет крупного калибра", "Дальний бой", 3, 6))
+            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Пистолет крупного калибра", TemplateFightType().mapFightType["Дальний бой"]?:FightType(), 3, 6))
         ),
 
         "Пистолет сверхкрупного калибра" to Item(
             "Пистолет сверхкрупного калибра",
             "",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Пистолет сверхкрупного калибра", "Дальний бой", 4, 6))
+            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Пистолет сверхкрупного калибра", TemplateFightType().mapFightType["Дальний бой"]?:FightType(), 4, 6))
         ),
 
         "Автомат" to Item(
             "Автомат",
             "",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Автомат", "Автоматический огонь", 5, 6))
+            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Автомат", TemplateFightType().mapFightType["Автоматический огонь"]?:FightType(), 5, 6))
         ),
 
         "Дробовик" to Item(
             "Дробовик",
             "",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Дробовик", "Дальний бой", 5, 6))
+            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Дробовик", TemplateFightType().mapFightType["Дальний бой"]?:FightType(), 5, 6))
         ),
 
         "Ракетная установка" to Item(
             "Ракетная установка",
             "",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Ракетная установка", "Дальний бой", 7, 10))
+            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Ракетная установка", TemplateFightType().mapFightType["Дальний бой"]?:FightType(), 7, 10))
         ),
 
         "Взрывчатка С9" to Item(
             "Взрывчатка С9",
             "",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Взрывчатка С9","Взрывчатка", 8, 10))
+            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Взрывчатка С9",TemplateFightType().mapFightType["Взрывчатка"]?:FightType(), 8, 10))
         ),
 
         )
@@ -137,11 +137,11 @@ class TemplateItem() {
             false,
             effectsWeapon = RealmList<EffectWeapon>(
                 EffectWeapon("Banhammer против адских гончих",
-                    "Нетраннинг против адских гончих",
+                    TemplateFightType().mapFightType["Нетраннинг против адских гончих"]?:FightType(),
                     3,
                     6,
                     null
-                ), EffectWeapon("Banhammer против программ","Нетраннинг против программ", 2, 6, null)
+                ), EffectWeapon("Banhammer против программ",TemplateFightType().mapFightType["Нетраннинг против программ"]?:FightType(), 2, 6, null)
             ),
             otherParamNum = RealmList<ParamNum>(
                 TemplateParamNum().initParamNum(
@@ -184,7 +184,7 @@ class TemplateItem() {
             true,
             effectsWeapon = RealmList<EffectWeapon>(
                 EffectWeapon("Hellhound",
-                    "Нетраннинг против людей",
+                    TemplateFightType().mapFightType["Нетраннинг против людей"]?:FightType(),
                     3,
                     6,
                     null
@@ -219,22 +219,22 @@ class TemplateItem() {
         "Большие костяшки (пара)" to Item(
             "Большие костяшки (пара)",
             "Усиленные остяшки пальцев наносят такие же тяжёлые удары,как костеты",
-            true, effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Большие костяшки (пара)", "Ближний_бой", 2, 6))
+            true, effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Большие костяшки (пара)", TemplateFightType().mapFightType["Ближний бой"]?:FightType(), 2, 6))
         ),
         "Киберрука (Потрошители)" to Item(
             "Киеррука (Потрошители)",
             "Киберрука, в которой спрятаны потрошители",
-            true, effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Киберрука (Потрошители)","Ближний_бой", 2, 6))
+            true, effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Киберрука (Потрошители)",TemplateFightType().mapFightType["Ближний бой"]?:FightType(), 2, 6))
         ),
         "Моноструна (одна)" to Item(
             "Моноструна (одна)",
             "Прикрепленная к пальцу проволока из моноволокна режет любые органические материалы и пластик. Может служить удавкой, резиком или кнутом",
-            true, effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Моноструна (одна)", "Ближний_бой", 2, 6))
+            true, effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Моноструна (одна)", TemplateFightType().mapFightType["Ближний бой"]?:FightType(), 2, 6))
         ),
         "Потрошители (пара)" to Item(
             "Потрошители (пара)",
             "Трехдюймовые когти из карбостекла наносят режущие и колющие удары",
-            true, effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Потрошители (пара)", "Ближний_бой", 2, 6))
+            true, effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Потрошители (пара)", TemplateFightType().mapFightType["Ближний бой"]?:FightType(), 2, 6))
         ),
 
         "Кибероптика (прицел)" to Item(

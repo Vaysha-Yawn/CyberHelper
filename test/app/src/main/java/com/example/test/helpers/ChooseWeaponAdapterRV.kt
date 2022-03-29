@@ -21,7 +21,7 @@ class ChooseWeaponAdapterRV(val list: List<EffectWeapon>, private val onClick: C
         @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables")
         fun bind( effect: EffectWeapon) = with(binding) {
 
-            when (effect.fightType) {
+            when (effect.fightType?.name?:"") {
                 "Взрывчатка" -> {
                     image.setImageDrawable(image.context.getDrawable(R.drawable.bomb))
                     text.background.setTint(text.context.getColor(R.color.purple))

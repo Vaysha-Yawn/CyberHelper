@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.lifecycle.findViewTreeViewModelStoreOwner
@@ -18,7 +19,8 @@ import com.example.test.viewModels.SkillTestVM
 import com.example.test.widgets.*
 
 
-class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment {
+class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
+    RadioGroupTwo.OnCheckedRadio {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
 
@@ -70,24 +72,38 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment {
         val list = mutableListOf<String>()
         val listFr = mutableListOf<Fragment>()
 
+        val bundleD = Bundle()
+        bundleD.putString("goal", "goal")
+        val fragmentD = Roll()
+        fragmentD.arguments = bundleD
+        list.add("Бросок атакующего")
+        listFr.add(fragmentD)
+
+        val bundle = Bundle()
+        bundle.putString("text1", "Успех")
+        bundle.putString("text2", "Не успех")
+        val fragment = RadioGroupTwo(this)
+        fragment.arguments = bundle
+        list.add("Проверка выбора")
+        listFr.add(fragment)
+
         when (attack.fightType?.roll) {
             "one roll" -> {
-                // roll надо передать значения
-                //loadFragmentLight(Roll(), R.id.mainFr)
+
             }
             "few roll" -> {
                 //здесь добавить VP2 в качестве отдельного фрагмента
                 //loadFragmentLight(Roll(), R.id.mainFr)
             }
             "arbitrary number" -> {
-                val bundleD = Bundle()
-                bundleD.putInt("value", 0)
-                bundleD.putInt("minValue", 0)
-                bundleD.putString("them", "green")
-                val fragmentD = PlusAndMinus()
-                fragmentD.arguments = bundleD
+                val bundleF = Bundle()
+                bundleF.putInt("value", 0)
+                bundleF.putInt("minValue", 0)
+                bundleF.putString("them", "green")
+                val fragmentF = PlusAndMinus()
+                fragmentF.arguments = bundleF
                 list.add("")
-                listFr.add(fragmentD)
+                listFr.add(fragmentF)
 
             }
         }
@@ -121,6 +137,13 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment {
         }
     }
 
+    override fun checkedRadio1() {
+        Toast.makeText(view?.context, "text1", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun checkedRadio2() {
+        Toast.makeText(view?.context, "text2", Toast.LENGTH_SHORT).show()
+    }
 
 
 }

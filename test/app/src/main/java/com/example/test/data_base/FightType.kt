@@ -30,7 +30,7 @@ open class FightType(
     ///////////// что происходит в случае провала
     var failComment: String? = "",// есть чекбокс ложь, то этот параметр нулловый
     var failEffectAdd: RealmList<EffectAdd>? = RealmList<EffectAdd>(),
-    var variations:List<String> = listOf()
+    var variations:RealmList<String> = RealmList()
 ):RealmObject()
 
 open class SettingsRoll(

@@ -250,7 +250,7 @@ open class CharacterDAO : ViewModel() {
             val effect = list[indexEff]!!
             realm.executeTransaction {
                 effect.name = name
-                effect.fightType = type
+                effect.fightType = TemplateFightType().mapFightType[type]?: FightType()
                 effect.numCount = numCount
                 effect.dX = dX
                 effect.wearout = (if (wearout != 0) wearout else null)
@@ -277,7 +277,7 @@ open class CharacterDAO : ViewModel() {
         if (list != null) {
             if (list.size >= indexEff || indexEff < 0) {// новый
                 val effect =
-                    EffectWeapon(name, type, numCount, dX, (if (wearout != 0) wearout else null))
+                    EffectWeapon(name, TemplateFightType().mapFightType[type]?:FightType(), numCount, dX, (if (wearout != 0) wearout else null))
                 realm.executeTransaction {
                     list.add(effect)
                 }
