@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.activityViewModels
 import com.example.test.R
 import com.example.test.activity_and_fragments.MainActivity
 import com.example.test.viewModels.CharacterDAO
@@ -26,8 +25,15 @@ class PresentHost : AppCompatActivity() {
         mCharacterVM.loadCharactersByGameId(gameId)
         mGameVM.initGameName(gameId)
     }
-    fun backToMain(){
+
+    fun backToMain() {
         val i = Intent(this, MainActivity::class.java)
+        startActivity(i)
+        finish()
+    }
+
+    fun openFight() {
+        val i = Intent(this, FightHost::class.java)
         startActivity(i)
         finish()
     }

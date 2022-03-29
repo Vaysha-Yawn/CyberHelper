@@ -1,14 +1,13 @@
 package com.example.test.activity_and_fragments.fight
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
-import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
@@ -20,7 +19,7 @@ import com.example.test.widgets.*
 
 
 class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
-    RadioGroupTwo.OnCheckedRadio {
+    RadioGroupTwo.OnCheckedRadio, Header.HeaderBack {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
 
@@ -108,7 +107,7 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
             }
         }
 
-        val fragmentHeader = Header()
+        val fragmentHeader = Header(this)
         childFragmentManager.commit {
             replace(R.id.header, fragmentHeader)
             addToBackStack(null)
@@ -121,7 +120,7 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
             RV.adapter = adapterRV
             RV.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
             btnNext.setOnClickListener {
-                view.findNavController().navigate(R.id.action_fightAttack_to_fightThreeGoal)
+                view.findNavController().navigate(R.id.action_fightSecond_to_fightThree)
             }
         }
 
@@ -143,6 +142,10 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
 
     override fun checkedRadio2() {
         Toast.makeText(view?.context, "text2", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun back() {
+        view?.findNavController()?.popBackStack()
     }
 
 

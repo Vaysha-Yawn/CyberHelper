@@ -1,19 +1,14 @@
 package com.example.test.activity_and_fragments.setting
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
-import androidx.navigation.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
-import com.example.test.databinding.FightSecondBinding
 import com.example.test.databinding.SettingFightTypeBinding
-import com.example.test.helpers.EffectAddAdapterRV
 import com.example.test.widgets.DropDownList
-import com.example.test.widgets.Header
 
 class SettingFightType : Fragment() {
 
@@ -54,7 +49,7 @@ class SettingFightType : Fragment() {
 
         val binding = SettingFightTypeBinding.bind(view)
         fun bind() = with(binding) {
-            loadFragmentLight(Header(), R.id.header)
+            //loadFragmentLight(Header(), R.id.header)
             loadDD("Сложность", "green", "", arrayListOf("Бросок одного персоонажа", "Бросок нескольких персоонажей", "Устанавливается произвольно",
                 "Выбирается из списка", "Устанавливается по таблице в зависимости от значения характеристики"),
                 R.id.difficult)

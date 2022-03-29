@@ -7,22 +7,17 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
-import androidx.navigation.navGraphViewModels
 import com.example.test.R
 import com.example.test.data_base.SpecialGameData
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
+import java.util.*
 
 
 class FightResult : Fragment() {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -137,8 +132,8 @@ class FightResult : Fragment() {
             "1D10 = $res1d10",
             "Критический = $crit",
             "Модификатор = $mod",
-            "Навык ${title.toLowerCase()} = $skill",
-            "Параметр ${tvParam.toLowerCase()} = $param",
+            "Навык ${title.lowercase(Locale.getDefault())} = $skill",
+            "Параметр ${tvParam.lowercase(Locale.getDefault())} = $param",
             str
         )
 
@@ -150,7 +145,7 @@ class FightResult : Fragment() {
 
         val apply = view.findViewById<Button>(R.id.apply)
         apply.setOnClickListener {
-            view.findNavController().navigate(R.id.action_skillResult_to_home2)
+            //view.findNavController().navigate(R.id.action_skillResult_to_home2)
         }
 
         return view
