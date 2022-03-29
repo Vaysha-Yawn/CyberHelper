@@ -14,11 +14,11 @@ import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.data_base.EffectWeapon
 import com.example.test.data_base.FightType
+import com.example.test.data_base.TemplateFightType
 import com.example.test.data_base.TemplateParamOptions
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.widgets.DropDownList
 import com.example.test.widgets.PlusAndMinus
-import java.lang.Exception
 
 class EditEffectWeapon : Fragment() {
 
@@ -54,8 +54,10 @@ class EditEffectWeapon : Fragment() {
             bundle.putString("main", effectWeapon.fightType?.name?:"")
         }
         bundle.putString("them", "green")
-        val options = arrayListOf<String>()
-        typeWeapon?.options?.forEach { options.add(it) }
+        val options = ArrayList<String>()
+        TemplateFightType().mapFightType.keys.forEach {
+            options.add(it)
+        }
         bundle.putStringArrayList("list", options)
         loadFragment(R.id.weapon_edit_type_RV, DropDownList(), bundle)
 
@@ -96,6 +98,8 @@ class EditEffectWeapon : Fragment() {
                 res = 0
                 Toast.makeText(view.context, "Выберите тип", Toast.LENGTH_SHORT).show()
             }
+
+            val typeAttack = TemplateFightType().mapFightType[type]?:FightType()
 
             val frag1: Fragment =
                 childFragmentManager.findFragmentById(R.id.weapon_edit_plus_and_minus_num_count)!!
@@ -169,7 +173,7 @@ class EditEffectWeapon : Fragment() {
                     mCharacterVM.LOCaddEffectWeaponItem(
                         EffectWeapon(
                             name,
-                            type,
+                            typeAttack,
                             numCount!!,
                             dX!!,
                             wearout
@@ -178,7 +182,7 @@ class EditEffectWeapon : Fragment() {
                 } else {
                     mCharacterVM.LOCupdateEffectWeaponItem(
                         indexEff,
-                        EffectWeapon( name, type, numCount!!, dX!!, wearout)
+                        EffectWeapon( name, typeAttack, numCount!!, dX!!, wearout)
                     )
                 }
                 view.findNavController().popBackStack()
