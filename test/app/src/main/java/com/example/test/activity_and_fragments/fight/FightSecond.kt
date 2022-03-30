@@ -14,6 +14,7 @@ import com.example.test.R
 import com.example.test.data_base.EffectWeapon
 import com.example.test.databinding.FightSecondBinding
 import com.example.test.helpers.FragmentsAdapterRV
+import com.example.test.helpers.RollAdapter
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.widgets.*
 
@@ -71,7 +72,7 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
         val list = mutableListOf<String>()
         val listFr = mutableListOf<Fragment>()
 
-        val bundleD = Bundle()
+       /* val bundleD = Bundle()
         bundleD.putString("goal", "goal")
         val fragmentD = Roll()
         fragmentD.arguments = bundleD
@@ -84,6 +85,11 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
         val fragment = RadioGroupTwo(this)
         fragment.arguments = bundle
         list.add("Проверка выбора")
+        listFr.add(fragment)*/
+
+
+        val fragment = FewRoll()
+        list.add("")
         listFr.add(fragment)
 
         when (attack.fightType?.roll) {
@@ -115,7 +121,7 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
 
         val binding = FightSecondBinding.bind(view)
         fun bind() = with(binding) {
-            title.text = attack.fightType?.name?:""
+            title.text = attack.fightType?.name?:"Какое-то название"
             val adapterRV = FragmentsAdapterRV(list, listFr, this@FightSecond)
             RV.adapter = adapterRV
             RV.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
