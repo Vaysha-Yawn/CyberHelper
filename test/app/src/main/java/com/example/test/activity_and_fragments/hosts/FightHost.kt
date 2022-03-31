@@ -25,7 +25,7 @@ class FightHost : AppCompatActivity() {
         mGameVM.initGameName(gameId)
         mCharacterVM.characterId = characterId
     }
-
+    
     fun backToMain() {
         val i = Intent(this, PresentHost::class.java)
         i.putExtra("nav", "CharacterMenu")
@@ -33,3 +33,5 @@ class FightHost : AppCompatActivity() {
         finish()
     }
 }
+
+// этот текст написан через Acode 
