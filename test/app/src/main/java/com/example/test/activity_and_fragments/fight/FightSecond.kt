@@ -14,7 +14,6 @@ import com.example.test.R
 import com.example.test.data_base.EffectWeapon
 import com.example.test.databinding.FightSecondBinding
 import com.example.test.helpers.FragmentsAdapterRV
-import com.example.test.helpers.RollAdapter
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.widgets.*
 

@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.test.widgets.Roll
 
-class RollAdapter(fragment:Fragment):FragmentStateAdapter(fragment) {
+class RollAdapterVP2(fragment: Fragment) : FragmentStateAdapter(fragment) {
     var list = listOf<Int>()
 
     override fun getItemCount(): Int {
@@ -20,8 +20,16 @@ class RollAdapter(fragment:Fragment):FragmentStateAdapter(fragment) {
         return fragment
     }
 
-    fun setData(list:List<Int>){
+    fun setData(list: List<Int>) {
         this.list = list
         notifyDataSetChanged()
+    }
+
+    fun blablaAdd(position: Int) {
+        notifyItemInserted(position)
+    }
+
+    fun blablaRemove(position: Int) {
+        notifyItemRemoved(position)
     }
 }

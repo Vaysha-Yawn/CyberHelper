@@ -10,32 +10,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp" />
+
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/delete"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/delete"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/delete"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
         <RadioGroup
+
             android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginHorizontal="20dp">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/radioRV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            android:layout_marginHorizontal="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:buttonTint="@color/yellow"
+                android:checked="true"
+                tools:ignore="TouchTargetSizeCheck" />
+
         </RadioGroup>
+
         <Button
             android:id="@+id/add"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/btn_green_plus"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/btn_green_plus"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </LinearLayout>
 
 
