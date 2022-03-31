@@ -77,7 +77,7 @@ class CharacterMenu : Fragment() {
         /*}catch (e:Exception){Toast.makeText(view.context, "$e", Toast.LENGTH_LONG).show()}*/
 
         view.findViewById<ImageButton>(R.id.CharacterMenu_Fight).setOnClickListener {
-            (activity as PresentHost).openFight()
+            (activity as PresentHost).openFight(characterId)
         }
         view.findViewById<ImageButton>(R.id.CharacterMenu_Choke).setOnClickListener { }
         view.findViewById<ImageButton>(R.id.CharacterMenu_Netrunning).setOnClickListener { }

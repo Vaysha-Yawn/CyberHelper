@@ -18,11 +18,12 @@ class FightHost : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.host_fight)
-
+        val characterId = intent.getIntExtra("characterId", 0)
         val gameId = getSharedPreferences("id", 0).getString("PresentGame", "0")!!.toInt()
         mCharacterVM.initGameId(gameId)
         mCharacterVM.loadCharactersByGameId(gameId)
         mGameVM.initGameName(gameId)
+        mCharacterVM.characterId = characterId
     }
 
     fun backToMain() {

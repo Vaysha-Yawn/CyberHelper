@@ -32,8 +32,9 @@ class PresentHost : AppCompatActivity() {
         finish()
     }
 
-    fun openFight() {
+    fun openFight(id: Int) {
         val i = Intent(this, FightHost::class.java)
+        i.putExtra("characterId", id)
         startActivity(i)
         finish()
     }
