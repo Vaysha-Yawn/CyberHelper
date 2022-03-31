@@ -21,7 +21,6 @@ class FewRoll : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.few_roll, container, false)
-
         return view
     }
 
