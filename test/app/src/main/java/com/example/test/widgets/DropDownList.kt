@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
-import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.data_base.SpecialGameData
 import com.example.test.helpers.DropDownAdapterRV
 import com.example.test.viewModels.SkillTestVM
 
@@ -28,10 +25,7 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
     private var more: Int = 0
     private var less: Int = 0
     private var indexMod: Int = -1
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private var key: Int = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +37,8 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
         val them = bundle.getString("them", "yellow")
         list = bundle.getStringArrayList("list")!!
         goal = bundle.getString("goal", "")
-        indexMod = bundle.getInt("indexMod", -1) ?: -1
+        indexMod = bundle.getInt("indexMod", -1)
+        key = bundle.getInt("key")
 
         tvMainTypeWeapon = view.findViewById<TextView>(R.id.main)
         itemsRV = view.findViewById<RecyclerView>(R.id.items)
@@ -101,7 +96,7 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
         itemsRV.adapter = adapterItems
 
         if (goal == "modification") {
-            val value = mSkillVM.modification.value!![indexMod].value
+            val value = mSkillVM.mapMod[key]?.value?.get(indexMod)?.value ?: 1
             if (indexMod >= 0 && value > 0) {
                 tvMainTypeWeapon.text = list[value - 1]
             }
@@ -136,7 +131,7 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
 
         if (goal == "modification") {
             if (indexMod >= 0) {
-                mSkillVM.modification.value!![indexMod].value = position + 1
+                mSkillVM.mapMod[key]?.value?.get(indexMod)?.value = position + 1
             }
         }
         if (goal == "goal") {

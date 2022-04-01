@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
+import androidx.lifecycle.MutableLiveData
 import com.example.test.R
 import com.example.test.viewModels.SkillTestVM
 
@@ -23,8 +24,13 @@ class m1D10 : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.m1_d10, container, false)
 
-        val key1d10 = mSkillVM.addToMapInt(1)
-        val keyCrit = mSkillVM.addToMapInt(1)
+        val key1d10 = mSkillVM.createId()
+        mSkillVM.mapInt[key1d10] = MutableLiveData<Int>()
+        mSkillVM.mapInt[key1d10]?.value = 1
+
+        val keyCrit = mSkillVM.createId()
+        mSkillVM.mapInt[keyCrit] = MutableLiveData<Int>()
+        mSkillVM.mapInt[keyCrit]?.value = 1
 
         // подключаем фрагмент плюс и минус 1 d 10
         val bundleD = Bundle()

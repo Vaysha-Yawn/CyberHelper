@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
 import com.example.test.data_base.SpecialGameData
@@ -23,16 +24,18 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHold
 
     private val mSkillVM: SkillTestVM by activityViewModels()
     private val adapter = ModAdapterRV(this, this, this)
-    private val key = mSkillVM.addToMapMod()
+    private val keyListMod = mSkillVM.createId()
+    private val keyListDeletedMod = mSkillVM.createId()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.modificators, container, false)
-
-
-
+        mSkillVM.mapMod[keyListMod] = MutableLiveData<MutableList<Mod>>()
+        mSkillVM.mapMod[keyListMod]?.value = mutableListOf<Mod>()
+        mSkillVM.mapListInt[keyListDeletedMod] = MutableLiveData<MutableList<Int>>()
+        mSkillVM.mapListInt[keyListDeletedMod]?.value = mutableListOf<Int>()
         try {
             val binding = ModificatorsBinding.bind(view)
 
@@ -40,7 +43,7 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHold
                 modRV.layoutManager =
                     LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
                 modRV.adapter = adapter
-                mSkillVM.mapMod[key]?.observe(viewLifecycleOwner) {
+                mSkillVM.mapMod[keyListMod]?.observe(viewLifecycleOwner) {
                     adapter.setData(it)
                 }
                 addMod.setOnClickListener {
@@ -64,6 +67,7 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHold
             bundle.putInt("indexMod", position)
             bundle.putString("goal", "modification")
             bundle.putInt("value", value)
+            bundle.putInt("key", keyListMod)
             val options = SpecialGameData().modName
             bundle.putStringArrayList("list", options)
             val fragment = DropDownList()
@@ -79,6 +83,7 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHold
             bundle.putInt("maxValue", 30)
             bundle.putString("them", "blue")
             bundle.putString("goal", "mod")
+            bundle.putInt("editKey", keyListMod)
             bundle.putInt("indexMod", position)
             val fragment = PlusAndMinus()
             fragment.arguments = bundle
@@ -90,38 +95,40 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHold
     }
 
     override fun deleteMod(position: Int) {
-        val id = mSkillVM.modification.value!![position].resId
-        mSkillVM.deletedIdByMod.add(id)
-        mSkillVM.updateDeleteToMapMod(key, position)
+        val id = mSkillVM.mapMod[keyListMod]?.value?.get(position)?.resId
+        if (id != null) {
+            mSkillVM.mapListInt[keyListDeletedMod]?.value?.add(id)
+            mSkillVM.mapMod[keyListMod]?.value?.removeAt(position)
+        }
     }
 
     override fun updIdMod(position: Int, id: Int) {
-        mSkillVM.modification.value!![position].resId = id
+        mSkillVM.mapMod[keyListMod]?.value?.get(position)?.resId = id
     }
 
     override fun addMod(style: Boolean) {
         when(style){
-            true->{
+            true-> {
                 var id = 0
-                if (mSkillVM.deletedIdByMod.isNotEmpty()) {
-                    id = mSkillVM.deletedIdByMod.minOrNull() ?: 0
+                if (mSkillVM.mapListInt[keyListDeletedMod]?.value?.isNotEmpty() == true) {
+                    id = mSkillVM.mapListInt[keyListDeletedMod]?.value?.minOrNull() ?: 0
                     if (id != 0) {
-                        mSkillVM.deletedIdByMod.remove(id)
+                        mSkillVM.mapListInt[keyListDeletedMod]?.value?.remove(id)
                     }
                 }
-                mSkillVM.modification.value!!.add(Mod(true, 0, id))
-                adapter.notifyDataSetChanged()
+                mSkillVM.mapMod[keyListMod]?.value!!.add(Mod(true, 0, id))
+                adapter.notifyItemInserted(mSkillVM.mapMod[keyListMod]?.value?.size ?: 1 - 1)
             }
-            false->{
+            false-> {
                 var id = 0
-                if (mSkillVM.deletedIdByMod.isNotEmpty()) {
-                    id = mSkillVM.deletedIdByMod.minOrNull() ?: 0
+                if (mSkillVM.mapListInt[keyListDeletedMod]?.value?.isNotEmpty() == true) {
+                    id = mSkillVM.mapListInt[keyListDeletedMod]?.value?.minOrNull() ?: 0
                     if (id != 0) {
-                        mSkillVM.deletedIdByMod.remove(id)
+                        mSkillVM.mapListInt[keyListDeletedMod]?.value?.remove(id)
                     }
                 }
-                mSkillVM.modification.value!!.add(Mod(false, 0, id))
-                adapter.notifyDataSetChanged()
+                mSkillVM.mapMod[keyListMod]?.value?.add(Mod(false, 0, id))
+                adapter.notifyItemInserted(mSkillVM.mapMod[keyListMod]?.value?.size ?: 1 - 1)
             }
         }
     }

@@ -33,8 +33,7 @@ class PlusAndMinus : Fragment() {
         val them = args?.getString("them", "orange") ?: "orange"
         val goal = args?.getString("goal", "") ?: ""
         val index = args?.getInt("indexMod", -1) ?: -1
-        val editKey = args?.getInt("editKey", -1) ?: mSkillVM.addToMapInt(value)
-        //val editKey = mSkillVM.addToMapInt(value)
+        val editKey = args?.getInt("editKey", -1) ?: mSkillVM.createId()
 
         when (them) {
             "orange" -> {
@@ -77,14 +76,14 @@ class PlusAndMinus : Fragment() {
                 }
                 "mod" -> {
                     if (index >= 0) {
-                        mSkillVM.modification.value!![index].value = value
+                        mSkillVM.mapMod[editKey]?.value?.get(index)?.value = value
                     }
                 }
                 "luck" -> {
                     mSkillVM.usingLuckyPoint = value
                 }
             }
-            mSkillVM.updateToMapInt(editKey, value)
+            mSkillVM.mapInt[editKey]?.value = value
         }
 
 
