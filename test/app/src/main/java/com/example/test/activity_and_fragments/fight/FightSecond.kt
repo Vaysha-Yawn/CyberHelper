@@ -127,6 +127,8 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
             btnNext.setOnClickListener {
                 view.findNavController().navigate(R.id.action_fightSecond_to_fightThree)
             }
+
+
         }
 
         bind()

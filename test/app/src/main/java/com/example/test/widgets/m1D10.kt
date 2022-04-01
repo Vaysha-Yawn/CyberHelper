@@ -1,12 +1,12 @@
 package com.example.test.widgets
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
@@ -17,21 +17,21 @@ class m1D10 : Fragment() {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.m1_d10, container, false)
 
+        val key1d10 = mSkillVM.addToMapInt(1)
+        val keyCrit = mSkillVM.addToMapInt(1)
+
         // подключаем фрагмент плюс и минус 1 d 10
         val bundleD = Bundle()
         bundleD.putInt("value", 1)
         bundleD.putInt("minValue", 1)
         bundleD.putInt("maxValue", 10)
+        bundleD.putInt("editKey", key1d10)
         bundleD.putString("them", "yellow")
         bundleD.putString("goal", "1d10")
         val fragmentD = PlusAndMinus()
@@ -51,6 +51,7 @@ class m1D10 : Fragment() {
         bundleC.putInt("value", 1)
         bundleC.putInt("minValue", 1)
         bundleC.putInt("maxValue", 10)
+        bundleC.putInt("editKey", keyCrit)
         bundleC.putString("them", "yellow")
         bundleC.putString("goal", "critical")
         val fragmentC = PlusAndMinus()
@@ -66,7 +67,7 @@ class m1D10 : Fragment() {
         frCritic.visibility = View.GONE
         critText.setTextColor(resources.getColor(R.color.grey))
 
-        mSkillVM.m1d10.observe(viewLifecycleOwner) {
+        mSkillVM.mapInt[key1d10]?.observe(viewLifecycleOwner) {
             if (it >= 10) {
                 greyCritic.visibility = View.GONE
                 frCritic.visibility = View.VISIBLE

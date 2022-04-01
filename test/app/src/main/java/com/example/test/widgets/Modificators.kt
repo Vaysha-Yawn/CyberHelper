@@ -23,16 +23,16 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHold
 
     private val mSkillVM: SkillTestVM by activityViewModels()
     private val adapter = ModAdapterRV(this, this, this)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private val key = mSkillVM.addToMapMod()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.modificators, container, false)
+
+
+
         try {
             val binding = ModificatorsBinding.bind(view)
 
@@ -40,7 +40,7 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHold
                 modRV.layoutManager =
                     LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
                 modRV.adapter = adapter
-                mSkillVM.modification.observe(viewLifecycleOwner) {
+                mSkillVM.mapMod[key]?.observe(viewLifecycleOwner) {
                     adapter.setData(it)
                 }
                 addMod.setOnClickListener {
@@ -92,7 +92,7 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHold
     override fun deleteMod(position: Int) {
         val id = mSkillVM.modification.value!![position].resId
         mSkillVM.deletedIdByMod.add(id)
-        mSkillVM.modification.value!!.removeAt(position)
+        mSkillVM.updateDeleteToMapMod(key, position)
     }
 
     override fun updIdMod(position: Int, id: Int) {

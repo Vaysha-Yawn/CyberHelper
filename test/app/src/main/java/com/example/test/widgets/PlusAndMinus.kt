@@ -19,10 +19,6 @@ class PlusAndMinus : Fragment() {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +33,8 @@ class PlusAndMinus : Fragment() {
         val them = args?.getString("them", "orange") ?: "orange"
         val goal = args?.getString("goal", "") ?: ""
         val index = args?.getInt("indexMod", -1) ?: -1
+        val editKey = args?.getInt("editKey", -1) ?: mSkillVM.addToMapInt(value)
+        //val editKey = mSkillVM.addToMapInt(value)
 
         when (them) {
             "orange" -> {
@@ -86,6 +84,7 @@ class PlusAndMinus : Fragment() {
                     mSkillVM.usingLuckyPoint = value
                 }
             }
+            mSkillVM.updateToMapInt(editKey, value)
         }
 
 
