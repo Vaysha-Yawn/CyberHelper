@@ -38,6 +38,7 @@ class SkillTestVM:ViewModel() {
         difBoolean.value = false
     }
 
+
     fun clearVM (){
         onCleared()
     }

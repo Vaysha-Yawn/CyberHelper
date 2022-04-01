@@ -1,25 +1,13 @@
 package com.example.test.helpers
 
 
-import android.annotation.SuppressLint
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.data_base.*
 import com.example.test.databinding.CardFragmentsBinding
-import com.example.test.databinding.CardItemBinding
-import com.example.test.databinding.CardModBinding
-import com.example.test.widgets.Goal
-import com.example.test.widgets.Mod
-import io.realm.RealmList
 
 
 class FragmentsAdapterRV(
@@ -47,7 +35,11 @@ class FragmentsAdapterRV(
         private val binding = CardFragmentsBinding.bind(view)
 
         fun bind(textT: String, fragment:Fragment) = with(binding) {
-            text.text = textT
+            if (textT == "") {
+                text.visibility = View.GONE
+            } else {
+                text.text = textT
+            }
             val id = View.generateViewId()
             fr.id = id
             loadFragment.loadFragment(adapterPosition, id, fragment)

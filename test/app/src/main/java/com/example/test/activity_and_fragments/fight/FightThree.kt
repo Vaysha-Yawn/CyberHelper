@@ -15,6 +15,7 @@ import com.example.test.databinding.FightThreeBinding
 import com.example.test.helpers.FragmentsAdapterRV
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
+import com.example.test.widgets.FewRoll
 import com.example.test.widgets.Header
 import com.example.test.widgets.PlusAndMinus
 import com.example.test.widgets.Roll
@@ -49,7 +50,7 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, H
             }
             "few roll" -> {
                 // VP2
-                val fragment = Roll()
+                val fragment = FewRoll()
                 list.add("")
                 listFr.add(fragment)
             }
@@ -76,6 +77,7 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, H
         val binding = FightThreeBinding.bind(view)
         fun bind() = with(binding) {
             loadFragmentLight(Header(this@FightThree), R.id.header)
+            title.text = fightType.name
             val adapter = FragmentsAdapterRV(list, listFr, this@FightThree)
             RV.layoutManager =
                 LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)

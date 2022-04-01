@@ -14,6 +14,7 @@ import com.example.test.R
 import com.example.test.activity_and_fragments.hosts.FightHost
 import com.example.test.data_base.EffectWeapon
 import com.example.test.data_base.FightType
+import com.example.test.data_base.TemplateFightType
 import com.example.test.helpers.ChooseWeaponAdapterRV
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
@@ -32,7 +33,12 @@ class ChooseWeapon : Fragment(), ChooseWeaponAdapterRV.TemplateHolder.OnItemClic
         val RV = view.findViewById<RecyclerView>(R.id.weaponFight)
 
         val characterId = mCharacterVM.characterId
-        val listWeapon = mutableListOf( EffectWeapon(fightType = FightType(), name = "Рукопашный бой"))
+        val listWeapon = mutableListOf(
+            EffectWeapon(
+                fightType = TemplateFightType().mapFightType["Рукопашный бой"] ?: FightType(),
+                name = "Рукопашный бой"
+            )
+        )
         mCharacterVM.characterList.value!!.singleOrNull { character ->
             character.id == characterId
         }?.attributes?.forEach { groupParam ->

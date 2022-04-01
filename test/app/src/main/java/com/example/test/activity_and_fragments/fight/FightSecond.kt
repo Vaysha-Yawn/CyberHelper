@@ -88,7 +88,7 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
 
 
         val fragment = FewRoll()
-        list.add("")
+        list.add("Проверка уклонения защищающихся")
         listFr.add(fragment)
 
         when (attack.fightType?.roll) {
@@ -100,14 +100,14 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
                 //loadFragmentLight(Roll(), R.id.mainFr)
             }
             "arbitrary number" -> {
-                val bundleF = Bundle()
+                /*val bundleF = Bundle()
                 bundleF.putInt("value", 0)
                 bundleF.putInt("minValue", 0)
                 bundleF.putString("them", "green")
                 val fragmentF = PlusAndMinus()
                 fragmentF.arguments = bundleF
                 list.add("")
-                listFr.add(fragmentF)
+                listFr.add(fragmentF)*/
 
             }
         }
