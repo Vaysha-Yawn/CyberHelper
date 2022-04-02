@@ -6,15 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.test.R
 import com.example.test.databinding.FewRollBinding
 import com.example.test.helpers.RollAdapterVP2
+import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.FewRollVM
+import com.example.test.viewModels.SkillTestVM
 
 
 class FewRoll : Fragment() {
+
+    private val mSkillVM: SkillTestVM by activityViewModels()
+    private val mCharacterVM: CharacterDAO by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +36,31 @@ class FewRoll : Fragment() {
         val binding = FewRollBinding.bind(view)
 
         val VM = ViewModelProvider(this)[FewRollVM::class.java]
-        val adapter = RollAdapterVP2(this@FewRoll)
+
+        val keyAllGoals = mSkillVM.createId()
+
+        mSkillVM.mapGoal[keyAllGoals] = MutableLiveData()
+
+        // заполняем лист
+        val goalsList = mutableListOf<Goal>()
+        mCharacterVM.characterList.value?.forEach {
+            if (it.gameId == mCharacterVM.gameId) {
+                if (it.id != mCharacterVM.characterId) {
+                    val goal = Goal()
+                    goal.characterId = it.id
+                    val name = it.attributes.singleOrNull { gp ->
+                        gp.title == "Базовые параметры"
+                    }?.attributes?.listParamStr?.singleOrNull { pn ->
+                        pn.name == "Имя персонажа"
+                    }?.value ?: ""
+                    goal.name = name
+                    goalsList.add(goal)
+                }
+            }
+        }
+        mSkillVM.mapGoal[keyAllGoals]?.value = goalsList
+
+        val adapter = RollAdapterVP2(this@FewRoll, keyAllGoals)
 
         fun bind() = with(binding) {
             VP2.adapter = adapter

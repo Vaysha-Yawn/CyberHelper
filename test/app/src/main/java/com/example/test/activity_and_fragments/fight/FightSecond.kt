@@ -87,7 +87,11 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
         listFr.add(fragment)*/
 
 
-        val fragment = FewRoll()
+        //val fragment = FewRoll()
+        val fragment = Roll()
+        val bundle = Bundle()
+        bundle.putString("goal", "goal")
+        fragment.arguments = bundle
         list.add("Проверка уклонения защищающихся")
         listFr.add(fragment)
 
