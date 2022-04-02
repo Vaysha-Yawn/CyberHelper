@@ -18,20 +18,25 @@ import com.example.test.databinding.ModificatorsBinding
 import com.example.test.helpers.ModAdapterRV
 import com.example.test.helpers.ModTemplateHolder
 import com.example.test.viewModels.SkillTestVM
+import kotlin.properties.Delegates
 
 class Modificators : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHolder.DeleteMod,
     ModTemplateHolder.updIdMod, ModDialogFragment.AddMod {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
     private val adapter = ModAdapterRV(this, this, this)
-    private val keyListMod = mSkillVM.createId()
-    private val keyListDeletedMod = mSkillVM.createId()
+    private var keyListMod by Delegates.notNull<Int>()
+    private var keyListDeletedMod by Delegates.notNull<Int>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.modificators, container, false)
+
+        keyListMod = mSkillVM.createId()
+        keyListDeletedMod = mSkillVM.createId()
+
         mSkillVM.mapMod[keyListMod] = MutableLiveData<MutableList<Mod>>()
         mSkillVM.mapMod[keyListMod]?.value = mutableListOf<Mod>()
         mSkillVM.mapListInt[keyListDeletedMod] = MutableLiveData<MutableList<Int>>()
