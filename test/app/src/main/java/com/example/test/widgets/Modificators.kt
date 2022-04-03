@@ -32,8 +32,8 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHold
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.modificators, container, false)
+        keyListMod = arguments?.getInt("keyListMod") ?: mSkillVM.createId()
 
-        keyListMod = mSkillVM.createId()
         mSkillVM.mapMod[keyListMod] = MutableLiveData<MutableList<Mod>>()
         mSkillVM.mapMod[keyListMod]?.value = mutableListOf<Mod>()
 

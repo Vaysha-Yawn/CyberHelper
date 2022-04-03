@@ -24,7 +24,8 @@ class GoalDD : Fragment(), GoalDDAdapterRV.TemplateHolder.OnItemClickListener {
     private var less: Int = 0
     private var indexMod: Int = -1
     private var keyAllGoals = 0
-    private var keyChosenGoals = 0
+    private var keyRolls = 0
+    private var rollId = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,9 +36,9 @@ class GoalDD : Fragment(), GoalDDAdapterRV.TemplateHolder.OnItemClickListener {
         val main = bundle!!.getString("main", "")
         val them = bundle.getString("them", "yellow")
         indexMod = bundle.getInt("indexMod", -1)
-
         keyAllGoals = bundle.getInt("keyAllGoals")
-        keyChosenGoals = bundle.getInt("keyChosenGoals")
+        keyRolls = bundle.getInt("keyRolls")
+        rollId = bundle.getInt("rollId")
 
         tvMainTypeWeapon = view.findViewById<TextView>(R.id.main)
         itemsRV = view.findViewById<RecyclerView>(R.id.items)
@@ -110,22 +111,29 @@ class GoalDD : Fragment(), GoalDDAdapterRV.TemplateHolder.OnItemClickListener {
     override fun onItemClick(position: Int) {
         val chosenGoal = mSkillVM.mapGoal[keyAllGoals]?.value?.get(position)
         if (chosenGoal != null) {
-            if (mSkillVM.mapGoal[keyChosenGoals]?.value?.contains(chosenGoal) == false) {
-                tvMainTypeWeapon.text = chosenGoal.name
-                itemsRV.visibility = View.GONE
-                tvMainTypeWeapon.setCompoundDrawablesWithIntrinsicBounds(
-                    0,
-                    0,
-                    more,
-                    0
-                )
-                mSkillVM.mapGoal[keyChosenGoals]?.value?.set(0, chosenGoal)
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Вы уже выбрали эту цель, пожалуйста выберите другую",
-                    Toast.LENGTH_SHORT
-                ).show()
+            val list = mutableListOf<Goal>()
+            val map = mSkillVM.mapRoll[keyRolls]
+            if (map != null) {
+                for (i in map) {
+                    list.add(i.value.goal)
+                }
+                if (!list.contains(chosenGoal)) {
+                    tvMainTypeWeapon.text = chosenGoal.name
+                    itemsRV.visibility = View.GONE
+                    tvMainTypeWeapon.setCompoundDrawablesWithIntrinsicBounds(
+                        0,
+                        0,
+                        more,
+                        0
+                    )
+                    mSkillVM.mapRoll[keyRolls]?.get(rollId)?.goal = chosenGoal
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Вы уже выбрали эту цель, пожалуйста выберите другую",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
     }

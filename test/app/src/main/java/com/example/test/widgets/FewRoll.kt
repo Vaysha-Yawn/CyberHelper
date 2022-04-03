@@ -38,6 +38,9 @@ class FewRoll : Fragment() {
         val VM = ViewModelProvider(this)[FewRollVM::class.java]
 
         val keyAllGoals = mSkillVM.createId()
+        val keyRolls = mSkillVM.createId()
+
+        mSkillVM.mapRoll[keyRolls] = mutableMapOf()
 
         mSkillVM.mapGoal[keyAllGoals] = MutableLiveData()
 
@@ -60,7 +63,7 @@ class FewRoll : Fragment() {
         }
         mSkillVM.mapGoal[keyAllGoals]?.value = goalsList
 
-        val adapter = RollAdapterVP2(this@FewRoll, keyAllGoals)
+        val adapter = RollAdapterVP2(this@FewRoll, keyAllGoals, keyRolls)
 
         fun bind() = with(binding) {
             VP2.adapter = adapter

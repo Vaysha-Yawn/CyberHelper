@@ -87,8 +87,7 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
         listFr.add(fragment)*/
 
 
-        //val fragment = FewRoll()
-        val fragment = Roll()
+        val fragment = FewRoll()
         val bundle = Bundle()
         bundle.putString("goal", "goal")
         fragment.arguments = bundle
