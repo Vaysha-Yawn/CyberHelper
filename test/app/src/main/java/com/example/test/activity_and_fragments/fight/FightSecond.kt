@@ -71,14 +71,7 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
         val list = mutableListOf<String>()
         val listFr = mutableListOf<Fragment>()
 
-       /* val bundleD = Bundle()
-        bundleD.putString("goal", "goal")
-        val fragmentD = Roll()
-        fragmentD.arguments = bundleD
-        list.add("Бросок атакующего")
-        listFr.add(fragmentD)
-
-        val bundle = Bundle()
+       /* val bundle = Bundle()
         bundle.putString("text1", "Успех")
         bundle.putString("text2", "Не успех")
         val fragment = RadioGroupTwo(this)
@@ -87,20 +80,22 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
         listFr.add(fragment)*/
 
 
-        val fragment = FewRoll()
-        val bundle = Bundle()
-        bundle.putString("goal", "goal")
-        fragment.arguments = bundle
-        list.add("Проверка уклонения защищающихся")
-        listFr.add(fragment)
+
 
         when (attack.fightType?.roll) {
             "one roll" -> {
-
+                val fragment = Roll()
+                val bundle = Bundle()
+                fragment.arguments = bundle
+                list.add("Проверка атаки")
+                listFr.add(fragment)
             }
             "few roll" -> {
-                //здесь добавить VP2 в качестве отдельного фрагмента
-                //loadFragmentLight(Roll(), R.id.mainFr)
+                val fragment = FewRoll()
+                val bundle = Bundle()
+                fragment.arguments = bundle
+                list.add("Проверка атаки")
+                listFr.add(fragment)
             }
             "arbitrary number" -> {
                 /*val bundleF = Bundle()
@@ -115,18 +110,15 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
             }
         }
 
-        val fragmentHeader = Header(this)
-        childFragmentManager.commit {
-            replace(R.id.header, fragmentHeader)
-            addToBackStack(null)
-        }
-
         val binding = FightSecondBinding.bind(view)
         fun bind() = with(binding) {
-            title.text = attack.fightType?.name?:"Какое-то название"
+
+            loadFragmentLight(Header(this@FightSecond), R.id.header)
+            title.text = attack.fightType?.name ?: "Какое-то название"
             val adapterRV = FragmentsAdapterRV(list, listFr, this@FightSecond)
             RV.adapter = adapterRV
-            RV.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
+            RV.layoutManager =
+                LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
             btnNext.setOnClickListener {
                 view.findNavController().navigate(R.id.action_fightSecond_to_fightThree)
             }

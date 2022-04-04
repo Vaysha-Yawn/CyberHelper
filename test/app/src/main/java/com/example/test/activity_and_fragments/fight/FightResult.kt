@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.test.R
+import com.example.test.activity_and_fragments.hosts.FightHost
 import com.example.test.data_base.SpecialGameData
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
@@ -24,12 +25,12 @@ class FightResult : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fight_result, container, false)
-
+        // нужно передать сюда все ключи, их значение, формулу, чтобы расчитать бросок
         val characterId = mCharacterVM.characterId
         val title = mSkillVM.title
-        val difficult = mSkillVM.dif.value!!
+        val difficult = mSkillVM.dif.value
         var mod = 0
-        val mods = mSkillVM.modification.value!!
+        val mods = mSkillVM.modification.value
         for (m in mods) {
             val res = if (m.style) {
                 SpecialGameData().modValue[(m.value - 1)].toInt()
@@ -39,10 +40,10 @@ class FightResult : Fragment() {
             mod += res
         }
 
-        val res1d10 = mSkillVM.m1d10.value!!
+        val res1d10 = mSkillVM.m1d10.value
         var crit = 0
-        if (mSkillVM.boolCritical.value!!) {
-            crit = mSkillVM.critical.value!!
+        if (mSkillVM.boolCritical.value) {
+            crit = mSkillVM.critical.value
         }
 
         // взаимосвясь с навыком и параметром
@@ -145,7 +146,7 @@ class FightResult : Fragment() {
 
         val apply = view.findViewById<Button>(R.id.apply)
         apply.setOnClickListener {
-            //view.findNavController().navigate(R.id.action_skillResult_to_home2)
+            (activity as FightHost).backToMain()
         }
 
         return view

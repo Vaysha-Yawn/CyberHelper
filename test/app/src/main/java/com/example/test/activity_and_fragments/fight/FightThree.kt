@@ -1,9 +1,11 @@
 package com.example.test.activity_and_fragments.fight
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
@@ -45,13 +47,18 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, H
         when(fightType.difficult){
             "one roll" -> {
                 val fragment = Roll()
-                list.add("")
+                val bundle = Bundle()
+                bundle.putString("goal", "goal")
+                fragment.arguments = bundle
+                list.add("Проверка уклонения защищающегося")
                 listFr.add(fragment)
             }
             "few roll" -> {
-                // VP2
                 val fragment = FewRoll()
-                list.add("")
+                val bundle = Bundle()
+                bundle.putString("goal", "goal")
+                fragment.arguments = bundle
+                list.add("Проверка уклонения защищающихся")
                 listFr.add(fragment)
             }
             "arbitrary number" -> {
@@ -99,7 +106,13 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, H
     }
 
     override fun back() {
-        view?.findNavController()?.popBackStack()
+        try {
+            view?.findNavController()?.popBackStack()
+        } catch (e: Exception) {
+            Toast.makeText(requireContext(), "$e", Toast.LENGTH_LONG).show()
+            Log.e("A", "$e")
+        }
+
     }
 
 }
