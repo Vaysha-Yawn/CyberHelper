@@ -23,8 +23,7 @@ open class FightType(
     var nameRoll:String = "",//
     var roll: String = "",//
     var rollParameters:RealmList<String> = RealmList<String>(),// названия навыков или пармеров, которые влияют на бросок атакующего
-  //////
-  var tableRoll:String? = null
+      var tableRoll:String? = null
   
     //////////// что происходит в случае успешного прохождения проверки
     var successComment: String? = "",// если нулловый, тогда нет
