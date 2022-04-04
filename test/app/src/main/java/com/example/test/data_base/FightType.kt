@@ -9,27 +9,31 @@ open class FightType(
     var forAllOrItem:Boolean = true,// false for all true for item
 
     ////////// как расчитывается сложность
-    var difficult:String = "",//
-    var goal:Boolean = true, // можно ли выбрать целей, кто делает бросок или на кого нападают, лучше ставить этот параметр автоматически
-
-    var settingsRoll: SettingsRoll? = SettingsRoll(),
+    var nameDiff:String = "",//
+    var difficult:String = "",
     var difParameters:RealmList<String> = RealmList<String>(),// названия навыков или пармеров, которые влияют на бросок защищающегося
-    var weaponType:String? = "",// здесь можно задавать подтип атаки, например
-
+   //////
+    var settingsRoll: SettingsRoll? = SettingsRoll(),
+  ////// если выбрано ролл несколько героев, то необходимо уточнить, как именно будет высчитываться сумма броска: сумма, отдельно,среднее,хотябы N%. 
+  
     /////////// как производится бросок героя
+    var nameRoll:String = "",//
     var roll: String = "",//
     var rollParameters:RealmList<String> = RealmList<String>(),// названия навыков или пармеров, которые влияют на бросок атакующего
 
     //////////// что происходит в случае успешного прохождения проверки
     var successComment: String? = "",// если нулловый, тогда нет
     var successEffectAdd: RealmList<EffectAdd>? = RealmList<EffectAdd>(),// effectAttack
-    var successDamageBoolean: Boolean = false,
-    var defaultDamage : RealmList<Int>? = RealmList<Int>(),// приммер listOf(3, 10) а пара чисел а и б это адб урона, например 1д10 урона
-    // нужен при forAllOrItem = false
-
+    // надо изменить effectAdd илм сделать другой под него.
+    
     ///////////// что происходит в случае провала
     var failComment: String? = "",// есть чекбокс ложь, то этот параметр нулловый
     var failEffectAdd: RealmList<EffectAdd>? = RealmList<EffectAdd>(),
+    
+    ///////////// что происходит в случае ничьей
+    var nothingComment: String? = "",// есть чекбокс ложь, то этот параметр нулловый
+    var nothingEffectAdd: RealmList<EffectAdd>? = RealmList<EffectAdd>(),
+    
     var variations:RealmList<String> = RealmList()
 ):RealmObject()
 
