@@ -16,11 +16,16 @@ open class FightType(
     var settingsRoll: SettingsRoll? = SettingsRoll(),
   ////// если выбрано ролл несколько героев, то необходимо уточнить, как именно будет высчитываться сумма броска: сумма, отдельно,среднее,хотябы N%. 
   
+  ////// здесь мы выбираем одну из нескольких таблиц или создаем новую
+  var tableDiff:String? = null
+  
     /////////// как производится бросок героя
     var nameRoll:String = "",//
     var roll: String = "",//
     var rollParameters:RealmList<String> = RealmList<String>(),// названия навыков или пармеров, которые влияют на бросок атакующего
-
+  //////
+  var tableRoll:String? = null
+  
     //////////// что происходит в случае успешного прохождения проверки
     var successComment: String? = "",// если нулловый, тогда нет
     var successEffectAdd: RealmList<EffectAdd>? = RealmList<EffectAdd>(),// effectAttack
@@ -50,3 +55,10 @@ open class Variation(
     var textFalse: String = ""
 ) :RealmObject()
 // тогда необходимо для простоты доступа везде вместо названия типа аттаки использовать экземпляр этого класса
+
+open class TableForFight(
+  var collums: String ="",// группу опций или без колонок
+  var rows:RealmList<String> = RealmList<String>()
+  var collumsToRowsToVaue: RealmMap<String, RealmMap<String, Int>> = RealmMap()
+):RealmObject()
+// по сути это двумерный массив, можно и больше,но зачем
