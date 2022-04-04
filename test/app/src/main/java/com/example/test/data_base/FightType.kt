@@ -16,7 +16,7 @@ open class FightType(
     var settingsRoll: SettingsRoll? = SettingsRoll(),
   ////// если выбрано ролл несколько героев, то необходимо уточнить, как именно будет высчитываться сумма броска: сумма, отдельно,среднее,хотябы N%. 
   
-  ////// здесь мы выбираем одну из нескольких таблиц или создаем новую
+  ////// здесь мы выбираем одну из нескольких таблиц или создаем новую, если это нужно
   var tableDiff:String? = null
   
     /////////// как производится бросок героя
@@ -28,7 +28,7 @@ open class FightType(
     //////////// что происходит в случае успешного прохождения проверки
     var successComment: String? = "",// если нулловый, тогда нет
     var successEffectAdd: RealmList<EffectAdd>? = RealmList<EffectAdd>(),// effectAttack
-    // надо изменить effectAdd илм сделать другой под него.
+    // надо изменить effectAdd илм сделать другой под него., мне кажется, что именно здесь необходимо расписывать, как будет влиять, сколько кубиков кидать, а если указано, что оно делегированно, то использовать делегированное значение
     
     ///////////// что происходит в случае провала
     var failComment: String? = "",// есть чекбокс ложь, то этот параметр нулловый
@@ -53,6 +53,8 @@ open class Variation(
     var textTrue: String = "",
     var textFalse: String = ""
 ) :RealmObject()
+
+
 // тогда необходимо для простоты доступа везде вместо названия типа аттаки использовать экземпляр этого класса
 
 open class TableForFight(
@@ -60,4 +62,6 @@ open class TableForFight(
   var rows:RealmList<String> = RealmList<String>()
   var collumsToRowsToVaue: RealmMap<String, RealmMap<String, Int>> = RealmMap()
 ):RealmObject()
+
+
 // по сути это двумерный массив, можно и больше,но зачем
