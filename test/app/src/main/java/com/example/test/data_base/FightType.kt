@@ -61,7 +61,7 @@ open class Variation(
 open class TableForFight(
   var columns: String ="",// группу опций или без колонок
   var rows:RealmList<String> = RealmList<String>(),
-  var columnsToRowsToValue: RealmMap<String, RealmMap<String, Int>>
+  //var columnsToRowsToValue: RealmMap<String, RealmMap<String, Int>>
 ):RealmObject()
 
 

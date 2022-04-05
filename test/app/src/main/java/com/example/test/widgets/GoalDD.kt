@@ -24,8 +24,9 @@ class GoalDD : Fragment(), GoalDDAdapterRV.TemplateHolder.OnItemClickListener {
     private var less: Int = 0
     private var indexMod: Int = -1
     private var keyAllGoals = 0
-    private var keyRolls = 0
-    private var rollId = 0
+    private var keyRoll = 0
+    private var keyFragment = 0
+    private var position = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,8 +38,9 @@ class GoalDD : Fragment(), GoalDDAdapterRV.TemplateHolder.OnItemClickListener {
         val them = bundle.getString("them", "yellow")
         indexMod = bundle.getInt("indexMod", -1)
         keyAllGoals = bundle.getInt("keyAllGoals")
-        keyRolls = bundle.getInt("keyRolls")
-        rollId = bundle.getInt("rollId")
+        keyRoll = bundle.getInt("keyRoll")
+        keyFragment = bundle.getInt("keyFragment")
+        position = bundle.getInt("position")
 
         tvMainTypeWeapon = view.findViewById<TextView>(R.id.main)
         itemsRV = view.findViewById<RecyclerView>(R.id.items)
@@ -111,12 +113,8 @@ class GoalDD : Fragment(), GoalDDAdapterRV.TemplateHolder.OnItemClickListener {
     override fun onItemClick(position: Int) {
         val chosenGoal = mSkillVM.mapGoal[keyAllGoals]?.value?.get(position)
         if (chosenGoal != null) {
-            val list = mutableListOf<Goal>()
-            val map = mSkillVM.mapRoll[keyRolls]
-            if (map != null) {
-                for (i in map) {
-                    list.add(i.value.goal)
-                }
+            val list = mSkillVM.mapGoal[keyFragment]?.value
+            if (list != null) {
                 if (!list.contains(chosenGoal)) {
                     tvMainTypeWeapon.text = chosenGoal.name
                     itemsRV.visibility = View.GONE
@@ -126,7 +124,12 @@ class GoalDD : Fragment(), GoalDDAdapterRV.TemplateHolder.OnItemClickListener {
                         more,
                         0
                     )
-                    mSkillVM.mapRoll[keyRolls]?.get(rollId)?.goal = chosenGoal
+                    Toast.makeText(
+                        requireContext(),
+                        "$position",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    //mSkillVM.mapGoal[keyFragment]?.value?.set(position, chosenGoal)
                 } else {
                     Toast.makeText(
                         requireContext(),
@@ -134,7 +137,19 @@ class GoalDD : Fragment(), GoalDDAdapterRV.TemplateHolder.OnItemClickListener {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+            }else{
+                Toast.makeText(
+                    requireContext(),
+                    "лист выбранных целей не найден",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
+        }else{
+            Toast.makeText(
+                requireContext(),
+                "выбранная цель не найдена",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 }

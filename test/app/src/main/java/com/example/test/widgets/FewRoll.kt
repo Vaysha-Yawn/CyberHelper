@@ -28,19 +28,13 @@ class FewRoll : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.few_roll, container, false)
-        return view
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        val keyFragment = requireArguments().getInt("keyFragment")
+
         val binding = FewRollBinding.bind(view)
 
         val VM = ViewModelProvider(this)[FewRollVM::class.java]
-
         val keyAllGoals = mSkillVM.createId()
-        val keyRolls = mSkillVM.createId()
-
-        mSkillVM.mapRoll[keyRolls] = mutableMapOf()
 
         mSkillVM.mapGoal[keyAllGoals] = MutableLiveData()
 
@@ -61,9 +55,10 @@ class FewRoll : Fragment() {
                 }
             }
         }
+
         mSkillVM.mapGoal[keyAllGoals]?.value = goalsList
 
-        val adapter = RollAdapterVP2(this@FewRoll, keyAllGoals, keyRolls)
+        val adapter = RollAdapterVP2(this@FewRoll, keyAllGoals, keyFragment)
 
         fun bind() = with(binding) {
             VP2.adapter = adapter
@@ -115,6 +110,7 @@ class FewRoll : Fragment() {
             adapter.setData(it)
         }
 
+        return view
     }
 
 }

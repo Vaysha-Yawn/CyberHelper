@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.example.test.data_base.EffectWeapon
 import com.example.test.widgets.Goal
 import com.example.test.widgets.Mod
-import com.example.test.widgets.RollObject
 
 class SkillTestVM:ViewModel() {
 
@@ -31,8 +30,6 @@ class SkillTestVM:ViewModel() {
     val mapBoolean = mutableMapOf<Int, MutableLiveData<Boolean>>()
     val mapGoal = mutableMapOf<Int, MutableLiveData<MutableList<Goal>>>()
     val mapMod = mutableMapOf<Int, MutableLiveData<MutableList<Mod>>>()
-
-    val mapRoll = mutableMapOf<Int, MutableMap<Int, RollObject>>()
 
     val map =
         mutableMapOf<Int, MutableMap<Int, MutableMap<Int, String>>>()// где первое число - ключ фрагмента если несколько роллов,

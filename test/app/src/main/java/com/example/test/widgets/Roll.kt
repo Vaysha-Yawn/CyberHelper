@@ -12,11 +12,14 @@ import androidx.lifecycle.MutableLiveData
 import com.example.test.R
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
+import kotlin.properties.Delegates
 
 class Roll : Fragment() {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
     private val mCharacterVM: CharacterDAO by activityViewModels()
+    private var keyFragment by Delegates.notNull<Int>()
+    private var keyRoll by Delegates.notNull<Int>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,16 +29,13 @@ class Roll : Fragment() {
         /////////////////////////////////
         val goal = arguments?.getString("goal")
         var keyAllGoals = arguments?.getInt("keyAllGoals")
-        var keyRolls = arguments?.getInt("keyRolls")
-        /////////////////////////////////
-
-        val rollId = mSkillVM.createId()
+        val position = requireArguments().getInt("position")
+        keyFragment = requireArguments().getInt("keyFragment")
 
         /////////////////////////////////
-        if (mSkillVM.mapGoal[keyAllGoals]?.value.isNullOrEmpty() || keyAllGoals == null || keyRolls == null) {
+        if (mSkillVM.mapGoal[keyAllGoals]?.value.isNullOrEmpty() || keyAllGoals == null) {
             //Toast.makeText(requireContext(), "Сгенерировано заново", Toast.LENGTH_SHORT).show()
             keyAllGoals = mSkillVM.createId()
-            keyRolls = mSkillVM.createId()
 
             mSkillVM.mapGoal[keyAllGoals] = MutableLiveData()
             // заполняем лист
@@ -56,9 +56,11 @@ class Roll : Fragment() {
                 }
             }
             mSkillVM.mapGoal[keyAllGoals]?.value = goalsList
-            mSkillVM.mapRoll[keyRolls] = mutableMapOf()
         }
-        mSkillVM.mapRoll[keyRolls]?.put(rollId, RollObject(Goal(), 0, null, mutableListOf<Mod>()))
+
+        keyRoll = mSkillVM.createId()
+        mSkillVM.map[keyFragment]?.get(keyRoll)?.set(position, "goal")
+
         /////////////////////////////////
         fun loadFragmentLight(fragment: Fragment, id: Int) {
             childFragmentManager.commit {
@@ -77,6 +79,8 @@ class Roll : Fragment() {
 
         val fragment = m1D10()
         val bundle = Bundle()
+        bundle.putInt("keyRoll", keyRoll)
+        bundle.putInt("keyFragment", keyFragment)
         bundle.putInt("key1d10", key1d10)
         bundle.putInt("keyCrit", keyCrit)
         fragment.arguments = bundle
@@ -85,6 +89,8 @@ class Roll : Fragment() {
         val keyListMod = mSkillVM.createId()
         val fragmentM = Modificators()
         val bundleM = Bundle()
+        bundleM.putInt("keyRoll", keyRoll)
+        bundleM.putInt("keyFragment", keyFragment)
         bundleM.putInt("keyListMod", keyListMod)
         fragmentM.arguments = bundleM
         loadFragmentLight(fragmentM, R.id.modFr)
@@ -95,42 +101,47 @@ class Roll : Fragment() {
             bundleF.putString("main", "Выберите цель")
             bundleF.putString("them", "yellow")
             bundleF.putInt("keyAllGoals", keyAllGoals)
-            bundleF.putInt("keyRolls", keyRolls)
-            bundleF.putInt("rollId", rollId)
+            bundleF.putInt("keyRoll", keyRoll)
+            bundleF.putInt("keyFragment", keyFragment)
+            bundleF.putInt("position", position)
             fragmentF.arguments = bundleF
             loadFragmentLight(fragmentF, R.id.goalFr)
         } else {
             view.findViewById<FragmentContainerView>(R.id.goalFr).visibility = View.GONE
-        }
-        /////////////////////////////////
-
-        mSkillVM.mapInt[key1d10]?.observe(viewLifecycleOwner) {
-            if (it != null) {
-                mSkillVM.mapRoll[keyRolls]?.get(rollId)?.m1D10 = it
-            }
-        }
-
-        mSkillVM.mapInt[keyCrit]?.observe(viewLifecycleOwner) {
-            if (it != null) {
-                mSkillVM.mapRoll[keyRolls]?.get(rollId)?.crit = it
-            }
-        }
-
-        mSkillVM.mapMod[keyListMod]?.observe(viewLifecycleOwner) {
-            if (it != null) {
-                mSkillVM.mapRoll[keyRolls]?.get(rollId)?.modificators = it
-            }
         }
 
         /////////////////////////////////
         return view
     }
 
-}
+    override fun onDestroy() {
+        super.onDestroy()
+        val m =  mSkillVM.map[keyFragment]?.get(keyRoll)
+        if (m != null){
+            for((key,value) in m){
+                when(value){
+                    "goal"->{
+                        mSkillVM.mapGoal[key]?.value = null
+                    }
+                    "boolean"->{
+                        mSkillVM.mapBoolean[key]?.value = null
+                    }
+                    "int"->{
+                        mSkillVM.mapInt[key]?.value = null
+                    }
+                    "listInt"->{
+                        mSkillVM.mapListInt[key]?.value = null
+                    }
+                    "mod"->{
+                        mSkillVM.mapMod[key]?.value = null
+                    }
+                    "string"->{
+                        mSkillVM.mapString[key]?.value = null
+                    }
+                }
+            }
+        }
+        // очищение следов
+    }
 
-data class RollObject(
-    var goal: Goal,// цель есть всегда, но когда-то это сам игрок, а когда-то кто-то другой
-    var m1D10: Int,
-    var crit: Int?,
-    var modificators: MutableList<Mod>
-)
+}

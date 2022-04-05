@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
@@ -84,16 +85,22 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
 
         when (attack.fightType?.roll) {
             "one roll" -> {
+                mSkillVM.mapGoal[0] = MutableLiveData()
+                mSkillVM.mapGoal[0]?.value = mutableListOf()
                 val fragment = Roll()
                 val bundle = Bundle()
-
+                bundle.putInt("position", 0 )
+                bundle.putInt("keyFragment",0)
                 fragment.arguments = bundle
                 list.add("Проверка атаки")
                 listFr.add(fragment)
             }
             "few roll" -> {
+                mSkillVM.mapGoal[0] = MutableLiveData()
+                mSkillVM.mapGoal[0]?.value = mutableListOf()
                 val fragment = FewRoll()
                 val bundle = Bundle()
+                bundle.putInt("keyFragment",0)
                 fragment.arguments = bundle
                 list.add("Проверка атаки")
                 listFr.add(fragment)

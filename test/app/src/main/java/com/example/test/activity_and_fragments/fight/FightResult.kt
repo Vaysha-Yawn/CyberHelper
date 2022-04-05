@@ -25,7 +25,7 @@ class FightResult : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fight_result, container, false)
-        // нужно передать сюда все ключи, их значение, формулу, чтобы расчитать бросок
+        /*// нужно передать сюда все ключи, их значение, формулу, чтобы расчитать бросок
         val characterId = mCharacterVM.characterId
         val title = mSkillVM.title
         val difficult = mSkillVM.dif.value
@@ -147,7 +147,7 @@ class FightResult : Fragment() {
         val apply = view.findViewById<Button>(R.id.apply)
         apply.setOnClickListener {
             (activity as FightHost).backToMain()
-        }
+        }*/
 
         return view
     }

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
@@ -46,17 +47,24 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, H
 
         when(fightType.difficult){
             "one roll" -> {
+                mSkillVM.mapGoal[1] = MutableLiveData()
+                mSkillVM.mapGoal[1]?.value = mutableListOf()
                 val fragment = Roll()
                 val bundle = Bundle()
+                bundle.putInt("position", 0 )
+                bundle.putInt("keyFragment",1)
                 bundle.putString("goal", "goal")
                 fragment.arguments = bundle
                 list.add("Проверка уклонения защищающегося")
                 listFr.add(fragment)
             }
             "few roll" -> {
+                mSkillVM.mapGoal[1] = MutableLiveData()
+                mSkillVM.mapGoal[1]?.value = mutableListOf()
                 val fragment = FewRoll()
                 val bundle = Bundle()
                 bundle.putString("goal", "goal")
+                bundle.putInt("keyFragment",0)
                 fragment.arguments = bundle
                 list.add("Проверка уклонения защищающихся")
                 listFr.add(fragment)
