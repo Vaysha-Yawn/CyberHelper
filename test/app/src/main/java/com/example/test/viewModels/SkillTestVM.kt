@@ -34,6 +34,10 @@ class SkillTestVM:ViewModel() {
 
     val mapRoll = mutableMapOf<Int, MutableMap<Int, RollObject>>()
 
+    val map =
+        mutableMapOf<Int, MutableMap<Int, MutableMap<Int, String>>>()// где первое число - ключ фрагмента если несколько роллов,
+    // 2 число - ключ каждого ролла, 3 - ключ виджет, строка - указание - в каком мапе искать
+
     fun createId(): Int {
         val newId = lastIndex + 1
         lastIndex = newId
