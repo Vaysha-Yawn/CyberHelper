@@ -71,11 +71,7 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, H
                 list.add("")
                 listFr.add(fragmentD)
             }
-            "DD by list" -> {
-
-                //loadDD(main:String, "green", goal:String, list:ArrayList<String>, resId:Int)
-            }
-            "DD by param" -> {
+            "DD by table" -> {
 
                 //loadDD(main:String, "green", goal:String, list:ArrayList<String>, resId:Int)
             }

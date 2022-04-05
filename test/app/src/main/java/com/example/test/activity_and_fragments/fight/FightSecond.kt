@@ -86,6 +86,7 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
             "one roll" -> {
                 val fragment = Roll()
                 val bundle = Bundle()
+
                 fragment.arguments = bundle
                 list.add("Проверка атаки")
                 listFr.add(fragment)
@@ -106,7 +107,10 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
                 fragmentF.arguments = bundleF
                 list.add("")
                 listFr.add(fragmentF)*/
+            }
+            "DD by table" -> {
 
+                //loadDD(main:String, "green", goal:String, list:ArrayList<String>, resId:Int)
             }
         }
 

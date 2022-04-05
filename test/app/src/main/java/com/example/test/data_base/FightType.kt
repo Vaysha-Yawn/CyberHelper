@@ -1,6 +1,7 @@
 package com.example.test.data_base
 
 import io.realm.RealmList
+import io.realm.RealmMap
 import io.realm.RealmObject
 
 open class FightType(
@@ -17,13 +18,13 @@ open class FightType(
   ////// если выбрано ролл несколько героев, то необходимо уточнить, как именно будет высчитываться сумма броска: сумма, отдельно,среднее,хотябы N%. 
   
   ////// здесь мы выбираем одну из нескольких таблиц или создаем новую, если это нужно
-  var tableDiff:String? = null
+  var tableDiff:String? = null,
   
     /////////// как производится бросок героя
     var nameRoll:String = "",//
     var roll: String = "",//
     var rollParameters:RealmList<String> = RealmList<String>(),// названия навыков или пармеров, которые влияют на бросок атакующего
-      var tableRoll:String? = null
+      var tableRoll:String? = null,
   
     //////////// что происходит в случае успешного прохождения проверки
     var successComment: String? = "",// если нулловый, тогда нет
@@ -58,10 +59,11 @@ open class Variation(
 // тогда необходимо для простоты доступа везде вместо названия типа аттаки использовать экземпляр этого класса
 
 open class TableForFight(
-  var collums: String ="",// группу опций или без колонок
-  var rows:RealmList<String> = RealmList<String>()
-  var collumsToRowsToVaue: RealmMap<String, RealmMap<String, Int>> = RealmMap()
+  var columns: String ="",// группу опций или без колонок
+  var rows:RealmList<String> = RealmList<String>(),
+  var columnsToRowsToValue: RealmMap<String, RealmMap<String, Int>>
 ):RealmObject()
 
 
 // по сути это двумерный массив, можно и больше,но зачем
+

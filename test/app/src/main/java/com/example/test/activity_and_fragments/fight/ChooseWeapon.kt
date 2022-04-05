@@ -62,26 +62,10 @@ class ChooseWeapon : Fragment(), ChooseWeaponAdapterRV.TemplateHolder.OnItemClic
 
     override fun onItemClick(position: Int, effect: EffectWeapon) {
         mSkillVM.attack = effect
+        mSkillVM.map[0] = mutableMapOf()
+        mSkillVM.map[1] = mutableMapOf()
+        mSkillVM.map[1] = mutableMapOf()
+        mSkillVM.lastIndex = 2
         view?.findNavController()?.navigate(R.id.action_chooseWeapon_to_fightSecond)
-
-    }
-
-    fun generateKeys(effect: EffectWeapon) {
-        val fight = effect.fightType
-        if (fight != null) {
-            when (fight.difficult) {
-                "one roll" -> {
-
-                }
-                "few roll" -> {
-                    val rollKey = mSkillVM.createId()
-                    mSkillVM.map
-                }
-
-            }
-
-            fight.roll
-            fight.successDamageBoolean
-        }
     }
 }

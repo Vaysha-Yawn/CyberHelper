@@ -37,6 +37,7 @@ class SkillTestVM:ViewModel() {
     val map =
         mutableMapOf<Int, MutableMap<Int, MutableMap<Int, String>>>()// где первое число - ключ фрагмента если несколько роллов,
     // 2 число - ключ каждого ролла, 3 - ключ виджет, строка - указание - в каком мапе искать
+    // первые числа, 0 - fightTwo, 1 - fightThree, 2 -
 
     fun createId(): Int {
         val newId = lastIndex + 1
