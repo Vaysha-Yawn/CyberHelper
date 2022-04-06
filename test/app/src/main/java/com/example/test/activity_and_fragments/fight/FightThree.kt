@@ -55,7 +55,7 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, H
                 bundle.putInt("keyFragment",1)
                 bundle.putString("goal", "goal")
                 fragment.arguments = bundle
-                list.add("Проверка уклонения защищающегося")
+                list.add(fightType.nameRoll?:"")
                 listFr.add(fragment)
             }
             "few roll" -> {
@@ -66,7 +66,7 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, H
                 bundle.putString("goal", "goal")
                 bundle.putInt("keyFragment",0)
                 fragment.arguments = bundle
-                list.add("Проверка уклонения защищающихся")
+                list.add(fightType.nameRoll?:"")
                 listFr.add(fragment)
             }
             "arbitrary number" -> {
@@ -76,7 +76,7 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, H
                 bundleD.putString("them", "green")
                 val fragmentD = PlusAndMinus()
                 fragmentD.arguments = bundleD
-                list.add("")
+                list.add(fightType.nameRoll?:"")
                 listFr.add(fragmentD)
             }
             "DD by table" -> {

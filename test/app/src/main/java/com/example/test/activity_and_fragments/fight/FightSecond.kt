@@ -87,22 +87,28 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
             "one roll" -> {
                 mSkillVM.mapGoalMap[0] = MutableLiveData()
                 mSkillVM.mapGoalMap[0]?.value = mutableMapOf()
+                mSkillVM.map[0] = mutableMapOf()
+                mSkillVM.map[0]?.set(0, mutableMapOf())
+                mSkillVM.map[0]?.get(0)?.set(0, "goalMap")
                 val fragment = Roll()
                 val bundle = Bundle()
                 bundle.putInt("position", 0 )
                 bundle.putInt("keyFragment",0)
                 fragment.arguments = bundle
-                list.add("Проверка атаки")
+                list.add(attack.fightType?.nameRoll?:"")
                 listFr.add(fragment)
             }
             "few roll" -> {
                 mSkillVM.mapGoalMap[0] = MutableLiveData()
                 mSkillVM.mapGoalMap[0]?.value = mutableMapOf()
+                mSkillVM.map[0] = mutableMapOf()
+                mSkillVM.map[0]?.set(0, mutableMapOf())
+                mSkillVM.map[0]?.get(0)?.set(0, "goalMap")
                 val fragment = FewRoll()
                 val bundle = Bundle()
                 bundle.putInt("keyFragment",0)
                 fragment.arguments = bundle
-                list.add("Проверка атаки")
+                list.add(attack.fightType?.nameRoll?:"")
                 listFr.add(fragment)
             }
             "arbitrary number" -> {
@@ -133,8 +139,6 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
             btnNext.setOnClickListener {
                 view.findNavController().navigate(R.id.action_fightSecond_to_fightThree)
             }
-
-
         }
 
         bind()
