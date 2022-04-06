@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
@@ -80,7 +81,7 @@ class FewRoll : Fragment() {
                 }
             }
             add.setOnClickListener {
-                if (radioGroup.childCount <= 6) {
+                if (radioGroup.childCount <= 6 && mSkillVM.mapGoal[keyAllGoals]?.value?.size!! > adapter.itemCount) {
                     val id = View.generateViewId()
                     val radio = RadioButton(view.context)
                     radio.buttonTintList = view.context.resources.getColorStateList(R.color.yellow)
@@ -90,6 +91,12 @@ class FewRoll : Fragment() {
                     VM.add(id)
                     adapter.blablaAdd(VM.list.value?.size ?: 1 - 1)
                     radioGroup.check(id)
+                }else{
+                    Toast.makeText(
+                        requireContext(),
+                        "Выбран максимум целей",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 

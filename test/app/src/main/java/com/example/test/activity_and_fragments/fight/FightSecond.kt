@@ -85,8 +85,8 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
 
         when (attack.fightType?.roll) {
             "one roll" -> {
-                mSkillVM.mapGoal[0] = MutableLiveData()
-                mSkillVM.mapGoal[0]?.value = mutableListOf()
+                mSkillVM.mapGoalMap[0] = MutableLiveData()
+                mSkillVM.mapGoalMap[0]?.value = mutableMapOf()
                 val fragment = Roll()
                 val bundle = Bundle()
                 bundle.putInt("position", 0 )
@@ -96,8 +96,8 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
                 listFr.add(fragment)
             }
             "few roll" -> {
-                mSkillVM.mapGoal[0] = MutableLiveData()
-                mSkillVM.mapGoal[0]?.value = mutableListOf()
+                mSkillVM.mapGoalMap[0] = MutableLiveData()
+                mSkillVM.mapGoalMap[0]?.value = mutableMapOf()
                 val fragment = FewRoll()
                 val bundle = Bundle()
                 bundle.putInt("keyFragment",0)

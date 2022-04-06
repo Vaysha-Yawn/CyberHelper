@@ -47,8 +47,8 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, H
 
         when(fightType.difficult){
             "one roll" -> {
-                mSkillVM.mapGoal[1] = MutableLiveData()
-                mSkillVM.mapGoal[1]?.value = mutableListOf()
+                mSkillVM.mapGoalMap[1] = MutableLiveData()
+                mSkillVM.mapGoalMap[1]?.value = mutableMapOf()
                 val fragment = Roll()
                 val bundle = Bundle()
                 bundle.putInt("position", 0 )
@@ -59,8 +59,8 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, H
                 listFr.add(fragment)
             }
             "few roll" -> {
-                mSkillVM.mapGoal[1] = MutableLiveData()
-                mSkillVM.mapGoal[1]?.value = mutableListOf()
+                mSkillVM.mapGoalMap[1] = MutableLiveData()
+                mSkillVM.mapGoalMap[1]?.value = mutableMapOf()
                 val fragment = FewRoll()
                 val bundle = Bundle()
                 bundle.putString("goal", "goal")

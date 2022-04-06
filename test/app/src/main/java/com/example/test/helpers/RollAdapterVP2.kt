@@ -9,6 +9,12 @@ import com.example.test.widgets.Roll
 class RollAdapterVP2(fragment: Fragment, private val keyAllGoals: Int,  private val keyFragment: Int) :
     FragmentStateAdapter(fragment) {
     var list = listOf<Int>()
+    var lastIndex = 0
+
+    fun newIndex():Int{
+        lastIndex+=1
+        return lastIndex
+    }
 
     override fun getItemCount(): Int {
         return list.size
@@ -20,7 +26,7 @@ class RollAdapterVP2(fragment: Fragment, private val keyAllGoals: Int,  private 
         bundle.putString("goal", "goal")
         bundle.putInt("keyAllGoals", keyAllGoals )
         bundle.putInt("keyFragment", keyFragment )
-        bundle.putInt("position", position )
+        bundle.putInt("position",  newIndex())
         fragment.arguments = bundle
         return fragment
     }

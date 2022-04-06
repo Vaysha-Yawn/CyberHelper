@@ -29,6 +29,7 @@ class SkillTestVM:ViewModel() {
     val mapString = mutableMapOf<Int, MutableLiveData<String>>()
     val mapBoolean = mutableMapOf<Int, MutableLiveData<Boolean>>()
     val mapGoal = mutableMapOf<Int, MutableLiveData<MutableList<Goal>>>()
+    val mapGoalMap = mutableMapOf<Int, MutableLiveData<MutableMap<Int, Goal>>>()
     val mapMod = mutableMapOf<Int, MutableLiveData<MutableList<Mod>>>()
 
     val map =
