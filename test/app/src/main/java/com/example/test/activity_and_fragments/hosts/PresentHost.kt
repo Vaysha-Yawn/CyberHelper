@@ -35,6 +35,21 @@ class PresentHost : AppCompatActivity() {
     fun openFight(id: Int) {
         val i = Intent(this, FightHost::class.java)
         i.putExtra("characterId", id)
+        i.putExtra("fragment", "fight")
+        startActivity(i)
+        finish()
+    }
+    fun openIniciativa(id: Int) {
+        val i = Intent(this, FightHost::class.java)
+        i.putExtra("characterId", id)
+        i.putExtra("fragment", "iniciativa")
+        startActivity(i)
+        finish()
+    }
+    fun openSkillTest(id: Int) {
+        val i = Intent(this, FightHost::class.java)
+        i.putExtra("characterId", id)
+        i.putExtra("fragment", "skillTest")
         startActivity(i)
         finish()
     }

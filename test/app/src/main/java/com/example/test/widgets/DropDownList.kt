@@ -11,12 +11,15 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
+import com.example.test.activity_and_fragments.hosts.PresentHost
 import com.example.test.helpers.DropDownAdapterRV
+import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
 
 class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickListener {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
+    private val mCharacterVM: CharacterDAO by activityViewModels()
 
     private lateinit var goal: String
     private lateinit var tvMainTypeWeapon: TextView
@@ -117,11 +120,7 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
         )
 
         if (goal == "characterMenu") {
-            mSkillVM.clearVM()
-            val bundleQ = Bundle()
-            bundleQ.putString("title", list[position])
-            parentFragment?.view?.findNavController()
-                ?.navigate(R.id.action_characterMenu_to_pres_skillTest, bundleQ)
+            (activity as PresentHost).openSkillTest(mCharacterVM.characterId)
         }
 
         if (goal == "difficult") {

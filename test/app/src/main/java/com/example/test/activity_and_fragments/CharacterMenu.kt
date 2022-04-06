@@ -16,13 +16,14 @@ import com.example.test.R
 import com.example.test.activity_and_fragments.hosts.PresentHost
 import com.example.test.data_base.SpecialGameData
 import com.example.test.data_base.TemplateParamStr
+import com.example.test.helpers.DropDownAdapterRV
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.widgets.DropDownList
 
 
-class CharacterMenu : Fragment() {
+class CharacterMenu : Fragment(),  DropDownAdapterRV.TemplateHolder.OnItemClickListener {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
@@ -94,6 +95,10 @@ class CharacterMenu : Fragment() {
         }
 
         return view
+    }
+
+    override fun onItemClick(position: Int) {
+
     }
 
 }

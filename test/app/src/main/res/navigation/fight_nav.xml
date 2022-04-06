@@ -34,4 +34,8 @@
         android:id="@+id/fightResult2"
         android:name="com.example.test.activity_and_fragments.fight.FightResult"
         android:label="FightResult" />
+    <fragment
+        android:id="@+id/iniciativa"
+        android:name="com.example.test.activity_and_fragments.fight.Iniciativa"
+        android:label="Iniciativa" />
 </navigation>

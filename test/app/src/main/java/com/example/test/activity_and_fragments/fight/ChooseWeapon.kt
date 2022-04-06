@@ -32,6 +32,8 @@ class ChooseWeapon : Fragment(), ChooseWeaponAdapterRV.TemplateHolder.OnItemClic
         val view = inflater.inflate(R.layout.choose_weapon, container, false)
         val RV = view.findViewById<RecyclerView>(R.id.weaponFight)
 
+
+
         val characterId = mCharacterVM.characterId
         val listWeapon = mutableListOf(
             EffectWeapon(
