@@ -4,25 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#070B26"
+    android:background="@color/dark"
     tools:context=".activity_and_fragments.MainActivity">
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout5"
-        app:srcCompat="@drawable/girl_copy"
-        tools:ignore="ContentDescription" />
 
     <FrameLayout
         android:id="@+id/frameLayout5"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#050414"
+        android:background="@color/bcg_black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -33,7 +22,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Cyber Helper" />
+            android:text="Cyber Helper"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
     </FrameLayout>
 
     <Button
@@ -43,7 +34,8 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@color/black"
+        android:background="@drawable/btn_cyan"
+        android:backgroundTint="@color/dark_grey"
         android:text="Продолжить"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -60,7 +52,8 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@color/black"
+        android:background="@drawable/btn_cyan"
+        android:backgroundTint="@color/dark_grey"
         android:text="Новая игра"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/Main_Load"
@@ -75,7 +68,8 @@
         android:layout_marginBottom="20dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@color/black"
+        android:background="@drawable/btn_cyan"
+        android:backgroundTint="@color/dark_grey"
         android:minHeight="48dp"
         android:text="Загрузить игру"
         android:textColor="@color/white"
@@ -92,7 +86,8 @@
         android:textAllCaps="false"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@color/black"
+        android:background="@drawable/btn_cyan"
+        android:backgroundTint="@color/dark_grey"
         android:text="Настройки"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/Main_About"
@@ -107,11 +102,22 @@
         android:textAllCaps="false"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
-        android:background="@color/black"
+        android:background="@drawable/btn_cyan"
+        android:backgroundTint="@color/dark_grey"
         android:text="О приложении"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cube" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
