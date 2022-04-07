@@ -55,7 +55,7 @@ class Iniciativa : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, H
         bundle.putString("goal", "goal")
         bundle.putInt("keyFragment", 0)
         fragment.arguments = bundle
-        list.add( "")
+        list.add( "" )
         listFr.add(fragment)
 
         val binding = IniciativaBinding.bind(view)
