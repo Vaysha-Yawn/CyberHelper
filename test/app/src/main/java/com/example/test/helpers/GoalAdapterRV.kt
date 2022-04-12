@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.databinding.CardModBinding
-import com.example.test.widgets.Goal
-import com.example.test.widgets.Mod
+import com.example.test.data_base.Goal
 
 
 class GoalAdapterRV(

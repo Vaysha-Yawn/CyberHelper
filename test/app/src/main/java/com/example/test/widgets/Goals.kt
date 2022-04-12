@@ -10,8 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
+import com.example.test.data_base.Goal
 import com.example.test.databinding.GoalsBinding
-import com.example.test.helpers.FragmentsAdapterRV
 import com.example.test.helpers.GoalAdapterRV
 import com.example.test.helpers.GoalTemplateHolder
 import com.example.test.viewModels.CharacterDAO
@@ -22,10 +22,6 @@ class Goals : Fragment(), GoalTemplateHolder.LoadFragment, GoalTemplateHolder.De
     private val mCharacterDAO: CharacterDAO by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
     private val adapter = GoalAdapterRV(this, this, this)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -117,4 +113,3 @@ class Goals : Fragment(), GoalTemplateHolder.LoadFragment, GoalTemplateHolder.De
     }
 }
 
-data class Goal(var name: String = "", var resId: Int = 0, var characterId: Int = 0)

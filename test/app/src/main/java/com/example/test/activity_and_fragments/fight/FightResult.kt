@@ -7,16 +7,10 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.MutableLiveData
 import com.example.test.R
 import com.example.test.activity_and_fragments.hosts.FightHost
-import com.example.test.data_base.SpecialGameData
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
-import com.example.test.widgets.FewRoll
-import com.example.test.widgets.PlusAndMinus
-import com.example.test.widgets.Roll
-import java.util.*
 
 
 class FightResult : Fragment() {
@@ -33,6 +27,7 @@ class FightResult : Fragment() {
         val characterId = mCharacterVM.characterId
         val attack = mSkillVM.attack!!
         val title = attack.fightType?.name?:""
+
 
         // Рассчитываем сложность и бросок
         // здесь мы должны получить все ключи и указания где находятся и к чему относятся значения

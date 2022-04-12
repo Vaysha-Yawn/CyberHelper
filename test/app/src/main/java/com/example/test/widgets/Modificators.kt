@@ -12,6 +12,7 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
+import com.example.test.data_base.Mod
 import com.example.test.data_base.SpecialGameData
 import com.example.test.databinding.DialogChooseAddModificationBinding
 import com.example.test.databinding.ModificatorsBinding
@@ -155,4 +156,3 @@ class ModDialogFragment(private val addMod:AddMod) : DialogFragment() {
     }
 }
 
-data class Mod(var style: Boolean, var value: Int, var resId: Int)

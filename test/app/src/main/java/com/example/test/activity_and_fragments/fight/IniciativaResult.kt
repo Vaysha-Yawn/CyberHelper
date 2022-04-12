@@ -4,14 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
-import androidx.navigation.navGraphViewModels
 import com.example.test.R
-import com.example.test.data_base.SpecialGameData
-import com.example.test.databinding.IniciativaBinding
 import com.example.test.databinding.IniciativaResultBinding
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
@@ -29,6 +25,7 @@ class IniciativaResult : Fragment() {
         val view = inflater.inflate(R.layout.iniciativa_result, container, false)
 
         val characterId = mCharacterVM.characterId
+
 
         val binding = IniciativaResultBinding.bind(view)
         fun bind() = with(binding) {
