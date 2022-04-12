@@ -118,11 +118,13 @@ class HowToMergeFewRolls {
         mergeStrategy: String,
         listRoll: Map<Int, Int>
     ): Map<Int, Int> {// на вход принимаются идентификаторы и  уже посчитанные броски
-        var list = listRoll
+        var list: MutableMap<Int, Int> = listRoll.toMutableMap()
         if (listRoll.isNotEmpty()) {
             when (mergeStrategy) {
                 "rangeUp" -> {
-
+                    var map = mutableMapOf<Int, Int>()
+                    while (list.isNotEmpty()) {
+                    }
                 }
             }
         }
