@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.lifecycle.MutableLiveData
 import com.example.test.R
+import com.example.test.data_base.Goal
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
 import kotlin.properties.Delegates

@@ -3,8 +3,8 @@ package com.example.test.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.test.data_base.EffectWeapon
-import com.example.test.widgets.Goal
-import com.example.test.widgets.Mod
+import com.example.test.data_base.Goal
+import com.example.test.data_base.Mod
 
 class SkillTestVM:ViewModel() {
 

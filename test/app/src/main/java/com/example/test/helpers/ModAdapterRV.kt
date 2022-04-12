@@ -8,8 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
+import com.example.test.data_base.Mod
 import com.example.test.databinding.CardModBinding
-import com.example.test.widgets.Mod
 
 
 class ModAdapterRV(
