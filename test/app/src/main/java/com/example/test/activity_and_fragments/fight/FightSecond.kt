@@ -136,8 +136,36 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
             RV.adapter = adapterRV
             RV.layoutManager =
                 LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
+
             btnNext.setOnClickListener {
                 view.findNavController().navigate(R.id.action_fightSecond_to_fightThree)
+                // здесь мы должны взять все ключи, проверить значения и посчитать
+                /*val i = mSkillVM.map[0]?.values
+                if (i != null) {
+                    for (a in i ){
+                        for ((key, value) in a ){
+                            when(value){
+                                "int"->{
+                                    mSkillVM.mapInt[key]
+                                }
+                            }
+                        }
+                    }// слишком абстрактно, нет привязки к значению
+                }*/
+                when (attack.fightType?.roll) {
+                    "one roll" -> {
+
+                    }
+                    "few roll" -> {
+
+                    }
+                    "arbitrary number" -> {
+
+                    }
+                    "DD by table" -> {
+
+                    }
+                }
             }
         }
 
