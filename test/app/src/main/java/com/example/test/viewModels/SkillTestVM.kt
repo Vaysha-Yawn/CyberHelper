@@ -7,6 +7,7 @@ import com.example.test.data_base.Goal
 import com.example.test.data_base.Mod
 
 class SkillTestVM:ViewModel() {
+    val next = MutableLiveData<Boolean>()
 
     var title = ""
 
@@ -20,6 +21,9 @@ class SkillTestVM:ViewModel() {
     val deletedIdByGoal = mutableListOf<Int>()
     val dif = MutableLiveData<Int>()
     val difBoolean = MutableLiveData<Boolean>()
+
+    /////////////////////////////////////////////////////
+    val listForResult = mutableListOf<String>()// юда по мере рассчета мы будем вводить данные
 
     /////////////////////////////////////////////////////
     var lastIndex = 0

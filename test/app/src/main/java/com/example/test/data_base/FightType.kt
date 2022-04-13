@@ -90,44 +90,48 @@ data class Mod(
 )
 
 class HowToMergeFewRolls {
-    fun f(
-        mergeStrategy: String,
+
+    fun sum(
         listRoll: List<Int>
     ): Int {// на вход принимаются уже посчитанные броски
         var i = 0
         if (listRoll.isNotEmpty()) {
-            when (mergeStrategy) {
-                "sum" -> {
-                    for (a in listRoll) {
-                        i += a
-                    }
-                }
-                "multiply" -> {
-                    i = 1
-                    for (a in listRoll) {
-                        i *= a
-                    }
-                }
-
+            for (a in listRoll) {
+                i += a
             }
         }
         return i
     }
 
-    fun range(
-        mergeStrategy: String,
-        listRoll: Map<Int, Int>
-    ): Map<Int, Int> {// на вход принимаются идентификаторы и  уже посчитанные броски
-        var list: MutableMap<Int, Int> = listRoll.toMutableMap()
+    fun multiply(
+        listRoll: List<Int>
+    ): Int {// на вход принимаются уже посчитанные броски
+        var i = 0
         if (listRoll.isNotEmpty()) {
-            when (mergeStrategy) {
-                "rangeUp" -> {
-                    var map = mutableMapOf<Int, Int>()
-                    while (list.isNotEmpty()) {
-                    }
-                }
+            i = 1
+            for (a in listRoll) {
+                i *= a
             }
         }
-        return list
+        return i
     }
+
+    fun rangeUp(
+        listRoll: MutableMap<Int, Int>
+    ): Map<Int, Int> {// на вход принимаются идентификаторы и  уже посчитанные броски
+        if (listRoll.isNotEmpty()) {
+            listRoll.toList().sortedBy { (_, value) -> value }.toMap()
+        }
+        return listRoll
+    }
+
+    fun rangeDown(
+        listRoll: MutableMap<Int, Int>
+    ): Map<Int, Int> {// на вход принимаются идентификаторы и  уже посчитанные броски
+        if (listRoll.isNotEmpty()) {
+            listRoll.toList().sortedByDescending { (_, value) -> value }.toMap()
+        }
+        return listRoll
+    }
+
 }
