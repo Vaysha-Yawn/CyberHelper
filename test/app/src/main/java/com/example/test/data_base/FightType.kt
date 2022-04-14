@@ -60,20 +60,6 @@ data class TableForFight(
 )
 // по сути это двумерный массив, можно и больше,но зачем
 
-
-// для разных роллов разные классы, кроме произвольного число
-data class OneRoll(
-    var goal: Goal,
-    var mods: MutableList<Mod>?,
-    var m1d10: Int,
-    var crit: Int?,
-)
-
-data class FewRolls(
-    var allGoals: List<Goal>,
-    var rolls: MutableList<OneRoll>
-)
-
 data class DiffByTable(
     var tableRoll: String = "",
     // может что-то еще

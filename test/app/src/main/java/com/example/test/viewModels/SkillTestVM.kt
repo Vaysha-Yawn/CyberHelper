@@ -5,22 +5,23 @@ import androidx.lifecycle.ViewModel
 import com.example.test.data_base.*
 import io.realm.RealmList
 
-class SkillTestVM:ViewModel() {
+// для разных роллов разные классы, кроме произвольного число
+data class OneRoll(
+    var goal: Goal,
+    var mods: MutableList<Mod>?,
+    var m1d10: Int,
+    var crit: Int?,
+)
+
+data class FewRolls(
+    var allGoals: List<Goal>,
+    var rolls: MutableList<OneRoll>
+)
+
+class SkillTestVM : ViewModel() {
     val next = MutableLiveData<Boolean>()
 
     var title = ""
-
-/*   val allGoals = MutableLiveData<MutableList<Goal>>()
-    val chosenGoals = MutableLiveData<MutableList<Goal>>()
-    val m1d10 = MutableLiveData<Int>()
-    val critical = MutableLiveData<Int>()
-    val boolCritical = MutableLiveData<Boolean>()
-    val deletedIdByGoal = mutableListOf<Int>()
-    val dif = MutableLiveData<Int>()
-    val difBoolean = MutableLiveData<Boolean>()*/
-
-    /////////////////////////////////////////////////////
-    val listForResult = mutableListOf<String>()// юда по мере рассчета мы будем вводить данные
 
     /////////////////////////////////////////////////////
     var lastIndex = 0
@@ -32,10 +33,15 @@ class SkillTestVM:ViewModel() {
     val mapGoal = mutableMapOf<Int, MutableLiveData<MutableList<Goal>>>()
     val mapGoalMap = mutableMapOf<Int, MutableLiveData<MutableMap<Int, Goal>>>()
     val mapMod = mutableMapOf<Int, MutableLiveData<MutableList<Mod>>>()
+    val mapRoll = mutableMapOf<Int, OneRoll>()
+    val mapFewRoll = mutableMapOf<Int, FewRolls>()
+
+    lateinit var difficult: Pair<Int, String>
+    lateinit var roll: Pair<Int, String>// идентификатор, указание, где искать
+
 
     val map =
-        mutableMapOf<Int, MutableMap<Int, MutableMap<Int, String>>>()// где первое число - ключ фрагмента если несколько роллов,
-    // 2 число - ключ каждого ролла, 3 - ключ виджет, строка - указание - в каком мапе искать
+        mutableMapOf<Int, MutableMap<Int, String>>()// где первое число - ключ фрагмента  2 - ключ виджет, строка - указание - в каком мапе искать
     // первые числа, 0 - fightTwo, 1 - fightThree, 2 -
 
     fun createId(): Int {
@@ -45,23 +51,13 @@ class SkillTestVM:ViewModel() {
     }
 
     /////////////////////////////////////////////
-    var luckyOrErudit: Boolean = true
+    var luckyOrErudition: Boolean = true
     var usingLuckyPoint: Int? = null
-    var skill: Int? = null
+    var skill: String = ""
     var erudit: Int? = null
 
     var attack: EffectWeapon? = null
 
-    init {
-        /*m1d10.value = 1
-         dif.value = 0
-         allGoals.value = mutableListOf<Goal>()
-         chosenGoals.value = mutableListOf<Goal>()
-         critical.value = 0
-         boolCritical.value = false
-         difBoolean.value = false*/
-
-    }
 
     fun clearVM() {
         onCleared()

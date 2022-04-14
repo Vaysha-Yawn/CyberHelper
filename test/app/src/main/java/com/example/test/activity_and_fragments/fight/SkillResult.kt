@@ -10,9 +10,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.data_base.SpecialGameData
+import com.example.test.data_base.TemplateFightType
 import com.example.test.viewModels.CharacterDAO
+import com.example.test.viewModels.OneRoll
 import com.example.test.viewModels.SkillTestVM
-import java.util.*
 
 
 class SkillResult : Fragment() {
@@ -28,21 +29,34 @@ class SkillResult : Fragment() {
 
         val characterId = mCharacterVM.characterId
         val title = mSkillVM.attack?.fightType ?: ""
-        val skill = ""
+        val skill = mSkillVM.skill
         val tvParam = SpecialGameData().mapParameterToSkill[skill] ?: ""
-
-        val result = mSkillVM.calculateSkillTestOneRoll(
-            nameRoll = "броска",
-            roll:OneRoll,
-            parameters = mapOf<String, String>("Параметры" to tvParam),
-            skill = Pair("Навыки", skill),
-            luckyOrErudition:Boolean,
-            usingLuckyPoint:Int?,
-        erudition = Pair("Навыки", "Эрудиция"), listCharacter = mCharacterVM.characterList.value!!)
-        // взаимосвясь с навыком и параметром
-
-
-        var str = ""
+        val fightType = TemplateFightType().mapFightType[title]!!
+        var difficult = 0
+        when (mSkillVM.difficult.second) {
+            "mapInt" -> {
+                difficult = mSkillVM.mapInt[mSkillVM.difficult.first]?.value ?: 0
+            }
+        }
+        var result = 0
+        var roll: OneRoll? = null
+        when (mSkillVM.roll.second) {
+            "mapRoll" -> {
+                roll = mSkillVM.mapRoll[mSkillVM.roll.first]
+            }
+        }
+        if (roll != null) {
+            result = mSkillVM.calculateSkillTestOneRoll(
+                nameRoll = "броска",
+                roll = roll,
+                parameters = mapOf<String, String>("Параметры" to tvParam),
+                skill = Pair("Навыки", skill),
+                mSkillVM.luckyOrErudition,
+                mSkillVM.usingLuckyPoint,
+                erudition = Pair("Навыки", "Эрудиция"),
+                listCharacter = mCharacterVM.characterList.value!!
+            )
+        }
 
         val tvForResult = view.findViewById<TextView>(R.id.test_for_value)
         val tvOppositeResult = view.findViewById<TextView>(R.id.test_opposite_value)
