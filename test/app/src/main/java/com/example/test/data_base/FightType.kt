@@ -1,6 +1,6 @@
 package com.example.test.data_base
 
-// в классе chartacter будет лишь название типа боя, а его характеристики мы будем брать из массива со всеми типами боя
+// в классе character будет лишь название типа боя, а его характеристики мы будем брать из массива со всеми типами боя
 data class FightType(
     ////////// общее
     var name: String = "",
@@ -9,17 +9,19 @@ data class FightType(
     ////////// как расчитывается сложность
     var nameDiff: String = "",//
     var difficult: String = "",
-    var difParameters: List<String> = listOf(),// названия навыков или пармеров, которые влияют на бросок защищающегося
-    //////
+    var difParameters: Map<String, String> = mapOf(),// названия навыков или пармеров, которые влияют на бросок защищающегося
+    //////// указывать, как название группы, название параметра
+    ////////
     var settingsRoll: SettingsRoll? = SettingsRoll(),
-    ////// если выбрано ролл несколько героев, то необходимо уточнить, как именно будет высчитываться сумма броска: сумма, отдельно,среднее,хотябы N%.
 
+    ////// если выбрано ролл несколько героев, то необходимо уточнить, как именно будет высчитываться сумма броска: сумма, отдельно,среднее,хотябы N%.
     var howMerge: String?, // описывает, как мы должны слиять несколько различных бросков, например сложить их, найти среднее, проверить отдельно каждый, выстроить по убыванию и т.д.
 
     /////////// как производится бросок героя
     var nameRoll: String = "",//
     var roll: String = "",//
-    var rollParameters: List<String> = listOf(),// названия навыков или пармеров, которые влияют на бросок атакующего
+    var rollParameters: Map<String, String> = mapOf(),// названия навыков или пармеров, которые влияют на бросок атакующего
+    // указывать, как название группы, название параметра
 
     //////////// что происходит в случае успешного прохождения проверки
     var successComment: String? = "",// если нулловый, тогда нет
@@ -88,50 +90,3 @@ data class Mod(
     var value: Int,
     var resId: Int
 )
-
-class HowToMergeFewRolls {
-
-    fun sum(
-        listRoll: List<Int>
-    ): Int {// на вход принимаются уже посчитанные броски
-        var i = 0
-        if (listRoll.isNotEmpty()) {
-            for (a in listRoll) {
-                i += a
-            }
-        }
-        return i
-    }
-
-    fun multiply(
-        listRoll: List<Int>
-    ): Int {// на вход принимаются уже посчитанные броски
-        var i = 0
-        if (listRoll.isNotEmpty()) {
-            i = 1
-            for (a in listRoll) {
-                i *= a
-            }
-        }
-        return i
-    }
-
-    fun rangeUp(
-        listRoll: MutableMap<Int, Int>
-    ): Map<Int, Int> {// на вход принимаются идентификаторы и  уже посчитанные броски
-        if (listRoll.isNotEmpty()) {
-            listRoll.toList().sortedBy { (_, value) -> value }.toMap()
-        }
-        return listRoll
-    }
-
-    fun rangeDown(
-        listRoll: MutableMap<Int, Int>
-    ): Map<Int, Int> {// на вход принимаются идентификаторы и  уже посчитанные броски
-        if (listRoll.isNotEmpty()) {
-            listRoll.toList().sortedByDescending { (_, value) -> value }.toMap()
-        }
-        return listRoll
-    }
-
-}

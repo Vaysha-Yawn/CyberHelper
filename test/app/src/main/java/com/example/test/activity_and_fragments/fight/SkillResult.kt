@@ -27,67 +27,22 @@ class SkillResult : Fragment() {
         val view = inflater.inflate(R.layout.skill_result, container, false)
 
         val characterId = mCharacterVM.characterId
-        val title = mSkillVM.title
-        val difficult = mSkillVM.dif.value!!
-        var mod = 0
-        val mods = mSkillVM.modification.value!!
-        for (m in mods) {
-            val res = if (m.style) {
-                SpecialGameData().modValue[(m.value - 1)].toInt()
-            } else {
-                m.value
-            }
-            mod += res
-        }
+        val title = mSkillVM.attack?.fightType ?: ""
+        val skill = ""
+        val tvParam = SpecialGameData().mapParameterToSkill[skill] ?: ""
 
-        val res1d10 = mSkillVM.m1d10.value!!
-        var crit = 0
-        if (mSkillVM.boolCritical.value!!) {
-            crit = mSkillVM.critical.value!!
-        }
-
+        val result = mSkillVM.calculateSkillTestOneRoll(
+            nameRoll = "броска",
+            roll:OneRoll,
+            parameters = mapOf<String, String>("Параметры" to tvParam),
+            skill = Pair("Навыки", skill),
+            luckyOrErudition:Boolean,
+            usingLuckyPoint:Int?,
+        erudition = Pair("Навыки", "Эрудиция"), listCharacter = mCharacterVM.characterList.value!!)
         // взаимосвясь с навыком и параметром
-        val skill = mSkillVM.skill ?: 0
-        var luckyOrEdit = 0
-        if (skill == 0) {
-            if (mSkillVM.usingLuckyPoint == 0 || mSkillVM.usingLuckyPoint == null) {
-                mSkillVM.luckyOrErudit = false
-            }
-            luckyOrEdit = if (mSkillVM.luckyOrErudit == true) {
-                mSkillVM.usingLuckyPoint ?: 0
-            } else {
-                mSkillVM.erudit ?: 0
-            }
-        }
-
-        val tvParam = SpecialGameData().mapParameterToSkill[title] ?: ""
-        val param = mCharacterVM.characterList.value?.singleOrNull { character ->
-            character.id == characterId
-        }?.attributes?.singleOrNull { gp ->
-            gp.title == "Параметры"
-        }?.attributes?.listParamNum?.singleOrNull { pn ->
-            pn.name == tvParam
-        }?.value ?: 0
 
 
         var str = ""
-        var result = ""
-
-
-        if (skill == 0) {
-            if (mSkillVM.luckyOrErudit == true) {
-                str =
-                    "Формула для подсчета суммы броска: параметр + удача + 1D10 + критический - модификатор"
-            } else {
-                str =
-                    "Формула для подсчета суммы броска: параметр + эрудиция + 1D10 + критический - модификатор"
-            }
-            result = (param + luckyOrEdit + res1d10 + crit - mod).toString()
-        } else {
-            str =
-                "Формула для подсчета суммы броска: параметр + навык + 1D10 + критический - модификатор"
-            result = (param + skill + res1d10 + crit - mod).toString()
-        }
 
         val tvForResult = view.findViewById<TextView>(R.id.test_for_value)
         val tvOppositeResult = view.findViewById<TextView>(R.id.test_opposite_value)
@@ -96,7 +51,7 @@ class SkillResult : Fragment() {
 
         tvTitle.text = title
         tvForResult.text = difficult.toString()
-        tvOppositeResult.text = result
+        tvOppositeResult.text = result.toString()
 
         if (difficult >= result.toInt()) {
             tvSuccessOrFail.setImageDrawable(resources.getDrawable(R.drawable.draw_fail))
@@ -128,20 +83,13 @@ class SkillResult : Fragment() {
             }
         }
 
-        val list = arrayOf(
-            "Сложность = $difficult",
-            "1D10 = $res1d10",
-            "Критический = $crit",
-            "Модификатор = $mod",
-            "Навык ${title.lowercase(Locale.getDefault())} = $skill",
-            "Параметр ${tvParam.lowercase(Locale.getDefault())} = $param",
-            str
-        )
-
         val adapterItems =
-            ArrayAdapter(view.context, R.layout.drop_down_list_item_white, list)
+            ArrayAdapter(
+                view.context,
+                R.layout.drop_down_list_item_white,
+                mSkillVM.listMore.toTypedArray()
+            )
         moreRV.adapter = adapterItems
-
 
 
         val apply = view.findViewById<Button>(R.id.apply)

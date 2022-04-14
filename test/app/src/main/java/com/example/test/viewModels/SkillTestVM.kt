@@ -2,25 +2,22 @@ package com.example.test.viewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.test.data_base.EffectWeapon
-import com.example.test.data_base.Goal
-import com.example.test.data_base.Mod
+import com.example.test.data_base.*
+import io.realm.RealmList
 
 class SkillTestVM:ViewModel() {
     val next = MutableLiveData<Boolean>()
 
     var title = ""
 
-    val modification =
-        MutableLiveData<MutableList<Mod>>() // mod.value = -1 , оно сохраняется с индексом на 1 больше, чтобы оставить при создании начальную фразу
-    val allGoals = MutableLiveData<MutableList<Goal>>()
+/*   val allGoals = MutableLiveData<MutableList<Goal>>()
     val chosenGoals = MutableLiveData<MutableList<Goal>>()
     val m1d10 = MutableLiveData<Int>()
     val critical = MutableLiveData<Int>()
     val boolCritical = MutableLiveData<Boolean>()
     val deletedIdByGoal = mutableListOf<Int>()
     val dif = MutableLiveData<Int>()
-    val difBoolean = MutableLiveData<Boolean>()
+    val difBoolean = MutableLiveData<Boolean>()*/
 
     /////////////////////////////////////////////////////
     val listForResult = mutableListOf<String>()// юда по мере рассчета мы будем вводить данные
@@ -56,16 +53,201 @@ class SkillTestVM:ViewModel() {
     var attack: EffectWeapon? = null
 
     init {
-        m1d10.value = 1
-        dif.value = 0
-        allGoals.value = mutableListOf<Goal>()
-        chosenGoals.value = mutableListOf<Goal>()
-        critical.value = 0
-        boolCritical.value = false
-        difBoolean.value = false
+        /*m1d10.value = 1
+         dif.value = 0
+         allGoals.value = mutableListOf<Goal>()
+         chosenGoals.value = mutableListOf<Goal>()
+         critical.value = 0
+         boolCritical.value = false
+         difBoolean.value = false*/
+
     }
 
-    fun clearVM (){
+    fun clearVM() {
         onCleared()
     }
+
+
+    val listMore = mutableListOf<String>()// здесь после каждой проверки
+    // будет сохраняться название и результат, а в конце формула
+    // в конце необходимо преобразовать в Array
+
+
+    // функции для рассчета сложности и броска
+    // они разные
+
+    fun findCharacterParamNum(
+        characterGP: RealmList<GroupParam>?, groupName: String,
+        paramName: String
+    ): Int? {
+        val paramValue = characterGP?.singleOrNull { gp ->
+            gp.title == groupName
+        }?.attributes?.listParamNum?.singleOrNull { pn ->
+            pn.name == paramName
+        }?.value
+        return paramValue
+    }
+
+    fun calculateOneRoll(
+        nameRoll: String, roll: OneRoll, parameters: Map<String, String>,
+        listCharacter: RealmList<Character>
+    ): Int {
+        var form = "Для персонажа ${roll.goal.name} формула для подсчета суммы $nameRoll:"
+        var result = 0
+        val characterGP = listCharacter.singleOrNull { character ->
+            character.id == roll.goal.characterId
+        }?.attributes
+        for ((key, value) in parameters) {
+            val paramValue = findCharacterParamNum(characterGP, key, value)
+            if (paramValue != null) {
+                listMore.add("Характеристика $value из группы $key, для персонажа ${roll.goal.name} повлиял на $paramValue")
+                result += paramValue
+                form += " + $key"
+            }
+        }
+        if (roll.mods != null) {
+            if (roll.mods!!.isNotEmpty()) {
+                for (mod in roll.mods!!) {
+                    val res = if (mod.style) {
+                        SpecialGameData().modValue[(mod.value - 1)].toInt()
+                    } else {
+                        mod.value
+                    }
+                    result -= res
+                    listMore.add("Модификатор, для персонажа ${roll.goal.name} повлиял на $res")
+                }
+                form += " - модификатор"
+            }
+        }
+        result += roll.m1d10
+        form += " + бросок кубика"
+        listMore.add("Бросок кубика персонажа ${roll.goal.name} повлиял на ${roll.m1d10}")
+        if (roll.crit != null) {
+            result += roll.crit!!
+            listMore.add("Критический бросок кубика персонажа ${roll.goal.name} повлиял на ${roll.crit}")
+            form += " + критический бросок кубика"
+        }
+        listMore.add(form)
+        return result
+    }
+
+
+    fun calculateSkillTestOneRoll(
+        nameRoll: String, roll: OneRoll, parameters: Map<String, String>?,
+        skill: Pair<String, String>, luckyOrErudition: Boolean, usingLuckyPoint: Int?,
+        erudition: Pair<String, String>?, listCharacter: RealmList<Character>
+    ): Int {
+        var form = "Для персонажа ${roll.goal.name} формула для подсчета суммы $nameRoll:"
+        var result = 0
+        val characterGP = listCharacter.singleOrNull { character ->
+            character.id == roll.goal.characterId
+        }?.attributes
+        if (parameters != null) {
+            for ((key, value) in parameters) {
+                val paramValue = findCharacterParamNum(characterGP, key, value)
+                if (paramValue != null) {
+                    listMore.add("Характеристика $value из группы $key, для персонажа ${roll.goal.name} повлияла на $paramValue")
+                    result += paramValue
+                    form += " + $key"
+                }
+            }
+        }
+        val skillValue = findCharacterParamNum(characterGP, skill.first, skill.second)
+        if (skillValue != null && skillValue != 0) {
+            listMore.add("Характеристика ${skill.second} из группы ${skill.first}, для персонажа ${roll.goal.name} повлияла на $skillValue")
+            result += skillValue
+            form += " + навык"
+        }
+        var LEBool = luckyOrErudition
+        if (skillValue == 0) {
+            if (usingLuckyPoint == 0 || usingLuckyPoint == null) {
+                LEBool = false
+            }
+            if (LEBool) {
+                listMore.add("Характеристика удача, для персонажа ${roll.goal.name} повлияла на ${usingLuckyPoint ?: 0}")
+                result += usingLuckyPoint ?: 0
+                form += " + удача"
+            } else {
+                if (erudition != null) {
+                    val erudit =
+                        findCharacterParamNum(characterGP, erudition.first, erudition.second)
+                    listMore.add("Характеристика ${erudition.second}, для персонажа ${roll.goal.name} повлияла на ${erudit ?: 0}")
+                    result += erudit ?: 0
+                    form += " + ${erudition.second}"
+                }
+            }
+        }
+
+        if (roll.mods != null) {
+            if (roll.mods!!.isNotEmpty()) {
+                for (mod in roll.mods!!) {
+                    val res = if (mod.style) {
+                        SpecialGameData().modValue[(mod.value - 1)].toInt()
+                    } else {
+                        mod.value
+                    }
+                    result -= res
+                    listMore.add("Модификатор, для персонажа ${roll.goal.name} повлиял на $res")
+                }
+                form += " - модификатор"
+            }
+        }
+        result += roll.m1d10
+        form += " + бросок кубика"
+        listMore.add("Бросок кубика персонажа ${roll.goal.name} повлиял на ${roll.m1d10}")
+        if (roll.crit != null) {
+            result += roll.crit!!
+            listMore.add("Критический бросок кубика персонажа ${roll.goal.name} повлиял на ${roll.crit}")
+            form += " + критический бросок кубика"
+        }
+        listMore.add(form)
+        return result
+    }
+}
+
+class HowToMergeFewRolls {
+
+    fun sum(
+        listRoll: List<Int>
+    ): Int {// на вход принимаются уже посчитанные броски
+        var i = 0
+        if (listRoll.isNotEmpty()) {
+            for (a in listRoll) {
+                i += a
+            }
+        }
+        return i
+    }
+
+    fun multiply(
+        listRoll: List<Int>
+    ): Int {// на вход принимаются уже посчитанные броски
+        var i = 0
+        if (listRoll.isNotEmpty()) {
+            i = 1
+            for (a in listRoll) {
+                i *= a
+            }
+        }
+        return i
+    }
+
+    fun rangeUp(
+        listRoll: MutableMap<Int, Int>
+    ): Map<Int, Int> {// на вход принимаются идентификаторы и  уже посчитанные броски
+        if (listRoll.isNotEmpty()) {
+            listRoll.toList().sortedBy { (_, value) -> value }.toMap()
+        }
+        return listRoll
+    }
+
+    fun rangeDown(
+        listRoll: MutableMap<Int, Int>
+    ): Map<Int, Int> {// на вход принимаются идентификаторы и  уже посчитанные броски
+        if (listRoll.isNotEmpty()) {
+            listRoll.toList().sortedByDescending { (_, value) -> value }.toMap()
+        }
+        return listRoll
+    }
+
 }
