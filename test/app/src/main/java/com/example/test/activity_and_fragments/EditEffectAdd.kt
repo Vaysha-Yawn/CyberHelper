@@ -10,13 +10,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.data_base.EffectAdd
-import com.example.test.data_base.EffectWeapon
 import com.example.test.data_base.TemplateParamOptions
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
 import com.example.test.widgets.DropDownList
 import com.example.test.widgets.PlusAndMinus
-import java.lang.Exception
 
 class EditEffectAdd : Fragment() {
 
@@ -163,7 +161,7 @@ class EditEffectAdd : Fragment() {
             val frag2: Fragment =
                 childFragmentManager.findFragmentById(R.id.impact)!!
             val impact =
-                frag2.view?.findViewById<EditText>(R.id.plus_and_minus_edit)?.text.toString()
+                frag2.view?.findViewById<EditText>(R.id.edit)?.text.toString()
                     .toIntOrNull()
             if (impact == null) {
                 res = 0
@@ -183,7 +181,7 @@ class EditEffectAdd : Fragment() {
             val frag3: Fragment =
                 childFragmentManager.findFragmentById(R.id.duration)!!
             var duration: Int? =
-                frag3.view?.findViewById<EditText>(R.id.plus_and_minus_edit)?.text.toString()
+                frag3.view?.findViewById<EditText>(R.id.edit)?.text.toString()
                     .toIntOrNull()
             if (duration == 0) {
                 if (!permanent) {
@@ -199,7 +197,7 @@ class EditEffectAdd : Fragment() {
             val frag4: Fragment =
                 childFragmentManager.findFragmentById(R.id.rollback)!!
             var rollback: Int? =
-                frag4.view?.findViewById<EditText>(R.id.plus_and_minus_edit)?.text.toString()
+                frag4.view?.findViewById<EditText>(R.id.edit)?.text.toString()
                     .toIntOrNull()
 
             if (rollback == 0) {
