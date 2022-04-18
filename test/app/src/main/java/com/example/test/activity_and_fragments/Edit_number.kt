@@ -1,6 +1,5 @@
 package com.example.test.activity_and_fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,20 +9,12 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.activity_and_fragments.character_list.CharacterList
-import com.example.test.data_base.ParamNum
 import com.example.test.data_base.TemplateParamNum
-import com.example.test.data_base.TemplateParamOptions
-import com.example.test.data_base.TemplateParamStr
 import com.example.test.viewModels.CharacterDAO
-import com.example.test.viewModels.GameDAO
 import com.example.test.widgets.PlusAndMinus
-import java.lang.Exception
 
 
 class Edit_number : Fragment() {
@@ -85,7 +76,7 @@ class Edit_number : Fragment() {
             val frag1: Fragment =
                 childFragmentManager.findFragmentById(R.id.fr)!!
             val result =
-                frag1.view?.findViewById<EditText>(R.id.plus_and_minus_edit)?.text.toString().toIntOrNull()
+                frag1.view?.findViewById<EditText>(R.id.edit)?.text.toString().toIntOrNull()
             var res = 1
             if (result!=null){
                 // проверки

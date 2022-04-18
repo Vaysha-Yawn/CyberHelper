@@ -58,6 +58,15 @@
                 android:layout_height="wrap_content"
                 android:text="Добавьте элемент" />
 
+            <com.example.test.views.PlusMinusView
+                android:layout_marginTop="20dp"
+                android:id="@+id/PM"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                app:PM_color="@color/yellow"
+                app:PM_small="false"
+                />
+
         </LinearLayout>
     </ScrollView>
 

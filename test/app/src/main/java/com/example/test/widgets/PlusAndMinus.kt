@@ -53,9 +53,9 @@ class PlusAndMinus : Fragment() {
             }
         }
 
-        val edit = view.findViewById<TextView>(R.id.plus_and_minus_edit)
-        val plus = view.findViewById<Button>(R.id.plus_and_minus_plus)
-        val minus = view.findViewById<Button>(R.id.plus_and_minus_minus)
+        val edit = view.findViewById<TextView>(R.id.edit)
+        val plus = view.findViewById<Button>(R.id.plus)
+        val minus = view.findViewById<Button>(R.id.minus)
 
         if (maxValue == -1) {
             maxValue = null
