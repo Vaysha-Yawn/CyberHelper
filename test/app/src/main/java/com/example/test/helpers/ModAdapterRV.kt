@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.databinding.CardModBinding
@@ -64,7 +65,7 @@ class ModTemplateHolder(
             updIdMode.updIdMod(adapterPosition, id)
             loadFragment.loadFragment(adapterPosition, mod.style, mod.value, id)
             delete.setOnClickListener { view ->
-                deleteMod.deleteMod(adapterPosition)
+                deleteMod.deleteMod(adapterPosition, fr.getFragment())
                 updViewr.updateView()
             }
             /*Toast.makeText(
@@ -82,7 +83,7 @@ class ModTemplateHolder(
     }
 
     interface DeleteMod {
-        fun deleteMod(position: Int)
+        fun deleteMod(position: Int, fragment: Fragment)
     }
 
     interface LoadFragment {

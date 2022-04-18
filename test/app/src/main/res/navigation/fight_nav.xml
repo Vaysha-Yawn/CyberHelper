@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/fightSecond"
         android:name="com.example.test.activity_and_fragments.fight.FightSecond"
-        android:label="FightSecond" >
+        android:label="FightSecond">
         <action
             android:id="@+id/action_fightSecond_to_fightThree"
             app:destination="@id/fightThree" />
@@ -25,5 +25,17 @@
     <fragment
         android:id="@+id/fightThree"
         android:name="com.example.test.activity_and_fragments.fight.FightThree"
-        android:label="FightThree" />
+        android:label="FightThree">
+        <action
+            android:id="@+id/action_fightThree_to_fightResult2"
+            app:destination="@id/fightResult2" />
+    </fragment>
+    <fragment
+        android:id="@+id/fightResult2"
+        android:name="com.example.test.activity_and_fragments.fight.FightResult"
+        android:label="FightResult" />
+    <fragment
+        android:id="@+id/iniciativa"
+        android:name="com.example.test.activity_and_fragments.fight.Iniciativa"
+        android:label="Iniciativa" />
 </navigation>

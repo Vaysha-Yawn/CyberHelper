@@ -5,21 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
-import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.data_base.SpecialGameData
+import com.example.test.activity_and_fragments.hosts.PresentHost
 import com.example.test.helpers.DropDownAdapterRV
+import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
 
 class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickListener {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
+    private val mCharacterVM: CharacterDAO by activityViewModels()
 
     private lateinit var goal: String
     private lateinit var tvMainTypeWeapon: TextView
@@ -28,10 +28,7 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
     private var more: Int = 0
     private var less: Int = 0
     private var indexMod: Int = -1
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private var key: Int = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +40,8 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
         val them = bundle.getString("them", "yellow")
         list = bundle.getStringArrayList("list")!!
         goal = bundle.getString("goal", "")
-        indexMod = bundle.getInt("indexMod", -1) ?: -1
+        indexMod = bundle.getInt("indexMod", -1)
+        key = bundle.getInt("key")
 
         tvMainTypeWeapon = view.findViewById<TextView>(R.id.main)
         itemsRV = view.findViewById<RecyclerView>(R.id.items)
@@ -101,7 +99,7 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
         itemsRV.adapter = adapterItems
 
         if (goal == "modification") {
-            val value = mSkillVM.modification.value!![indexMod].value
+            val value = mSkillVM.mapMod[key]?.value?.get(indexMod)?.value ?: 1
             if (indexMod >= 0 && value > 0) {
                 tvMainTypeWeapon.text = list[value - 1]
             }
@@ -122,11 +120,7 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
         )
 
         if (goal == "characterMenu") {
-            mSkillVM.clearVM()
-            val bundleQ = Bundle()
-            bundleQ.putString("title", list[position])
-            parentFragment?.view?.findNavController()
-                ?.navigate(R.id.action_characterMenu_to_pres_skillTest, bundleQ)
+            (activity as PresentHost).openSkillTest(mCharacterVM.characterId)
         }
 
         if (goal == "difficult") {
@@ -136,7 +130,7 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
 
         if (goal == "modification") {
             if (indexMod >= 0) {
-                mSkillVM.modification.value!![indexMod].value = position + 1
+                mSkillVM.mapMod[key]?.value?.get(indexMod)?.value = position + 1
             }
         }
         if (goal == "goal") {
@@ -148,65 +142,3 @@ class DropDownList : Fragment(), DropDownAdapterRV.TemplateHolder.OnItemClickLis
         }
     }
 }
-
-
-/*interface loadFragmentDropDown {
-    fun loadFragmentDropDown(main: String, them: String, goal: String) {
-        val bundle = Bundle()
-        bundle.putString("main", main)
-        bundle.putString("them", them)
-        bundle.putInt("indexMod", position)
-        bundle.putString("goal", goal)
-        val options = SpecialGameData().modName
-        bundle.putStringArrayList("list", options)
-        val fragment = DropDownList()
-        fragment.arguments = bundle
-        childFragmentManager.commit {
-            replace(id, fragment)
-            addToBackStack(null)
-        }
-    }
-}*/
-
-
-/*fun loadFragmentDropDown(main:String, them:String, list:ArrayList<String>, fragmentId:Int ){
-    val bundle = Bundle()
-    bundle.putString("main", main)
-    bundle.putString("them", them)
-    bundle.putStringArrayList("list", list)
-    val fragment = DropDownList()
-    fragment.arguments = bundle
-    childFragmentManager.commit {
-        replace(fragmentId, fragment)
-        addToBackStack(null)
-    }
-}*/
-
-/* используйте код ниже для:
-
-Подключения
-val bundle = Bundle()
-bundle.putString("main", "Выберите тип оружия")
-bundle.putStringArrayList("list", arrayListOf("Ближний бой", "Дальний бой", "Автоматический огонь", "Взрывчатка"))
-loadFragment(R.id.weapon_edit_type_RV, DropDownList(), bundle)  , где R.id.weapon_edit_type_RV это id места под фрагмент
-
-private fun loadFragment(frCont: Int, fragment: Fragment, bundle: Bundle?) {
-        if (bundle != null) {
-            fragment.arguments = bundle
-        }
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(frCont, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
-    }
-
-Нахождения выбранного варианта
-val frag: Fragment = supportFragmentManager.findFragmentById(R.id.weapon_edit_type_RV)!!
-val type = frag.view?.findViewById<TextView>(R.id.fr_type_weapon_main)?.text.toString()
-
-Проверки
-if (type==main){
-                res=0
-                Toast.makeText(this, "Выберите тип",Toast.LENGTH_SHORT).show()
-            }
- */

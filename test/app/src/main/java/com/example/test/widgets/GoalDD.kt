@@ -5,29 +5,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.helpers.GoalDDAdapterRV
-import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
 
 class GoalDD : Fragment(), GoalDDAdapterRV.TemplateHolder.OnItemClickListener {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
-    private val mCharacterVM: CharacterDAO by activityViewModels()
 
     private lateinit var tvMainTypeWeapon: TextView
     private lateinit var itemsRV: RecyclerView
     private var more: Int = 0
     private var less: Int = 0
     private var indexMod: Int = -1
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private var keyAllGoals = 0
+    private var keyRoll = 0
+    private var keyFragment = 0
+    private var pos = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +36,11 @@ class GoalDD : Fragment(), GoalDDAdapterRV.TemplateHolder.OnItemClickListener {
         val bundle = this.arguments
         val main = bundle!!.getString("main", "")
         val them = bundle.getString("them", "yellow")
-        indexMod = bundle.getInt("indexMod", -1) ?: -1
+        indexMod = bundle.getInt("indexMod", -1)
+        keyAllGoals = bundle.getInt("keyAllGoals")
+        keyRoll = bundle.getInt("keyRoll")
+        keyFragment = bundle.getInt("keyFragment")
+        pos = bundle.getInt("position")
 
         tvMainTypeWeapon = view.findViewById<TextView>(R.id.main)
         itemsRV = view.findViewById<RecyclerView>(R.id.items)
@@ -93,7 +96,7 @@ class GoalDD : Fragment(), GoalDDAdapterRV.TemplateHolder.OnItemClickListener {
         itemsRV.layoutManager =
             LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
         itemsRV.adapter = adapterItems
-        mSkillVM.allGoals.observe(viewLifecycleOwner) {
+        mSkillVM.mapGoal[keyAllGoals]?.observe(viewLifecycleOwner) {
             val list = mutableListOf<String>()
             it.forEach { goal ->
                 list.add(goal.name)
@@ -104,45 +107,65 @@ class GoalDD : Fragment(), GoalDDAdapterRV.TemplateHolder.OnItemClickListener {
             adapterItems.setData(list)
         }
 
-        val goalsList = mutableListOf<Goal>()
-        mCharacterVM.characterList.value?.forEach {
-            if (it.gameId == mCharacterVM.gameId) {
-                if (it.id != mCharacterVM.characterId) {
-                    val goal = Goal()
-                    goal.characterId = it.id
-                    val name = it.attributes.singleOrNull { gp ->
-                        gp.title == "Базовые параметры"
-                    }?.attributes?.listParamStr?.singleOrNull { pn ->
-                        pn.name == "Имя персонажа"
-                    }?.value ?: ""
-                    goal.name = name
-                    goalsList.add(goal)
-                }
-            }
-        }
-        mSkillVM.allGoals.value = goalsList
-        if (goalsList.isEmpty()) {
-            tvMainTypeWeapon.text = "Цели не найдены"
-        }
-
         return view
     }
 
     override fun onItemClick(position: Int) {
-        tvMainTypeWeapon.text = mSkillVM.allGoals.value?.get(position)?.name
-        itemsRV.visibility = View.GONE
-        tvMainTypeWeapon.setCompoundDrawablesWithIntrinsicBounds(
-            0,
-            0,
-            more,
-            0
-        )
-
-        val chosenGoal = mSkillVM.allGoals.value?.get(position)
+        val chosenGoal = mSkillVM.mapGoal[keyAllGoals]?.value?.get(position)
         if (chosenGoal != null) {
-            mSkillVM.chosenGoals.value?.set(position, chosenGoal)
-            mSkillVM.allGoals.value?.remove(chosenGoal)
+            val map = mSkillVM.mapGoalMap[keyFragment]?.value
+            var r = true
+            if (map != null) {
+                for ((key, value) in map) {
+                    if (value == chosenGoal) {
+                        r = false
+                    }
+                }
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Список выбранных целей не найден",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            if (r) {
+                tvMainTypeWeapon.text = chosenGoal.name
+                itemsRV.visibility = View.GONE
+                tvMainTypeWeapon.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    0,
+                    more,
+                    0
+                )
+                mSkillVM.mapGoalMap[keyFragment]?.value?.set(pos, chosenGoal)
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Вы уже выбрали эту цель, пожалуйста выберите другую",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "Выбранная цель не найдена",
+                Toast.LENGTH_SHORT
+            ).show()
         }
-
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val map = mSkillVM.mapGoalMap[keyFragment]?.value
+        if (map != null) {
+            map.remove(pos)
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "Список выбранных целей не найден",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
 }

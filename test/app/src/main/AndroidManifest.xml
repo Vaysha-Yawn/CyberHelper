@@ -33,5 +33,6 @@
         <activity android:name=".activity_and_fragments.hosts.PresentHost" />
         <activity android:name=".activity_and_fragments.hosts.LoadHost" />
         <activity android:name=".activity_and_fragments.hosts.NewHost" />
+        <activity android:name=".activity_and_fragments.hosts.FightHost" />
     </application>
 </manifest>

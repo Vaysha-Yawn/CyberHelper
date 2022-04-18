@@ -7,7 +7,7 @@
     android:orientation="horizontal">
 
     <Button
-        android:id="@+id/plus_and_minus_minus"
+        android:id="@+id/minus"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center_vertical"
@@ -23,7 +23,7 @@
         android:backgroundTint="@color/black">
 
         <EditText
-            android:id="@+id/plus_and_minus_edit"
+            android:id="@+id/edit"
             style="@style/Text.H2"
             android:textSize="30sp"
             android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
     </FrameLayout>
 
     <Button
-        android:id="@+id/plus_and_minus_plus"
+        android:id="@+id/plus"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center_vertical"

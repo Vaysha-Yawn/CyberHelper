@@ -60,6 +60,10 @@ class Home : Fragment() {
                 view.findNavController().navigate(R.id.action_home2_to_choiceTemplate)
             }
 
+            view.findViewById<Button>(R.id.Home_button).setOnClickListener {
+                (activity as PresentHost).openIniciativa(mCharacterVM.characterId)
+            }
+
             view.findViewById<ImageButton>(R.id.back).setOnClickListener {
                 (activity as PresentHost).backToMain()       }
         }catch (e:Exception){Toast.makeText(view.context, "$e", Toast.LENGTH_SHORT).show()}

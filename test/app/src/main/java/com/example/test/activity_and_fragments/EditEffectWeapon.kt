@@ -104,7 +104,7 @@ class EditEffectWeapon : Fragment() {
             val frag1: Fragment =
                 childFragmentManager.findFragmentById(R.id.weapon_edit_plus_and_minus_num_count)!!
             val numCount =
-                frag1.view?.findViewById<EditText>(R.id.plus_and_minus_edit)?.text.toString()
+                frag1.view?.findViewById<EditText>(R.id.edit)?.text.toString()
                     .toIntOrNull()
             if (numCount == null) {
                 res = 0
@@ -125,7 +125,7 @@ class EditEffectWeapon : Fragment() {
 
             val frag2: Fragment =
                 childFragmentManager.findFragmentById(R.id.weapon_edit_plus_and_minus_dx)!!
-            val dX = frag2.view?.findViewById<EditText>(R.id.plus_and_minus_edit)?.text.toString()
+            val dX = frag2.view?.findViewById<EditText>(R.id.edit)?.text.toString()
                 .toIntOrNull()
             if (dX == null) {
                 res = 0
@@ -146,7 +146,7 @@ class EditEffectWeapon : Fragment() {
             val frag4: Fragment =
                 childFragmentManager.findFragmentById(R.id.weapon_edit_plus_and_minus_wearout)!!
             val wearout =
-                frag4.view?.findViewById<EditText>(R.id.plus_and_minus_edit)?.text.toString()
+                frag4.view?.findViewById<EditText>(R.id.edit)?.text.toString()
                     .toIntOrNull()
             if (wearout == null) {
                 res = 0

@@ -1,14 +1,14 @@
 package com.example.test.activity_and_fragments.fight
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
-import androidx.lifecycle.findViewTreeViewModelStoreOwner
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
@@ -20,7 +20,7 @@ import com.example.test.widgets.*
 
 
 class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
-    RadioGroupTwo.OnCheckedRadio {
+    RadioGroupTwo.OnCheckedRadio, Header.HeaderBack {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
 
@@ -72,56 +72,72 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
         val list = mutableListOf<String>()
         val listFr = mutableListOf<Fragment>()
 
-        val bundleD = Bundle()
-        bundleD.putString("goal", "goal")
-        val fragmentD = Roll()
-        fragmentD.arguments = bundleD
-        list.add("Бросок атакующего")
-        listFr.add(fragmentD)
-
-        val bundle = Bundle()
+       /* val bundle = Bundle()
         bundle.putString("text1", "Успех")
         bundle.putString("text2", "Не успех")
         val fragment = RadioGroupTwo(this)
         fragment.arguments = bundle
         list.add("Проверка выбора")
-        listFr.add(fragment)
+        listFr.add(fragment)*/
+
+
+
 
         when (attack.fightType?.roll) {
             "one roll" -> {
-
+                mSkillVM.mapGoalMap[0] = MutableLiveData()
+                mSkillVM.mapGoalMap[0]?.value = mutableMapOf()
+                mSkillVM.map[0] = mutableMapOf()
+                mSkillVM.map[0]?.set(0, mutableMapOf())
+                mSkillVM.map[0]?.get(0)?.set(0, "goalMap")
+                val fragment = Roll()
+                val bundle = Bundle()
+                bundle.putInt("position", 0 )
+                bundle.putInt("keyFragment",0)
+                fragment.arguments = bundle
+                list.add(attack.fightType?.nameRoll?:"")
+                listFr.add(fragment)
             }
             "few roll" -> {
-                //здесь добавить VP2 в качестве отдельного фрагмента
-                //loadFragmentLight(Roll(), R.id.mainFr)
+                mSkillVM.mapGoalMap[0] = MutableLiveData()
+                mSkillVM.mapGoalMap[0]?.value = mutableMapOf()
+                mSkillVM.map[0] = mutableMapOf()
+                mSkillVM.map[0]?.set(0, mutableMapOf())
+                mSkillVM.map[0]?.get(0)?.set(0, "goalMap")
+                val fragment = FewRoll()
+                val bundle = Bundle()
+                bundle.putInt("keyFragment",0)
+                fragment.arguments = bundle
+                list.add(attack.fightType?.nameRoll?:"")
+                listFr.add(fragment)
             }
             "arbitrary number" -> {
-                val bundleF = Bundle()
+                /*val bundleF = Bundle()
                 bundleF.putInt("value", 0)
                 bundleF.putInt("minValue", 0)
                 bundleF.putString("them", "green")
                 val fragmentF = PlusAndMinus()
                 fragmentF.arguments = bundleF
                 list.add("")
-                listFr.add(fragmentF)
-
+                listFr.add(fragmentF)*/
             }
-        }
+            "DD by table" -> {
 
-        val fragmentHeader = Header()
-        childFragmentManager.commit {
-            replace(R.id.header, fragmentHeader)
-            addToBackStack(null)
+                //loadDD(main:String, "green", goal:String, list:ArrayList<String>, resId:Int)
+            }
         }
 
         val binding = FightSecondBinding.bind(view)
         fun bind() = with(binding) {
-            title.text = attack.fightType?.name?:""
+
+            loadFragmentLight(Header(this@FightSecond), R.id.header)
+            title.text = attack.fightType?.name ?: "Какое-то название"
             val adapterRV = FragmentsAdapterRV(list, listFr, this@FightSecond)
             RV.adapter = adapterRV
-            RV.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
+            RV.layoutManager =
+                LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
             btnNext.setOnClickListener {
-                view.findNavController().navigate(R.id.action_fightAttack_to_fightThreeGoal)
+                view.findNavController().navigate(R.id.action_fightSecond_to_fightThree)
             }
         }
 
@@ -143,6 +159,10 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
 
     override fun checkedRadio2() {
         Toast.makeText(view?.context, "text2", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun back() {
+        view?.findNavController()?.popBackStack()
     }
 
 

@@ -13,7 +13,7 @@
 
         <TextView
             style="@style/Text.H2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
@@ -22,7 +22,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/frPlusMinusSmallYellow1D10"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp" />
@@ -52,11 +52,11 @@
             android:layout_marginTop="20dp" />
 
         <LinearLayout
-            android:layout_marginTop="20dp"
             android:id="@+id/plmingrey"
             android:layout_width="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <Button
@@ -74,15 +74,15 @@
                 android:background="@color/black">
 
                 <EditText
-                    android:inputType="none"
-                    android:editable="false"
                     style="@style/Text.H2"
-                    android:textColor="@color/grey"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:backgroundTint="@color/grey"
+                    android:editable="false"
+                    android:inputType="none"
                     android:text="0"
+                    android:textColor="@color/grey"
                     android:textSize="20sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             </FrameLayout>
@@ -96,4 +96,5 @@
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>

@@ -19,10 +19,6 @@ class PlusAndMinus : Fragment() {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +33,7 @@ class PlusAndMinus : Fragment() {
         val them = args?.getString("them", "orange") ?: "orange"
         val goal = args?.getString("goal", "") ?: ""
         val index = args?.getInt("indexMod", -1) ?: -1
+        val editKey = args?.getInt("editKey", -1) ?: mSkillVM.createId()
 
         when (them) {
             "orange" -> {
@@ -56,9 +53,9 @@ class PlusAndMinus : Fragment() {
             }
         }
 
-        val edit = view.findViewById<TextView>(R.id.plus_and_minus_edit)
-        val plus = view.findViewById<Button>(R.id.plus_and_minus_plus)
-        val minus = view.findViewById<Button>(R.id.plus_and_minus_minus)
+        val edit = view.findViewById<TextView>(R.id.edit)
+        val plus = view.findViewById<Button>(R.id.plus)
+        val minus = view.findViewById<Button>(R.id.minus)
 
         if (maxValue == -1) {
             maxValue = null
@@ -79,13 +76,14 @@ class PlusAndMinus : Fragment() {
                 }
                 "mod" -> {
                     if (index >= 0) {
-                        mSkillVM.modification.value!![index].value = value
+                        mSkillVM.mapMod[editKey]?.value?.get(index)?.value = value
                     }
                 }
                 "luck" -> {
                     mSkillVM.usingLuckyPoint = value
                 }
             }
+            mSkillVM.mapInt[editKey]?.value = value
         }
 
 
