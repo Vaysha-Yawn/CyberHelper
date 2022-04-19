@@ -3,25 +3,30 @@ package com.example.test.helpers
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.databinding.DropDownListItemBinding
+import com.example.test.views.DropDownView
 
-class DropDownAdapterRV(val list: List<String>, val them: String, private val onClick: TemplateHolder.OnItemClickListener) :
+class DropDownAdapterRV(
+    val list: List<String>,
+    val them: String,
+    private val onClick: DropDownView.OnItemClickListener
+) :
     RecyclerView.Adapter<DropDownAdapterRV.TemplateHolder>() {
 
-    class TemplateHolder(view: View, private val onClick: OnItemClickListener) : RecyclerView.ViewHolder(view){
+    class TemplateHolder(view: View, private val onClick: DropDownView.OnItemClickListener) :
+        RecyclerView.ViewHolder(view) {
         private val binding = DropDownListItemBinding.bind(view)
 
         fun bind(item: String, them: String) = with(binding) {
             tvItem.text = item
             when (them) {
                 "yellow" -> {
-                    tvItem.setTextColor( tvItem.context.getColor(R.color.yellow))
+                    tvItem.setTextColor(tvItem.context.getColor(R.color.yellow))
                 }
                 "green" -> {
-                    tvItem.setTextColor( tvItem.context.getColor(R.color.green))
+                    tvItem.setTextColor(tvItem.context.getColor(R.color.green))
                 }
                 "blue" -> {
                     tvItem.setTextColor( tvItem.context.getColor(R.color.cyan))
@@ -30,11 +35,6 @@ class DropDownAdapterRV(val list: List<String>, val them: String, private val on
             tvItem.setOnClickListener{
                 onClick.onItemClick(adapterPosition)
             }
-
-        }
-
-        interface OnItemClickListener{
-            fun onItemClick(position: Int)
         }
 
     }
