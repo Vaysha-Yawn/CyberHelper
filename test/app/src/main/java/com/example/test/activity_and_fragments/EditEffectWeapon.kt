@@ -1,32 +1,17 @@
 package com.example.test.activity_and_fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.data_base.EffectWeapon
-import com.example.test.data_base.FightType
-import com.example.test.data_base.TemplateFightType
-import com.example.test.data_base.TemplateParamOptions
 import com.example.test.viewModels.CharacterDAO
-import com.example.test.widgets.DropDownList
-import com.example.test.widgets.PlusAndMinus
 
 class EditEffectWeapon : Fragment() {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +19,7 @@ class EditEffectWeapon : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.edit_effect_weapon, container, false)
 
-        val characterId = mCharacterVM.characterId
+        /*val characterId = mCharacterVM.characterId
         val args = this.arguments
         val groupTitle = args?.getString("groupTitle", "") ?: ""
         val indexItem = args?.getInt("indexItem", -1) ?: -1
@@ -48,10 +33,10 @@ class EditEffectWeapon : Fragment() {
         // подключаем фрагмент выпадающего списка
         val bundle = Bundle()
         val typeWeapon = TemplateParamOptions().mapParamOptionsSupporting["Тип оружия"]
-        if (effectWeapon.fightType == FightType()) {
+        if (effectWeapon.fightType == "") {
             bundle.putString("main", typeWeapon?.defMain)
         } else {
-            bundle.putString("main", effectWeapon.fightType?.name?:"")
+            //bundle.putString("main", effectWeapon.fightType?.name?:"")
         }
         bundle.putString("them", "green")
         val options = ArrayList<String>()
@@ -173,7 +158,7 @@ class EditEffectWeapon : Fragment() {
                     mCharacterVM.LOCaddEffectWeaponItem(
                         EffectWeapon(
                             name,
-                            typeAttack,
+                            ,
                             numCount!!,
                             dX!!,
                             wearout
@@ -187,7 +172,7 @@ class EditEffectWeapon : Fragment() {
                 }
                 view.findNavController().popBackStack()
             }
-        }
+        }*/
         return view
     }
 
