@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.test.R
 import com.example.test.activity_and_fragments.hosts.FightHost
+import com.example.test.data_base.SpecialGameData
+import com.example.test.data_base.TemplateFightType
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
 
@@ -26,16 +28,17 @@ class FightResult : Fragment() {
         // нужно передать сюда все ключи, их значение, формулу, чтобы расчитать бросок
         val characterId = mCharacterVM.characterId
         val attack = mSkillVM.attack!!
-        val title = attack.fightType?.name?:""
+        val title = attack.fightType?:""
+        val fightType = TemplateFightType().mapFightType[title]
 
 
         // Рассчитываем сложность и бросок
         // здесь мы должны получить все ключи и указания где находятся и к чему относятся значения
-        for ((keyFragment, value) in mSkillVM.map[0]!!){
+        /*for ((keyFragment, value) in mSkillVM.map[0]!!){
 
-        }
+        }*/
 
-        when(attack.fightType!!.difficult){
+        when(fightType?.difficult){
             "one roll" -> {
 
             }

@@ -37,7 +37,7 @@ class ChooseWeapon : Fragment(), ChooseWeaponAdapterRV.TemplateHolder.OnItemClic
         val characterId = mCharacterVM.characterId
         val listWeapon = mutableListOf(
             EffectWeapon(
-                fightType = TemplateFightType().mapFightType["Рукопашный бой"] ?: FightType(),
+                //fightType = TemplateFightType().mapFightType["Рукопашный бой"] ?: FightType(),
                 name = "Рукопашный бой"
             )
         )

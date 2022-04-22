@@ -43,7 +43,7 @@ class Goals : Fragment(), GoalTemplateHolder.LoadFragment, GoalTemplateHolder.De
                 }
             }
         }
-        mSkillVM.allGoals.value = goalsList
+        //mSkillVM.allGoals.value = goalsList
 
         val view = inflater.inflate(R.layout.goals, container, false)
 
@@ -53,10 +53,10 @@ class Goals : Fragment(), GoalTemplateHolder.LoadFragment, GoalTemplateHolder.De
                 modRV.layoutManager =
                     LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
                 modRV.adapter = adapter
-                mSkillVM.chosenGoals.observe(viewLifecycleOwner) {
+                /*mSkillVM.chosenGoals.observe(viewLifecycleOwner) {
                     adapter.setData(it)
                     adapter.notifyDataSetChanged()
-                }
+                }*/
                 addMod.setOnClickListener {
                     try {
                     addGoal()
@@ -77,7 +77,7 @@ class Goals : Fragment(), GoalTemplateHolder.LoadFragment, GoalTemplateHolder.De
         bundle.putInt("indexMod", position)
         bundle.putString("goal", "goal")
         val options = ArrayList<String>()
-        for (g in mSkillVM.allGoals.value!!){
+        /*for (g in mSkillVM.allGoals.value!!){
             options.add(g.name)
         }
         bundle.putStringArrayList("list", options)
@@ -86,29 +86,29 @@ class Goals : Fragment(), GoalTemplateHolder.LoadFragment, GoalTemplateHolder.De
         childFragmentManager.commit {
             replace(id, fragment)
             addToBackStack(null)
-        }
+        }*/
     }
 
     override fun deleteGoal(position: Int) {
-        val id = mSkillVM.chosenGoals.value!![position].resId
-        mSkillVM.deletedIdByGoal.add(id)
-        mSkillVM.allGoals.value?.add(mSkillVM.chosenGoals.value!![position])
-        mSkillVM.chosenGoals.value!!.removeAt(position)
+//        val id = mSkillVM.chosenGoals.value!![position].resId
+//        mSkillVM.deletedIdByGoal.add(id)
+//        mSkillVM.allGoals.value?.add(mSkillVM.chosenGoals.value!![position])
+//        mSkillVM.chosenGoals.value!!.removeAt(position)
     }
 
     override fun updIdMod(position: Int, id: Int) {
-        mSkillVM.allGoals.value!![position].resId = id
+        //mSkillVM.allGoals.value!![position].resId = id
     }
 
     fun addGoal() {
         var id = 0
-        if (mSkillVM.deletedIdByGoal.isNotEmpty()) {
+        /*if (mSkillVM.deletedIdByGoal.isNotEmpty()) {
             id = mSkillVM.deletedIdByGoal.minOrNull() ?: 0
             if (id != 0) {
                 mSkillVM.deletedIdByGoal.remove(id)
             }
         }
-        mSkillVM.chosenGoals.value?.add(Goal("randomName", id, 0))
+        mSkillVM.chosenGoals.value?.add(Goal("randomName", id, 0))*/
         adapter.notifyDataSetChanged()
     }
 }

@@ -72,12 +72,12 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHold
             bundle.putInt("key", keyListMod)
             val options = SpecialGameData().modName
             bundle.putStringArrayList("list", options)
-            val fragment = DropDownList()
+            /*val fragment = DropDownList()
             fragment.arguments = bundle
             childFragmentManager.commit {
                 replace(id, fragment)
                 addToBackStack(null)
-            }
+            }*/
         } else {
             val bundle = Bundle()
             bundle.putInt("value", value)

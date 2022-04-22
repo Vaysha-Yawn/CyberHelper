@@ -13,7 +13,6 @@ import com.example.test.data_base.EffectAdd
 import com.example.test.data_base.TemplateParamOptions
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
-import com.example.test.widgets.DropDownList
 import com.example.test.widgets.PlusAndMinus
 
 class EditEffectAdd : Fragment() {
@@ -97,7 +96,7 @@ class EditEffectAdd : Fragment() {
         val options = arrayListOf<String>()
         param?.options?.forEach { options.add(it) }
         bundle.putStringArrayList("list", options)
-        loadFragment(R.id.property, DropDownList(), bundle)
+        //loadFragment(R.id.property, DropDownList(), bundle)
 
         // настраиваем переключение и запоминание знака
         val btnSign = view.findViewById<Button>(R.id.sign)

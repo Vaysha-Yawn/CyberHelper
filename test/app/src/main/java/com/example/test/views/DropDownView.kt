@@ -14,12 +14,16 @@ import com.example.test.databinding.DropDownListBinding
 import com.example.test.helpers.DropDownAdapterRV
 
 class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
-    LinearLayout(context, attrs, defStyleAttr, defStyleRes) {
+    LinearLayout(context, attrs, defStyleAttr, defStyleRes),
+    DropDownAdapterRV.TemplateHolder.OnDDChosen {
 
     private var binding: DropDownListBinding
 
     private lateinit var more: Drawable
     private lateinit var less: Drawable
+
+    private var color: Int = 0
+    private lateinit var list: List<String>
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : this(
         context,
@@ -46,13 +50,14 @@ class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, de
             defStyleAttr,
             defStyleRes
         )
-        val dDColor = typedArray.getColor(
+
+        color = typedArray.getColor(
             R.styleable.DropDownView_DD_color,
             ContextCompat.getColor(context, R.color.green)
         )
 
         val textColor = typedArray.getColor(
-            R.styleable.DropDownView_DD_color,
+            R.styleable.DropDownView_text_color,
             ContextCompat.getColor(context, R.color.black)
         )
 
@@ -71,9 +76,9 @@ class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, de
 
             main.setTextColor(textColor)
 
-            main.backgroundTintList = ColorStateList.valueOf(dDColor)
+            main.backgroundTintList = ColorStateList.valueOf(color)
 
-            main.setCompoundDrawables(null, null, more, null)
+            main.setCompoundDrawablesWithIntrinsicBounds(null, null, more, null)
         }
         typedArray.recycle()
     }
@@ -82,7 +87,10 @@ class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, de
         return binding.main.text.toString()
     }
 
-    fun setDDArrayAndListener(mainText: String, list: List<String>) {
+    fun setDDArrayAndListener(
+        list: List<String>,
+        ob: DropDownAdapterRV.TemplateHolder.WhenValueTo
+    ) {
         with(binding) {
             main.setOnClickListener {
                 if (items.visibility != View.VISIBLE) {
@@ -93,47 +101,51 @@ class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, de
                     setMoreOrLess(true)
                 }
             }
+
+            this@DropDownView.list = list
+
+            val adapterItems =
+                DropDownAdapterRV(list, color, ob, this@DropDownView)
+            items.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            items.adapter = adapterItems
         }
-
-        val adapterItems =
-            DropDownAdapterRV(list, them, this)
-        itemsRV.layoutManager =
-            LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
-        itemsRV.adapter = adapterItems
-
-        if (goal == "modification") {
-            val value = mSkillVM.mapMod[key]?.value?.get(indexMod)?.value ?: 1
-            if (indexMod >= 0 && value > 0) {
-                tvMainTypeWeapon.text = list[value - 1]
-            }
-
-        }
-
     }
 
     private fun setMoreOrLess(moreOrLess: Boolean) {
         if (moreOrLess) {
-            binding.main.setCompoundDrawables(null, null, more, null)
+            binding.main.setCompoundDrawablesWithIntrinsicBounds(null, null, more, null)
         } else {
-            binding.main.setCompoundDrawables(null, null, less, null)
+            binding.main.setCompoundDrawablesWithIntrinsicBounds(null, null, less, null)
         }
     }
 
-    /*interface OnItemClickListener{
-        fun superOnItemClick(position: Int){
-            with(binding){
-            tvMainTypeWeapon.text = list[position]
-            itemsRV.visibility = View.GONE
-            tvMainTypeWeapon.setCompoundDrawablesWithIntrinsicBounds(
-                0,
-                0,
-                more,
-                0
-            )
+    override fun onDDChosen(position: Int) {
+        with(binding) {
+            main.text = list[position]
+            items.visibility = View.GONE
+            setMoreOrLess(true)
         }
+    }
+
+
+   /*
+    if (goal == "difficult") {
+        mSkillVM.dif.value = position
+        mSkillVM.difBoolean.value = !mSkillVM.difBoolean.value!!
+    }
+
+    if (goal == "modification") {
+        if (indexMod >= 0) {
+            mSkillVM.mapMod[key]?.value?.get(indexMod)?.value = position + 1
         }
-        fun onItemClick(position: Int)
+    }
+    if (goal == "goal") {
+        val chosenGoal = mSkillVM.allGoals.value?.get(position)
+        if (chosenGoal!=null){
+            mSkillVM.chosenGoals.value?.set(position, chosenGoal)
+            mSkillVM.allGoals.value?.remove(chosenGoal)
+        }
     }*/
-    // я короче хз, что делать с этим интерфейсом ....
 }
 

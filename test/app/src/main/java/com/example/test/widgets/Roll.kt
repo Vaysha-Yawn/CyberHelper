@@ -60,7 +60,7 @@ class Roll : Fragment() {
         }
 
         keyRoll = mSkillVM.createId()
-        mSkillVM.map[keyFragment]?.get(keyRoll)?.set(position, "goal")
+        //mSkillVM.map[keyFragment]?.get(keyRoll)?.set(position, "goal")
 
         /////////////////////////////////
         fun loadFragmentLight(fragment: Fragment, id: Int) {
@@ -117,7 +117,7 @@ class Roll : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        val m =  mSkillVM.map[keyFragment]?.get(keyRoll)
+        /*val m =  mSkillVM.map[keyFragment]?.get(keyRoll)
         if (m != null){
             for((key,value) in m){
                 when(value){
@@ -141,7 +141,7 @@ class Roll : Fragment() {
                     }
                 }
             }
-        }
+        }*/
         // очищение следов
     }
 

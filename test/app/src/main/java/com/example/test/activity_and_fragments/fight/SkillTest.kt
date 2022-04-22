@@ -14,7 +14,6 @@ import com.example.test.data_base.SpecialGameData
 import com.example.test.databinding.SkillTestBinding
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
-import com.example.test.widgets.DropDownList
 import com.example.test.widgets.Modificators
 import com.example.test.widgets.PlusAndMinus
 import com.example.test.widgets.m1D10
@@ -24,10 +23,6 @@ class SkillTest : Fragment() {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,12 +47,8 @@ class SkillTest : Fragment() {
         bundle.putString("them", "yellow")
         bundle.putStringArrayList("list", arr)
         bundle.putString("goal", "difficult")
-        val fragment = DropDownList()
-        fragment.arguments = bundle
-        childFragmentManager.commit {
-            replace(R.id.dropDownDifficult, fragment)
-            addToBackStack(null)
-        }
+
+        // место для настройки дд
 
         val fragmentMod = Modificators()
         childFragmentManager.commit {
@@ -75,9 +66,9 @@ class SkillTest : Fragment() {
         fun bind() = with(binding) {
             title.text = txtitle
 
-            mSkillVM.difBoolean.observe(viewLifecycleOwner) {
-                tvEdit.text = difficultValue[mSkillVM.dif.value!!]
-            }
+//            mSkillVM.difBoolean.observe(viewLifecycleOwner) {
+//                tvEdit.text = difficultValue[mSkillVM.dif.value!!]
+//            }
 
             back.setOnClickListener {
                 view.findNavController().popBackStack()
@@ -93,21 +84,21 @@ class SkillTest : Fragment() {
                 pn.name == txtitle
             }?.value ?: 0
 
-            mSkillVM.skill = skill
+            mSkillVM.skill = txtitle
 
             if (skill==0){
                 ifNoSkill.visibility = View.VISIBLE
                 luckyOrErudit.setOnCheckedChangeListener { group, checkedId ->
                     when(checkedId){
                         R.id.byLucky->{
-                            mSkillVM.luckyOrErudit = true
+                            //mSkillVM.luckyOrErudit = true
 
                             byLuckyLinLay.visibility = View.VISIBLE
                             luckLeft.visibility = View.VISIBLE
 
                         }
                         R.id.byErudition->{
-                            mSkillVM.luckyOrErudit = false
+                            //mSkillVM.luckyOrErudit = false
 
                             byLuckyLinLay.visibility = View.GONE
                             luckLeft.visibility = View.GONE
@@ -151,7 +142,6 @@ class SkillTest : Fragment() {
                 ifNoSkill.visibility = View.GONE
             }
 
-            //-------------------------------------------------------------------------------------------------------
         }
 
         bind()
@@ -163,7 +153,7 @@ class SkillTest : Fragment() {
             var res = 1
             val difficult = tvEdit.text.toString().toIntOrNull()
             if (difficult != null) {
-                mSkillVM.dif.value = difficult
+                //mSkillVM.dif.value = difficult
             } else {
                 res = 0
             }

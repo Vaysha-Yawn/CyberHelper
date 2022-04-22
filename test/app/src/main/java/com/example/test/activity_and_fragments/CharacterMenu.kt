@@ -20,10 +20,10 @@ import com.example.test.helpers.DropDownAdapterRV
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
 import com.example.test.viewModels.SkillTestVM
-import com.example.test.widgets.DropDownList
+import com.example.test.views.DropDownView
 
 
-class CharacterMenu : Fragment(),  DropDownAdapterRV.TemplateHolder.OnItemClickListener {
+class CharacterMenu : Fragment(),  DropDownAdapterRV.TemplateHolder.WhenValueTo {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
@@ -59,23 +59,11 @@ class CharacterMenu : Fragment(),  DropDownAdapterRV.TemplateHolder.OnItemClickL
         }
 
         // настраиваем выпадающий список
-        val arr = ArrayList<String>()
+        val arr = mutableListOf<String>()
         SpecialGameData().mapParameterToSkill.forEach { (key, _) ->
             arr.add(key)
         }
-        val bundleB = Bundle()
-        bundleB.putString("main", "Выберите навык")
-        bundleB.putString("them", "yellow")
-        bundleB.putStringArrayList("list", arr)
-        bundleB.putString("goal", "characterMenu")
-        val fragment = DropDownList()
-        fragment.arguments = bundleB
-        childFragmentManager.commit {
-            replace(R.id.CharacterMenu_CheckLevel, fragment)
-            addToBackStack(null)
-        }
-
-        /*}catch (e:Exception){Toast.makeText(view.context, "$e", Toast.LENGTH_LONG).show()}*/
+        view.findViewById<DropDownView>(R.id.DDSkill).setDDArrayAndListener(arr, this)
 
         view.findViewById<ImageButton>(R.id.CharacterMenu_Fight).setOnClickListener {
             (activity as PresentHost).openFight(characterId)
@@ -97,8 +85,8 @@ class CharacterMenu : Fragment(),  DropDownAdapterRV.TemplateHolder.OnItemClickL
         return view
     }
 
-    override fun onItemClick(position: Int) {
-
+    override fun whenValueTo(position: Int) {
+        (activity as PresentHost).openSkillTest(mCharacterVM.characterId)
     }
 
 }

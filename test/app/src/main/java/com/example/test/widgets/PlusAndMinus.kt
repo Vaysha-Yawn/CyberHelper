@@ -69,10 +69,10 @@ class PlusAndMinus : Fragment() {
         fun setValueForSkillVM(goal:String, value:Int){
             when (goal) {
                 "1d10" -> {
-                    mSkillVM.m1d10.value = value
+                    //mSkillVM.m1d10.value = value
                 }
                 "critical" -> {
-                    mSkillVM.critical.value = value
+                    //mSkillVM.critical.value = value
                 }
                 "mod" -> {
                     if (index >= 0) {

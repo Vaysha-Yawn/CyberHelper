@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
 import com.example.test.data_base.FightType
+import com.example.test.data_base.TemplateFightType
 import com.example.test.databinding.FightThreeBinding
 import com.example.test.helpers.FragmentsAdapterRV
 import com.example.test.viewModels.CharacterDAO
@@ -33,7 +34,7 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, H
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fight_three, container, false)
-        val fightType = mSkillVM.attack?.fightType ?: FightType()
+        val fightType = TemplateFightType().mapFightType[mSkillVM.attack?.fightType]
 
         fun loadFragmentLight(fragment:Fragment, id:Int){
             childFragmentManager.commit {
@@ -45,7 +46,7 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, H
         val list = mutableListOf<String>()
         val listFr = mutableListOf<Fragment>()
 
-        when(fightType.difficult){
+        when(fightType?.difficult){
             "one roll" -> {
                 mSkillVM.mapGoalMap[1] = MutableLiveData()
                 mSkillVM.mapGoalMap[1]?.value = mutableMapOf()
@@ -85,10 +86,10 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, H
             }
         }
 
-        val binding = FightThreeBinding.bind(view)
+        val binding = com.example.test.databinding.FightThreeBinding.bind(view)
         fun bind() = with(binding) {
             loadFragmentLight(Header(this@FightThree), R.id.header)
-            title.text = fightType.name
+            title.text = fightType?.name
             val adapter = FragmentsAdapterRV(list, listFr, this@FightThree)
             RV.layoutManager =
                 LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)

@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.test.R
 import com.example.test.databinding.SettingFightTypeBinding
-import com.example.test.widgets.DropDownList
 
 class SettingFightType : Fragment() {
 
@@ -19,7 +18,7 @@ class SettingFightType : Fragment() {
         val view = inflater.inflate(R.layout.setting_fight_type, container, false)
 
         fun loadDD(main:String, them:String, goal:String, list:ArrayList<String>, id:Int){
-            val fragment = DropDownList()
+           /* val fragment = DropDownList()
             val bundle = Bundle()
             bundle.putString("main", main)
             bundle.putString("them", them)
@@ -29,7 +28,7 @@ class SettingFightType : Fragment() {
             childFragmentManager.commit {
                 replace(id, fragment)
                 addToBackStack(null)
-            }
+            }*/
         }
 
         fun loadFragmentLight(fragment:Fragment, id:Int){

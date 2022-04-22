@@ -95,12 +95,15 @@
         android:textAllCaps="false"
         android:textColor="@color/cyan" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:layout_marginTop="10dp"
-        android:id="@+id/CharacterMenu_CheckLevel"
+    <com.example.test.views.DropDownView
+        android:id="@+id/DDSkill"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"/>
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="10dp"
+        app:DD_color="@color/yellow"
+        app:main_text="Проверка навыка"
+        app:text_color="@color/black" />
 
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="wrap_content"

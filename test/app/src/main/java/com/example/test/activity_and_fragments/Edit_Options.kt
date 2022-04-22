@@ -10,12 +10,8 @@ import android.widget.Toast
 import androidx.fragment.app.*
 import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.data_base.TemplateParamNum
 import com.example.test.data_base.TemplateParamOptions
-import com.example.test.data_base.TemplateParamStr
 import com.example.test.viewModels.CharacterDAO
-import com.example.test.viewModels.GameDAO
-import com.example.test.widgets.DropDownList
 
 class Edit_Options : Fragment() {
 
@@ -66,12 +62,12 @@ class Edit_Options : Fragment() {
             options.add(i)
         }
         bundle.putStringArrayList("list", options)
-        val fragment = DropDownList()
+        /*val fragment = DropDownList()
         fragment.arguments = bundle
         childFragmentManager.commit {
             replace(R.id.drop_down_fragment, fragment)
             addToBackStack(null)
-        }
+        }*/
 
         closeBtn.setOnClickListener {
             view.findNavController().popBackStack()

@@ -18,7 +18,6 @@ import com.example.test.data_base.TemplateParamNum
 import com.example.test.data_base.TemplateParamOptions
 import com.example.test.data_base.TemplateParamStr
 import com.example.test.viewModels.CharacterDAO
-import com.example.test.widgets.DropDownList
 
 class AddNewParam : Fragment() {
 
@@ -151,12 +150,12 @@ class AddNewParam : Fragment() {
             bundleQ.putString("main", main)
             bundleQ.putString("them", "green")
             bundleQ.putStringArrayList("list", options)
-            val fragment = DropDownList()
+            /*val fragment = DropDownList()
             fragment.arguments = bundleQ
             childFragmentManager.commit {
                 replace(R.id.drop_down_fragment, fragment)
                 addToBackStack(null)
-            }
+            }*/
 
             view.findViewById<ImageButton>(R.id.back).setOnClickListener {
                 view.findNavController().popBackStack()

@@ -72,12 +72,12 @@ class m1D10 : Fragment() {
                 greyCritic.visibility = View.GONE
                 frCritic.visibility = View.VISIBLE
                 critText.setTextColor(resources.getColor(R.color.yellow))
-                mSkillVM.boolCritical.value = true
+                //mSkillVM.boolCritical.value = true
             } else {
                 greyCritic.visibility = View.VISIBLE
                 frCritic.visibility = View.GONE
                 critText.setTextColor(resources.getColor(R.color.grey))
-                mSkillVM.boolCritical.value = false
+                //mSkillVM.boolCritical.value = false
             }
         }
 

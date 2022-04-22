@@ -13,7 +13,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
 import com.example.test.data_base.EffectWeapon
-import com.example.test.databinding.FightSecondBinding
+import com.example.test.data_base.TemplateFightType
 import com.example.test.helpers.FragmentsAdapterRV
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.widgets.*
@@ -31,6 +31,7 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
         val view = inflater.inflate(R.layout.fight_second, container, false)
         mSkillVM.clearVM()
         val attack = mSkillVM.attack ?: EffectWeapon()
+        val fightType = TemplateFightType().mapFightType[attack.fightType]
 
         fun loadPM(value:Int, minValue:Int, maxValue:Int?, resId:Int){
             val bundleD = Bundle()
@@ -49,7 +50,7 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
             }
         }
         fun loadDD(main:String, them:String, goal:String, list:ArrayList<String>, id:Int){
-            val fragment = DropDownList()
+            /*val fragment = DropDownList()
             val bundle = Bundle()
             bundle.putString("main", main)
             bundle.putString("them", them)
@@ -59,7 +60,7 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
             childFragmentManager.commit {
                 replace(id, fragment)
                 addToBackStack(null)
-            }
+            }*/
         }
 
         fun loadFragmentLight(fragment:Fragment, id:Int){
@@ -83,32 +84,30 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
 
 
 
-        when (attack.fightType?.roll) {
+        when (fightType?.roll) {
             "one roll" -> {
                 mSkillVM.mapGoalMap[0] = MutableLiveData()
                 mSkillVM.mapGoalMap[0]?.value = mutableMapOf()
                 mSkillVM.map[0] = mutableMapOf()
-                mSkillVM.map[0]?.set(0, mutableMapOf())
-                mSkillVM.map[0]?.get(0)?.set(0, "goalMap")
+                mSkillVM.map[0]?.set(0, "goalMap")
                 val fragment = Roll()
                 val bundle = Bundle()
                 bundle.putInt("position", 0 )
                 bundle.putInt("keyFragment",0)
                 fragment.arguments = bundle
-                list.add(attack.fightType?.nameRoll?:"")
+                list.add(fightType.nameRoll?:"")
                 listFr.add(fragment)
             }
             "few roll" -> {
                 mSkillVM.mapGoalMap[0] = MutableLiveData()
                 mSkillVM.mapGoalMap[0]?.value = mutableMapOf()
                 mSkillVM.map[0] = mutableMapOf()
-                mSkillVM.map[0]?.set(0, mutableMapOf())
-                mSkillVM.map[0]?.get(0)?.set(0, "goalMap")
+                mSkillVM.map[0]?.set(0, "goalMap")
                 val fragment = FewRoll()
                 val bundle = Bundle()
                 bundle.putInt("keyFragment",0)
                 fragment.arguments = bundle
-                list.add(attack.fightType?.nameRoll?:"")
+                list.add(fightType.nameRoll?:"")
                 listFr.add(fragment)
             }
             "arbitrary number" -> {
@@ -127,11 +126,11 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
             }
         }
 
-        val binding = FightSecondBinding.bind(view)
+        val binding = com.example.test.databinding.FightSecondBinding.bind(view)
         fun bind() = with(binding) {
 
             loadFragmentLight(Header(this@FightSecond), R.id.header)
-            title.text = attack.fightType?.name ?: "Какое-то название"
+            title.text = fightType?.name ?: "Какое-то название"
             val adapterRV = FragmentsAdapterRV(list, listFr, this@FightSecond)
             RV.adapter = adapterRV
             RV.layoutManager =
@@ -152,7 +151,7 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
                         }
                     }// слишком абстрактно, нет привязки к значению
                 }*/
-                when (attack.fightType?.roll) {
+                when (fightType?.roll) {
                     "one roll" -> {
 
                     }
