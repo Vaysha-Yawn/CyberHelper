@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
@@ -17,11 +18,12 @@ import com.example.test.activity_and_fragments.*
 import com.example.test.data_base.TemplateParamStr
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
+import com.example.test.views.HeaderView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.lang.Exception
 
 
-class CharacterList : Fragment() {
+class CharacterList : Fragment(), HeaderView.HeaderBack {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
@@ -117,13 +119,16 @@ class CharacterList : Fragment() {
                 }
             }
 
-            view.findViewById<ImageButton>(R.id.back).setOnClickListener {
-                view.findNavController().popBackStack()
-            }
+            view.findViewById<HeaderView>(R.id.headerView).setBack(true, this, requireActivity(), viewLifecycleOwner)
+
         } catch (e: Exception) {
             Toast.makeText(view?.context, "$e", Toast.LENGTH_SHORT).show()
         }
         return view
+    }
+
+    override fun back() {
+        view?.findNavController()?.popBackStack()
     }
 
 }

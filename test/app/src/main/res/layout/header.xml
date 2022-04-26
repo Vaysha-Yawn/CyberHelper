@@ -8,6 +8,7 @@
     tools:context=".widgets.Header">
 
     <ImageButton
+        android:visibility="visible"
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

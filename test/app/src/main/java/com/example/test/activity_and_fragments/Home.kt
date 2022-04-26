@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.OnBackPressedDispatcher
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
@@ -13,9 +15,10 @@ import com.example.test.activity_and_fragments.hosts.PresentHost
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.helpers.CharacterAdapter
 import com.example.test.viewModels.GameDAO
+import com.example.test.views.HeaderView
 import java.lang.Exception
 
-class Home : Fragment() {
+class Home : Fragment(), HeaderView.HeaderBack {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM:GameDAO by activityViewModels()
@@ -64,11 +67,16 @@ class Home : Fragment() {
                 (activity as PresentHost).openIniciativa(mCharacterVM.characterId)
             }
 
-            view.findViewById<ImageButton>(R.id.back).setOnClickListener {
-                (activity as PresentHost).backToMain()       }
+            view.findViewById<HeaderView>(R.id.header).setBack(true, this, requireActivity(),viewLifecycleOwner )
+
         }catch (e:Exception){Toast.makeText(view.context, "$e", Toast.LENGTH_SHORT).show()}
 
         return view
     }
+
+    override fun back() {
+        (activity as PresentHost).backToMain()
+    }
+
 
 }
