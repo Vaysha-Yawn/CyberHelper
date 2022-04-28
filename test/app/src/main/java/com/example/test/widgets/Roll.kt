@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.*
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainerView
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.commit
 import androidx.lifecycle.MutableLiveData
 import com.example.test.R
 import com.example.test.data_base.Goal
 import com.example.test.viewModels.CharacterDAO
-import com.example.test.viewModels.OneRoll
 import com.example.test.viewModels.SkillTestVM
 import kotlin.properties.Delegates
 

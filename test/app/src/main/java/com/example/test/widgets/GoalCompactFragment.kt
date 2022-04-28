@@ -15,17 +15,21 @@ import com.example.test.data_base.Goal
 import com.example.test.databinding.FragmentGoalCompactBinding
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
+import kotlin.properties.Delegates
 
 class GoalCompactFragment : Fragment(), GoalCompactTemplateHolder.DeleteGoalCompact, GoalCompactTemplateHolder.PutGoalCompactValue {
+
     private val mCharacterDAO: CharacterDAO by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
-    private val adapter = GoalCompactAdapterRV(this, this)
+    private var keyListGoal by Delegates.notNull<Int>()
+    private val allGoalsList = mutableListOf<Goal>()
+    private lateinit var adapter: GoalCompactAdapterRV
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val goalsList = mutableListOf<Goal>()
+
         mCharacterDAO.characterList.value?.forEach {
             if (it.gameId == mCharacterDAO.gameId) {
                 if (it.id != mCharacterDAO.characterId) {
@@ -37,43 +41,52 @@ class GoalCompactFragment : Fragment(), GoalCompactTemplateHolder.DeleteGoalComp
                         pn.name == "Имя персонажа"
                     }?.value ?: ""
                     goal.name = name
-                    goalsList.add(goal)
+                    allGoalsList.add(goal)
                 }
             }
         }
-        //mSkillVM.allGoals.value = goalsList
+
+        adapter = GoalCompactAdapterRV(this, this, allGoalsList)
 
         val view = inflater.inflate(R.layout.fragment_goal_compact, container, false)
 
-            val binding = FragmentGoalCompactBinding.bind(view)
+        val binding = FragmentGoalCompactBinding.bind(view)
 
-            fun bind() = with(binding) {
-                goalRV.layoutManager =
-                    LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
-                goalRV.adapter = adapter
-                /*mSkillVM.chosenGoals.observe(viewLifecycleOwner) {
-                    adapter.setData(it)
-                    adapter.notifyDataSetChanged()
-                }*/
+        fun bind() = with(binding) {
+            goalRV.layoutManager =
+                LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
+            goalRV.adapter = adapter
+            mSkillVM.mapGoal[keyListGoal]?.observe(viewLifecycleOwner) {
+                adapter.setData(it)
+            }
                 addGoal.setOnClickListener {
                     try {
-                        //modRV.adapter.notifyItemInserted()
+                        addGoal()
                     } catch (e: Exception) {
                         Toast.makeText(view.context, "$e", Toast.LENGTH_LONG).show()
                     }
                 }
-            }
-            bind()
+        }
+        bind()
 
         return view
     }
 
-    override fun deleteGoalCompact(position: Int) {
+    fun addGoal() {
+        mSkillVM.mapGoal[keyListGoal]?.value?.add(Goal())
+        adapter.notifyItemInserted(mSkillVM.mapGoal[keyListGoal]?.value?.size ?: 1 - 1)
+    }
 
+    override fun deleteGoalCompact(position: Int) {
+        mSkillVM.mapGoal[keyListGoal]?.value?.removeAt(position)
     }
 
     override fun putGoalCompactValue(position: Int, value: Int) {
+        mSkillVM.mapGoal[keyListGoal]?.value?.set(position, allGoalsList[value])
+    }
 
+    fun getChosenGoals(): MutableList<Goal> {
+        return mSkillVM.mapGoal[keyListGoal]?.value!!
     }
 }
 

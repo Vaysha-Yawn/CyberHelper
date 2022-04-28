@@ -7,26 +7,25 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.data_base.Goal
-import com.example.test.data_base.Mod
-import com.example.test.data_base.SpecialGameData
-import com.example.test.databinding.CardModBinding
+import com.example.test.databinding.CardGoalBinding
 
 
 class GoalCompactAdapterRV(
     private val deleteGoalCompact: GoalCompactTemplateHolder.DeleteGoalCompact,
     private val listener: GoalCompactTemplateHolder.PutGoalCompactValue,
+    private val listAllGoals: MutableList<Goal>
 ) :
     RecyclerView.Adapter<GoalCompactTemplateHolder>(), GoalCompactTemplateHolder.updView {
 
     var list = mutableListOf<Goal>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoalCompactTemplateHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.card_mod, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.card_goal, parent, false)
         return GoalCompactTemplateHolder(view, deleteGoalCompact, this, listener)
     }
 
     override fun onBindViewHolder(holder: GoalCompactTemplateHolder, position: Int) {
-        holder.bind(list[position])
+        holder.bind(list[position], listAllGoals)
     }
 
     override fun getItemCount(): Int {
@@ -50,13 +49,14 @@ class GoalCompactTemplateHolder(
     private val updViewr: updView,
     private val listener: PutGoalCompactValue,
 ) : RecyclerView.ViewHolder(view), DropDownAdapterRV.TemplateHolder.WhenValueTo {
-    private val binding = CardModBinding.bind(view)
+    private val binding = CardGoalBinding.bind(view)
 
-    fun bind(goal: Goal) = with(binding) {
+    fun bind(goal: Goal, listAllGoals: List<Goal>) = with(binding) {
+        val list = mutableListOf<String>()
+        listAllGoals.forEach {
 
-        PMLinear.visibility = View.GONE
-        DD.visibility = View.VISIBLE
-        DD.setDDArrayAndListener(SpecialGameData().modName, this@GoalCompactTemplateHolder)
+        }
+        DD.setDDArrayAndListener(list, this@GoalCompactTemplateHolder)
 
         delete.setOnClickListener { view ->
             deleteGoalCompact.deleteGoalCompact(adapterPosition)

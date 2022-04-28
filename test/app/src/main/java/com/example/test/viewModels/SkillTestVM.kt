@@ -27,14 +27,9 @@ class SkillTestVM : ViewModel() {
     var lastIndex = 0
 
     val mapInt = mutableMapOf<Int, MutableLiveData<Int>>()
-    val mapListInt = mutableMapOf<Int, MutableLiveData<MutableList<Int>>>()
-    val mapString = mutableMapOf<Int, MutableLiveData<String>>()
-    val mapBoolean = mutableMapOf<Int, MutableLiveData<Boolean>>()
     val mapGoal = mutableMapOf<Int, MutableLiveData<MutableList<Goal>>>()
     val mapGoalMap = mutableMapOf<Int, MutableLiveData<MutableMap<Int, Goal>>>()
     val mapMod = mutableMapOf<Int, MutableLiveData<MutableList<Mod>>>()
-    val mapRoll = mutableMapOf<Int, OneRoll>()
-    val mapFewRoll = mutableMapOf<Int, FewRolls>()
 
     lateinit var difficult: Pair<Int, String>
     lateinit var roll: Pair<Int, String>// идентификатор, указание, где искать

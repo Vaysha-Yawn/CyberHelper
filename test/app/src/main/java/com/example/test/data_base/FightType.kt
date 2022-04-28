@@ -67,12 +67,10 @@ data class DiffByTable(
 
 data class Goal(
     var name: String = "",
-    var resId: Int = 0,
     var characterId: Int = 0
 )
 
 data class Mod(
     var style: Boolean,
-    var value: Int,
-    var resId: Int
+    var value: Int
 )

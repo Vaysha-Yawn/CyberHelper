@@ -11,14 +11,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
-import com.example.test.adapters.DropDownAdapterRV
-import com.example.test.data_base.Mod
-import com.example.test.databinding.DialogChooseAddModificationBinding
-import com.example.test.databinding.ModificatorsBinding
 import com.example.test.adapters.ModAdapterRV
 import com.example.test.adapters.ModTemplateHolder
+import com.example.test.data_base.Mod
+import com.example.test.databinding.DialogChooseAddModificationBinding
 import com.example.test.viewModels.SkillTestVM
-import com.example.test.views.PlusMinusView
 import kotlin.properties.Delegates
 
 class Modificators : Fragment(), ModTemplateHolder.DeleteMod,
@@ -39,7 +36,7 @@ class Modificators : Fragment(), ModTemplateHolder.DeleteMod,
         mSkillVM.mapMod[keyListMod]?.value = mutableListOf<Mod>()
 
         try {
-            val binding = ModificatorsBinding.bind(view)
+            val binding = com.example.test.databinding.ModificatorsBinding.bind(view)
 
             fun bind() = with(binding) {
                 modRV.layoutManager =
@@ -51,7 +48,6 @@ class Modificators : Fragment(), ModTemplateHolder.DeleteMod,
                 addMod.setOnClickListener {
                     val dialogFragment = ModDialogFragment(this@Modificators)
                     dialogFragment.show(childFragmentManager, "chooseMod")
-
                 }
             }
             bind()
@@ -66,13 +62,12 @@ class Modificators : Fragment(), ModTemplateHolder.DeleteMod,
     }
 
     override fun addMod(style: Boolean) {
-        val id = View.generateViewId()
         when (style) {
             true -> {
-                mSkillVM.mapMod[keyListMod]?.value?.add(Mod(true, 0, id))
+                mSkillVM.mapMod[keyListMod]?.value?.add(Mod(true, 0))
             }
             false-> {
-                mSkillVM.mapMod[keyListMod]?.value?.add(Mod(false, 0, id))
+                mSkillVM.mapMod[keyListMod]?.value?.add(Mod(false, 0))
             }
         }
         adapter.notifyItemInserted(mSkillVM.mapMod[keyListMod]?.value?.size ?: 1 - 1)
