@@ -130,16 +130,7 @@ class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, de
 
 
    /*
-    if (goal == "difficult") {
-        mSkillVM.dif.value = position
-        mSkillVM.difBoolean.value = !mSkillVM.difBoolean.value!!
-    }
 
-    if (goal == "modification") {
-        if (indexMod >= 0) {
-            mSkillVM.mapMod[key]?.value?.get(indexMod)?.value = position + 1
-        }
-    }
     if (goal == "goal") {
         val chosenGoal = mSkillVM.allGoals.value?.get(position)
         if (chosenGoal!=null){

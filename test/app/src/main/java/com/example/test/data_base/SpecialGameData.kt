@@ -131,7 +131,7 @@ class SpecialGameData() {
             "DD goal one", "Modificators", "m1d10", "DD distance")
         , "Автоматический огонь" to mapOf("bodyOrHead", "difficultByGoalOrDistance",
             "DD goal one", "Modificators", "m1d10", "DD distance", "typeShoot", "howManyShoot")
-        , "Взрывчатка" to mapOf("Goals")
+        , "Взрывчатка" to mapOf("GoalCompactFragment")
     )*/
 
     val mapDifficultByDistance = mapOf(

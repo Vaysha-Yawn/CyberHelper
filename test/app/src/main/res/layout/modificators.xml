@@ -14,12 +14,12 @@
         android:textColor="@color/cyan" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/modRV"
+        android:id="@+id/goalRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/addMod"
+        android:id="@+id/addGoal"
         style="@style/Text.H2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

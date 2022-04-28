@@ -20,7 +20,8 @@ class Roll : Fragment() {
     private var keyFragment by Delegates.notNull<Int>()
     private var keyRoll by Delegates.notNull<Int>()
 
-    private lateinit var m1D10:m1D10
+    private lateinit var m1D10FR:m1D10
+    private lateinit var modificatorsFR:Modificators
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -87,7 +88,7 @@ class Roll : Fragment() {
         fragment.arguments = bundle
         loadFragmentLight(fragment, R.id.m1d10Fr)
 
-        m1D10 = view.findViewById<FragmentContainerView>(R.id.m1d10Fr).getFragment<m1D10>()
+        m1D10FR = view.findViewById<FragmentContainerView>(R.id.m1d10Fr).getFragment()
 
         /////////////////////////////////
         val keyListMod = mSkillVM.createId()
@@ -98,6 +99,9 @@ class Roll : Fragment() {
         bundleM.putInt("keyListMod", keyListMod)
         fragmentM.arguments = bundleM
         loadFragmentLight(fragmentM, R.id.modFr)
+
+        modificatorsFR = view.findViewById<FragmentContainerView>(R.id.modFr).getFragment()
+
         /////////////////////////////////
         if (goal != null && goal != "") {
             val fragmentF = GoalDD()
@@ -119,13 +123,14 @@ class Roll : Fragment() {
     }
 
    /*fun getRoll():OneRoll{
-       val g1d10 = m1D10.get1d10()
-       val critical  = m1D10.getCritical()
-       *//*return OneRoll(
+       val g1d10 = m1D10FR.get1d10()
+       val critical  = m1D10FR.getCritical()
+       val mods = modificatorsFR.getListMods()
+       return OneRoll(
             goal: Goal,
-            mods: MutableList<Mod>?,
+           mods,
        g1d10,
-       critical)*//*
+       critical)
    }*/
 
 }
