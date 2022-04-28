@@ -4,13 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
 import com.example.test.adapters.GoalCompactAdapterRV
 import com.example.test.adapters.GoalCompactTemplateHolder
 import com.example.test.data_base.Goal
-import com.example.test.databinding.GoalsBinding
+import com.example.test.databinding.FragmentGoalCompactBinding
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
 
@@ -43,17 +45,17 @@ class GoalCompactFragment : Fragment(), GoalCompactTemplateHolder.DeleteGoalComp
 
         val view = inflater.inflate(R.layout.fragment_goal_compact, container, false)
 
-            val binding = GoalsBinding.bind(view)
+            val binding = FragmentGoalCompactBinding.bind(view)
 
             fun bind() = with(binding) {
-                modRV.layoutManager =
+                goalRV.layoutManager =
                     LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
-                modRV.adapter = adapter
+                goalRV.adapter = adapter
                 /*mSkillVM.chosenGoals.observe(viewLifecycleOwner) {
                     adapter.setData(it)
                     adapter.notifyDataSetChanged()
                 }*/
-                addMod.setOnClickListener {
+                addGoal.setOnClickListener {
                     try {
                         //modRV.adapter.notifyItemInserted()
                     } catch (e: Exception) {
