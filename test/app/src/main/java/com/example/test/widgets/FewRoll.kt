@@ -14,7 +14,7 @@ import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.test.R
 import com.example.test.data_base.Goal
 import com.example.test.databinding.FewRollBinding
-import com.example.test.helpers.RollAdapterVP2
+import com.example.test.adapters.RollAdapterVP2
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.FewRollVM
 import com.example.test.viewModels.SkillTestVM

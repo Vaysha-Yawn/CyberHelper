@@ -12,7 +12,7 @@ class About : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.about)
         val pm = findViewById<PlusMinusView>(R.id.PM)
-        pm.setListener(4, 0)
+        pm.setListener(4, 0, null)
         pm.getValue()
     }
 }

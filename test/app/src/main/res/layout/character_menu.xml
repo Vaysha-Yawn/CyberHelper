@@ -9,31 +9,10 @@
     tools:context=".activity_and_fragments.CharacterMenu"
     tools:ignore="HardcodedText">
 
-    <FrameLayout
+    <com.example.test.views.HeaderView
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#050414">
-
-        <ImageButton
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="20dp"
-            android:background="#050414"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            app:srcCompat="@drawable/back"
-            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
-
-        <TextView
-            android:id="@+id/CyberHelper"
-            style="@style/Text.H2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Cyber Helper" />
-    </FrameLayout>
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:layout_width="match_parent"

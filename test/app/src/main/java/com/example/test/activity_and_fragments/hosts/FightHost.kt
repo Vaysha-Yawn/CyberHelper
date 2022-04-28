@@ -21,6 +21,7 @@ class FightHost : AppCompatActivity() {
     private val mGameVM: GameDAO by viewModels()
     private val mSkillVM: SkillTestVM by viewModels()
     private val mCharacterVM: CharacterDAO by viewModels()
+    private var characterId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,13 +36,16 @@ class FightHost : AppCompatActivity() {
                 navController.navigate(R.id.iniciativa)
             }
             "skillTest"->{
-                navController.navigate(R.id.iniciativa)
+                val skill = intent.getStringExtra("title")?:""
+                val bundle = Bundle()
+                bundle.putString("title", skill)
+                navController.navigate(R.id.skillTest, bundle)
             }
             "fight"->{
                 navController.navigate(R.id.chooseWeapon)
             }
         }
-        val characterId = intent.getIntExtra("characterId", 0)
+        characterId = intent.getIntExtra("characterId", 0)
         val gameId = getSharedPreferences("id", 0).getString("PresentGame", "0")!!.toInt()
         mCharacterVM.initGameId(gameId)
         mCharacterVM.loadCharactersByGameId(gameId)
@@ -49,9 +53,16 @@ class FightHost : AppCompatActivity() {
         mCharacterVM.characterId = characterId
     }
     
-    fun backToMain() {
+    fun backToCharacterMenu() {
         val i = Intent(this, PresentHost::class.java)
-        i.putExtra("nav", "CharacterMenu")
+        i.putExtra("fragment", "CharacterMenu")
+        i.putExtra("characterId", characterId)
+        startActivity(i)
+        finish()
+    }
+
+    fun backToHome() {
+        val i = Intent(this, PresentHost::class.java)
         startActivity(i)
         finish()
     }

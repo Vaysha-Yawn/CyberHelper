@@ -6,15 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.data_base.GroupParam
 import com.example.test.data_base.TemplateCharacter
-import com.example.test.helpers.GroupAdapterRV
+import com.example.test.adapters.GroupAdapterRV
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
 

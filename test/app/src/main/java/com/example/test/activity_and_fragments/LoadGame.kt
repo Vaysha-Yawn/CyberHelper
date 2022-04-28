@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import com.example.test.R
 import com.example.test.activity_and_fragments.hosts.LoadHost
-import com.example.test.helpers.LoadAdapter
+import com.example.test.adapters.LoadAdapter
 import com.example.test.viewModels.GameDAO
 
 

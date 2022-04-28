@@ -1,7 +1,6 @@
-package com.example.test.helpers
+package com.example.test.adapters
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.test.widgets.Roll

@@ -37,5 +37,25 @@
     <fragment
         android:id="@+id/iniciativa"
         android:name="com.example.test.activity_and_fragments.fight.Iniciativa"
-        android:label="Iniciativa" />
+        android:label="Iniciativa" >
+        <action
+            android:id="@+id/action_iniciativa_to_iniciativaResult"
+            app:destination="@id/iniciativaResult" />
+    </fragment>
+    <fragment
+        android:id="@+id/skillTest"
+        android:name="com.example.test.activity_and_fragments.fight.SkillTest"
+        android:label="SkillTest" >
+        <action
+            android:id="@+id/action_skillTest_to_skillResult2"
+            app:destination="@id/skillResult2" />
+    </fragment>
+    <fragment
+        android:id="@+id/skillResult2"
+        android:name="com.example.test.activity_and_fragments.fight.SkillResult"
+        android:label="SkillResult" />
+    <fragment
+        android:id="@+id/iniciativaResult"
+        android:name="com.example.test.activity_and_fragments.fight.IniciativaResult"
+        android:label="IniciativaResult" />
 </navigation>

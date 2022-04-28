@@ -1,4 +1,4 @@
-package com.example.test.helpers
+package com.example.test.adapters
 
 
 import android.view.LayoutInflater
@@ -59,7 +59,7 @@ class GoalTemplateHolder(
             }else{
                 goal.resId
             }
-            fr.id = id
+            //fr.id = id
             updId.updIdMod(adapterPosition, id)
             loadFragment.loadFragment(adapterPosition, id)
             delete.setOnClickListener { view ->

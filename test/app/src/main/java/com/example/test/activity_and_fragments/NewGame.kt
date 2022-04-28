@@ -12,7 +12,7 @@ import com.example.test.R
 import com.example.test.activity_and_fragments.hosts.NewHost
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
-import com.example.test.helpers.CharacterAdapter
+import com.example.test.adapters.CharacterAdapter
 import com.example.test.viewModels.NewCharacterVM
 import java.lang.Exception
 

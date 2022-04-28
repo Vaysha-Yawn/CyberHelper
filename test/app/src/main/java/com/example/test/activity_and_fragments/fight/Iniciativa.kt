@@ -13,12 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
 import com.example.test.activity_and_fragments.hosts.FightHost
 import com.example.test.databinding.IniciativaBinding
-import com.example.test.helpers.FragmentsAdapterRV
+import com.example.test.adapters.FragmentsAdapterRV
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.views.HeaderView
 import com.example.test.widgets.FewRoll
-import com.example.test.widgets.Header
 import kotlin.collections.set
 
 class Iniciativa : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
@@ -87,7 +86,7 @@ class Iniciativa : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
     }
 
     override fun back() {
-        (activity as FightHost).backToMain()
+        (activity as FightHost).backToHome()
     }
 
 }

@@ -13,10 +13,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
-import com.example.test.data_base.FightType
 import com.example.test.data_base.TemplateFightType
-import com.example.test.databinding.FightThreeBinding
-import com.example.test.helpers.FragmentsAdapterRV
+import com.example.test.adapters.FragmentsAdapterRV
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.widgets.FewRoll

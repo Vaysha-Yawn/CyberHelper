@@ -3,6 +3,8 @@ package com.example.test.views
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.drawable.LayerDrawable
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -44,6 +46,7 @@ class PlusMinusView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
             defStyleRes
         )
         with(binding) {
+
             val color = typedArray.getColor(
                 R.styleable.PlusMinusView_PM_color,
                 ContextCompat.getColor(context, R.color.green)
@@ -78,17 +81,16 @@ class PlusMinusView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
         typedArray.recycle()
     }
 
-    fun setListener(maxValue:Int?, minValue:Int?) {
+    fun setListener(maxValue: Int?, minValue: Int?, obj: NumberEvent?) {
         with(binding) {
-
             val edit = edit as TextView
-
             plus.setOnClickListener {
                 if (maxValue != null) {
                     var res = edit.text.toString().toInt()
                     if (res < maxValue) {
                         res += 1
                         edit.text = res.toString()
+                        obj?.numberEvent(res)
                     } else {
                         Toast.makeText(
                             context, "Значение параметра не должно превышать $maxValue",
@@ -99,6 +101,7 @@ class PlusMinusView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
                     var res = edit.text.toString().toInt()
                     res += 1
                     edit.text = res.toString()
+                    obj?.numberEvent(res)
                 }
             }
 
@@ -108,6 +111,7 @@ class PlusMinusView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
                     if (res > minValue) {
                         res -= 1
                         edit.text = res.toString()
+                        obj?.numberEvent(res)
                     } else {
                         Toast.makeText(
                             context, "Значение параметра не может быть меньше $minValue",
@@ -118,13 +122,39 @@ class PlusMinusView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
                     var res = edit.text.toString().toInt()
                     res -= 1
                     edit.text = res.toString()
+                    obj?.numberEvent(res)
                 }
             }
+
+
+            edit.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    val x = edit.text.toString().toIntOrNull()
+                    if (x != null && obj != null) {
+                        obj.numberEvent(x)
+                    }
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                }
+            })
         }
     }
 
-    fun getValue():Int?{
+    fun getValue(): Int? {
         return binding.edit.toString().toIntOrNull()
+    }
+
+    interface NumberEvent {
+        fun numberEvent(number: Int)
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.test.helpers
+package com.example.test.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +10,12 @@ import com.example.test.databinding.DropDownListItemBinding
 class DropDownAdapterRV(
     val list: List<String>,
     val color: Int,
-    private val onClick: TemplateHolder.WhenValueTo,
+    private val onClick: TemplateHolder.WhenValueTo?,
     private val onDDClick: TemplateHolder.OnDDChosen,
 ) :
     RecyclerView.Adapter<DropDownAdapterRV.TemplateHolder>() {
 
-    class TemplateHolder(view: View, private val onClick: TemplateHolder.WhenValueTo, private val onDDClick: TemplateHolder.OnDDChosen,) :
+    class TemplateHolder(view: View, private val onClick: TemplateHolder.WhenValueTo?, private val onDDClick: TemplateHolder.OnDDChosen,) :
         RecyclerView.ViewHolder(view) {
         private val binding = DropDownListItemBinding.bind(view)
 
@@ -23,7 +23,7 @@ class DropDownAdapterRV(
             tvItem.text = item
             tvItem.setTextColor(color)
             tvItem.setOnClickListener{
-                onClick.whenValueTo(adapterPosition)
+                onClick?.whenValueTo(adapterPosition)
                 onDDClick.onDDChosen(adapterPosition)
             }
         }

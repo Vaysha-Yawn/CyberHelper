@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
 import com.example.test.R
 import com.example.test.activity_and_fragments.MainActivity
 import com.example.test.viewModels.CharacterDAO
@@ -24,6 +25,21 @@ class PresentHost : AppCompatActivity() {
         mCharacterVM.initGameId(gameId)
         mCharacterVM.loadCharactersByGameId(gameId)
         mGameVM.initGameName(gameId)
+
+        val loadFragment = intent.getStringExtra("fragment")?:""
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        when(loadFragment){
+            "CharacterMenu"->{
+                val characterId = intent.getIntExtra("characterId", 0)
+                val bundle = Bundle()
+                bundle.putInt("characterId", characterId)
+                navController.navigate(R.id.characterMenu, bundle)
+            }
+        }
     }
 
     fun backToMain() {
@@ -46,10 +62,11 @@ class PresentHost : AppCompatActivity() {
         startActivity(i)
         finish()
     }
-    fun openSkillTest(id: Int) {
+    fun openSkillTest(id: Int, nameSkill:String) {
         val i = Intent(this, FightHost::class.java)
         i.putExtra("characterId", id)
         i.putExtra("fragment", "skillTest")
+        i.putExtra("title", nameSkill)
         startActivity(i)
         finish()
     }

@@ -11,7 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.helpers.GoalDDAdapterRV
+import com.example.test.adapters.GoalDDAdapterRV
 import com.example.test.viewModels.SkillTestVM
 
 class GoalDD : Fragment(), GoalDDAdapterRV.TemplateHolder.OnItemClickListener {

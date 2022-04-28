@@ -5,15 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.activity.OnBackPressedDispatcher
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.activity_and_fragments.hosts.PresentHost
 import com.example.test.viewModels.CharacterDAO
-import com.example.test.helpers.CharacterAdapter
+import com.example.test.adapters.CharacterAdapter
 import com.example.test.viewModels.GameDAO
 import com.example.test.views.HeaderView
 import java.lang.Exception

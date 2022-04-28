@@ -1,4 +1,4 @@
-package com.example.test.helpers
+package com.example.test.adapters
 
 
 import android.annotation.SuppressLint
@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.data_base.EffectWeapon
-import com.example.test.data_base.Item
-import com.example.test.data_base.TemplateFightType
 import com.example.test.databinding.CardWeaponFightBinding
 
 

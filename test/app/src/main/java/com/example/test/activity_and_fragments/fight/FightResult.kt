@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.test.R
 import com.example.test.activity_and_fragments.hosts.FightHost
-import com.example.test.data_base.SpecialGameData
 import com.example.test.data_base.TemplateFightType
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
@@ -20,11 +19,13 @@ class FightResult : Fragment() {
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fight_result, container, false)
+
         // нужно передать сюда все ключи, их значение, формулу, чтобы расчитать бросок
         val characterId = mCharacterVM.characterId
         val attack = mSkillVM.attack!!
@@ -117,7 +118,7 @@ class FightResult : Fragment() {
 
         val apply = view.findViewById<Button>(R.id.apply)
         apply.setOnClickListener {
-            (activity as FightHost).backToMain()
+            (activity as FightHost).backToCharacterMenu()
         }
 
         return view

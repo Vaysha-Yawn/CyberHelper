@@ -10,19 +10,23 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.navigation.findNavController
 import com.example.test.R
+import com.example.test.activity_and_fragments.hosts.FightHost
 import com.example.test.data_base.SpecialGameData
 import com.example.test.databinding.SkillTestBinding
+import com.example.test.adapters.DropDownAdapterRV
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
+import com.example.test.views.HeaderView
 import com.example.test.widgets.Modificators
-import com.example.test.widgets.PlusAndMinus
 import com.example.test.widgets.m1D10
 
 
-class SkillTest : Fragment() {
+class SkillTest : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo, HeaderView.HeaderBack {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
+    private lateinit var tvEdit: TextView
+    private val difficultValue = SpecialGameData().difficultValue
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,20 +39,6 @@ class SkillTest : Fragment() {
         val txtitle = arg?.getString("title") ?: ""
 
         mSkillVM.title = txtitle
-
-        val tvEdit = view.findViewById<TextView>(R.id.edit)
-
-        val difficultValue = SpecialGameData().difficultValue
-
-        // подключаем фрагмент для выбора сложности
-        val arr = SpecialGameData().difficultName
-        val bundle = Bundle()
-        bundle.putString("main", "Выберите сложность")
-        bundle.putString("them", "yellow")
-        bundle.putStringArrayList("list", arr)
-        bundle.putString("goal", "difficult")
-
-        // место для настройки дд
 
         val fragmentMod = Modificators()
         childFragmentManager.commit {
@@ -64,16 +54,11 @@ class SkillTest : Fragment() {
 
         val binding = SkillTestBinding.bind(view)
         fun bind() = with(binding) {
+            header.setBack(true, this@SkillTest, requireActivity(), viewLifecycleOwner)
             title.text = txtitle
-
-//            mSkillVM.difBoolean.observe(viewLifecycleOwner) {
-//                tvEdit.text = difficultValue[mSkillVM.dif.value!!]
-//            }
-
-            back.setOnClickListener {
-                view.findNavController().popBackStack()
-            }
-
+            val arr = SpecialGameData().difficultName
+            tvEdit = edit
+            DDDifficult.setDDArrayAndListener(arr, this@SkillTest)
             // если нет навыка-------------------------------------------------------------------------
 
             val skill = mCharacterVM.characterList.value?.singleOrNull { character ->
@@ -91,15 +76,10 @@ class SkillTest : Fragment() {
                 luckyOrErudit.setOnCheckedChangeListener { group, checkedId ->
                     when(checkedId){
                         R.id.byLucky->{
-                            //mSkillVM.luckyOrErudit = true
-
                             byLuckyLinLay.visibility = View.VISIBLE
                             luckLeft.visibility = View.VISIBLE
-
                         }
                         R.id.byErudition->{
-                            //mSkillVM.luckyOrErudit = false
-
                             byLuckyLinLay.visibility = View.GONE
                             luckLeft.visibility = View.GONE
                         }
@@ -114,20 +94,8 @@ class SkillTest : Fragment() {
                 }?.value ?: 0
 
                 luckLeft.text = "Осталось $luck очков удачи"
-                // подключаем плюс минус
-                val bundleD = Bundle()
-                bundleD.putInt("value", 0)
-                bundleD.putInt("minValue", 0)
-                bundleD.putInt("maxValue", luck)
-                bundleD.putString("them", "orange_small")
-                bundleD.putString("goal", "luck")
-                val fragmentD = PlusAndMinus()
-                fragmentD.arguments = bundleD
-                childFragmentManager.commit {
-                    replace(R.id.luckyPMfr, fragmentD)
-                    addToBackStack(null)
-                }
 
+                luckyPMfr.setListener(luck, 0, null)
                 // на всякий ищем эрудицию
                 val erudit = mCharacterVM.characterList.value?.singleOrNull { character ->
                     character.id == characterId
@@ -164,6 +132,14 @@ class SkillTest : Fragment() {
         }
 
         return view
+    }
+
+    override fun whenValueTo(position: Int) {
+        tvEdit.text = difficultValue[position]
+    }
+
+    override fun back() {
+        (activity as FightHost).backToCharacterMenu()
     }
 
 }

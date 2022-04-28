@@ -5,17 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.commit
 import com.example.test.R
 import com.example.test.viewModels.SkillTestVM
+import com.example.test.views.PlusMinusView
 
-class m1D10 : Fragment() {
+class m1D10 : Fragment(), PlusMinusView.NumberEvent {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
+
+    private lateinit var criticalDummy: LinearLayout
+    private  lateinit var PMCritical : PlusMinusView
+    private  lateinit var m1d10 : PlusMinusView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,64 +25,31 @@ class m1D10 : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.m1_d10, container, false)
 
-        val key1d10 = arguments?.getInt("key1d10") ?: mSkillVM.createId()
-        val keyCrit = arguments?.getInt("keyCrit") ?: mSkillVM.createId()
+        criticalDummy = view.findViewById<LinearLayout>(R.id.criticalDummy)
+        PMCritical = view.findViewById<PlusMinusView>(R.id.PMCritical)
+        m1d10 = view.findViewById<PlusMinusView>(R.id.m1d10)
 
-        // подключаем фрагмент плюс и минус 1 d 10
-        val bundleD = Bundle()
-        bundleD.putInt("value", 1)
-        bundleD.putInt("minValue", 1)
-        bundleD.putInt("maxValue", 10)
-        bundleD.putInt("editKey", key1d10)
-        bundleD.putString("them", "yellow")
-        bundleD.putString("goal", "1d10")
-        val fragmentD = PlusAndMinus()
-        fragmentD.arguments = bundleD
-        childFragmentManager.commit {
-            replace(R.id.frPlusMinusSmallYellow1D10, fragmentD)
-            addToBackStack(null)
-        }
-
-        // настроить чтобы когда 1д10 = 10, то мы меняем critic grey на critic yellow , сохраняя его значение во VM
-        // подключаем фрагмент плюс и минус critic
-
-        val greyCritic = view.findViewById<LinearLayout>(R.id.plmingrey)
-        greyCritic.visibility = View.VISIBLE
-
-        val bundleC = Bundle()
-        bundleC.putInt("value", 1)
-        bundleC.putInt("minValue", 1)
-        bundleC.putInt("maxValue", 10)
-        bundleC.putInt("editKey", keyCrit)
-        bundleC.putString("them", "yellow")
-        bundleC.putString("goal", "critical")
-        val fragmentC = PlusAndMinus()
-        fragmentC.arguments = bundleC
-        childFragmentManager.commit {
-            replace(R.id.frPlusMinusSmallGreyCritical, fragmentC)
-            addToBackStack(null)
-        }
-
-        val critText = view.findViewById<TextView>(R.id.critText)
-        val frCritic =
-            view.findViewById<FragmentContainerView>(R.id.frPlusMinusSmallGreyCritical)
-        frCritic.visibility = View.GONE
-        critText.setTextColor(resources.getColor(R.color.grey))
-
-        mSkillVM.mapInt[key1d10]?.observe(viewLifecycleOwner) {
-            if (it >= 10) {
-                greyCritic.visibility = View.GONE
-                frCritic.visibility = View.VISIBLE
-                critText.setTextColor(resources.getColor(R.color.yellow))
-                //mSkillVM.boolCritical.value = true
-            } else {
-                greyCritic.visibility = View.VISIBLE
-                frCritic.visibility = View.GONE
-                critText.setTextColor(resources.getColor(R.color.grey))
-                //mSkillVM.boolCritical.value = false
-            }
-        }
+        PMCritical.setListener(10, 1,null)
+        m1d10.setListener(10, 1, this)
 
         return view
+    }
+
+    fun get1d10():Int{
+        return m1d10.getValue()?:0
+    }
+
+    fun getCritical():Int{
+        return if (get1d10()<10){0}else{PMCritical.getValue()?:0}
+    }
+
+    override fun numberEvent(number: Int) {
+        if (number >= 10) {
+            PMCritical.visibility = View.VISIBLE
+            criticalDummy.visibility = View.GONE
+        } else {
+            criticalDummy.visibility = View.VISIBLE
+            PMCritical.visibility = View.GONE
+        }
     }
 }

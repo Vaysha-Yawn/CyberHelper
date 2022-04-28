@@ -8,17 +8,13 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.helpers.TemplateAdapterRecycler
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.test.data_base.Character
+import com.example.test.adapters.TemplateAdapterRecycler
 import com.example.test.data_base.TemplateCharacter
 import com.example.test.viewModels.CharacterDAO
-import com.example.test.viewModels.GameDAO
 import kotlin.Exception
 
 

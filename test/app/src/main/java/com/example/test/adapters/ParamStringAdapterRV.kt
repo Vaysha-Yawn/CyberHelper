@@ -1,4 +1,4 @@
-package com.example.test.helpers
+package com.example.test.adapters
 
 
 import android.annotation.SuppressLint
@@ -9,17 +9,17 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.data_base.ParamOptions
+import com.example.test.data_base.ParamStr
 import com.example.test.databinding.CardStringBinding
 import io.realm.RealmList
 
 
-class ParamOptionsAdapterRV() :
-    RecyclerView.Adapter<ParamOptionsAdapterRV.TemplateHolder>() {
+class ParamStringAdapterRV() :
+    RecyclerView.Adapter<ParamStringAdapterRV.TemplateHolder>() {
 
     private var newOrPres = true
     private var groupTitle = ""
-    private var list = listOf<ParamOptions>()
+    private var list = listOf<ParamStr>()
     private var readOrEdit = true// true - read, edit - false
     private var indexItem = -1
     private var mod = -1
@@ -28,7 +28,7 @@ class ParamOptionsAdapterRV() :
         private val binding = CardStringBinding.bind(view)
         @SuppressLint("UseCompatLoadingForDrawables")
         fun bind(
-            param: ParamOptions,
+            param: ParamStr,
             groupTitle: String,
             newOrPres: Boolean,
             readOrEdit: Boolean,
@@ -47,7 +47,7 @@ class ParamOptionsAdapterRV() :
                         val bundle = Bundle()
                         bundle.putString("nameParam", param.name)
                         bundle.putString("titleGroup", groupTitle)
-                        bundle.putString("param", "paramOptions")
+                        bundle.putString("param", "paramStr")
                         bundle.putInt("indexItem", indexItem)
                         bundle.putInt("indexParam", indexParam)
                         if (indexItem == -1) {
@@ -79,31 +79,28 @@ class ParamOptionsAdapterRV() :
                     val bundle = Bundle()
                     bundle.putString("paramName", param.name)
                     bundle.putString("value", param.value)
-                    bundle.putString("titleGroup", groupTitle)
+                    bundle.putString("groupTitle", groupTitle)
                     bundle.putInt("indexItem", indexItem)
                     bundle.putInt("indexParam", indexParam)
                     bundle.putInt("mod", mod)
                     if (mod == 0 || mod == 1) {
                         if (newOrPres) {
                             view.findNavController()
-                                .navigate(
-                                    R.id.action_new_characterList_to_new_dropDownEdit2,
-                                    bundle
-                                )
+                                .navigate(R.id.action_new_characterList_to_new_edit_string2, bundle)
                         } else {
                             view.findNavController()
                                 .navigate(
-                                    R.id.action_pres_characterList_to_pres_dropDownEdit3,
+                                    R.id.action_pres_characterList_to_pres_edit_string,
                                     bundle
                                 )
                         }
                     } else {
                         if (newOrPres) {
                             view.findNavController()
-                                .navigate(R.id.action_new_itemEdit_to_new_dropDownEdit, bundle)
+                                .navigate(R.id.action_new_itemEdit_to_new_edit_string, bundle)
                         } else {
                             view.findNavController()
-                                .navigate(R.id.action_pres_itemEdit_to_pres_dropDownEdit, bundle)
+                                .navigate(R.id.action_pres_itemEdit_to_pres_edit_string, bundle)
                         }
                     }
                 }
@@ -127,7 +124,7 @@ class ParamOptionsAdapterRV() :
     }
 
     fun setData(
-        list: RealmList<ParamOptions>,
+        list: RealmList<ParamStr>,
         groupTitle: String,
         newOrPres: Boolean,
         readOrEdit: Boolean,

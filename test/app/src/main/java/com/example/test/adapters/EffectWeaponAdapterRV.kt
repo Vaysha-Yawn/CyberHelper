@@ -1,4 +1,4 @@
-package com.example.test.helpers
+package com.example.test.adapters
 
 
 import android.annotation.SuppressLint
@@ -6,12 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.data_base.EffectWeapon
-import com.example.test.databinding.CardEffectWeaponBinding
 import io.realm.RealmList
 
 

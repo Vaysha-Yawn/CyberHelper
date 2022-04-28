@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
 import com.example.test.databinding.DropDownListBinding
-import com.example.test.helpers.DropDownAdapterRV
+import com.example.test.adapters.DropDownAdapterRV
 
 class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
     LinearLayout(context, attrs, defStyleAttr, defStyleRes),
@@ -89,7 +89,7 @@ class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, de
 
     fun setDDArrayAndListener(
         list: List<String>,
-        ob: DropDownAdapterRV.TemplateHolder.WhenValueTo
+        ob: DropDownAdapterRV.TemplateHolder.WhenValueTo?
     ) {
         with(binding) {
             main.setOnClickListener {

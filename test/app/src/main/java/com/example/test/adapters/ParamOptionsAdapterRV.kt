@@ -1,4 +1,4 @@
-package com.example.test.helpers
+package com.example.test.adapters
 
 
 import android.annotation.SuppressLint
@@ -9,48 +9,59 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.data_base.ParamNum
+import com.example.test.data_base.ParamOptions
 import com.example.test.databinding.CardStringBinding
 import io.realm.RealmList
 
 
-class ParamNumAdapterRV():
-    RecyclerView.Adapter<ParamNumAdapterRV.TemplateHolder>() {
+class ParamOptionsAdapterRV() :
+    RecyclerView.Adapter<ParamOptionsAdapterRV.TemplateHolder>() {
 
     private var newOrPres = true
     private var groupTitle = ""
-    private var list = listOf<ParamNum>()
+    private var list = listOf<ParamOptions>()
     private var readOrEdit = true// true - read, edit - false
     private var indexItem = -1
-    private var modEdit = -1
+    private var mod = -1
 
     class TemplateHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = CardStringBinding.bind(view)
         @SuppressLint("UseCompatLoadingForDrawables")
-        fun bind(param: ParamNum, groupTitle:String, newOrPres: Boolean, readOrEdit:Boolean, indexItem:Int, indexParam:Int, modEdit:Int) = with(binding){
-            if (readOrEdit){
+        fun bind(
+            param: ParamOptions,
+            groupTitle: String,
+            newOrPres: Boolean,
+            readOrEdit: Boolean,
+            indexItem: Int,
+            indexParam: Int,
+            mod: Int,
+        ) = with(binding) {
+            if (readOrEdit) {
                 background.background = background.context.getDrawable(R.drawable.background_black)
-                delete.visibility = View.INVISIBLE
+                delete.visibility = View.GONE
                 edit.visibility = View.GONE
-            }else{
+            } else {
                 delete.visibility = View.VISIBLE
-                if (param.removable){
-                    delete.setOnClickListener {view->
+                if (param.removable) {
+                    delete.setOnClickListener { view ->
                         val bundle = Bundle()
                         bundle.putString("nameParam", param.name)
                         bundle.putString("titleGroup", groupTitle)
-                        bundle.putString("param", "paramNum")
+                        bundle.putString("param", "paramOptions")
                         bundle.putInt("indexItem", indexItem)
                         bundle.putInt("indexParam", indexParam)
-                        if (modEdit == 0 || modEdit == 1) {
+                        if (indexItem == -1) {
                             if (newOrPres) {
                                 view.findNavController()
                                     .navigate(R.id.action_new_characterList_to_new_delete4, bundle)
                             } else {
                                 view.findNavController()
-                                    .navigate(R.id.action_pres_characterList_to_pres_delete3, bundle)
+                                    .navigate(
+                                        R.id.action_pres_characterList_to_pres_delete3,
+                                        bundle
+                                    )
                             }
-                        }else{
+                        } else {
                             if (newOrPres) {
                                 view.findNavController()
                                     .navigate(R.id.action_new_itemEdit_to_new_delete3, bundle)
@@ -60,39 +71,45 @@ class ParamNumAdapterRV():
                             }
                         }
                     }
-                }else{
-                    delete.visibility = View.INVISIBLE
+                } else {
+                    delete.visibility = View.GONE
                 }
                 edit.visibility = View.VISIBLE
-                edit.setOnClickListener { view->
+                edit.setOnClickListener { view ->
                     val bundle = Bundle()
                     bundle.putString("paramName", param.name)
-                    bundle.putString("value", param.value.toString())
-                    bundle.putString("groupTitle", groupTitle)
+                    bundle.putString("value", param.value)
+                    bundle.putString("titleGroup", groupTitle)
                     bundle.putInt("indexItem", indexItem)
                     bundle.putInt("indexParam", indexParam)
-                    bundle.putInt("mod", modEdit)
-                    if (modEdit == 0 || modEdit == 1) {
+                    bundle.putInt("mod", mod)
+                    if (mod == 0 || mod == 1) {
                         if (newOrPres) {
                             view.findNavController()
-                                .navigate(R.id.action_new_characterList_to_new_edit_number2, bundle)
+                                .navigate(
+                                    R.id.action_new_characterList_to_new_dropDownEdit2,
+                                    bundle
+                                )
                         } else {
                             view.findNavController()
-                                .navigate(R.id.action_pres_characterList_to_pres_edit_number, bundle)
+                                .navigate(
+                                    R.id.action_pres_characterList_to_pres_dropDownEdit3,
+                                    bundle
+                                )
                         }
-                    }else{
+                    } else {
                         if (newOrPres) {
                             view.findNavController()
-                                .navigate(R.id.action_new_itemEdit_to_new_edit_number, bundle)
+                                .navigate(R.id.action_new_itemEdit_to_new_dropDownEdit, bundle)
                         } else {
                             view.findNavController()
-                                .navigate(R.id.action_pres_itemEdit_to_pres_edit_number, bundle)
+                                .navigate(R.id.action_pres_itemEdit_to_pres_dropDownEdit, bundle)
                         }
                     }
                 }
             }
             name.text = param.name
-            str.text = param.value.toString()
+            str.text = param.value
         }
     }
 
@@ -102,20 +119,27 @@ class ParamNumAdapterRV():
     }
 
     override fun onBindViewHolder(holder: TemplateHolder, position: Int) {
-        holder.bind(list[position], groupTitle, newOrPres, readOrEdit, indexItem, position, modEdit)
+        holder.bind(list[position], groupTitle, newOrPres, readOrEdit, indexItem, position, mod)
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
 
-    fun setData(list: RealmList<ParamNum>, groupTitle:String, newOrPres: Boolean, readOrEdit:Boolean, indexItem:Int, modEdit:Int ){
+    fun setData(
+        list: RealmList<ParamOptions>,
+        groupTitle: String,
+        newOrPres: Boolean,
+        readOrEdit: Boolean,
+        indexItem: Int,
+        mod: Int,
+    ) {
         this.list = list
         this.groupTitle = groupTitle
         this.newOrPres = newOrPres
         this.readOrEdit = readOrEdit
         this.indexItem = indexItem
-        this.modEdit = modEdit
+        this.mod = mod
         notifyDataSetChanged()
     }
 }

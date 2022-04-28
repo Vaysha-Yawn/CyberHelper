@@ -13,14 +13,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.activity_and_fragments.hosts.FightHost
 import com.example.test.data_base.EffectWeapon
-import com.example.test.data_base.FightType
-import com.example.test.data_base.TemplateFightType
-import com.example.test.helpers.ChooseWeaponAdapterRV
+import com.example.test.adapters.ChooseWeaponAdapterRV
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
+import com.example.test.views.HeaderView
 
 
-class ChooseWeapon : Fragment(), ChooseWeaponAdapterRV.TemplateHolder.OnItemClickListener {
+class ChooseWeapon : Fragment(), ChooseWeaponAdapterRV.TemplateHolder.OnItemClickListener, HeaderView.HeaderBack {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
@@ -31,9 +30,6 @@ class ChooseWeapon : Fragment(), ChooseWeaponAdapterRV.TemplateHolder.OnItemClic
     ): View? {
         val view = inflater.inflate(R.layout.choose_weapon, container, false)
         val RV = view.findViewById<RecyclerView>(R.id.weaponFight)
-
-
-
         val characterId = mCharacterVM.characterId
         val listWeapon = mutableListOf(
             EffectWeapon(
@@ -55,10 +51,6 @@ class ChooseWeapon : Fragment(), ChooseWeaponAdapterRV.TemplateHolder.OnItemClic
         val adapter = ChooseWeaponAdapterRV(listWeapon, this)
         RV.adapter = adapter
 
-        view.findViewById<ImageButton>(R.id.back).setOnClickListener {
-            (activity as FightHost).backToMain()
-        }
-
         return view
     }
 
@@ -69,5 +61,9 @@ class ChooseWeapon : Fragment(), ChooseWeaponAdapterRV.TemplateHolder.OnItemClic
         mSkillVM.map[1] = mutableMapOf()
         mSkillVM.lastIndex = 2
         view?.findNavController()?.navigate(R.id.action_chooseWeapon_to_fightSecond)
+    }
+
+    override fun back() {
+        (activity as FightHost).backToCharacterMenu()
     }
 }

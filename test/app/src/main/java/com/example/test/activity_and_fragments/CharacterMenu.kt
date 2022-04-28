@@ -10,24 +10,25 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.commit
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.activity_and_fragments.hosts.PresentHost
 import com.example.test.data_base.SpecialGameData
 import com.example.test.data_base.TemplateParamStr
-import com.example.test.helpers.DropDownAdapterRV
+import com.example.test.adapters.DropDownAdapterRV
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.views.DropDownView
+import com.example.test.views.HeaderView
 
 
-class CharacterMenu : Fragment(),  DropDownAdapterRV.TemplateHolder.WhenValueTo {
+class CharacterMenu : Fragment(),  DropDownAdapterRV.TemplateHolder.WhenValueTo, HeaderView.HeaderBack {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
+    private val arr = mutableListOf<String>()
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -59,7 +60,6 @@ class CharacterMenu : Fragment(),  DropDownAdapterRV.TemplateHolder.WhenValueTo 
         }
 
         // настраиваем выпадающий список
-        val arr = mutableListOf<String>()
         SpecialGameData().mapParameterToSkill.forEach { (key, _) ->
             arr.add(key)
         }
@@ -78,15 +78,15 @@ class CharacterMenu : Fragment(),  DropDownAdapterRV.TemplateHolder.WhenValueTo 
             view.findNavController().navigate(R.id.action_characterMenu_to_settingFightType)
         }
 
-        view.findViewById<ImageButton>(R.id.back).setOnClickListener {
-            view.findNavController().popBackStack()
-        }
-
         return view
     }
 
     override fun whenValueTo(position: Int) {
-        (activity as PresentHost).openSkillTest(mCharacterVM.characterId)
+        (activity as PresentHost).openSkillTest(mCharacterVM.characterId, arr[position])
+    }
+
+    override fun back() {
+        view?.findNavController()?.popBackStack()
     }
 
 }

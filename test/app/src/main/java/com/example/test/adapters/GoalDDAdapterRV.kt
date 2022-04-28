@@ -1,9 +1,8 @@
-package com.example.test.helpers
+package com.example.test.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.databinding.DropDownListItemBinding

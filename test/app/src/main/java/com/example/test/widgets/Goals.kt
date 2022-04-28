@@ -7,13 +7,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
 import com.example.test.data_base.Goal
 import com.example.test.databinding.GoalsBinding
-import com.example.test.helpers.GoalAdapterRV
-import com.example.test.helpers.GoalTemplateHolder
+import com.example.test.adapters.GoalAdapterRV
+import com.example.test.adapters.GoalTemplateHolder
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
 

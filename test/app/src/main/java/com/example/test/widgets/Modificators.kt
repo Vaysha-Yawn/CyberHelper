@@ -8,24 +8,24 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.commit
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
+import com.example.test.adapters.DropDownAdapterRV
 import com.example.test.data_base.Mod
-import com.example.test.data_base.SpecialGameData
 import com.example.test.databinding.DialogChooseAddModificationBinding
 import com.example.test.databinding.ModificatorsBinding
-import com.example.test.helpers.ModAdapterRV
-import com.example.test.helpers.ModTemplateHolder
+import com.example.test.adapters.ModAdapterRV
+import com.example.test.adapters.ModTemplateHolder
 import com.example.test.viewModels.SkillTestVM
+import com.example.test.views.PlusMinusView
 import kotlin.properties.Delegates
 
-class Modificators : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHolder.DeleteMod,
-    ModTemplateHolder.updIdMod, ModDialogFragment.AddMod {
+class Modificators : Fragment(), ModTemplateHolder.DeleteMod,
+     ModDialogFragment.AddMod, ModTemplateHolder.PutModValue {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
-    private val adapter = ModAdapterRV(this, this, this)
+    private val adapter = ModAdapterRV(this,this)
     private var keyListMod by Delegates.notNull<Int>()
 
     override fun onCreateView(
@@ -61,50 +61,8 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHold
         return view
     }
 
-    override fun loadFragment(position: Int, style: Boolean, value: Int, id: Int) {
-        if (style) {
-            val bundle = Bundle()
-            bundle.putString("main", "Выберите модификатор")
-            bundle.putString("them", "blue")
-            bundle.putInt("indexMod", position)
-            bundle.putString("goal", "modification")
-            bundle.putInt("value", value)
-            bundle.putInt("key", keyListMod)
-            val options = SpecialGameData().modName
-            bundle.putStringArrayList("list", options)
-            /*val fragment = DropDownList()
-            fragment.arguments = bundle
-            childFragmentManager.commit {
-                replace(id, fragment)
-                addToBackStack(null)
-            }*/
-        } else {
-            val bundle = Bundle()
-            bundle.putInt("value", value)
-            bundle.putInt("minValue", 0)
-            bundle.putInt("maxValue", 30)
-            bundle.putString("them", "blue")
-            bundle.putString("goal", "mod")
-            bundle.putInt("editKey", keyListMod)
-            bundle.putInt("indexMod", position)
-            val fragment = PlusAndMinus()
-            fragment.arguments = bundle
-            childFragmentManager.commit {
-                replace(id, fragment)
-                addToBackStack(null)
-            }
-        }
-    }
-
-    override fun deleteMod(position: Int, fragment: Fragment) {
-        childFragmentManager.commit {
-            remove(fragment)
-        }
+    override fun deleteMod(position: Int) {
         mSkillVM.mapMod[keyListMod]?.value?.removeAt(position)
-    }
-
-    override fun updIdMod(position: Int, id: Int) {
-        mSkillVM.mapMod[keyListMod]?.value?.get(position)?.resId = id
     }
 
     override fun addMod(style: Boolean) {
@@ -119,6 +77,15 @@ class Modificators : Fragment(), ModTemplateHolder.LoadFragment, ModTemplateHold
         }
         adapter.notifyItemInserted(mSkillVM.mapMod[keyListMod]?.value?.size ?: 1 - 1)
     }
+
+    fun getListMods():MutableList<Mod>{
+        return mSkillVM.mapMod[keyListMod]?.value!!
+    }
+
+    override fun putModValue(position: Int, value: Int) {
+        mSkillVM.mapMod[keyListMod]?.value?.get(position)?.value = value
+    }
+
 
 }
 
@@ -145,7 +112,6 @@ class ModDialogFragment(private val addMod:AddMod) : DialogFragment() {
                 dismiss()
             }
         }
-
         bind()
 
         return view

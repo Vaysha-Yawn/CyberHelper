@@ -6,35 +6,12 @@
     android:layout_height="match_parent"
     android:background="@color/dark">
 
-    <FrameLayout
-        android:id="@+id/frameLayout8"
+    <com.example.test.views.HeaderView
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#050414"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageButton
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="20dp"
-            android:background="#050414"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            app:srcCompat="@drawable/back"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <TextView
-            android:id="@+id/CyberHelper"
-            style="@style/Text.H2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Cyber Helper" />
-    </FrameLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -81,6 +58,7 @@
                 android:orientation="horizontal">
 
                 <com.example.test.views.DropDownView
+                    android:id="@+id/DDDifficult"
                     android:layout_width="270dp"
                     android:layout_height="wrap_content"
                     app:text_color="@color/black"
@@ -99,7 +77,8 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:text="30"
-                    android:textColor="@color/yellow" />
+                    android:textColor="@color/yellow"
+                    tools:ignore="TouchTargetSizeCheck" />
 
             </LinearLayout>
 
@@ -165,11 +144,12 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Сколько очков удачи ипользовать?"/>
-                    <androidx.fragment.app.FragmentContainerView
+                    <com.example.test.views.PlusMinusView
                         android:id="@+id/luckyPMfr"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"/>
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        app:PM_color="@color/orange"
+                        app:PM_small="true"/>
                 </LinearLayout>
 
                 <TextView

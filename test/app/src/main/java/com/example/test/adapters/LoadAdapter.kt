@@ -1,4 +1,4 @@
-package com.example.test.helpers
+package com.example.test.adapters
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -9,10 +9,8 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.activity_and_fragments.Home
 import com.example.test.activity_and_fragments.hosts.PresentHost
 import com.example.test.data_base.Game
-import com.example.test.viewModels.GameDAO
 
 class LoadAdapter() : BaseAdapter() {
 

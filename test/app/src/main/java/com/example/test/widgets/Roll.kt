@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainerView
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.commit
+import androidx.fragment.app.*
 import androidx.lifecycle.MutableLiveData
 import com.example.test.R
 import com.example.test.data_base.Goal
 import com.example.test.viewModels.CharacterDAO
+import com.example.test.viewModels.OneRoll
 import com.example.test.viewModels.SkillTestVM
 import kotlin.properties.Delegates
 
@@ -21,6 +19,8 @@ class Roll : Fragment() {
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private var keyFragment by Delegates.notNull<Int>()
     private var keyRoll by Delegates.notNull<Int>()
+
+    private lateinit var m1D10:m1D10
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,6 +86,9 @@ class Roll : Fragment() {
         bundle.putInt("keyCrit", keyCrit)
         fragment.arguments = bundle
         loadFragmentLight(fragment, R.id.m1d10Fr)
+
+        m1D10 = view.findViewById<FragmentContainerView>(R.id.m1d10Fr).getFragment<m1D10>()
+
         /////////////////////////////////
         val keyListMod = mSkillVM.createId()
         val fragmentM = Modificators()
@@ -115,34 +118,14 @@ class Roll : Fragment() {
         return view
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        /*val m =  mSkillVM.map[keyFragment]?.get(keyRoll)
-        if (m != null){
-            for((key,value) in m){
-                when(value){
-                    "goal"->{
-                        mSkillVM.mapGoal[key]?.value = null
-                    }
-                    "boolean"->{
-                        mSkillVM.mapBoolean[key]?.value = null
-                    }
-                    "int"->{
-                        mSkillVM.mapInt[key]?.value = null
-                    }
-                    "listInt"->{
-                        mSkillVM.mapListInt[key]?.value = null
-                    }
-                    "mod"->{
-                        mSkillVM.mapMod[key]?.value = null
-                    }
-                    "string"->{
-                        mSkillVM.mapString[key]?.value = null
-                    }
-                }
-            }
-        }*/
-        // очищение следов
-    }
+   /*fun getRoll():OneRoll{
+       val g1d10 = m1D10.get1d10()
+       val critical  = m1D10.getCritical()
+       *//*return OneRoll(
+            goal: Goal,
+            mods: MutableList<Mod>?,
+       g1d10,
+       critical)*//*
+   }*/
 
 }

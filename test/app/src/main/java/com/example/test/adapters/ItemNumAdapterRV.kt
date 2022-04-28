@@ -1,17 +1,14 @@
-package com.example.test.helpers
+package com.example.test.adapters
 
 
 import android.annotation.SuppressLint
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.data_base.ParamNum
 import com.example.test.databinding.CardNumBinding
-import com.example.test.databinding.CardStringBinding
 import io.realm.RealmList
 
 

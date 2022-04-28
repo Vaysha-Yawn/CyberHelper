@@ -13,9 +13,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.data_base.*
-import com.example.test.helpers.*
-import com.example.test.viewModels.GameDAO
-import io.realm.RealmList
+import com.example.test.adapters.*
 import java.lang.Exception
 
 class EditItem : Fragment() {
