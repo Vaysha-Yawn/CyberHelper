@@ -14,7 +14,6 @@ data class OneRoll(
 )
 
 data class FewRolls(
-    var allGoals: List<Goal>,
     var rolls: MutableList<OneRoll>
 )
 

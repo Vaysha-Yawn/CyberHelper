@@ -13,7 +13,8 @@ import com.example.test.databinding.CardGoalBinding
 class GoalCompactAdapterRV(
     private val deleteGoalCompact: GoalCompactTemplateHolder.DeleteGoalCompact,
     private val listener: GoalCompactTemplateHolder.PutGoalCompactValue,
-    private val listAllGoals: MutableList<Goal>
+    private val listAllGoals: MutableList<Goal>,
+    private val check : DropDownAdapterRV.TemplateHolder.CheckChoose?
 ) :
     RecyclerView.Adapter<GoalCompactTemplateHolder>(), GoalCompactTemplateHolder.updView {
 
@@ -21,7 +22,7 @@ class GoalCompactAdapterRV(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoalCompactTemplateHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.card_goal, parent, false)
-        return GoalCompactTemplateHolder(view, deleteGoalCompact, this, listener)
+        return GoalCompactTemplateHolder(view, deleteGoalCompact, this, listener, check)
     }
 
     override fun onBindViewHolder(holder: GoalCompactTemplateHolder, position: Int) {
@@ -48,6 +49,7 @@ class GoalCompactTemplateHolder(
     private val deleteGoalCompact: DeleteGoalCompact,
     private val updViewr: updView,
     private val listener: PutGoalCompactValue,
+    private val check : DropDownAdapterRV.TemplateHolder.CheckChoose?
 ) : RecyclerView.ViewHolder(view), DropDownAdapterRV.TemplateHolder.WhenValueTo {
     private val binding = CardGoalBinding.bind(view)
 
@@ -56,7 +58,7 @@ class GoalCompactTemplateHolder(
         listAllGoals.forEach {
 
         }
-        DD.setDDArrayAndListener(list, this@GoalCompactTemplateHolder)
+        DD.setDDArrayAndListener(list, this@GoalCompactTemplateHolder, check)
 
         delete.setOnClickListener { view ->
             deleteGoalCompact.deleteGoalCompact(adapterPosition)

@@ -58,7 +58,7 @@ class SkillTest : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo, Head
             title.text = txtitle
             val arr = SpecialGameData().difficultName
             tvEdit = edit
-            DDDifficult.setDDArrayAndListener(arr, this@SkillTest)
+            DDDifficult.setDDArrayAndListener(arr, this@SkillTest, null)
             // если нет навыка-------------------------------------------------------------------------
 
             val skill = mCharacterVM.characterList.value?.singleOrNull { character ->

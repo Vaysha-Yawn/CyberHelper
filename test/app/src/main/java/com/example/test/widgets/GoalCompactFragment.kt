@@ -9,19 +9,21 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
+import com.example.test.adapters.DropDownAdapterRV
 import com.example.test.adapters.GoalCompactAdapterRV
 import com.example.test.adapters.GoalCompactTemplateHolder
 import com.example.test.data_base.Goal
 import com.example.test.databinding.FragmentGoalCompactBinding
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
-import kotlin.properties.Delegates
 
-class GoalCompactFragment : Fragment(), GoalCompactTemplateHolder.DeleteGoalCompact, GoalCompactTemplateHolder.PutGoalCompactValue {
+class GoalCompactFragment : Fragment(), GoalCompactTemplateHolder.DeleteGoalCompact,
+    GoalCompactTemplateHolder.PutGoalCompactValue,
+    DropDownAdapterRV.TemplateHolder.CheckChoose {
 
     private val mCharacterDAO: CharacterDAO by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
-    private var keyListGoal by Delegates.notNull<Int>()
+    private var keyListGoal = 0
     private val allGoalsList = mutableListOf<Goal>()
     private lateinit var adapter: GoalCompactAdapterRV
 
@@ -29,7 +31,9 @@ class GoalCompactFragment : Fragment(), GoalCompactTemplateHolder.DeleteGoalComp
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        val view = inflater.inflate(R.layout.fragment_goal_compact, container, false)
+            // TODO: в этом классе творитться какая-то хуйня, пожалуйста, перерделайте его
+        //mSkillVM.mapGoal[keyListGoal]?.value =  mutableListOf<Goal>()
         mCharacterDAO.characterList.value?.forEach {
             if (it.gameId == mCharacterDAO.gameId) {
                 if (it.id != mCharacterDAO.characterId) {
@@ -46,9 +50,7 @@ class GoalCompactFragment : Fragment(), GoalCompactTemplateHolder.DeleteGoalComp
             }
         }
 
-        adapter = GoalCompactAdapterRV(this, this, allGoalsList)
-
-        val view = inflater.inflate(R.layout.fragment_goal_compact, container, false)
+        adapter = GoalCompactAdapterRV(this, this, allGoalsList, this)
 
         val binding = FragmentGoalCompactBinding.bind(view)
 
@@ -59,13 +61,13 @@ class GoalCompactFragment : Fragment(), GoalCompactTemplateHolder.DeleteGoalComp
             mSkillVM.mapGoal[keyListGoal]?.observe(viewLifecycleOwner) {
                 adapter.setData(it)
             }
-                addGoal.setOnClickListener {
-                    try {
-                        addGoal()
-                    } catch (e: Exception) {
-                        Toast.makeText(view.context, "$e", Toast.LENGTH_LONG).show()
-                    }
+            addGoal.setOnClickListener {
+                try {
+                    addGoal()
+                } catch (e: Exception) {
+                    Toast.makeText(view.context, "$e", Toast.LENGTH_LONG).show()
                 }
+            }
         }
         bind()
 
@@ -87,6 +89,30 @@ class GoalCompactFragment : Fragment(), GoalCompactTemplateHolder.DeleteGoalComp
 
     fun getChosenGoals(): MutableList<Goal> {
         return mSkillVM.mapGoal[keyListGoal]?.value!!
+    }
+
+    override fun checkChoose(position: Int): Boolean {
+        var r = true
+        val chosenGoal = allGoalsList[position]
+        val map = mSkillVM.mapGoal[keyListGoal]?.value
+        if (map != null) {
+            for (value in map) {
+                if (value == chosenGoal) {
+                    r = false
+                }
+            }
+        }else{
+            r = false
+        }
+        return r
+    }
+
+    override fun onCheckedFalse() {
+        Toast.makeText(
+            requireContext(),
+            "Вы уже выбрали эту цель, пожалуйста выберите другую",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }
 

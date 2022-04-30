@@ -42,7 +42,7 @@ class SkillResult : Fragment() {
         var roll: OneRoll? = null
         when (mSkillVM.roll.second) {
             "mapRoll" -> {
-                roll = mSkillVM.mapRoll[mSkillVM.roll.first]
+                //roll = mSkillVM.mapRoll[mSkillVM.roll.first]
             }
         }
         if (roll != null) {

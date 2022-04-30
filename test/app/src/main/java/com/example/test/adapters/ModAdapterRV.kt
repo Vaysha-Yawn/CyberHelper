@@ -56,7 +56,7 @@ class ModTemplateHolder(
         if (mod.style){
             PMLinear.visibility = View.GONE
             DD.visibility = View.VISIBLE
-            DD.setDDArrayAndListener(SpecialGameData().modName, this@ModTemplateHolder)
+            DD.setDDArrayAndListener(SpecialGameData().modName, this@ModTemplateHolder, null)
         }else{
             PMLinear.visibility = View.VISIBLE
             DD.visibility = View.GONE

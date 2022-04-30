@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/drop_down_list_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_goal_compact.xml" value="0.36102564102564105" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/modificators.xml" value="0.36102564102564105" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/roll.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/drawable/bcg_rectangle_round.xml" value="0.34" />
         <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/drawable/bcg_rectangle_round_light.xml" value="0.34" />
         <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/drawable/result.xml" value="0.34" />

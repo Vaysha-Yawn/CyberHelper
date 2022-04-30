@@ -4,26 +4,34 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.lifecycle.MutableLiveData
 import com.example.test.R
+import com.example.test.adapters.DropDownAdapterRV
 import com.example.test.data_base.Goal
 import com.example.test.viewModels.CharacterDAO
+import com.example.test.viewModels.OneRoll
 import com.example.test.viewModels.SkillTestVM
+import com.example.test.views.DropDownView
 import kotlin.properties.Delegates
 
-class Roll : Fragment() {
+class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
+    DropDownAdapterRV.TemplateHolder.CheckChoose {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private var keyFragment by Delegates.notNull<Int>()
     private var keyRoll by Delegates.notNull<Int>()
+    private var keyAllGoals = 0
+    private var pos = 0
 
-    private lateinit var m1D10FR:m1D10
-    private lateinit var modificatorsFR:Modificators
+    private lateinit var m1D10FR: m1D10
+    private lateinit var modificatorsFR: Modificators
+    private lateinit var goalDD: DropDownView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,13 +39,13 @@ class Roll : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.roll, container, false)
         /////////////////////////////////
-        val goal = arguments?.getString("goal")
-        var keyAllGoals = arguments?.getInt("keyAllGoals")
-        val position = requireArguments().getInt("position")
+        val goal = arguments?.getString("goal", "")
+        keyAllGoals = arguments?.getInt("keyAllGoals") ?: 0
+        pos = requireArguments().getInt("pos")
         keyFragment = requireArguments().getInt("keyFragment")
 
         /////////////////////////////////
-        if (mSkillVM.mapGoal[keyAllGoals]?.value.isNullOrEmpty() || keyAllGoals == null) {
+        if (mSkillVM.mapGoal[keyAllGoals]?.value.isNullOrEmpty() || keyAllGoals == 0) {
             //Toast.makeText(requireContext(), "Сгенерировано заново", Toast.LENGTH_SHORT).show()
             keyAllGoals = mSkillVM.createId()
 
@@ -63,7 +71,7 @@ class Roll : Fragment() {
         }
 
         keyRoll = mSkillVM.createId()
-        //mSkillVM.map[keyFragment]?.get(keyRoll)?.set(position, "goal")
+        //mSkillVM.map[keyFragment]?.get(keyRoll)?.set(pos, "goal")
 
         /////////////////////////////////
         fun loadFragmentLight(fragment: Fragment, id: Int) {
@@ -105,34 +113,80 @@ class Roll : Fragment() {
         modificatorsFR = view.findViewById<FragmentContainerView>(R.id.modFr).getFragment()
 
         /////////////////////////////////
-        if (goal != null && goal != "") {
-            val fragmentF = GoalDD()
-            val bundleF = Bundle()
-            bundleF.putString("main", "Выберите цель")
-            bundleF.putString("them", "yellow")
-            bundleF.putInt("keyAllGoals", keyAllGoals)
-            bundleF.putInt("keyRoll", keyRoll)
-            bundleF.putInt("keyFragment", keyFragment)
-            bundleF.putInt("position", position)
-            fragmentF.arguments = bundleF
-            loadFragmentLight(fragmentF, R.id.goalFr)
+        goalDD = view.findViewById(R.id.goalDD)
+        if (goal == null || goal == "") {
+            goalDD.visibility = View.GONE
         } else {
-            view.findViewById<FragmentContainerView>(R.id.goalFr).visibility = View.GONE
+            val list = mutableListOf<String>()
+            mSkillVM.mapGoal[keyAllGoals]?.value?.forEach { g ->
+                list.add(g.name)
+            }
+            if (list.isEmpty()) {
+                goalDD.setMainText("Целей нет")
+            }
+            goalDD.setDDArrayAndListener(list, this, this)
         }
 
         /////////////////////////////////
         return view
     }
 
-   /*fun getRoll():OneRoll{
-       val g1d10 = m1D10FR.get1d10()
-       val critical  = m1D10FR.getCritical()
-       val mods = modificatorsFR.getListMods()
-       return OneRoll(
-            goal: Goal,
-           mods,
-       g1d10,
-       critical)
-   }*/
+    override fun whenValueTo(position: Int) {
+        val chosenGoal = mSkillVM.mapGoal[keyAllGoals]?.value?.get(position)!!
+        mSkillVM.mapGoalMap[keyFragment]?.value?.set(pos, chosenGoal)
+    }
+
+
+    fun getRoll(): OneRoll {
+        val g1d10 = m1D10FR.get1d10()
+        val critical = m1D10FR.getCritical()
+        val mods = modificatorsFR.getListMods()
+        val goal = mSkillVM.mapGoal[keyAllGoals]?.value?.get(pos)!!
+        return OneRoll(
+            goal,
+            mods,
+            g1d10,
+            critical
+        )
+    }
+
+    override fun checkChoose(position: Int): Boolean {
+        var r = true
+        val chosenGoal = mSkillVM.mapGoal[keyAllGoals]?.value?.get(position)
+        if (chosenGoal != null) {
+            val map = mSkillVM.mapGoalMap[keyFragment]?.value
+            if (map != null) {
+                for ((key, value) in map) {
+                    if (value == chosenGoal) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Вы уже выбрали эту цель, пожалуйста выберите другую",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        r = false
+                    }
+                }
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Список выбранных целей не найден",
+                    Toast.LENGTH_SHORT
+                ).show()
+                r = false
+            }
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "Выбранная цель не найдена",
+                Toast.LENGTH_SHORT
+            ).show()
+            r = false
+        }
+        return r
+    }
+
+    override fun onCheckedFalse() {
+        //
+    }
 
 }

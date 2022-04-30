@@ -15,7 +15,7 @@ import com.example.test.adapters.DropDownAdapterRV
 
 class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
     LinearLayout(context, attrs, defStyleAttr, defStyleRes),
-    DropDownAdapterRV.TemplateHolder.OnDDChosen {
+    DropDownAdapterRV.TemplateHolder.Select {
 
     private var binding: DropDownListBinding
 
@@ -87,9 +87,14 @@ class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, de
         return binding.main.text.toString()
     }
 
+    fun setMainText(text:String){
+        binding.main.text = text
+    }
+
     fun setDDArrayAndListener(
         list: List<String>,
-        ob: DropDownAdapterRV.TemplateHolder.WhenValueTo?
+        ob: DropDownAdapterRV.TemplateHolder.WhenValueTo?,
+        check: DropDownAdapterRV.TemplateHolder.CheckChoose?
     ) {
         with(binding) {
             main.setOnClickListener {
@@ -105,7 +110,7 @@ class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, de
             this@DropDownView.list = list
 
             val adapterItems =
-                DropDownAdapterRV(list, color, ob, this@DropDownView)
+                DropDownAdapterRV(list, color, ob, this@DropDownView, check)
             items.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             items.adapter = adapterItems
@@ -120,23 +125,12 @@ class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, de
         }
     }
 
-    override fun onDDChosen(position: Int) {
+    override fun select(position: Int) {
         with(binding) {
             main.text = list[position]
             items.visibility = View.GONE
             setMoreOrLess(true)
         }
     }
-
-
-   /*
-
-    if (goal == "goal") {
-        val chosenGoal = mSkillVM.allGoals.value?.get(position)
-        if (chosenGoal!=null){
-            mSkillVM.chosenGoals.value?.set(position, chosenGoal)
-            mSkillVM.allGoals.value?.remove(chosenGoal)
-        }
-    }*/
 }
 

@@ -63,7 +63,7 @@ class CharacterMenu : Fragment(),  DropDownAdapterRV.TemplateHolder.WhenValueTo,
         SpecialGameData().mapParameterToSkill.forEach { (key, _) ->
             arr.add(key)
         }
-        view.findViewById<DropDownView>(R.id.DDSkill).setDDArrayAndListener(arr, this)
+        view.findViewById<DropDownView>(R.id.DDSkill).setDDArrayAndListener(arr, this, null)
 
         view.findViewById<ImageButton>(R.id.CharacterMenu_Fight).setOnClickListener {
             (activity as PresentHost).openFight(characterId)

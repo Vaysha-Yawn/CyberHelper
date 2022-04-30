@@ -25,6 +25,8 @@ class FewRoll : Fragment() {
     private val mSkillVM: SkillTestVM by activityViewModels()
     private val mCharacterVM: CharacterDAO by activityViewModels()
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,7 +66,6 @@ class FewRoll : Fragment() {
 
         fun bind() = with(binding) {
             VP2.adapter = adapter
-
             VM.add(R.id.radioButton)
 
             delete.setOnClickListener {
@@ -111,6 +112,7 @@ class FewRoll : Fragment() {
                     radioGroup.check(VM.getElement(position))
                 }
             })
+
         }
         bind()
 
@@ -120,5 +122,7 @@ class FewRoll : Fragment() {
 
         return view
     }
+
+
 
 }

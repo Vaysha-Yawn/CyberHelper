@@ -17,6 +17,7 @@ import com.example.test.data_base.TemplateFightType
 import com.example.test.adapters.FragmentsAdapterRV
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.widgets.*
+import java.lang.Exception
 
 
 class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
@@ -49,19 +50,6 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
                 addToBackStack(null)
             }
         }
-        fun loadDD(main:String, them:String, goal:String, list:ArrayList<String>, id:Int){
-            /*val fragment = DropDownList()
-            val bundle = Bundle()
-            bundle.putString("main", main)
-            bundle.putString("them", them)
-            bundle.putString("goal", goal)
-            bundle.putStringArrayList("list", list)
-            fragment.arguments = bundle
-            childFragmentManager.commit {
-                replace(id, fragment)
-                addToBackStack(null)
-            }*/
-        }
 
         fun loadFragmentLight(fragment:Fragment, id:Int){
             childFragmentManager.commit {
@@ -73,17 +61,6 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
         val list = mutableListOf<String>()
         val listFr = mutableListOf<Fragment>()
 
-       /* val bundle = Bundle()
-        bundle.putString("text1", "Успех")
-        bundle.putString("text2", "Не успех")
-        val fragment = RadioGroupTwo(this)
-        fragment.arguments = bundle
-        list.add("Проверка выбора")
-        listFr.add(fragment)*/
-
-
-
-
         when (fightType?.roll) {
             "one roll" -> {
                 mSkillVM.mapGoalMap[0] = MutableLiveData()
@@ -94,6 +71,7 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
                 val bundle = Bundle()
                 bundle.putInt("position", 0 )
                 bundle.putInt("keyFragment",0)
+                bundle.putString("goal","0")
                 fragment.arguments = bundle
                 list.add(fightType.nameRoll?:"")
                 listFr.add(fragment)
@@ -106,6 +84,7 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
                 val fragment = FewRoll()
                 val bundle = Bundle()
                 bundle.putInt("keyFragment",0)
+                bundle.putString("goal","0")
                 fragment.arguments = bundle
                 list.add(fightType.nameRoll?:"")
                 listFr.add(fragment)
@@ -125,6 +104,13 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
                 //loadDD(main:String, "green", goal:String, list:ArrayList<String>, resId:Int)
             }
         }
+
+          /* он еще не доделан
+           val fragment = GoalCompactFragment()
+            list.add("")
+            listFr.add(fragment)*/
+        //}catch (e:Exception){Toast.makeText(requireContext(), "$e", Toast.LENGTH_SHORT).show()}
+
 
         val binding = com.example.test.databinding.FightSecondBinding.bind(view)
         fun bind() = with(binding) {

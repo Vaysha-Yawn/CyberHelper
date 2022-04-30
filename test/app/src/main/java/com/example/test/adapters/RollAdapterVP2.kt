@@ -3,6 +3,7 @@ package com.example.test.adapters
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.test.viewModels.FewRolls
 import com.example.test.widgets.Roll
 
 class RollAdapterVP2(fragment: Fragment, private val keyAllGoals: Int,  private val keyFragment: Int) :
@@ -42,5 +43,11 @@ class RollAdapterVP2(fragment: Fragment, private val keyAllGoals: Int,  private 
     fun blablaRemove(position: Int) {
         notifyItemRemoved(position)
     }
+
+
+    /*fun getRolls():FewRolls{
+        return FewRolls(
+        )
+    }*/
 
 }
