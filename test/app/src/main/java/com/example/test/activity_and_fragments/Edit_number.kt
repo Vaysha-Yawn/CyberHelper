@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.data_base.TemplateParamNum
 import com.example.test.viewModels.CharacterDAO
+import com.example.test.views.PlusMinusView
 import com.example.test.widgets.PlusAndMinus
 
 
@@ -55,16 +56,8 @@ class Edit_number : Fragment() {
         titleView.text = param.name
 
         // подключаем фрагмент плюс и минус
-        val bundle = Bundle()
-        bundle.putInt("value", value.toInt())
-        if (param.minValue != null) {
-            bundle.putInt("minValue", param.minValue!!)
-        }
-        if (param.maxValue != null) {
-            bundle.putInt("maxValue", param.maxValue!!)
-        }
-        bundle.putString("them", "green")
-        loadFragment(R.id.fr, PlusAndMinus(), bundle)
+        val PM = view.findViewById<PlusMinusView>(R.id.fr)
+        PM.setListener( param.maxValue, param.minValue, null)
 
         // при отмене
         closeBtn.setOnClickListener {
@@ -73,10 +66,7 @@ class Edit_number : Fragment() {
 
         // при подтверждении
         applyBtn.setOnClickListener {
-            val frag1: Fragment =
-                childFragmentManager.findFragmentById(R.id.fr)!!
-            val result =
-                frag1.view?.findViewById<EditText>(R.id.edit)?.text.toString().toIntOrNull()
+           val result = PM.getValue()
             var res = 1
             if (result!=null){
                 // проверки

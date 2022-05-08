@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="#1B1A22"
+        android:background="@color/dark"
         android:padding="20dp">
 
     <TextView
@@ -48,7 +48,8 @@
         <Button
             android:id="@+id/close"
             style="@style/Text.H2"
-            android:layout_width="110dp"
+            android:layout_width="wrap_content"
+            android:paddingHorizontal="10dp"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_green_outline"
             android:text="Отмена"
@@ -65,7 +66,8 @@
         <Button
             android:id="@+id/apply"
             style="@style/Text.H2"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
+            android:paddingHorizontal="20dp"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_green_full"
             android:text="Сохранить"

@@ -19,8 +19,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/drop_down_fragment"
+    <com.example.test.views.DropDownView
+        app:DD_color="@color/green"
+        app:text_color="@color/black"
+        app:main_text="Выберите параметр"
+        android:id="@+id/drop_down"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"

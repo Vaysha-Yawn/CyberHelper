@@ -69,7 +69,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:text="Эмгыр Вар Эмрейс"
-                android:textColor="@color/white"
+                android:textColor="@color/yellow"
                 android:textFontWeight="500" />
         </LinearLayout>
     </LinearLayout>

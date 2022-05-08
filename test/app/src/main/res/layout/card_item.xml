@@ -6,13 +6,14 @@
     android:layout_marginTop="30dp"
     android:background="@drawable/bcg_blue_line"
     android:orientation="vertical"
-    android:padding="20dp">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:textColor="@color/cyan"
@@ -35,6 +36,7 @@
             android:paddingBottom="10dp"
             android:text="Усиление" />
         <TextView
+            android:layout_marginStart="10dp"
             android:id="@+id/description"
             style="@style/Text"
             android:layout_width="wrap_content"
@@ -42,97 +44,97 @@
             android:text="Карманное устройство, выполняющее функции компьютера и телефона"
             android:textColor="@color/light_grey"
             android:textSize="18sp" />
+        <TextView
+            android:id="@+id/name_num_RV"
+            style="@style/Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="start"
+            android:text="Числовые атрибуты"
+            android:textColor="@color/light_grey" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/num_gv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:id="@+id/name_str_RV"
+            style="@style/Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="start"
+            android:text="Строковые атрибуты"
+            android:textColor="@color/light_grey" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/str_RV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:id="@+id/name_options_RV"
+            style="@style/Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="start"
+            android:text="Атрибуты опций"
+            android:textColor="@color/light_grey" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/options_RV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:id="@+id/name_effect_add_RV"
+            style="@style/Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="start"
+            android:text="Эффекты влияния"
+            android:textColor="@color/light_grey" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/effect_add_RV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:id="@+id/name_effect_weapon_RV"
+            style="@style/Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="start"
+            android:text="Эффекты атаки"
+            android:textColor="@color/light_grey" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/effect_weapon_RV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/name_num_RV"
-        style="@style/Text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:gravity="start"
-        android:text="Числовые атрибуты"
-        android:textColor="@color/light_grey" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/num_gv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="20dp" />
-
-    <TextView
-        android:id="@+id/name_str_RV"
-        style="@style/Text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:gravity="start"
-        android:text="Строковые атрибуты"
-        android:textColor="@color/light_grey" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/str_RV"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="20dp" />
-
-    <TextView
-        android:id="@+id/name_options_RV"
-        style="@style/Text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:gravity="start"
-        android:text="Атрибуты опций"
-        android:textColor="@color/light_grey" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/options_RV"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="20dp" />
-
-    <TextView
-        android:id="@+id/name_effect_add_RV"
-        style="@style/Text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:gravity="start"
-        android:text="Эффекты влияния"
-        android:textColor="@color/light_grey" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/effect_add_RV"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="20dp" />
-
-    <TextView
-        android:id="@+id/name_effect_weapon_RV"
-        style="@style/Text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:gravity="start"
-        android:text="Эффекты атаки"
-        android:textColor="@color/light_grey" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/effect_weapon_RV"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="20dp" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@drawable/bcg_rectangle_round"
+        android:backgroundTint="@color/bcg_black">
 
         <Button
             android:id="@+id/delete"

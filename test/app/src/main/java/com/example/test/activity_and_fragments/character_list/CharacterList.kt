@@ -52,6 +52,8 @@ class CharacterList : Fragment(), HeaderView.HeaderBack {
                 }
             }
 
+            view.findViewById<HeaderView>(R.id.headerView).setBack(true, this, requireActivity(), viewLifecycleOwner)
+
             val menu = view.findViewById<BottomNavigationView>(R.id.CharacterList_Menu)
             childFragmentManager.commit {
                 replace(R.id.Character_list_fragment_container, CharacterList_Base())
