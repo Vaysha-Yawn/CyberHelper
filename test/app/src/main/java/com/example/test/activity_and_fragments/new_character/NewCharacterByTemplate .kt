@@ -16,11 +16,13 @@ import com.example.test.data_base.*
 import com.example.test.viewModels.NewCharacterVM
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
+import com.example.test.views.HeaderView
+import com.example.test.views.PlusMinusView
 import io.realm.RealmList
 import java.lang.Exception
 
 
-class NewCharacterByTemplate : Fragment() {
+class NewCharacterByTemplate : Fragment(), HeaderView.HeaderBack {
 
     private lateinit var mNewCharacterVM: NewCharacterVM
     private val mCharacterVM: CharacterDAO by activityViewModels()
@@ -50,21 +52,8 @@ class NewCharacterByTemplate : Fragment() {
             }
         }
 
-        val tvage = view.findViewById<TextView>(R.id.newByTemplate_EditAge)
-        mNewCharacterVM.age.observe(viewLifecycleOwner) { age ->
-            tvage.text = age.toString()
-        }
-
-        val plus = view.findViewById<Button>(R.id.newByTemplate_plus)
-        val minus = view.findViewById<Button>(R.id.newByTemplate_minus)
-
-        plus.setOnClickListener {
-            mNewCharacterVM.plusAge()
-        }
-
-        minus.setOnClickListener {
-            mNewCharacterVM.minusAge()
-        }
+        val PM = view.findViewById<PlusMinusView>(R.id.PM)
+        PM.setListener(100, null, null)
 
         val done = view.findViewById<Button>(R.id.newByTemplate_Done)
         done.setOnClickListener {
@@ -78,7 +67,7 @@ class NewCharacterByTemplate : Fragment() {
                 }
                 else{
                     val gender = tvgender.text.toString()
-                    val age = tvage.text.toString().toInt()
+                    val age = PM.getValue().toIntOrNull()
                     val attributes = templateCharacter.attributes
                     attributes.forEach { gp ->
                         if (gp.title == "Базовые параметры") {
@@ -89,7 +78,7 @@ class NewCharacterByTemplate : Fragment() {
                             }
                             gp.attributes!!.listParamNum.forEach { ps ->
                                 if (ps.name == "Возраст") {
-                                    ps.value = age
+                                    ps.value = age?:0
                                 }
                             }
                             gp.attributes!!.listParamOptions.forEach { ps ->
@@ -116,9 +105,7 @@ class NewCharacterByTemplate : Fragment() {
 
         }
 
-        view.findViewById<ImageButton>(R.id.back).setOnClickListener {
-            view.findNavController().popBackStack()
-        }
+        view.findViewById<HeaderView>(R.id.header).setBack(true, this, requireActivity(), viewLifecycleOwner)
         return view
     }
 
@@ -128,6 +115,10 @@ class NewCharacterByTemplate : Fragment() {
         mCharacterVM.addCharacter(gameId, attributes)
 
         Toast.makeText (  view?.context, "Персанаж создан", LENGTH_SHORT).show()
+    }
+
+    override fun back() {
+        view?.findNavController()?.popBackStack()
     }
 
 }

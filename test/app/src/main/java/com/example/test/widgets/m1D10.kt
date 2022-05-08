@@ -36,11 +36,11 @@ class m1D10 : Fragment(), PlusMinusView.NumberEvent {
     }
 
     fun get1d10():Int{
-        return m1d10.getValue()?:0
+        return m1d10.getValue().toIntOrNull()?:0
     }
 
     fun getCritical():Int{
-        return if (get1d10()<10){0}else{PMCritical.getValue()?:0}
+        return if (get1d10()<10){0}else{PMCritical.getValue().toIntOrNull()?:0}
     }
 
     override fun numberEvent(number: Int) {

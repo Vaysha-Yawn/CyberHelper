@@ -112,7 +112,7 @@ class FightResult : Fragment() {
         )
 
         val adapterItems =
-            ArrayAdapter(view.context, R.layout.drop_down_list_item_white, list)
+            ArrayAdapter(view.context, R.layout.drop_down_list_item, list)
         moreRV.adapter = adapterItems
 
 

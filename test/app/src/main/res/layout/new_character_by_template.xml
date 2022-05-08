@@ -12,32 +12,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <FrameLayout
+        <com.example.test.views.HeaderView
+            android:id="@+id/header"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#050414">
-
-            <ImageButton
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="20dp"
-                android:background="#050414"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
-                app:srcCompat="@drawable/back"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <TextView
-                android:id="@+id/CyberHelper"
-                style="@style/Text.H2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Cyber Helper" />
-
-        </FrameLayout>
+            android:layout_height="wrap_content" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -45,8 +23,10 @@
             tools:ignore="SpeakableTextPresentCheck">
 
             <LinearLayout
+                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -55,117 +35,97 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:text="Имя персонажа" />
+                    android:text="Имя персонажа"
+                    android:textColor="@color/green" />
 
                 <EditText
                     android:id="@+id/newByTemplate_EditNameCharacter"
                     style="@style/Text.H2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="start"
                     android:layout_marginTop="20dp"
+                    android:background="@drawable/bcg_rectangle_round"
+                    android:backgroundTint="@color/dark_grey"
                     android:hint="Имя персонажа"
                     android:inputType="text"
                     android:maxLength="30"
                     android:minHeight="48dp"
-                    android:textColorHint="#626262" />
-
-                <TextView
-                    style="@style/Text.H2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
-                    android:text="Пол"
-                    android:textColor="#626262"/>
-
-                <Switch
-                    android:id="@+id/newByTemplate_EditGender"
-                    style="@style/Text.H2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minHeight="48dp"
-                    android:text="Мужской "
-                    tools:ignore="UseSwitchCompatOrMaterialXml"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"/>
-
-                <TextView
-                    style="@style/Text.H2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
-                    android:text="Возраст"
-                    android:textColor="#626262"/>
-
+                    android:paddingHorizontal="30dp"
+                    android:paddingVertical="10dp"
+                    android:textColorHint="@color/light_grey" />
                 <LinearLayout
+                    android:layout_marginTop="40dp"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
-                    <Space
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <Button
-                        android:id="@+id/newByTemplate_minus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginEnd="30dp"
-                        android:background="@drawable/btn_green_minus"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                    <FrameLayout
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="30dp"
-                        android:background="@drawable/background_black">
-
-                        <EditText
-                            android:id="@+id/newByTemplate_EditAge"
+                        android:orientation="vertical">
+                        <TextView
                             style="@style/Text.H2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:backgroundTint="@color/green"
-                            android:inputType="number"
-                            android:minWidth="48dp"
+                            android:text="Пол"
+                            android:textColor="@color/green" />
+
+                        <Switch
+                            android:id="@+id/newByTemplate_EditGender"
+                            style="@style/Text.H2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
                             android:minHeight="48dp"
-                            android:text="20"
-                            android:maxLength="4"
-                            tools:ignore="SpeakableTextPresentCheck" />
-                    </FrameLayout>
-
-                    <Button
-                        android:id="@+id/newByTemplate_plus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/btn_green_plus"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
+                            android:text="Мужской "
+                            tools:ignore="UseSwitchCompatOrMaterialXml" />
+                    </LinearLayout>
                     <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:orientation="vertical">
+                        <TextView
+                            style="@style/Text.H2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Возраст"
+                            android:textColor="@color/green" />
+
+                        <com.example.test.views.PlusMinusView
+                            android:id="@+id/PM"
+                            android:layout_width="170dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20dp"
+                            app:PM_small="true" />
+
+                    </LinearLayout>
                 </LinearLayout>
+
 
                 <Button
                     android:id="@+id/newByTemplate_Done"
                     style="@style/Text.H2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="60dp"
                     android:layout_marginBottom="20dp"
-                    android:background="#00FC92"
+                    android:background="@drawable/bcg_rectangle_round"
+                    android:backgroundTint="@color/green"
+                    android:paddingHorizontal="50dp"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:text="Готово"
+                    android:textAllCaps="false"
                     android:textColor="@color/black" />
-
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

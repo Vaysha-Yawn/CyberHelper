@@ -149,8 +149,8 @@ class PlusMinusView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
         }
     }
 
-    fun getValue(): Int? {
-        return binding.edit.toString().toIntOrNull()
+    fun getValue(): String {
+        return binding.edit.text.toString()
     }
 
     interface NumberEvent {

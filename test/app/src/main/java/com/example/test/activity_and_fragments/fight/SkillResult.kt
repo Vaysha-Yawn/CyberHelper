@@ -100,7 +100,7 @@ class SkillResult : Fragment() {
         val adapterItems =
             ArrayAdapter(
                 view.context,
-                R.layout.drop_down_list_item_white,
+                R.layout.drop_down_list_item,
                 mSkillVM.listMore.toTypedArray()
             )
         moreRV.adapter = adapterItems
