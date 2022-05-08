@@ -19,6 +19,8 @@ import com.example.test.viewModels.GameDAO
 
 class CharacterList_Base : Fragment() {
 
+    private  val KEY = "groupNumber"
+
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
 
@@ -27,7 +29,10 @@ class CharacterList_Base : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.character_list__base, container, false)
+        val view = inflater.inflate(R.layout.character_list__item, container, false)
+
+        val groupNumber = arguments?.getInt(KEY)?:1
+
         val groupRv = view.findViewById<RecyclerView>(R.id.group_rv)
         val adapterGroup = GroupAdapterRV()
         groupRv.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
@@ -38,7 +43,7 @@ class CharacterList_Base : Fragment() {
         mCharacterVM.characterList.observe(viewLifecycleOwner) { list ->
             list.forEach { character ->
                 if (character.id == characterId) {
-                    val listNameGroup = TemplateCharacter().characterLisToGroupParam[1]!!
+                    val listNameGroup = TemplateCharacter().characterLisToGroupParam[groupNumber]!!
                     listNameGroup.forEach { nameGroup ->
                         character.attributes.forEach { gp ->
                             if (gp.title == nameGroup) {
@@ -53,5 +58,13 @@ class CharacterList_Base : Fragment() {
         val newOrPres = gameId == r
         adapterGroup.setData(groupList, newOrPres)
         return view
+    }
+
+    fun getFragment(groupNumber: Int):CharacterList_Base{
+        val bundle = Bundle()
+        bundle.putInt(KEY, groupNumber)
+        return CharacterList_Base().apply {
+            arguments = bundle
+        }
     }
 }

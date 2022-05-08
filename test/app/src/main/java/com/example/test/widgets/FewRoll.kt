@@ -26,7 +26,6 @@ class FewRoll : Fragment() {
     private val mCharacterVM: CharacterDAO by activityViewModels()
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -122,7 +121,5 @@ class FewRoll : Fragment() {
 
         return view
     }
-
-
 
 }

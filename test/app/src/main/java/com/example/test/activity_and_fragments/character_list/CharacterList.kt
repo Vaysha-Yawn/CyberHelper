@@ -55,47 +55,41 @@ class CharacterList : Fragment(), HeaderView.HeaderBack {
             val menu = view.findViewById<BottomNavigationView>(R.id.CharacterList_Menu)
             childFragmentManager.commit {
                 replace(R.id.Character_list_fragment_container, CharacterList_Base())
-                addToBackStack(null)
             }
 
             menu.setOnItemSelectedListener setOnNavigationItemSelectedListener@{
                 when (it.itemId) {
                     R.id.Base -> {
                         childFragmentManager.commit {
-                            replace(R.id.Character_list_fragment_container, CharacterList_Base())
-                            addToBackStack(null)
+                            replace(R.id.Character_list_fragment_container, CharacterList_Base().getFragment(1))
                         }
                         return@setOnNavigationItemSelectedListener true
                     }
 
                     R.id.Skill_and_HP -> {
                         childFragmentManager.commit {
-                            replace(R.id.Character_list_fragment_container, CharacterList_Skill())
-                            addToBackStack(null)
+                            replace(R.id.Character_list_fragment_container,  CharacterList_Base().getFragment(2))
                         }
                         return@setOnNavigationItemSelectedListener true
                     }
 
                     R.id.Armor_and_weapon -> {
                         childFragmentManager.commit {
-                            replace(R.id.Character_list_fragment_container, CharacterList_Armor())
-                            addToBackStack(null)
+                            replace(R.id.Character_list_fragment_container,  CharacterList_Base().getFragment(3))
                         }
                         return@setOnNavigationItemSelectedListener true
                     }
 
                     R.id.Stuff -> {
                         childFragmentManager.commit {
-                            replace(R.id.Character_list_fragment_container, CharacterList_Stuff())
-                            addToBackStack(null)
+                            replace(R.id.Character_list_fragment_container,  CharacterList_Base().getFragment(4))
                         }
                         return@setOnNavigationItemSelectedListener true
                     }
 
                     R.id.About -> {
                         childFragmentManager.commit {
-                            replace(R.id.Character_list_fragment_container, CharacterList_About())
-                            addToBackStack(null)
+                            replace(R.id.Character_list_fragment_container,  CharacterList_Base().getFragment(5))
                         }
                         return@setOnNavigationItemSelectedListener true
                     }

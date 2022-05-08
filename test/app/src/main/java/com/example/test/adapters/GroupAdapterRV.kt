@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.data_base.GroupParam
+import com.example.test.data_base.ParamTypes
 import com.example.test.data_base.SpecialGameData
 import com.example.test.databinding.CardGroupParamBinding
 
@@ -66,9 +67,7 @@ class GroupAdapterRV() :
 
             val gpPref = SpecialGameData().groupPreferences[groupTitle]!!
 
-            val strArrayList = ArrayList<String>()
-            val numArrayList = ArrayList<String>()
-            val optionsArrayList = ArrayList<String>()
+            val arrayList = ArrayList<String>()
 
             for ((key, value) in gpPref) {
                 when (key) {
@@ -76,7 +75,7 @@ class GroupAdapterRV() :
                         addParamStr.visibility = View.VISIBLE
                         if (value.isNotEmpty()) {
                             value.forEach {
-                                strArrayList.add(it)
+                                arrayList.add(it)
                             }
                         }
                     }
@@ -84,7 +83,7 @@ class GroupAdapterRV() :
                         addParamNum.visibility = View.VISIBLE
                         if (value.isNotEmpty()) {
                             value.forEach {
-                                numArrayList.add(it)
+                                arrayList.add(it)
                             }
                         }
                     }
@@ -92,7 +91,7 @@ class GroupAdapterRV() :
                         addParamOptions.visibility = View.VISIBLE
                         if (value.isNotEmpty()) {
                             value.forEach {
-                                optionsArrayList.add(it)
+                                arrayList.add(it)
                             }
                          }
                     }
@@ -102,13 +101,13 @@ class GroupAdapterRV() :
                 }
             }
 
-            addParamStr.setOnClickListener { view ->
+            fun openAddParam(view: View, type:String){
                 val bundle = Bundle()
                 bundle.putString("groupTitle", groupTitle)
-                bundle.putString("type", "string")
+                bundle.putString("type", type)
                 bundle.putInt("indexItem", -1)
                 bundle.putInt("mod", 0)
-                bundle.putStringArrayList("arr", strArrayList)
+                bundle.putStringArrayList("arr", arrayList)
                 if (newOrPres) {
                     view.findNavController()
                         .navigate(R.id.action_new_characterList_to_new_addNewParamItem, bundle)
@@ -116,38 +115,18 @@ class GroupAdapterRV() :
                     view.findNavController()
                         .navigate(R.id.action_pres_characterList_to_pres_addNewParamItem, bundle)
                 }
+            }
+
+            addParamStr.setOnClickListener { view ->
+                openAddParam(view, "string")
             }
 
             addParamNum.setOnClickListener { view ->
-                val bundle = Bundle()
-                bundle.putString("groupTitle", groupTitle)
-                bundle.putString("type", "num")
-                bundle.putInt("indexItem", -1)
-                bundle.putInt("mod", 0)
-                bundle.putStringArrayList("arr", numArrayList)
-                if (newOrPres) {
-                    view.findNavController()
-                        .navigate(R.id.action_new_characterList_to_new_addNewParamItem, bundle)
-                } else {
-                    view.findNavController()
-                        .navigate(R.id.action_pres_characterList_to_pres_addNewParamItem, bundle)
-                }
+                openAddParam(view, "num")
             }
 
             addParamOptions.setOnClickListener { view ->
-                val bundle = Bundle()
-                bundle.putString("groupTitle", groupTitle)
-                bundle.putString("type", "options")
-                bundle.putInt("indexItem", -1)
-                bundle.putInt("mod", 0)
-                bundle.putStringArrayList("arr", optionsArrayList)
-                if (newOrPres) {
-                    view.findNavController()
-                        .navigate(R.id.action_new_characterList_to_new_addNewParamItem, bundle)
-                } else {
-                    view.findNavController()
-                        .navigate(R.id.action_pres_characterList_to_pres_addNewParamItem, bundle)
-                }
+                openAddParam(view, "options")
             }
 
             addItem.setOnClickListener { view ->

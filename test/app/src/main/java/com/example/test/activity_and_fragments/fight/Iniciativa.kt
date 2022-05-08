@@ -81,7 +81,6 @@ class Iniciativa : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
     override fun loadFragment(position: Int, id: Int, fragment: Fragment) {
         childFragmentManager.commit {
             replace(id, fragment)
-            addToBackStack(null)
         }
     }
 
