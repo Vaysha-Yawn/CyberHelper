@@ -177,7 +177,9 @@ class AddNewParam : Fragment(), HeaderView.HeaderBack,
                 val bundle = Bundle()
                 bundle.putString("paramName", res)
                 bundle.putString("value", param.defMain)
-                // todo: изменить получение groupTitle, чтобы оно соответствовало параметру, сейчас откуда взялось, туда и прибавилось
+                // todo: изменить получение groupTitle, чтобы оно соответствовало параметру,
+                //  сейчас откуда взялось, туда и прибавилось
+                //   или добавить ограничение, перечисление во всех группах
                 bundle.putString("titleGroup", groupTitle)
                 bundle.putInt("indexItem", indexItem)
                 bundle.putInt("indexParam", -1)
