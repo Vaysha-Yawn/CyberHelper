@@ -8,5 +8,13 @@
         android:id="@+id/settingsMainFragment"
         android:name="com.example.test.activity_and_fragments.setting.SettingsMainFragment"
         android:label="fragment_settings_main"
-        tools:layout="@layout/fragment_settings_main" />
+        tools:layout="@layout/fragment_settings_main" >
+        <action
+            android:id="@+id/action_settingsMainFragment_to_settingFightType2"
+            app:destination="@id/settingFightType2" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFightType2"
+        android:name="com.example.test.activity_and_fragments.setting.SettingFightType"
+        android:label="SettingFightType" />
 </navigation>

@@ -6,37 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.databinding.SettingFightTypeBinding
+import com.example.test.views.HeaderView
 
-class SettingFightType : Fragment() {
+class SettingFightType : Fragment(), HeaderView.HeaderBack {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.setting_fight_type, container, false)
-
-        fun loadDD(main:String, them:String, goal:String, list:ArrayList<String>, id:Int){
-           /* val fragment = DropDownList()
-            val bundle = Bundle()
-            bundle.putString("main", main)
-            bundle.putString("them", them)
-            bundle.putString("goal", goal)
-            bundle.putStringArrayList("list", list)
-            fragment.arguments = bundle
-            childFragmentManager.commit {
-                replace(id, fragment)
-                addToBackStack(null)
-            }*/
-        }
-
-        fun loadFragmentLight(fragment:Fragment, id:Int){
-            childFragmentManager.commit {
-                replace(id, fragment)
-                addToBackStack(null)
-            }
-        }
 
         fun setVisibility(view:View, visible:Boolean){
             if (visible){
@@ -48,11 +29,11 @@ class SettingFightType : Fragment() {
 
         val binding = SettingFightTypeBinding.bind(view)
         fun bind() = with(binding) {
-            //loadFragmentLight(Header(), R.id.header)
-            loadDD("Сложность", "green", "", arrayListOf("Бросок одного персоонажа", "Бросок нескольких персоонажей", "Устанавливается произвольно",
+            header.setBack(true, this@SettingFightType, requireActivity(), viewLifecycleOwner)
+            /*loadDD("Сложность", "green", "", arrayListOf("Бросок одного персоонажа", "Бросок нескольких персоонажей", "Устанавливается произвольно",
                 "Выбирается из списка", "Устанавливается по таблице в зависимости от значения характеристики"),
                 R.id.difficult)
-            loadDD("Тип бросока", "green", "", arrayListOf("Бросок одного персоонажа", "Бросок нескольких персоонажей", "Устанавливается произвольно"), R.id.roll)
+            loadDD("Тип бросока", "green", "", arrayListOf("Бросок одного персоонажа", "Бросок нескольких персоонажей", "Устанавливается произвольно"), R.id.roll)*/
             switchFor.setOnClickListener {
                 if (switchFor.isChecked){
                     switchFor.text =  "При наличии предмета с этим типом атаки"
@@ -75,6 +56,10 @@ class SettingFightType : Fragment() {
 
         bind()
         return view
+    }
+
+    override fun back() {
+        view?.findNavController()?.popBackStack()
     }
 
 

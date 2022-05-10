@@ -41,7 +41,7 @@
                 android:layout_marginEnd="0dp"
                 android:text="Выберите характеристику"
                 android:textColor="@color/light_grey"
-                android:textSize="30sp" />
+                android:textSize="28sp" />
 
             <Button
                 android:id="@+id/add_param_num"
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 app:DD_color="@color/green"
-                app:main_text="Выберите параметр"
+                app:main_text="Выберите характеристику"
                 app:text_color="@color/black" />
         </LinearLayout>
     </ScrollView>

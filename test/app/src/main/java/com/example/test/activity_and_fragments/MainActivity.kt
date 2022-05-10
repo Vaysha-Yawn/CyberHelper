@@ -11,6 +11,7 @@ import com.example.test.activity_and_fragments.about.About
 import com.example.test.activity_and_fragments.hosts.LoadHost
 import com.example.test.activity_and_fragments.hosts.NewHost
 import com.example.test.activity_and_fragments.hosts.PresentHost
+import com.example.test.activity_and_fragments.setting.SettingsHost
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
@@ -45,6 +46,12 @@ class MainActivity : AppCompatActivity() {
             val vAbout = findViewById<Button>(R.id.Main_About)
             vAbout.setOnClickListener {
                 val i = Intent(this, About::class.java)
+                startActivity(i)
+            }
+
+            val settings = findViewById<Button>(R.id.Main_Settings)
+            settings.setOnClickListener {
+                val i = Intent(this, SettingsHost::class.java)
                 startActivity(i)
             }
         } catch (e: Exception) {

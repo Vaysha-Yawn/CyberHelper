@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark"
-    >
+    android:background="@color/dark">
 
-    <androidx.fragment.app.FragmentContainerView
+    <com.example.test.views.HeaderView
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:gravity="start"
                 android:text="Как рассчитывается броск персонажа, совершающего проверку?" />
 
@@ -68,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:gravity="start"
                 android:text="Что происходит при успехе проверки?" />
 
@@ -78,8 +76,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:minHeight="48dp"
                 android:buttonTint="@color/green"
+                android:minHeight="48dp"
                 android:text="Рассчитыавается урон броском" />
 
             <CheckBox
@@ -88,8 +86,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:minHeight="48dp"
                 android:buttonTint="@color/green"
+                android:minHeight="48dp"
                 android:text="Выводится комментарий" />
 
             <EditText
@@ -109,7 +107,7 @@
                 style="@style/Text.H2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:gravity="start"
                 android:text="Влияние на характеристики при успехе " />
 
@@ -126,15 +124,15 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:paddingHorizontal="20dp"
-                android:textSize="20sp"
-                android:text="Добавить влияние при успехе" />
+                android:text="Добавить влияние при успехе"
+                android:textSize="20sp" />
 
             <TextView
                 style="@style/Text.H2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:gravity="start"
                 android:text="Что происходит при провале проверки?" />
 
@@ -144,8 +142,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:minHeight="48dp"
                 android:buttonTint="@color/green"
+                android:minHeight="48dp"
                 android:text="Выводится комментарий" />
 
             <EditText
@@ -165,7 +163,7 @@
                 style="@style/Text.H2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="40dp"
                 android:gravity="start"
                 android:text="Влияние на характеристики при провале " />
 
@@ -182,24 +180,24 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:paddingHorizontal="20dp"
-                android:textSize="20sp"
-                android:text="Добавить влияние при провале" />
+                android:text="Добавить влияние при провале"
+                android:textSize="20sp" />
 
             <TextView
                 style="@style/Text.H2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:gravity="start"
                 android:text="Этот вид боя доступен" />
 
             <androidx.appcompat.widget.SwitchCompat
-                android:layout_marginTop="10dp"
-                style="@style/Text.H2"
                 android:id="@+id/switchFor"
+                style="@style/Text.H2"
                 android:layout_width="match_parent"
-                android:gravity="start"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="start"
                 android:text="Всегда"
                 android:textColor="@color/green"
                 app:thumbTint="@color/green" />
@@ -220,23 +218,21 @@
             <Button
                 android:id="@+id/apply"
                 style="@style/Text.H2"
-                android:textColor="@color/black"
-                android:textAllCaps="false"
-                android:drawableEnd="@drawable/ic_next"
-                android:drawableTint="@color/black"
-                android:background="@drawable/bcg_rectangle_round"
-                android:backgroundTint="@color/green"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:background="@drawable/bcg_rectangle_round"
+                android:backgroundTint="@color/green"
+                android:drawableEnd="@drawable/ic_next"
+                android:drawableTint="@color/black"
                 android:paddingHorizontal="20dp"
-                android:textSize="20sp"
-                android:text="Готово" />
+                android:text="Готово"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
         </LinearLayout>
     </ScrollView>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.databinding.FragmentSettingsMainBinding
+import com.example.test.views.HeaderView
 
 
-class SettingsMainFragment : Fragment() {
+class SettingsMainFragment : Fragment(), HeaderView.HeaderBack {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +24,19 @@ class SettingsMainFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_settings_main, container, false)
         val binding = FragmentSettingsMainBinding.bind(view)
         with(binding){
-            fightType
+            fightType.setOnClickListener {
+                view.findNavController().navigate(R.id.action_settingsMainFragment_to_settingFightType2)
+            }
             templateItem
             templateCharacter
+            header.setBack( true, this@SettingsMainFragment, requireActivity(), viewLifecycleOwner)
         }
 
         return view
+    }
+
+    override fun back() {
+        (activity as SettingsHost).backToMain()
     }
 
 }
