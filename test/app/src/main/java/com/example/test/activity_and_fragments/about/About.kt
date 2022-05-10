@@ -7,15 +7,18 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
+import com.example.test.activity_and_fragments.MainActivity
 import com.example.test.activity_and_fragments.hosts.PresentHost
 import com.example.test.databinding.*
 import com.example.test.viewModels.SheetVM
@@ -43,15 +46,16 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
                 rowRV.layoutManager =
                     LinearLayoutManager(this@About, LinearLayoutManager.HORIZONTAL, false)
                 val adapterRV = AdapterRow()
-                VM.map.observe(this@About) {
+                VM.map.observe(owner) {
                     adapterRV.setData(it)
                 }
                 rowRV.adapter = adapterRV
-                /*for ( x in 0..5){
-                    for ( y in 0..5){
-                        VM.resetCell( x, y, "iii")
+                for (x in 0..5) {
+                    val a = VM.addRow()!!
+                    for (y in 0..5) {
+                        VM.addCell(a, "$x $y")
                     }
-                }*/
+                }
             } catch (e: Exception) {
                 Toast.makeText(this@About, "$e", Toast.LENGTH_SHORT).show()
             }
@@ -74,14 +78,17 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
     }
 
     override fun back() {
-        val i = Intent(this, PresentHost::class.java)
+        val i = Intent(this, MainActivity::class.java)
         startActivity(i)
         finish()
     }
 
     ///////////////////////////////////////////////// АДАПТЕР ДЛЯ ДИАЛОГА СТРОКОВОГО
 
-    class EditString() : DialogFragment() {
+    class EditString(
+        private val positionRow: Int,
+        private val positionCell: Int,
+    ) : DialogFragment() {
 
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -93,10 +100,12 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
 
             val binding = DialogEditStringBinding.bind(view)
             fun bind() = with(binding) {
+                (editString as TextView).text =
+                    VM.map.value?.get(positionRow)?.value?.get(positionCell)?.value
                 editString.addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                     override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                        TODO("Not yet implemented")
+                        VM.resetCell(positionRow, positionCell, p0.toString())
                     }
 
                     override fun afterTextChanged(p0: Editable?) {}
@@ -114,43 +123,65 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
 
     class AdapterRow(
     ) :
-        RecyclerView.Adapter<AdapterRow.AdapterRowTemplateHolder>() {
+        RecyclerView.Adapter<AdapterRowTemplateHolder>(), AdapterRowTemplateHolder.OnChange {
 
-        var list = mutableListOf<MutableList<String>>()
+        var list = mutableListOf<MutableLiveData<MutableList<MutableLiveData<String>>>>()
         override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
-        ): AdapterRow.AdapterRowTemplateHolder {
+        ): AdapterRowTemplateHolder  {
             val view =
                 LayoutInflater.from(parent.context).inflate(R.layout.card_row, parent, false)
-            return AdapterRow.AdapterRowTemplateHolder(view)
+            return AdapterRowTemplateHolder(view, this)
         }
 
-        override fun onBindViewHolder(holder: AdapterRow.AdapterRowTemplateHolder, position: Int) {
-            holder.bind(list[position], position)
+        override fun onBindViewHolder(holder: AdapterRowTemplateHolder, position: Int) {
+            holder.bind(position)
         }
 
         override fun getItemCount(): Int {
             return list.size
         }
 
-        fun setData(list: MutableList<MutableList<String>>) {
+        fun setData(
+            list:
+            MutableList<MutableLiveData<MutableList<MutableLiveData<String>>>>
+        ) {
             this.list = list
             notifyDataSetChanged()
         }
 
-        class AdapterRowTemplateHolder(
-            private val view: View,
-        ) : RecyclerView.ViewHolder(view) {
-            private val binding = CardRowBinding.bind(view)
-            fun bind(list: MutableList<String>, positionRow: Int) = with(binding) {
-                delete
-                cellRV.layoutManager =
-                    LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
-                val adapterRV = AdapterCell(positionRow)
-                cellRV.adapter = adapterRV
-                adapterRV.setData(list)
+        override fun onChange() {
+            notifyDataSetChanged()
+        }
+
+
+    }
+
+    class AdapterRowTemplateHolder(
+        private val view: View,
+        private val onChange: OnChange,
+    ) : RecyclerView.ViewHolder(view) {
+        private val binding = CardRowBinding.bind(view)
+        fun bind(positionRow: Int) = with(binding) {
+            delete.setOnClickListener {
+                try {
+                    VM.deleteRow(positionRow)
+                    onChange.onChange()
+                } catch (e: Exception) {
+                    Toast.makeText(it.context, "$e", Toast.LENGTH_SHORT).show()
+                }
             }
+            cellRV.layoutManager =
+                LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
+            val adapterRV = AdapterCell(positionRow)
+            cellRV.adapter = adapterRV
+            VM.map.value?.get(positionRow)?.observe(owner) {
+                adapterRV.setData(it)
+            }
+        }
+        interface OnChange{
+            fun onChange()
         }
     }
 
@@ -159,53 +190,51 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
     class AdapterCell(
         private val positionRow: Int
     ) :
-        RecyclerView.Adapter<AdapterCell.AdapterCellTemplateHolder>() {
-        var list = mutableListOf<String>()
+        RecyclerView.Adapter<AdapterCellTemplateHolder>() {
+        var list = mutableListOf<MutableLiveData<String>>()
         override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
-        ): AdapterCell.AdapterCellTemplateHolder {
+        ): AdapterCellTemplateHolder {
             val view =
                 LayoutInflater.from(parent.context).inflate(R.layout.card_cell, parent, false)
-            return AdapterCell.AdapterCellTemplateHolder(view)
+            return AdapterCellTemplateHolder(view)
         }
 
         override fun onBindViewHolder(
-            holder: AdapterCell.AdapterCellTemplateHolder,
+            holder: AdapterCellTemplateHolder,
             position: Int
         ) {
-            holder.bind(list[position], positionRow, position)
+            holder.bind(positionRow, position)
         }
 
         override fun getItemCount(): Int {
             return list.size
         }
 
-        fun setData(list: MutableList<String>) {
+        fun setData(list: MutableList<MutableLiveData<String>>) {
             this.list = list
             notifyDataSetChanged()
         }
+    }
+    class AdapterCellTemplateHolder(
+        private val view: View,
+    ) : RecyclerView.ViewHolder(view) {
+        private val binding = CardCellBinding.bind(view)
+        fun bind(positionRow: Int, positionCell: Int) = with(binding) {
 
-        class AdapterCellTemplateHolder(
-            private val view: View,
-        ) : RecyclerView.ViewHolder(view) {
-            private val binding = CardCellBinding.bind(view)
-            fun bind(text: String, positionRow: Int, positionCell: Int) = with(binding) {
-                VM.map.observe(owner) {
-                    cell.text = it[positionRow][positionCell]
-                }
-                cell.setOnClickListener {
-                    val dialogFragment = EditString()
-                    try{
-                    dialogFragment.show(FM, "cell")
-                    } catch (e: Exception) {
-                        Toast.makeText(view.context, "$e", Toast.LENGTH_SHORT).show()
-                    }
-                }
+            VM.map.value?.get(positionRow)?.value?.get(positionCell)?.observe(owner) {
+                cell.text = it
+            }
+            cell.setOnClickListener {
+                val dialogFragment = EditString(positionRow, positionCell)
+                dialogFragment.show(FM, "cell")
             }
         }
     }
 }
+
+// сделать по количеству строк (элементов столбца) отдельный рв с кнопками удалить строку
 
 
 
