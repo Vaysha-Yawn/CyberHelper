@@ -40,7 +40,7 @@ class AddNewItem : Fragment(), HeaderView.HeaderBack,
 
         val r = requireContext().getSharedPreferences("id", 0).getString("newGameId", "0")!!.toInt()
         newOrPres = gameId == r
-
+        // опции выбираются исключительно из категории в которй их требуют
         // здесь дополнить options недостающими шаблонами
     }
 
@@ -49,12 +49,13 @@ class AddNewItem : Fragment(), HeaderView.HeaderBack,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.add_new_param_item, container, false)
-        // todo: обработать нажатие на кнопку создать параметр
         val binding = AddNewParamItemBinding.bind(view)
         with(binding){
-            title.text = "Создать $groupTitle"
+            title.text = "Создать предмет"
             addParamNum.text = "Создать с нуля"
             dropDownFragment.setMainText("Выберите шаблон")
+            // в addParamNum добавить слушатель нажатий, по клику передавать пустой предмет и переходить к редактированию
+
         }
         view.findViewById<DropDownView>(R.id.drop_down_fragment)
             .setDDArrayAndListener(options, this, null)

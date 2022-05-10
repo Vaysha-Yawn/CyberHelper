@@ -12,6 +12,8 @@ open class Item(
     var otherParamNum: RealmList<ParamNum> = RealmList<ParamNum>(),
     var otherParamStr: RealmList<ParamStr> = RealmList<ParamStr>(),
     var otherParamOptions: RealmList<ParamOptions> = RealmList<ParamOptions>(),
+    var group:String = "",
+    var type:String = ""
 ) : RealmObject()
 
 class TemplateItem() {

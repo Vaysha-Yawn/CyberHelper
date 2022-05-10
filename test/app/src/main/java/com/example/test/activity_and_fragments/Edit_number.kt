@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -15,7 +14,6 @@ import com.example.test.R
 import com.example.test.data_base.TemplateParamNum
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.views.PlusMinusView
-import com.example.test.widgets.PlusAndMinus
 
 
 class Edit_number : Fragment() {

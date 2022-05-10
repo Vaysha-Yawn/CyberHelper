@@ -16,12 +16,13 @@ import com.example.test.data_base.EffectWeapon
 import com.example.test.data_base.TemplateFightType
 import com.example.test.adapters.FragmentsAdapterRV
 import com.example.test.viewModels.SkillTestVM
+import com.example.test.views.HeaderView
 import com.example.test.widgets.*
 import java.lang.Exception
 
 
 class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
-    RadioGroupTwo.OnCheckedRadio, Header.HeaderBack {
+    RadioGroupTwo.OnCheckedRadio, HeaderView.HeaderBack {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
 
@@ -43,12 +44,12 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
             }
             bundleD.putString("them", "green")
             bundleD.putString("goal", "")
-            val fragmentD = PlusAndMinus()
+            /*val fragmentD = PlusAndMinus()
             fragmentD.arguments = bundleD
             childFragmentManager.commit {
                 replace(resId, fragmentD)
                 addToBackStack(null)
-            }
+            }*/
         }
 
         fun loadFragmentLight(fragment:Fragment, id:Int){
@@ -115,7 +116,7 @@ class FightSecond : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment,
         val binding = com.example.test.databinding.FightSecondBinding.bind(view)
         fun bind() = with(binding) {
 
-            loadFragmentLight(Header(this@FightSecond), R.id.header)
+            //loadFragmentLight(Header(this@FightSecond), R.id.header)
             title.text = fightType?.name ?: "Какое-то название"
             val adapterRV = FragmentsAdapterRV(list, listFr, this@FightSecond)
             RV.adapter = adapterRV

@@ -17,12 +17,11 @@ import com.example.test.data_base.TemplateFightType
 import com.example.test.adapters.FragmentsAdapterRV
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.SkillTestVM
+import com.example.test.views.HeaderView
 import com.example.test.widgets.FewRoll
-import com.example.test.widgets.Header
-import com.example.test.widgets.PlusAndMinus
 import com.example.test.widgets.Roll
 
-class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, Header.HeaderBack {
+class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, HeaderView.HeaderBack {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
@@ -73,10 +72,10 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, H
                 bundleD.putInt("value", 0)
                 bundleD.putInt("minValue", 0)
                 bundleD.putString("them", "green")
-                val fragmentD = PlusAndMinus()
-                fragmentD.arguments = bundleD
+                /*val fragmentD = PlusAndMinus()
+                fragmentD.arguments = bundleD*/
                 list.add(fightType.nameRoll?:"")
-                listFr.add(fragmentD)
+                //listFr.add(fragmentD)
             }
             "DD by table" -> {
 
@@ -86,7 +85,7 @@ class FightThree : Fragment(), FragmentsAdapterRV.TemplateHolder.LoadFragment, H
 
         val binding = com.example.test.databinding.FightThreeBinding.bind(view)
         fun bind() = with(binding) {
-            loadFragmentLight(Header(this@FightThree), R.id.header)
+            //loadFragmentLight(Header(this@FightThree), R.id.header)
             title.text = fightType?.name
             val adapter = FragmentsAdapterRV(list, listFr, this@FightThree)
             RV.layoutManager =

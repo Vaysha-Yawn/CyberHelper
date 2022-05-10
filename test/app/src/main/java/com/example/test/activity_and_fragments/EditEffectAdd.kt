@@ -13,7 +13,6 @@ import com.example.test.data_base.EffectAdd
 import com.example.test.data_base.TemplateParamOptions
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
-import com.example.test.widgets.PlusAndMinus
 
 class EditEffectAdd : Fragment() {
 
@@ -121,7 +120,7 @@ class EditEffectAdd : Fragment() {
         bundleImpact.putInt("value", effectAdd.impact)
         bundleImpact.putInt("minValue", 0)
         bundleImpact.putString("them", "green")
-        loadFragment(R.id.impact, PlusAndMinus(), bundleImpact)
+        //loadFragment(R.id.impact, PlusAndMinus(), bundleImpact)
 
 
         // подключаем фрагмент длительность
@@ -129,14 +128,14 @@ class EditEffectAdd : Fragment() {
         bundleDuration.putInt("value", effectAdd.duration ?: 0)
         bundleDuration.putInt("minValue", 0)
         bundleDuration.putString("them", "green")
-        loadFragment(R.id.duration, PlusAndMinus(), bundleDuration)
+        //loadFragment(R.id.duration, PlusAndMinus(), bundleDuration)
 
         // подключаем фрагмент откат
         val bundleRollback = Bundle()
         bundleRollback.putInt("value", effectAdd.rollback ?: 0)
         bundleRollback.putInt("minValue", 0)
         bundleRollback.putString("them", "green")
-        loadFragment(R.id.rollback, PlusAndMinus(), bundleRollback)
+        //loadFragment(R.id.rollback, PlusAndMinus(), bundleRollback)
 
 
         // закрыть и подтвердить
