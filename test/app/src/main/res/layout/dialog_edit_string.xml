@@ -18,44 +18,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="@color/green"
             android:hint="Введите значение"
             android:minHeight="48dp" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/close"
-                style="@style/Text.H2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_green_outline"
-                android:paddingHorizontal="10dp"
-                android:text="Отмена"
-                android:textAllCaps="false"
-                android:textColor="@color/green" />
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:minWidth="30dp" />
-
-            <Button
-                android:id="@+id/apply"
-                style="@style/Text.H2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_green_full"
-                android:paddingHorizontal="20dp"
-                android:text="Сохранить"
-                android:textAllCaps="false"
-                android:textColor="@color/black" />
-        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

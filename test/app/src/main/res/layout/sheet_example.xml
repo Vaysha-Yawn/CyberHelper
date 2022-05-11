@@ -20,7 +20,7 @@
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.75"
@@ -47,36 +47,41 @@
                 android:text="Таблица"
                 android:textSize="28sp" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginStart="40dp"
-                    android:layout_marginEnd="40dp"
-                    android:id="@+id/rowRV"
+                    android:paddingTop="50dp"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/deleteRV"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    tools:ignore="RtlHardcoded" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/columnRV"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                     />
 
                 <Button
+                    android:layout_marginStart="5dp"
                     android:id="@+id/plus_column"
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
+                    android:layout_gravity="end"
                     android:background="@drawable/bcg_rectangle_round"
-                    android:backgroundTint="@color/green"
+                    android:backgroundTint="@color/dark_grey"
                     android:drawableTop="@drawable/plus"
-                    android:drawableBottom="@drawable/plus"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:drawablePadding="20dp"
+                    android:text="Добавить колонку"
+                    style="@style/Text.H2"
+                    android:textColor="@color/green"
+                    android:textAllCaps="false"
+                    tools:ignore="RtlHardcoded,TouchTargetSizeCheck" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/plus_row"
@@ -85,9 +90,13 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bcg_rectangle_round"
-                android:backgroundTint="@color/green"
+                android:backgroundTint="@color/dark_grey"
                 android:drawableStart="@drawable/plus"
-                android:drawableEnd="@drawable/plus"
+                android:drawablePadding="20dp"
+                android:text="Добавить строку"
+                style="@style/Text.H2"
+                android:textColor="@color/green"
+                android:textAllCaps="false"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </LinearLayout>
 </ScrollView>

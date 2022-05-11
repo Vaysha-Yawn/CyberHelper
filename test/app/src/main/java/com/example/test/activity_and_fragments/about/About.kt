@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.activity_and_fragments.MainActivity
-import com.example.test.activity_and_fragments.hosts.PresentHost
 import com.example.test.databinding.*
 import com.example.test.viewModels.SheetVM
 import com.example.test.views.HeaderView
@@ -43,19 +42,26 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
                 owner = this@About
                 VM = ViewModelProvider(this@About)[SheetVM::class.java]
 
-                rowRV.layoutManager =
+                columnRV.layoutManager =
                     LinearLayoutManager(this@About, LinearLayoutManager.HORIZONTAL, false)
-                val adapterRV = AdapterRow()
-                VM.map.observe(owner) {
+                val adapterRV = AdapterColumn()
+                VM.map.observe(owner) { it ->
                     adapterRV.setData(it)
-                }
-                rowRV.adapter = adapterRV
-                for (x in 0..5) {
-                    val a = VM.addRow()!!
-                    for (y in 0..5) {
-                        VM.addCell(a, "$x $y")
+                    it[0].observe(owner){ list->
+                        VM.rowCount.value = list.size
                     }
                 }
+                columnRV.adapter = adapterRV
+
+
+                deleteRV.layoutManager =
+                    LinearLayoutManager(this@About, LinearLayoutManager.VERTICAL, false)
+                val adapterDeleteRV = AdapterDelete(adapterRV.getOnChange())
+                VM.rowCount.observe(owner) {
+                    adapterDeleteRV.setData(it)
+                }
+                deleteRV.adapter = adapterDeleteRV
+
             } catch (e: Exception) {
                 Toast.makeText(this@About, "$e", Toast.LENGTH_SHORT).show()
             }
@@ -110,8 +116,6 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
 
                     override fun afterTextChanged(p0: Editable?) {}
                 })
-                close
-                apply
             }
             bind()
 
@@ -121,21 +125,21 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
 
     ///////////////////////////////////////////////// АДАПТЕР ДЛЯ СТРОК ТАБЛИЦЫ
 
-    class AdapterRow(
+    class AdapterColumn(
     ) :
-        RecyclerView.Adapter<AdapterRowTemplateHolder>(), AdapterRowTemplateHolder.OnChange {
+        RecyclerView.Adapter<AdapterColumnTemplateHolder>(), AdapterColumnTemplateHolder.OnChange {
 
         var list = mutableListOf<MutableLiveData<MutableList<MutableLiveData<String>>>>()
         override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
-        ): AdapterRowTemplateHolder  {
+        ): AdapterColumnTemplateHolder {
             val view =
                 LayoutInflater.from(parent.context).inflate(R.layout.card_row, parent, false)
-            return AdapterRowTemplateHolder(view, this)
+            return AdapterColumnTemplateHolder(view, this)
         }
 
-        override fun onBindViewHolder(holder: AdapterRowTemplateHolder, position: Int) {
+        override fun onBindViewHolder(holder: AdapterColumnTemplateHolder, position: Int) {
             holder.bind(position)
         }
 
@@ -155,18 +159,24 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
             notifyDataSetChanged()
         }
 
+        fun getOnChange(): AdapterColumnTemplateHolder.OnChange {
+            return this
+        }
 
     }
 
-    class AdapterRowTemplateHolder(
+    class AdapterColumnTemplateHolder(
         private val view: View,
         private val onChange: OnChange,
     ) : RecyclerView.ViewHolder(view) {
         private val binding = CardRowBinding.bind(view)
         fun bind(positionRow: Int) = with(binding) {
+            if (positionRow == 0){
+                delete.visibility = View.INVISIBLE
+            }
             delete.setOnClickListener {
                 try {
-                    VM.deleteRow(positionRow)
+                    VM.deleteColumn(positionRow)
                     onChange.onChange()
                 } catch (e: Exception) {
                     Toast.makeText(it.context, "$e", Toast.LENGTH_SHORT).show()
@@ -180,7 +190,8 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
                 adapterRV.setData(it)
             }
         }
-        interface OnChange{
+
+        interface OnChange {
             fun onChange()
         }
     }
@@ -216,7 +227,9 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
             this.list = list
             notifyDataSetChanged()
         }
+
     }
+
     class AdapterCellTemplateHolder(
         private val view: View,
     ) : RecyclerView.ViewHolder(view) {
@@ -230,6 +243,64 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
                 val dialogFragment = EditString(positionRow, positionCell)
                 dialogFragment.show(FM, "cell")
             }
+        }
+    }
+    /////////////////////////////////////// АДАПТЕР ДЛЯ УДАЛЕНИЯ СТРОК ТАБЛИЦЫ
+    class AdapterDelete(
+        private val updColumnAdapter: AdapterColumnTemplateHolder.OnChange
+    ) :
+        RecyclerView.Adapter<AdapterDeleteTemplateHolder>(), AdapterDeleteTemplateHolder.UpdDelAdapter {
+        var count = 1
+        override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+        ): AdapterDeleteTemplateHolder {
+            val view =
+                LayoutInflater.from(parent.context).inflate(R.layout.card_delete, parent, false)
+            return AdapterDeleteTemplateHolder(view, this, updColumnAdapter)
+        }
+
+        override fun onBindViewHolder(
+            holder: AdapterDeleteTemplateHolder,
+            position: Int
+        ) {
+            holder.bind(position)
+        }
+
+        override fun getItemCount(): Int {
+            return count
+        }
+
+        fun setData(count: Int) {
+            this.count = count
+            notifyDataSetChanged()
+        }
+
+        override fun updDelAdapter() {
+            notifyDataSetChanged()
+        }
+
+    }
+
+    class AdapterDeleteTemplateHolder(
+        private val view: View,
+        private val updDelAdapter: UpdDelAdapter,
+        private val onChange: AdapterColumnTemplateHolder.OnChange
+    ) : RecyclerView.ViewHolder(view) {
+        private val binding = CardDeleteBinding.bind(view)
+        fun bind(position: Int) = with(binding) {
+            if(position == 0){
+                delete.visibility = View.INVISIBLE
+            }
+            delete.setOnClickListener {
+                VM.deleteRow(position)
+                updDelAdapter.updDelAdapter()
+                VM.calcRowCount()
+                onChange.onChange()
+            }
+        }
+        interface UpdDelAdapter{
+            fun updDelAdapter()
         }
     }
 }
