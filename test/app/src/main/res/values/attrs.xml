@@ -9,4 +9,7 @@
         <attr name="text_color" format="color" />
         <attr name="main_text" format="string" />
     </declare-styleable>
+    <declare-styleable name="TableView">
+        <attr name="DD_color" format="color" />
+    </declare-styleable>
 </resources>
