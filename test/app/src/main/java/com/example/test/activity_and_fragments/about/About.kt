@@ -52,7 +52,7 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
                     }
                 }
                 columnRV.adapter = adapterRV
-
+                columnRV.isNestedScrollingEnabled = false
 
                 deleteRV.layoutManager =
                     LinearLayoutManager(this@About, LinearLayoutManager.VERTICAL, false)
@@ -61,6 +61,20 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
                     adapterDeleteRV.setData(it)
                 }
                 deleteRV.adapter = adapterDeleteRV
+                deleteRV.isNestedScrollingEnabled = false
+
+                plusRow.setOnClickListener {
+                    VM.plusRow()
+                    adapterRV.notifyDataSetChanged()
+                    adapterDeleteRV.notifyDataSetChanged()
+                    Toast.makeText(this@About, "${VM.rowCount.value}", Toast.LENGTH_SHORT).show()
+                }
+                plusColumn.setOnClickListener {
+                    VM.plusColumn()
+                    adapterDeleteRV.notifyDataSetChanged()
+                    adapterRV.notifyDataSetChanged()
+                }
+
 
             } catch (e: Exception) {
                 Toast.makeText(this@About, "$e", Toast.LENGTH_SHORT).show()
@@ -189,6 +203,7 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
             VM.map.value?.get(positionRow)?.observe(owner) {
                 adapterRV.setData(it)
             }
+            cellRV.isNestedScrollingEnabled = false
         }
 
         interface OnChange {

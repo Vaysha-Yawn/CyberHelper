@@ -44,6 +44,18 @@ class SheetVM:ViewModel() {
         for (i in map.value!!){
             i.value?.removeAt(rowPos)
         }
-        //rowCount.value = rowCount.value?.minus(1)
+    }
+
+    fun plusColumn(){
+        map.value?.add(MutableLiveData(mutableListOf()))
+        for (i in 1..rowCount.value!!){
+            map.value?.get(map.value!!.size-1)?.value?.add(MutableLiveData(""))
+        }
+    }
+    fun plusRow(){
+        for (i in map.value!!){
+            i.value?.add(MutableLiveData(""))
+        }
+        calcRowCount()
     }
 }
