@@ -110,6 +110,7 @@ class Edit_number : Fragment() {
                             param.removable = true
                             mCharacterVM.LOCaddParamNumItem(param)
                             view.findNavController().popBackStack()
+
                         }
                         3 -> {// при обновлении параметра предмета
                             param.value = result
@@ -117,7 +118,6 @@ class Edit_number : Fragment() {
                             mCharacterVM.LOCupdateParamNumItem(indexParam, param)
                         }
                     }
-                    Toast.makeText(view.context, "Успешо изменено", Toast.LENGTH_SHORT).show()
                     view.findNavController().popBackStack()
                 }
             } else {

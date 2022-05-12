@@ -102,9 +102,6 @@
             android:id="@+id/action_characterList_to_delete23"
             app:destination="@id/pres_delete" />
         <action
-            android:id="@+id/action_characterList_to_weaponEdit2"
-            app:destination="@id/pres_itemEdit" />
-        <action
             android:id="@+id/action_characterList_to_edit_number22"
             app:destination="@id/pres_edit_number" />
         <action
@@ -123,9 +120,6 @@
             android:id="@+id/action_pres_characterList_to_pres_delete2"
             app:destination="@id/pres_delete" />
         <action
-            android:id="@+id/action_pres_characterList_to_pres_weaponEdit"
-            app:destination="@id/pres_itemEdit" />
-        <action
             android:id="@+id/action_pres_characterList_to_pres_dropDownEdit"
             app:destination="@id/pres_dropDownEdit" />
         <action
@@ -138,13 +132,13 @@
             android:id="@+id/action_pres_characterList_to_pres_dropDownEdit3"
             app:destination="@id/pres_dropDownEdit" />
         <action
-            android:id="@+id/action_pres_characterList_to_pres_itemEdit"
-            app:destination="@id/pres_itemEdit" />
-        <action
             android:id="@+id/action_pres_characterList_to_pres_addNewParamItem"
             app:destination="@id/pres_addNewParamItem" />
         <action
-            android:id="@+id/action_pres_characterList_to_pres_itemEdit2"
+            android:id="@+id/action_pres_characterList_to_addNewItem"
+            app:destination="@id/addNewItem" />
+        <action
+            android:id="@+id/action_pres_characterList_to_pres_itemEdit"
             app:destination="@id/pres_itemEdit" />
     </fragment>
     <fragment
@@ -335,4 +329,12 @@
         android:name="com.example.test.activity_and_fragments.setting.SettingFightType"
         android:label="setting_fight_type"
         tools:layout="@layout/setting_fight_type" />
+    <fragment
+        android:id="@+id/addNewItem"
+        android:name="com.example.test.activity_and_fragments.AddNewItem"
+        android:label="AddNewItem" >
+        <action
+            android:id="@+id/action_addNewItem_to_pres_itemEdit"
+            app:destination="@id/pres_itemEdit" />
+    </fragment>
 </navigation>

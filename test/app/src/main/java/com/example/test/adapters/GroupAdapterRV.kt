@@ -135,10 +135,10 @@ class GroupAdapterRV() :
                 bundle.putInt("index", -1)
                 if (newOrPres) {
                     view.findNavController()
-                        .navigate(R.id.action_new_characterList_to_new_itemEdit2, bundle)
+                        .navigate(R.id.action_new_characterList_to_addNewItem2, bundle)
                 } else {
                     view.findNavController()
-                        .navigate(R.id.action_pres_characterList_to_pres_itemEdit2, bundle)
+                        .navigate(R.id.action_pres_characterList_to_addNewItem, bundle)
                 }
             }
         }

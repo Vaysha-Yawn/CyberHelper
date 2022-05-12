@@ -32,14 +32,9 @@ open class CharacterDAO : ViewModel() {
     }
 
     // Основные переменные для Реалма
-    val characterList = MutableLiveData<RealmList<Character>>()
+    val characterList = MutableLiveData<RealmList<Character>>(RealmList<Character>())
 
-    val item = MutableLiveData<Item>()
-
-    init {
-        item.value = Item()
-        characterList.value = RealmList<Character>()
-    }
+    val item = MutableLiveData<Item>(Item())
 
     //CREATE////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -342,7 +337,8 @@ open class CharacterDAO : ViewModel() {
 
     fun addCharacterItem(
         characterId: Int,
-        groupTitle: String, item: Item
+        groupTitle: String,
+        item: Item
     ) {
         val character = characterList.value!!.singleOrNull { character ->
             character.id == characterId

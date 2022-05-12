@@ -39,9 +39,6 @@
             android:id="@+id/action_new_characterList_to_new_edit_number"
             app:destination="@id/new_edit_number" />
         <action
-            android:id="@+id/action_new_characterList_to_new_weaponEdit"
-            app:destination="@id/new_itemEdit" />
-        <action
             android:id="@+id/action_new_characterList_to_new_delete"
             app:destination="@id/new_delete" />
         <action
@@ -56,9 +53,6 @@
         <action
             android:id="@+id/action_new_characterList_to_new_delete3"
             app:destination="@id/new_delete" />
-        <action
-            android:id="@+id/action_new_characterList_to_new_weaponEdit2"
-            app:destination="@id/new_itemEdit" />
         <action
             android:id="@+id/action_new_characterList_to_dropDownEdit"
             app:destination="@id/new_dropDownEdit" />
@@ -75,13 +69,13 @@
             android:id="@+id/action_new_characterList_to_new_dropDownEdit2"
             app:destination="@id/new_dropDownEdit" />
         <action
-            android:id="@+id/action_new_characterList_to_new_itemEdit"
-            app:destination="@id/new_itemEdit" />
-        <action
             android:id="@+id/action_new_characterList_to_new_addNewParamItem"
             app:destination="@id/new_addNewParamItem" />
         <action
-            android:id="@+id/action_new_characterList_to_new_itemEdit2"
+            android:id="@+id/action_new_characterList_to_addNewItem2"
+            app:destination="@id/addNewItem2" />
+        <action
+            android:id="@+id/action_new_characterList_to_new_itemEdit"
             app:destination="@id/new_itemEdit" />
     </fragment>
     <fragment
@@ -248,5 +242,13 @@
         <action
             android:id="@+id/action_new_addNewParamItem_to_new_edit_string"
             app:destination="@id/new_edit_string" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewItem2"
+        android:name="com.example.test.activity_and_fragments.AddNewItem"
+        android:label="AddNewItem" >
+        <action
+            android:id="@+id/action_addNewItem2_to_new_itemEdit"
+            app:destination="@id/new_itemEdit" />
     </fragment>
 </navigation>

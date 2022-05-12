@@ -10,6 +10,6 @@
         <attr name="main_text" format="string" />
     </declare-styleable>
     <declare-styleable name="TableView">
-        <attr name="DD_color" format="color" />
+        <attr name="number_columns" format="color" />
     </declare-styleable>
 </resources>
