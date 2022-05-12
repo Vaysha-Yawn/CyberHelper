@@ -12,9 +12,25 @@
         <action
             android:id="@+id/action_settingsMainFragment_to_settingFightType2"
             app:destination="@id/settingFightType2" />
+        <action
+            android:id="@+id/action_settingsMainFragment_to_editTemplateItemFragment"
+            app:destination="@id/editTemplateItemFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFightType2"
         android:name="com.example.test.activity_and_fragments.setting.SettingFightType"
         android:label="SettingFightType" />
+    <fragment
+        android:id="@+id/editTemplateItemFragment"
+        android:name="com.example.test.activity_and_fragments.setting.EditTemplateItemFragment"
+        android:label="EditTemplateItemFragment" >
+        <action
+            android:id="@+id/action_editTemplateItemFragment_to_editItem"
+            app:destination="@id/editItem" />
+    </fragment>
+    <fragment
+        android:id="@+id/editItem"
+        android:name="com.example.test.activity_and_fragments.EditItem"
+        android:label="edit_item"
+        tools:layout="@layout/edit_item" />
 </navigation>

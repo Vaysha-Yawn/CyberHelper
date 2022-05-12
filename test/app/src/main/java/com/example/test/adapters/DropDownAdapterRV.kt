@@ -1,5 +1,6 @@
 package com.example.test.adapters
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,8 @@ import com.example.test.databinding.DropDownListItemBinding
 
 class DropDownAdapterRV(
     val list: List<String>,
-    val color: Int,
+    private val colorText: Int,
+    private var colorBackground: Int?,
     private val onClick: TemplateHolder.WhenValueTo?,
     private val onDDClick: TemplateHolder.Select,
     private val check: TemplateHolder.CheckChoose?
@@ -20,9 +22,24 @@ class DropDownAdapterRV(
         RecyclerView.ViewHolder(view) {
         private val binding = DropDownListItemBinding.bind(view)
 
-        fun bind(item: String, color: Int) = with(binding) {
+        fun bind(item: String, colorText: Int, colorBackground: Int?) = with(binding) {
+
+            if (colorBackground!=null){
+                tvItem.background = tvItem.context.resources.getDrawable(R.drawable.background_black)
+                if (colorBackground == tvItem.context.resources.getColor(R.color.black)){
+                    tvItem.backgroundTintList = ColorStateList.valueOf(tvItem.context.resources.getColor(R.color.dark_grey))
+                }else{
+                    tvItem.backgroundTintList = ColorStateList.valueOf(colorBackground)
+                }
+            }
             tvItem.text = item
-            tvItem.setTextColor(color)
+
+            if (colorText == tvItem.context.resources.getColor(R.color.dark_grey)){
+                tvItem.setTextColor(tvItem.context.resources.getColor(R.color.black))
+            }else{
+                tvItem.setTextColor(colorText)
+            }
+
             tvItem.setOnClickListener{
                 if (check==null){
                     onClick?.whenValueTo(adapterPosition)
@@ -63,7 +80,7 @@ class DropDownAdapterRV(
     }
 
     override fun onBindViewHolder(holder: DropDownAdapterRV.TemplateHolder, position: Int) {
-        holder.bind(list[position], color)
+        holder.bind(list[position], colorText, colorBackground)
     }
 
     override fun getItemCount(): Int {

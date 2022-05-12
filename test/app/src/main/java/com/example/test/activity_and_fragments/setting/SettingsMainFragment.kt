@@ -9,6 +9,7 @@ import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.databinding.FragmentSettingsMainBinding
 import com.example.test.views.HeaderView
+import java.lang.Exception
 
 
 class SettingsMainFragment : Fragment(), HeaderView.HeaderBack {
@@ -27,7 +28,10 @@ class SettingsMainFragment : Fragment(), HeaderView.HeaderBack {
             fightType.setOnClickListener {
                 view.findNavController().navigate(R.id.action_settingsMainFragment_to_settingFightType2)
             }
-            templateItem
+
+            templateItem.setOnClickListener {
+                view.findNavController().navigate(R.id.action_settingsMainFragment_to_editTemplateItemFragment)
+            }
             templateCharacter
             header.setBack( true, this@SettingsMainFragment, requireActivity(), viewLifecycleOwner)
         }

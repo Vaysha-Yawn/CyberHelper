@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="40dp">
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/Text.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:gravity="start"
+        android:text="Выберите характеристику"
+        android:textColor="@color/light_grey"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/add"
+        style="@style/Button_plus_green"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:text="Создать новую"
+        android:textSize="20sp" />
+
+    <com.example.test.views.DropDownView
+        android:id="@+id/chooseDD"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:DD_color="@color/dark_grey"
+        app:main_text="Выберите характеристику"
+        app:text_color="@color/green" />
+</LinearLayout>

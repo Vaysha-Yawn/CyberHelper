@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/background_black.xml" value="0.3535" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/bcg_rectangle_round.xml" value="0.3535" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/bcg_skill_for.xml" value="0.3535" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/drop_down_dark_blue.xml" value="0.3535" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/add_new_param_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/card_add_or_choose.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/card_group_param.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/card_item.xml" value="0.35260416666666666" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/character_list.xml" value="0.36666666666666664" />
@@ -13,8 +18,12 @@
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/character_list__skill.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/character_list__stuff.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/character_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/drop_down_list.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/drop_down_list_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/edit_template_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_edit_template_item.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_goal_compact.xml" value="0.36102564102564105" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_settings_main.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/modificators.xml" value="0.36102564102564105" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/roll.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/drawable/bcg_rectangle_round.xml" value="0.34" />

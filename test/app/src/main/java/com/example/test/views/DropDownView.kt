@@ -22,7 +22,8 @@ class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, de
     private lateinit var more: Drawable
     private lateinit var less: Drawable
 
-    private var color: Int = 0
+    private var colorBack: Int = 0
+    private var colorText: Int = 0
     private lateinit var list: List<String>
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : this(
@@ -51,12 +52,12 @@ class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, de
             defStyleRes
         )
 
-        color = typedArray.getColor(
+        colorBack = typedArray.getColor(
             R.styleable.DropDownView_DD_color,
             ContextCompat.getColor(context, R.color.green)
         )
 
-        val textColor = typedArray.getColor(
+        colorText = typedArray.getColor(
             R.styleable.DropDownView_text_color,
             ContextCompat.getColor(context, R.color.black)
         )
@@ -68,15 +69,15 @@ class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, de
             items.visibility = View.GONE
 
             more = ContextCompat.getDrawable(context, R.drawable.more).also {
-                it?.setTint(textColor)
+                it?.setTint(colorText)
             }!!
             less = ContextCompat.getDrawable(context, R.drawable.less).also {
-                it?.setTint(textColor)
+                it?.setTint(colorText)
             }!!
 
-            main.setTextColor(textColor)
+            main.setTextColor(colorText)
 
-            main.backgroundTintList = ColorStateList.valueOf(color)
+            main.backgroundTintList = ColorStateList.valueOf(colorBack)
 
             main.setCompoundDrawablesWithIntrinsicBounds(null, null, more, null)
         }
@@ -110,7 +111,7 @@ class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, de
             this@DropDownView.list = list
 
             val adapterItems =
-                DropDownAdapterRV(list, color, ob, this@DropDownView, check)
+                DropDownAdapterRV(list, colorBack, colorText, ob, this@DropDownView, check)
             items.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             items.adapter = adapterItems

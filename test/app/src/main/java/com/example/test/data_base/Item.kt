@@ -23,8 +23,8 @@ class TemplateItem() {
     val automatic_fire = "Автоматический огонь"
     val explosive = "Взрывчатка"
 
-    val mapGroupToItems = mapOf(
-        "Оружие" to mapOf<String, Item>(
+    val mapGroupToItems = mutableMapOf(
+        "Оружие" to mutableMapOf<String, Item>(
 
             "Киберрука" to Item(
                 "Киберрука",
@@ -181,7 +181,7 @@ class TemplateItem() {
             ),
 
             ),
-        "Киберимпланты" to mapOf<String, Item>(
+        "Киберимпланты" to mutableMapOf<String, Item>(
             "Большие костяшки (пара)" to Item(
                 "Большие костяшки (пара)",
                 "Усиленные остяшки пальцев наносят такие же тяжёлые удары,как костеты",
@@ -241,7 +241,7 @@ class TemplateItem() {
             ),
         ),
 
-        "Снаряжение" to mapOf<String, Item>(
+        "Снаряжение" to mutableMapOf<String, Item>(
             "100 евробаксов немаркированными купюрами" to Item(
                 "100 евробаксов немаркированными купюрами", "money", true,
                 effectsAdd = RealmList<EffectAdd>(EffectAdd(false, "Деньги, евробаксы", 100, true))
@@ -270,7 +270,7 @@ class TemplateItem() {
                 )
             ),
         ),
-        "Программы" to mapOf<String, Item>(
+        "Программы" to mutableMapOf<String, Item>(
             "Speedy Gonzalvez" to Item(
                 "Speedy Gonzalvez",
                 "Increases your SPD by +4 as long as this program remains rezzed.",
