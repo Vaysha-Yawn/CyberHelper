@@ -35,39 +35,31 @@ class EditItem : Fragment() {
         val groupTitle = args?.getString("groupTitle", "") ?: ""
         val index = args?.getInt("index", -1) ?: -1
         val template = args?.getString("template", "") ?: ""
+        val setTemplate = args?.getBoolean("template", false) ?: false
 
         val nameTV = view.findViewById<TextView>(R.id.edit_name)
         val descriptionTV = view.findViewById<TextView>(R.id.edit_description)
-
+        var editItem: Item = Item()
         if (index != -1) {
-            val editItem = mCharacterVM.characterList.value!!.singleOrNull { character ->
+            editItem = mCharacterVM.characterList.value!!.singleOrNull { character ->
                 character.id == characterId
             }?.attributes?.singleOrNull { gp ->
                 gp.title == groupTitle
-            }?.attributes?.listItem?.get(index)
-            if (editItem == null) {
-                Toast.makeText(
-                    view.context,
-                    "Предмет с таким индексом не найден",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-                view.findNavController().popBackStack()
-            }
-            mCharacterVM.item.value = editItem!!
+            }?.attributes?.listItem?.get(index)!!
+
+            mCharacterVM.item.value = editItem
             nameTV.text = editItem.name
             descriptionTV.text = editItem.description
         } else {
             if (template != "") {
-                val item = TemplateItem().mapGroupToItems[groupTitle]?.get(template)
-                mCharacterVM.item.value = item
-                nameTV.text = item?.name
-                descriptionTV.text = item?.description
+                editItem = TemplateItem().mapGroupToItems[groupTitle]?.get(template)!!
             } else {
                 mCharacterVM.item.value = Item()
             }
-
         }
+        mCharacterVM.item.value = editItem
+        nameTV.text = editItem.name
+        descriptionTV.text = editItem.description
 
         // Подключаем RV отображение параметров предмета
         val numRV = view.findViewById<RecyclerView>(R.id.num_rv)
@@ -221,12 +213,22 @@ class EditItem : Fragment() {
                     mCharacterVM.LOCupdateDescriptionItem(description)
                     val item = mCharacterVM.item.value!!
                     if (index == -1) {
-                        mCharacterVM.addCharacterItem(characterId, groupTitle, item)
-                        Toast.makeText(view.context, "Предмет добавлен", Toast.LENGTH_SHORT)
-                            .show()
-                        mCharacterVM.LOCitemClear()
-                        view.findNavController().popBackStack()
-                        view.findNavController().popBackStack()
+                        if (!setTemplate) {
+                            mCharacterVM.addCharacterItem(characterId, groupTitle, item)
+                            Toast.makeText(view.context, "Предмет добавлен", Toast.LENGTH_SHORT)
+                                .show()
+                            mCharacterVM.LOCitemClear()
+                            view.findNavController().popBackStack()
+                            view.findNavController().popBackStack()
+                        } else {
+                            // todo: изменения не сохраняются, нужна более жесткая артиллерия вроде Реалма
+                            TemplateItem().mapGroupToItems[groupTitle]?.set(item.name, item)
+                            mCharacterVM.LOCitemClear()
+                            view.findNavController().popBackStack()
+                            Toast.makeText(view.context, "${TemplateItem().mapGroupToItems[groupTitle]?.get(item.name)?.name}", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+
                     } else {
                         mCharacterVM.updateCharacterParamItem(characterId, item, groupTitle, index)
                         Toast.makeText(view.context, "Предмет успешно изменен", Toast.LENGTH_SHORT)
@@ -251,6 +253,24 @@ class EditItem : Fragment() {
         } else {
             bundle.putString("template", "")
         }
+        return bundle
+    }
+
+    fun getEditItemBundleForTemplate(
+        groupTitle: String,
+        index: Int,
+        template: String?,
+        setTemplate: Boolean
+    ): Bundle {
+        val bundle = Bundle()
+        bundle.putString("groupTitle", groupTitle)
+        bundle.putInt("index", index)
+        if (template != null) {
+            bundle.putString("template", template)
+        } else {
+            bundle.putString("template", "")
+        }
+        bundle.putBoolean("template", setTemplate)
         return bundle
     }
 }

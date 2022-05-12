@@ -26,11 +26,12 @@ class EditTemplateItemFragment : Fragment(), HeaderView.HeaderBack {
 
         for (i in TemplateItem().mapGroupToItems) {
             val templateItems = i.value.toList()
+            val list = mutableListOf<String>()
             for (item in templateItems) {
-                val list = mutableListOf<String>()
                 list.add(item.second.name)
-                options[i.key] = list
+
             }
+            options[i.key] = list
         }
 
     }
@@ -104,18 +105,17 @@ class EditTemplateItemFragment : Fragment(), HeaderView.HeaderBack {
             add.text = "Создать новый"
             chooseDD.setMainText("Редактировать существующий")
             add.setOnClickListener {
-                val bundle = EditItem().getEditItemBundle(groupTitle, -1, null)
+                val bundle = EditItem().getEditItemBundleForTemplate(groupTitle, -1, null, true)
                 view.findNavController()
-                    .navigate(R.id.action_addNewItem2_to_new_itemEdit, bundle)
-
+                    .navigate(R.id.action_editTemplateItemFragment_to_editItem, bundle)
             }
             chooseDD.setDDArrayAndListener(list, this@AdapterRVTemplateHolder, null)
         }
 
         override fun whenValueTo(position: Int) {
             val res = list[position]
-            val bundle = EditItem().getEditItemBundle(groupTitle, -1, res)
-            view.findNavController().navigate(R.id.action_addNewItem2_to_new_itemEdit, bundle)
+            val bundle = EditItem().getEditItemBundleForTemplate(groupTitle, -1, res, true)
+            view.findNavController().navigate(R.id.action_editTemplateItemFragment_to_editItem, bundle)
 
         }
     }
