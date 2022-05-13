@@ -18,7 +18,7 @@ class InitiativeFightVM() : ViewModel() {
     fun addInitiativeFight(
         gameId:Int,
         nameFight: String,
-        listIdCharacter: List<Int>
+        listIdCharacter: RealmList<Int>
     ) {
         val initiativeFight = DAO.addInitiativeFight(
             gameId,

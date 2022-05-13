@@ -20,6 +20,7 @@ import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.InitiativeFightVM
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.views.HeaderView
+import io.realm.RealmList
 
 
 private var list = mutableListOf<String>()
@@ -74,7 +75,7 @@ class InitiativeResult : Fragment(), HeaderView.HeaderBack {
             }
 
             apply.setOnClickListener {
-                val listId = mutableListOf<Int>()
+                val listId = RealmList<Int>()
                 for (i in listGoal){
                     listId.add(i.characterId)
                 }

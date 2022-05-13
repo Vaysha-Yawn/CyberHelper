@@ -22,7 +22,7 @@ class InitiativeFightDAO {
     fun addInitiativeFight(
         gameId:Int,
         nameFight: String,
-        listIdCharacter: List<Int>
+        listIdCharacter: RealmList<Int>
     ): InitiativeFight {
         val initiativeFight = InitiativeFight(
             getNewId(), gameId, nameFight = nameFight, listIdCharacter = listIdCharacter
