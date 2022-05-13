@@ -74,16 +74,6 @@
         android:textAllCaps="false"
         android:textColor="@color/cyan" />
 
-    <com.example.test.views.DropDownView
-        android:id="@+id/DDSkill"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="10dp"
-        app:DD_color="@color/yellow"
-        app:main_text="Проверка навыка"
-        app:text_color="@color/black" />
-
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -125,7 +115,7 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/CharacterMenu_Choke"
+                android:id="@+id/CharacterMenu_UseItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -145,7 +135,7 @@
                 android:layout_marginBottom="5dp"
                 android:gravity="center"
                 android:maxWidth="150dp"
-                android:text="Захват, удушение, метание" />
+                android:text="Использовать предмет" />
         </LinearLayout>
 
         <LinearLayout
@@ -182,7 +172,7 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/CharacterMenu_Face"
+                android:id="@+id/CharacterMenu_EndMove"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -201,51 +191,7 @@
                 android:layout_marginBottom="5dp"
                 android:gravity="center"
                 android:maxWidth="150dp"
-                android:text="Поединок взглядов" />
-
+                android:text="Завершить ход" />
         </LinearLayout>
-
     </androidx.gridlayout.widget.GridLayout>
-
-    <Button
-        android:id="@+id/CharacterMenu_UseItem"
-        style="@style/Text.H2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="-10dp"
-        android:background="@drawable/btn_bcg_dark_blue"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:text="Использовать предмет"
-        android:textAllCaps="false"
-        android:textColor="@color/cyan" />
-
-    <Button
-        android:id="@+id/CharacterMenu_EndMove"
-        style="@style/Text.H2"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/btn_orange_outline"
-        android:minHeight="48dp"
-        android:text="Завершить ход"
-        android:textAllCaps="false"
-        android:textColor="@color/red_orange"
-        tools:ignore="TouchTargetSizeCheck" />
-    <Button
-        android:id="@+id/editFightTypePrev"
-        style="@style/Text.H2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/btn_bcg_dark_blue"
-        android:minHeight="48dp"
-        android:text="Превью редактирования типа боя"
-        android:textAllCaps="false"
-        android:padding="10dp"
-        android:textColor="@color/cyan"
-        tools:ignore="TouchTargetSizeCheck" />
 </LinearLayout>

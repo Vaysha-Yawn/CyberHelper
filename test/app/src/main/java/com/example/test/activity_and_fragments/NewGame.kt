@@ -35,7 +35,7 @@ class NewGame : Fragment() {
             val newCharacter = view.findViewById<Button>(R.id.NewGame_NewCharacter)
             newCharacter.setOnClickListener {
                 mNewVM.gameName.value = tvGameName.text.toString()
-                view.findNavController().navigate(R.id.action_newGame_to_new_choiceTemplate2)
+                view.findNavController().navigate(R.id.action_newGame_to_new_choiceTemplate)
             }
 
             //CharacterAdapter ищем, подключаем

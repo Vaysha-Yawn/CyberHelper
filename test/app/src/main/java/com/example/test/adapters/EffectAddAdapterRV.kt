@@ -42,9 +42,9 @@ class EffectAddAdapterRV():
                     bundle.putString("titleGroup", groupTitle)
                     bundle.putString("param", "effectAdd")
                    if (newOrPres) {
-                       view.findNavController().navigate(R.id.action_new_itemEdit_to_new_delete2, bundle)
+                       view.findNavController().navigate(R.id.action_new_itemEdit_to_new_delete, bundle)
                    }else{
-                       view.findNavController().navigate(R.id.action_pres_itemEdit_to_pres_delete2, bundle)
+                       view.findNavController().navigate(R.id.action_pres_itemEdit_to_pres_delete, bundle)
                    }
                 }
                 edit.setOnClickListener { view->
@@ -53,9 +53,9 @@ class EffectAddAdapterRV():
                     bundle.putInt("indexEff", indexEff)
                     bundle.putString("groupTitle", groupTitle)
                     if (newOrPres) {
-                        view.findNavController().navigate(R.id.action_new_itemEdit_to_new_editEffectAdd3, bundle)
+                        view.findNavController().navigate(R.id.action_new_itemEdit_to_new_editEffectAdd, bundle)
                     }else{
-                        view.findNavController().navigate(R.id.action_pres_itemEdit_to_pres_editEffectAdd4, bundle)
+                        view.findNavController().navigate(R.id.action_pres_itemEdit_to_pres_editEffectAdd, bundle)
                     }
                 }
             }

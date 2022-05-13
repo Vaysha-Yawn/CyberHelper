@@ -11,10 +11,10 @@ import com.example.test.data_base.EffectWeapon
 import com.example.test.databinding.CardWeaponFightBinding
 
 
-class ChooseWeaponAdapterRV(val list: List<EffectWeapon>, private val onClick: ChooseWeaponAdapterRV.TemplateHolder.OnItemClickListener) :
-    RecyclerView.Adapter<ChooseWeaponAdapterRV.TemplateHolder>() {
+class DELChooseWeaponAdapterRV(val list: List<EffectWeapon>, private val onClick: DELChooseWeaponAdapterRV.TemplateHolder.OnItemClickListener) :
+    RecyclerView.Adapter<DELChooseWeaponAdapterRV.TemplateHolder>() {
 
-    class TemplateHolder(view: View, private val onClick: ChooseWeaponAdapterRV.TemplateHolder.OnItemClickListener) : RecyclerView.ViewHolder(view) {
+    class TemplateHolder(view: View, private val onClick: DELChooseWeaponAdapterRV.TemplateHolder.OnItemClickListener) : RecyclerView.ViewHolder(view) {
         private val binding = CardWeaponFightBinding.bind(view)
 
         @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables")

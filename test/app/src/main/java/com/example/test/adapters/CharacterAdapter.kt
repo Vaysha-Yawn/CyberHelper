@@ -35,10 +35,10 @@ class CharacterAdapter() : BaseAdapter() {
                 val bundle = Bundle()
                 bundle.putInt("characterId", character.id)
                 if (presOrNew) {
-                    view.findNavController().navigate(R.id.action_home2_to_characterMenu, bundle)
+                    view.findNavController().navigate(R.id.action_home2_to_characterMenu2, bundle)
                 } else {
                     view.findNavController()
-                        .navigate(R.id.action_newGame_to_new_characterList3, bundle)
+                        .navigate(R.id.action_newGame_to_new_characterList, bundle)
                 }
             } catch (e: Exception) {
                 Toast.makeText(view.context, "$e", Toast.LENGTH_SHORT).show()

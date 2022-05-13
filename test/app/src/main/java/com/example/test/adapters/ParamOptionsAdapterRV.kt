@@ -53,21 +53,21 @@ class ParamOptionsAdapterRV() :
                         if (indexItem == -1) {
                             if (newOrPres) {
                                 view.findNavController()
-                                    .navigate(R.id.action_new_characterList_to_new_delete4, bundle)
+                                    .navigate(R.id.action_new_characterList_to_new_delete, bundle)
                             } else {
                                 view.findNavController()
                                     .navigate(
-                                        R.id.action_pres_characterList_to_pres_delete3,
+                                        R.id.action_characterList_to_delete,
                                         bundle
                                     )
                             }
                         } else {
                             if (newOrPres) {
                                 view.findNavController()
-                                    .navigate(R.id.action_new_itemEdit_to_new_delete3, bundle)
+                                    .navigate(R.id.action_new_itemEdit_to_new_delete, bundle)
                             } else {
                                 view.findNavController()
-                                    .navigate(R.id.action_pres_itemEdit_to_pres_delete3, bundle)
+                                    .navigate(R.id.action_pres_itemEdit_to_pres_delete, bundle)
                             }
                         }
                     }
@@ -87,13 +87,13 @@ class ParamOptionsAdapterRV() :
                         if (newOrPres) {
                             view.findNavController()
                                 .navigate(
-                                    R.id.action_new_characterList_to_new_dropDownEdit2,
+                                    R.id.action_new_characterList_to_new_edit_string,
                                     bundle
                                 )
                         } else {
                             view.findNavController()
                                 .navigate(
-                                    R.id.action_pres_characterList_to_pres_dropDownEdit3,
+                                    R.id.action_characterList_to_edit_string,
                                     bundle
                                 )
                         }

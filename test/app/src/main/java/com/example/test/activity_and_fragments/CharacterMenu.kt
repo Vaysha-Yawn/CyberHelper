@@ -23,7 +23,7 @@ import com.example.test.views.DropDownView
 import com.example.test.views.HeaderView
 
 
-class CharacterMenu : Fragment(),  DropDownAdapterRV.TemplateHolder.WhenValueTo, HeaderView.HeaderBack {
+class CharacterMenu : Fragment(), HeaderView.HeaderBack {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
@@ -37,7 +37,6 @@ class CharacterMenu : Fragment(),  DropDownAdapterRV.TemplateHolder.WhenValueTo,
     ): View? {
         val view = inflater.inflate(R.layout.character_menu, container, false)
 
-        val presentGame = mCharacterVM.gameId
         val characterId = this.requireArguments().getInt("characterId", 0)
         mCharacterVM.initCharacterId(characterId)
 
@@ -56,33 +55,15 @@ class CharacterMenu : Fragment(),  DropDownAdapterRV.TemplateHolder.WhenValueTo,
             val bundle = Bundle()
             bundle.putInt("characterId", characterId)
             view.findNavController()
-                .navigate(R.id.action_characterMenu_to_pres_characterList, bundle)
+                .navigate(R.id.action_characterMenu_to_characterList, bundle)
         }
 
-        // настраиваем выпадающий список
-        SpecialGameData().mapParameterToSkill.forEach { (key, _) ->
-            arr.add(key)
-        }
-        view.findViewById<DropDownView>(R.id.DDSkill).setDDArrayAndListener(arr, this, null)
+        view.findViewById<ImageButton>(R.id.CharacterMenu_UseItem).setOnClickListener { }
+        view.findViewById<ImageButton>(R.id.CharacterMenu_EndMove).setOnClickListener { }
 
-        view.findViewById<ImageButton>(R.id.CharacterMenu_Fight).setOnClickListener {
-            (activity as PresentHost).openFight(characterId)
-        }
-        view.findViewById<ImageButton>(R.id.CharacterMenu_Choke).setOnClickListener { }
-        view.findViewById<ImageButton>(R.id.CharacterMenu_Netrunning).setOnClickListener { }
-        view.findViewById<ImageButton>(R.id.CharacterMenu_Face).setOnClickListener { }
-        view.findViewById<Button>(R.id.CharacterMenu_UseItem).setOnClickListener { }
-        view.findViewById<Button>(R.id.CharacterMenu_EndMove).setOnClickListener { }
-
-        view.findViewById<Button>(R.id.editFightTypePrev).setOnClickListener {
-            view.findNavController().navigate(R.id.action_characterMenu_to_settingFightType)
-        }
+        view.findViewById<HeaderView>(R.id.header).setBack(true, this, requireActivity(), viewLifecycleOwner)
 
         return view
-    }
-
-    override fun whenValueTo(position: Int) {
-        (activity as PresentHost).openSkillTest(mCharacterVM.characterId, arr[position])
     }
 
     override fun back() {

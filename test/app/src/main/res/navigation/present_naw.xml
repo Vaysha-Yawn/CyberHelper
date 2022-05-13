@@ -123,10 +123,10 @@
         android:name="com.example.test.activity_and_fragments.CharacterMenu"
         android:label="CharacterMenu">
         <action
-            android:id="@+id/action_characterMenu2_to_home2"
+            android:id="@+id/action_characterMenu_to_home2"
             app:destination="@id/home2" />
         <action
-            android:id="@+id/action_characterMenu2_to_characterList"
+            android:id="@+id/action_characterMenu_to_characterList"
             app:destination="@id/pres_characterList" />
     </fragment>
      <fragment

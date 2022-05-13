@@ -46,10 +46,10 @@ class EffectWeaponAdapterRV():
                     bundle.putString("groupTitle", groupTitle)
                     if (newOrPres) {
                         view.findNavController()
-                            .navigate(R.id.action_new_itemEdit_to_new_editEffectWeapon3, bundle)
+                            .navigate(R.id.action_new_itemEdit_to_new_editEffectWeapon, bundle)
                     } else {
                         view.findNavController()
-                            .navigate(R.id.action_pres_itemEdit_to_pres_editEffectWeapon3, bundle)
+                            .navigate(R.id.action_pres_itemEdit_to_pres_editEffectWeapon, bundle)
                     }
                 }
                 delete.setOnClickListener { view->
