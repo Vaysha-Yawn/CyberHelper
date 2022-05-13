@@ -31,20 +31,8 @@ class FightHost : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
 
-        when(loadFragment){
-            "iniciativa"->{
-                navController.navigate(R.id.iniciativa)
-            }
-            "skillTest"->{
-                val skill = intent.getStringExtra("title")?:""
-                val bundle = Bundle()
-                bundle.putString("title", skill)
-                navController.navigate(R.id.skillTest, bundle)
-            }
-            "fight"->{
-                navController.navigate(R.id.chooseWeapon)
-            }
-        }
+        navController.navigate(R.id.iniciativa)
+
         characterId = intent.getIntExtra("characterId", 0)
         val gameId = getSharedPreferences("id", 0).getString("PresentGame", "0")!!.toInt()
         mCharacterVM.initGameId(gameId)

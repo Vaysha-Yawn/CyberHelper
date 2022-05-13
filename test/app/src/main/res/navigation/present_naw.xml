@@ -31,32 +31,11 @@
             android:id="@+id/action_pres_itemEdit_to_pres_editEffectWeapon"
             app:destination="@id/pres_editEffectWeapon" />
         <action
-            android:id="@+id/action_pres_itemEdit_to_pres_editEffectAdd2"
-            app:destination="@id/pres_editEffectAdd" />
-        <action
-            android:id="@+id/action_pres_itemEdit_to_pres_editEffectWeapon2"
-            app:destination="@id/pres_editEffectWeapon" />
-        <action
-            android:id="@+id/action_pres_itemEdit_to_pres_editEffectWeapon3"
-            app:destination="@id/pres_editEffectWeapon" />
-        <action
             android:id="@+id/action_pres_itemEdit_to_pres_delete"
-            app:destination="@id/pres_delete" />
-        <action
-            android:id="@+id/action_pres_itemEdit_to_pres_editEffectAdd3"
-            app:destination="@id/pres_editEffectAdd" />
-        <action
-            android:id="@+id/action_pres_itemEdit_to_pres_editEffectAdd4"
-            app:destination="@id/pres_editEffectAdd" />
-        <action
-            android:id="@+id/action_pres_itemEdit_to_pres_delete2"
             app:destination="@id/pres_delete" />
         <action
             android:id="@+id/action_pres_itemEdit_to_pres_addNewParamItem"
             app:destination="@id/pres_addNewParamItem" />
-        <action
-            android:id="@+id/action_pres_itemEdit_to_pres_delete3"
-            app:destination="@id/pres_delete" />
         <action
             android:id="@+id/action_pres_itemEdit_to_pres_edit_number"
             app:destination="@id/pres_edit_number" />
@@ -93,43 +72,19 @@
         android:name="com.example.test.activity_and_fragments.character_list.CharacterList"
         android:label="CharacterList">
         <action
-            android:id="@+id/action_characterList_to_characterMenu2"
+            android:id="@+id/action_characterList_to_characterMenu"
             app:destination="@id/characterMenu" />
         <action
-            android:id="@+id/action_characterList_to_edit_string22"
+            android:id="@+id/action_characterList_to_edit_string"
             app:destination="@id/pres_edit_string" />
         <action
-            android:id="@+id/action_characterList_to_delete23"
+            android:id="@+id/action_characterList_to_delete"
             app:destination="@id/pres_delete" />
         <action
-            android:id="@+id/action_characterList_to_edit_number22"
+            android:id="@+id/action_characterList_to_edit_number"
             app:destination="@id/pres_edit_number" />
-        <action
-            android:id="@+id/action_characterList_to_edit_string23"
-            app:destination="@id/pres_edit_string" />
-        <action
-            android:id="@+id/action_pres_characterList_to_pres_delete"
-            app:destination="@id/pres_delete" />
-        <action
-            android:id="@+id/action_pres_characterList_to_pres_edit_number"
-            app:destination="@id/pres_edit_number" />
-        <action
-            android:id="@+id/action_pres_characterList_to_pres_edit_string"
-            app:destination="@id/pres_edit_string" />
-        <action
-            android:id="@+id/action_pres_characterList_to_pres_delete2"
-            app:destination="@id/pres_delete" />
         <action
             android:id="@+id/action_pres_characterList_to_pres_dropDownEdit"
-            app:destination="@id/pres_dropDownEdit" />
-        <action
-            android:id="@+id/action_pres_characterList_to_pres_dropDownEdit2"
-            app:destination="@id/pres_dropDownEdit" />
-        <action
-            android:id="@+id/action_pres_characterList_to_pres_delete3"
-            app:destination="@id/pres_delete" />
-        <action
-            android:id="@+id/action_pres_characterList_to_pres_dropDownEdit3"
             app:destination="@id/pres_dropDownEdit" />
         <action
             android:id="@+id/action_pres_characterList_to_pres_addNewParamItem"
@@ -151,26 +106,6 @@
         <action
             android:id="@+id/action_choiceTemplate_to_newCharacterByTemplate2"
             app:destination="@id/pres_newCharacterByTemplate" />
-        <action
-            android:id="@+id/action_choiceTemplate_to_newCharacter2"
-            app:destination="@id/pres_newCharacter" />
-        <action
-            android:id="@+id/action_pres_choiceTemplate_to_pres_newCharacter"
-            app:destination="@id/pres_newCharacter" />
-        <action
-            android:id="@+id/action_pres_choiceTemplate_to_pres_newCharacterByTemplate"
-            app:destination="@id/pres_newCharacterByTemplate" />
-    </fragment>
-    <fragment
-        android:id="@+id/pres_newCharacter"
-        android:name="com.example.test.activity_and_fragments.new_character.NewCharacter"
-        android:label="NewCharacter">
-        <action
-            android:id="@+id/action_newCharacter_to_choiceTemplate2"
-            app:destination="@id/pres_choiceTemplate" />
-        <action
-            android:id="@+id/action_pres_newCharacter_to_home2"
-            app:destination="@id/home2" />
     </fragment>
     <fragment
         android:id="@+id/pres_newCharacterByTemplate"
@@ -193,18 +128,6 @@
         <action
             android:id="@+id/action_characterMenu2_to_characterList"
             app:destination="@id/pres_characterList" />
-        <action
-            android:id="@+id/action_characterMenu_to_pres_characterList"
-            app:destination="@id/pres_characterList" />
-        <action
-            android:id="@+id/action_characterMenu_to_weaponOrNotFight"
-            app:destination="@id/Attack" />
-        <action
-            android:id="@+id/action_characterMenu_to_pres_skillTest"
-            app:destination="@id/SkillTest" />
-        <action
-            android:id="@+id/action_characterMenu_to_settingFightType"
-            app:destination="@id/settingFightType" />
     </fragment>
      <fragment
         android:id="@+id/home2"
@@ -219,9 +142,6 @@
         <action
             android:id="@+id/action_home2_to_edit_string2"
             app:destination="@id/pres_edit_string" />
-        <action
-            android:id="@+id/action_home2_to_characterMenu"
-            app:destination="@id/characterMenu" />
     </fragment>
     <fragment
         android:id="@+id/pres_dropDownEdit"
@@ -266,69 +186,6 @@
             android:id="@+id/action_pres_addNewParamItem_to_pres_dropDownEdit"
             app:destination="@id/pres_dropDownEdit" />
     </fragment>
-    <navigation android:id="@+id/SkillTest"
-        app:startDestination="@id/pres_skillTest">
-        <fragment
-            android:id="@+id/pres_skillTest"
-            android:name="com.example.test.activity_and_fragments.fight.SkillTest"
-            android:label="SkillTest">
-            <action
-                android:id="@+id/action_pres_skillTest_to_skillResult"
-                app:destination="@id/skillResult" />
-            <action
-                android:id="@+id/action_pres_skillTest_to_characterMenu"
-                app:destination="@id/characterMenu" />
-        </fragment>
-        <fragment
-            android:id="@+id/skillResult"
-            android:name="com.example.test.activity_and_fragments.fight.SkillResult"
-            android:label="SkillResult">
-            <action
-                android:id="@+id/action_skillResult_to_home2"
-                app:destination="@id/home2" />
-            <action
-                android:id="@+id/action_skillResult_to_pres_skillTest4"
-                app:destination="@id/pres_skillTest" />
-        </fragment>
-    </navigation>
-    <navigation android:id="@+id/Attack"
-        app:startDestination="@id/weaponOrNotFight">
-        <fragment
-            android:id="@+id/weaponOrNotFight"
-            android:name="com.example.test.activity_and_fragments.fight.ChooseWeapon"
-            android:label="weapon_or_not_fight"
-            tools:layout="@layout/choose_weapon">
-            <action
-                android:id="@+id/action_weaponOrNotFight_to_fightAttack"
-                app:destination="@id/fightAttack" />
-        </fragment>
-        <fragment
-            android:id="@+id/fightAttack"
-            android:name="com.example.test.activity_and_fragments.fight.FightSecond"
-            android:label="fight_attack"
-            tools:layout="@layout/fight_second" >
-            <action
-                android:id="@+id/action_fightAttack_to_fightThreeGoal"
-                app:destination="@id/fightThreeGoal" />
-        </fragment>
-        <fragment
-            android:id="@+id/fightThreeGoal"
-            android:name="com.example.test.activity_and_fragments.fight.FightThree"
-            android:label="FightThreeGoal" >
-            <action
-                android:id="@+id/action_fightThreeGoal_to_fightResult"
-                app:destination="@id/fightResult" />
-        </fragment>
-        <fragment
-            android:id="@+id/fightResult"
-            android:name="com.example.test.activity_and_fragments.fight.FightResult"
-            android:label="FightResult" />
-    </navigation>
-    <fragment
-        android:id="@+id/settingFightType"
-        android:name="com.example.test.activity_and_fragments.setting.SettingFightType"
-        android:label="setting_fight_type"
-        tools:layout="@layout/setting_fight_type" />
     <fragment
         android:id="@+id/addNewItem"
         android:name="com.example.test.activity_and_fragments.AddNewItem"

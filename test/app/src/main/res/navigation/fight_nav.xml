@@ -3,37 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fight_nav"
-    app:startDestination="@id/chooseWeapon">
+    app:startDestination="@id/iniciativa">
 
-    <fragment
-        android:id="@+id/chooseWeapon"
-        android:name="com.example.test.activity_and_fragments.fight.ChooseWeapon"
-        android:label="choose_weapon"
-        tools:layout="@layout/choose_weapon" >
-        <action
-            android:id="@+id/action_chooseWeapon_to_fightSecond"
-            app:destination="@id/fightSecond" />
-    </fragment>
-    <fragment
-        android:id="@+id/fightSecond"
-        android:name="com.example.test.activity_and_fragments.fight.FightSecond"
-        android:label="FightSecond">
-        <action
-            android:id="@+id/action_fightSecond_to_fightThree"
-            app:destination="@id/fightThree" />
-    </fragment>
-    <fragment
-        android:id="@+id/fightThree"
-        android:name="com.example.test.activity_and_fragments.fight.FightThree"
-        android:label="FightThree">
-        <action
-            android:id="@+id/action_fightThree_to_fightResult2"
-            app:destination="@id/fightResult2" />
-    </fragment>
-    <fragment
-        android:id="@+id/fightResult2"
-        android:name="com.example.test.activity_and_fragments.fight.FightResult"
-        android:label="FightResult" />
     <fragment
         android:id="@+id/iniciativa"
         android:name="com.example.test.activity_and_fragments.fight.Iniciativa"
@@ -42,18 +13,6 @@
             android:id="@+id/action_iniciativa_to_iniciativaResult"
             app:destination="@id/iniciativaResult" />
     </fragment>
-    <fragment
-        android:id="@+id/skillTest"
-        android:name="com.example.test.activity_and_fragments.fight.SkillTest"
-        android:label="SkillTest" >
-        <action
-            android:id="@+id/action_skillTest_to_skillResult2"
-            app:destination="@id/skillResult2" />
-    </fragment>
-    <fragment
-        android:id="@+id/skillResult2"
-        android:name="com.example.test.activity_and_fragments.fight.SkillResult"
-        android:label="SkillResult" />
     <fragment
         android:id="@+id/iniciativaResult"
         android:name="com.example.test.activity_and_fragments.fight.IniciativaResult"

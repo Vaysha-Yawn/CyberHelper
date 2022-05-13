@@ -15,15 +15,6 @@
         <action
             android:id="@+id/action_newGame_to_new_characterList"
             app:destination="@id/new_characterList" />
-        <action
-            android:id="@+id/action_newGame_to_new_choiceTemplate2"
-            app:destination="@id/new_choiceTemplate" />
-        <action
-            android:id="@+id/action_newGame_to_new_characterList2"
-            app:destination="@id/new_characterList" />
-        <action
-            android:id="@+id/action_newGame_to_new_characterList3"
-            app:destination="@id/new_characterList" />
     </fragment>
     <fragment
         android:id="@+id/new_characterList"
@@ -42,31 +33,7 @@
             android:id="@+id/action_new_characterList_to_new_delete"
             app:destination="@id/new_delete" />
         <action
-            android:id="@+id/action_new_characterList_to_new_delete2"
-            app:destination="@id/new_delete" />
-        <action
-            android:id="@+id/action_new_characterList_to_new_edit_number2"
-            app:destination="@id/new_edit_number" />
-        <action
-            android:id="@+id/action_new_characterList_to_new_edit_string2"
-            app:destination="@id/new_edit_string" />
-        <action
-            android:id="@+id/action_new_characterList_to_new_delete3"
-            app:destination="@id/new_delete" />
-        <action
             android:id="@+id/action_new_characterList_to_dropDownEdit"
-            app:destination="@id/new_dropDownEdit" />
-        <action
-            android:id="@+id/action_new_characterList_to_new_dropDownEdit"
-            app:destination="@id/new_dropDownEdit" />
-        <action
-            android:id="@+id/action_new_characterList_to_new_delete4"
-            app:destination="@id/new_delete" />
-        <action
-            android:id="@+id/action_new_characterList_self"
-            app:destination="@id/new_characterList" />
-        <action
-            android:id="@+id/action_new_characterList_to_new_dropDownEdit2"
             app:destination="@id/new_dropDownEdit" />
         <action
             android:id="@+id/action_new_characterList_to_new_addNewParamItem"
@@ -89,17 +56,8 @@
             android:id="@+id/action_new_choiceTemplate_to_new_newCharacterByTemplate"
             app:destination="@id/new_newCharacterByTemplate" />
         <action
-            android:id="@+id/action_new_choiceTemplate_to_new_newCharacter"
-            app:destination="@id/new_newCharacter" />
-        <action
             android:id="@+id/action_new_choiceTemplate_self"
             app:destination="@id/new_choiceTemplate" />
-        <action
-            android:id="@+id/action_new_choiceTemplate_to_new_newCharacter2"
-            app:destination="@id/new_newCharacter" />
-        <action
-            android:id="@+id/action_new_choiceTemplate_to_new_newCharacterByTemplate2"
-            app:destination="@id/new_newCharacterByTemplate" />
     </fragment>
     <fragment
         android:id="@+id/new_delete"
@@ -110,17 +68,6 @@
             app:destination="@id/new_characterList" />
         <action
             android:id="@+id/action_new_delete_to_newGame"
-            app:destination="@id/newGame" />
-    </fragment>
-    <fragment
-        android:id="@+id/new_newCharacter"
-        android:name="com.example.test.activity_and_fragments.new_character.NewCharacter"
-        android:label="NewCharacter" >
-        <action
-            android:id="@+id/action_new_newCharacter_to_new_choiceTemplate"
-            app:destination="@id/new_choiceTemplate" />
-        <action
-            android:id="@+id/action_new_newCharacter_to_newGame"
             app:destination="@id/newGame" />
     </fragment>
     <fragment
@@ -149,29 +96,11 @@
             android:id="@+id/action_new_itemEdit_to_new_editEffectAdd"
             app:destination="@id/new_editEffectAdd" />
         <action
-            android:id="@+id/action_new_itemEdit_to_new_editEffectWeapon2"
-            app:destination="@id/new_editEffectWeapon" />
-        <action
-            android:id="@+id/action_new_itemEdit_to_new_editEffectWeapon3"
-            app:destination="@id/new_editEffectWeapon" />
-        <action
             android:id="@+id/action_new_itemEdit_to_new_delete"
-            app:destination="@id/new_delete" />
-        <action
-            android:id="@+id/action_new_itemEdit_to_new_editEffectAdd2"
-            app:destination="@id/new_editEffectAdd" />
-        <action
-            android:id="@+id/action_new_itemEdit_to_new_editEffectAdd3"
-            app:destination="@id/new_editEffectAdd" />
-        <action
-            android:id="@+id/action_new_itemEdit_to_new_delete2"
             app:destination="@id/new_delete" />
         <action
             android:id="@+id/action_new_itemEdit_to_new_addNewParamItem"
             app:destination="@id/new_addNewParamItem" />
-        <action
-            android:id="@+id/action_new_itemEdit_to_new_delete3"
-            app:destination="@id/new_delete" />
         <action
             android:id="@+id/action_new_itemEdit_to_new_edit_number"
             app:destination="@id/new_edit_number" />

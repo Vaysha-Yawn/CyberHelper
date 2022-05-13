@@ -28,6 +28,8 @@ class CharacterList : Fragment(), HeaderView.HeaderBack {
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
 
+    // todo создать переменную, которая будет сохранять номер выбранного фрагмента
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -108,10 +110,10 @@ class CharacterList : Fragment(), HeaderView.HeaderBack {
                     view.context.getSharedPreferences("id", 0).getString("newGameId", "0")!!.toInt()
                 if (gameId == r) {
                     view.findNavController()
-                        .navigate(R.id.action_new_characterList_to_new_delete2, bundle)
+                        .navigate(R.id.action_new_characterList_to_new_delete, bundle)
                 } else {
                     view.findNavController()
-                        .navigate(R.id.action_pres_characterList_to_pres_delete, bundle)
+                        .navigate(R.id.action_characterList_to_delete, bundle)
                 }
             }
 
