@@ -44,10 +44,4 @@ class RollAdapterVP2(fragment: Fragment, private val keyAllGoals: Int,  private 
         notifyItemRemoved(position)
     }
 
-
-    /*fun getRolls():FewRolls{
-        return FewRolls(
-        )
-    }*/
-
 }

@@ -142,7 +142,7 @@
         <action
             android:id="@+id/action_home2_to_edit_string2"
             app:destination="@id/pres_edit_string" />
-    </fragment>
+     </fragment>
     <fragment
         android:id="@+id/pres_dropDownEdit"
         android:name="com.example.test.activity_and_fragments.Edit_Options"

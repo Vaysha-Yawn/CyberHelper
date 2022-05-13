@@ -25,13 +25,24 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
     private val mSkillVM: SkillTestVM by activityViewModels()
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private var keyFragment by Delegates.notNull<Int>()
-    private var keyRoll by Delegates.notNull<Int>()
     private var keyAllGoals = 0
     private var pos = 0
+    private var goal = ""
 
     private lateinit var m1D10FR: m1D10
     private lateinit var modificatorsFR: Modificators
     private lateinit var goalDD: DropDownView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        goal = arguments?.getString("goal", "")?:""
+        keyAllGoals = arguments?.getInt("keyAllGoals") ?: 0
+        pos = requireArguments().getInt("pos")
+        keyFragment = requireArguments().getInt("keyFragment")
+
+        mSkillVM.mapRoll[keyFragment]?.add(pos, OneRoll())
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,12 +50,7 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
     ): View? {
         val view = inflater.inflate(R.layout.roll, container, false)
         /////////////////////////////////
-        val goal = arguments?.getString("goal", "")
-        keyAllGoals = arguments?.getInt("keyAllGoals") ?: 0
-        pos = requireArguments().getInt("pos")
-        keyFragment = requireArguments().getInt("keyFragment")
 
-        /////////////////////////////////
         if (mSkillVM.mapGoal[keyAllGoals]?.value.isNullOrEmpty() || keyAllGoals == 0) {
             //Toast.makeText(requireContext(), "Сгенерировано заново", Toast.LENGTH_SHORT).show()
             keyAllGoals = mSkillVM.createId()
@@ -70,9 +76,6 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
             mSkillVM.mapGoal[keyAllGoals]?.value = goalsList
         }
 
-        keyRoll = mSkillVM.createId()
-        //mSkillVM.map[keyFragment]?.get(keyRoll)?.set(pos, "goal")
-
         /////////////////////////////////
         fun loadFragmentLight(fragment: Fragment, id: Int) {
             childFragmentManager.commit {
@@ -80,6 +83,7 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
                 addToBackStack(null)
             }
         }
+
         /////////////////////////////////
         val key1d10 = mSkillVM.createId()
         mSkillVM.mapInt[key1d10] = MutableLiveData<Int>()
@@ -91,7 +95,7 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
 
         val fragment = m1D10()
         val bundle = Bundle()
-        bundle.putInt("keyRoll", keyRoll)
+        bundle.putInt("keyRoll", pos)
         bundle.putInt("keyFragment", keyFragment)
         bundle.putInt("key1d10", key1d10)
         bundle.putInt("keyCrit", keyCrit)
@@ -104,7 +108,7 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
         val keyListMod = mSkillVM.createId()
         val fragmentM = Modificators()
         val bundleM = Bundle()
-        bundleM.putInt("keyRoll", keyRoll)
+        bundleM.putInt("keyRoll", pos)
         bundleM.putInt("keyFragment", keyFragment)
         bundleM.putInt("keyListMod", keyListMod)
         fragmentM.arguments = bundleM
@@ -114,7 +118,7 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
 
         /////////////////////////////////
         goalDD = view.findViewById(R.id.goalDD)
-        if (goal == null || goal == "") {
+        if ( goal == "") {
             goalDD.visibility = View.GONE
         } else {
             val list = mutableListOf<String>()
@@ -134,20 +138,7 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
     override fun whenValueTo(position: Int) {
         val chosenGoal = mSkillVM.mapGoal[keyAllGoals]?.value?.get(position)!!
         mSkillVM.mapGoalMap[keyFragment]?.value?.set(pos, chosenGoal)
-    }
-
-
-    fun getRoll(): OneRoll {
-        val g1d10 = m1D10FR.get1d10()
-        val critical = m1D10FR.getCritical()
-        val mods = modificatorsFR.getListMods()
-        val goal = mSkillVM.mapGoal[keyAllGoals]?.value?.get(pos)!!
-        return OneRoll(
-            goal,
-            mods,
-            g1d10,
-            critical
-        )
+        mSkillVM.mapRoll[keyFragment]?.get(pos)?.goal = chosenGoal
     }
 
     override fun checkChoose(position: Int): Boolean {
@@ -187,6 +178,11 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
 
     override fun onCheckedFalse() {
         //
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mSkillVM.mapRoll[keyFragment]?.removeAt(pos)
     }
 
 }

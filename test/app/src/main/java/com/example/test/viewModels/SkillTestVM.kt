@@ -7,14 +7,14 @@ import io.realm.RealmList
 
 // для разных роллов разные классы, кроме произвольного число
 data class OneRoll(
-    var goal: Goal,
-    var mods: MutableList<Mod>?,
-    var m1d10: Int,
-    var crit: Int?,
+    var goal: Goal = Goal(),
+    var mods: MutableList<Mod>? = null,
+    var m1d10: Int = 0,
+    var crit: Int? = null,
 )
 
 data class FewRolls(
-    var rolls: MutableList<OneRoll>
+    var rolls: MutableList<OneRoll> = mutableListOf()
 )
 
 class SkillTestVM : ViewModel() {
@@ -29,10 +29,7 @@ class SkillTestVM : ViewModel() {
     val mapGoal = mutableMapOf<Int, MutableLiveData<MutableList<Goal>>>()
     val mapGoalMap = mutableMapOf<Int, MutableLiveData<MutableMap<Int, Goal>>>()
     val mapMod = mutableMapOf<Int, MutableLiveData<MutableList<Mod>>>()
-
-    lateinit var difficult: Pair<Int, String>
-    lateinit var roll: Pair<Int, String>// идентификатор, указание, где искать
-
+    val mapRoll = mutableMapOf<Int, MutableList<OneRoll>>()
 
     val map =
         mutableMapOf<Int, MutableMap<Int, String>>()// где первое число - ключ фрагмента  2 - ключ виджет, строка - указание - в каком мапе искать
@@ -45,13 +42,6 @@ class SkillTestVM : ViewModel() {
     }
 
     /////////////////////////////////////////////
-    var luckyOrErudition: Boolean = true
-    var usingLuckyPoint: Int? = null
-    var skill: String = ""
-    var erudit: Int? = null
-
-    var attack: EffectWeapon? = null
-
 
     fun clearVM() {
         onCleared()
@@ -81,7 +71,8 @@ class SkillTestVM : ViewModel() {
     fun calculateOneRoll(
         nameRoll: String, roll: OneRoll, parameters: Map<String, String>,
         listCharacter: RealmList<Character>
-    ): Int {
+    ): Pair<Int, MutableList<String>> {
+        val listMore = mutableListOf<String>()
         var form = "Для персонажа ${roll.goal.name} формула для подсчета суммы $nameRoll:"
         var result = 0
         val characterGP = listCharacter.singleOrNull { character ->
@@ -118,7 +109,7 @@ class SkillTestVM : ViewModel() {
             form += " + критический бросок кубика"
         }
         listMore.add(form)
-        return result
+        return Pair(result, listMore)
     }
 
 

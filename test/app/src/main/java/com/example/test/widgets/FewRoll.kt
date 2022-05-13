@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.test.R
 import com.example.test.data_base.Goal
@@ -17,7 +18,9 @@ import com.example.test.databinding.FewRollBinding
 import com.example.test.adapters.RollAdapterVP2
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.FewRollVM
+import com.example.test.viewModels.FewRolls
 import com.example.test.viewModels.SkillTestVM
+import kotlin.properties.Delegates
 
 
 class FewRoll : Fragment() {
@@ -25,6 +28,9 @@ class FewRoll : Fragment() {
     private val mSkillVM: SkillTestVM by activityViewModels()
     private val mCharacterVM: CharacterDAO by activityViewModels()
 
+    private lateinit var ViewPager2:ViewPager2
+
+    private var keyFragment by Delegates.notNull<Int>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +38,7 @@ class FewRoll : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.few_roll, container, false)
 
-        val keyFragment = requireArguments().getInt("keyFragment")
+        keyFragment = requireArguments().getInt("keyFragment")
 
         val binding = FewRollBinding.bind(view)
 
@@ -40,6 +46,7 @@ class FewRoll : Fragment() {
         val keyAllGoals = mSkillVM.createId()
 
         mSkillVM.mapGoal[keyAllGoals] = MutableLiveData()
+        mSkillVM.mapRoll[keyFragment] = mutableListOf()
 
         // заполняем лист
         val goalsList = mutableListOf<Goal>()
@@ -64,9 +71,10 @@ class FewRoll : Fragment() {
         val adapter = RollAdapterVP2(this@FewRoll, keyAllGoals, keyFragment)
 
         fun bind() = with(binding) {
+
+            ViewPager2 = VP2
             VP2.adapter = adapter
             VM.add(R.id.radioButton)
-
             delete.setOnClickListener {
                 if (radioGroup.childCount >= 2) {
                     val id = radioGroup.checkedRadioButtonId
@@ -81,6 +89,7 @@ class FewRoll : Fragment() {
                     VM.delete(id)
                 }
             }
+
             add.setOnClickListener {
                 if (radioGroup.childCount <= 6 && mSkillVM.mapGoal[keyAllGoals]?.value?.size!! > adapter.itemCount) {
                     val id = View.generateViewId()
@@ -122,4 +131,20 @@ class FewRoll : Fragment() {
         return view
     }
 
+    fun getFewRollBundle(goal:Boolean, keyFragment:Int):Bundle{
+        val bundle = Bundle()
+        if (goal){
+            bundle.putString("goal", "goal")
+        }else{
+            bundle.putString("goal", "")
+        }
+        bundle.putInt("keyFragment", keyFragment)
+        return bundle
+    }
+
+    fun getFewRoll():FewRolls{
+        return  FewRolls(
+            mSkillVM.mapRoll[keyFragment]!!
+        )
+    }
 }

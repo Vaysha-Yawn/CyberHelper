@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fight_nav"
-    app:startDestination="@id/iniciativa">
+    app:startDestination="@id/Initiative">
 
     <fragment
-        android:id="@+id/iniciativa"
-        android:name="com.example.test.activity_and_fragments.fight.Iniciativa"
-        android:label="Iniciativa" >
+        android:id="@+id/Initiative"
+        android:name="com.example.test.activity_and_fragments.fight.Initiative"
+        android:label="Initiative">
         <action
-            android:id="@+id/action_iniciativa_to_iniciativaResult"
-            app:destination="@id/iniciativaResult" />
+            android:id="@+id/action_Initiative_to_InitiativeResult"
+            app:destination="@id/InitiativeResult" />
     </fragment>
     <fragment
-        android:id="@+id/iniciativaResult"
-        android:name="com.example.test.activity_and_fragments.fight.IniciativaResult"
-        android:label="IniciativaResult" />
+        android:id="@+id/InitiativeResult"
+        android:name="com.example.test.activity_and_fragments.fight.InitiativeResult"
+        android:label="InitiativeResult" />
 </navigation>

@@ -168,10 +168,10 @@ class EditItem : Fragment() {
             bundle.putInt("indexEff", -1)
             if (newOrPres) {
                 view.findNavController()
-                    .navigate(R.id.action_new_itemEdit_to_new_editEffectAdd2, bundle)
+                    .navigate(R.id.action_new_itemEdit_to_new_editEffectAdd, bundle)
             } else {
                 view.findNavController()
-                    .navigate(R.id.action_pres_itemEdit_to_pres_editEffectAdd3, bundle)
+                    .navigate(R.id.action_pres_itemEdit_to_pres_editEffectAdd, bundle)
             }
         }
         view.findViewById<Button>(R.id.add_effect_weapon).setOnClickListener {
@@ -181,10 +181,10 @@ class EditItem : Fragment() {
             bundle.putInt("indexEff", -1)
             if (newOrPres) {
                 view.findNavController()
-                    .navigate(R.id.action_new_itemEdit_to_new_editEffectWeapon2, bundle)
+                    .navigate(R.id.action_new_itemEdit_to_new_editEffectWeapon, bundle)
             } else {
                 view.findNavController()
-                    .navigate(R.id.action_pres_itemEdit_to_pres_editEffectWeapon2, bundle)
+                    .navigate(R.id.action_pres_itemEdit_to_pres_editEffectWeapon, bundle)
             }
         }
 

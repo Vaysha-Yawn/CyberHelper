@@ -54,7 +54,7 @@ open class CharacterDAO : ViewModel() {
     ) {
 
         val character = Character(
-            getNewCharacterId(), gameId, attributes
+            getNewCharacterId(), gameId, attributes = attributes
         )
         realm.executeTransaction { transactionRealm ->
             transactionRealm.insert(character)
@@ -152,6 +152,8 @@ open class CharacterDAO : ViewModel() {
             item.value!!.description = description
         }
     }
+
+
     //
 
     fun updateCharacterParamStr(

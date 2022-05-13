@@ -24,6 +24,8 @@ class Modificators : Fragment(), ModTemplateHolder.DeleteMod,
     private val mSkillVM: SkillTestVM by activityViewModels()
     private val adapter = ModAdapterRV(this,this)
     private var keyListMod by Delegates.notNull<Int>()
+    private var keyRoll :Int? = null
+    private var keyFragment :Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +33,8 @@ class Modificators : Fragment(), ModTemplateHolder.DeleteMod,
     ): View? {
         val view = inflater.inflate(R.layout.modificators, container, false)
         keyListMod = arguments?.getInt("keyListMod") ?: mSkillVM.createId()
+        keyRoll = arguments?.getInt("keyRoll")
+        keyFragment = arguments?.getInt("keyFragment")
 
         mSkillVM.mapMod[keyListMod] = MutableLiveData<MutableList<Mod>>()
         mSkillVM.mapMod[keyListMod]?.value = mutableListOf<Mod>()
@@ -79,6 +83,11 @@ class Modificators : Fragment(), ModTemplateHolder.DeleteMod,
 
     override fun putModValue(position: Int, value: Int) {
         mSkillVM.mapMod[keyListMod]?.value?.get(position)?.value = value
+
+        if (keyFragment!=null && keyRoll!=null){
+            mSkillVM.mapRoll[keyFragment]?.get(keyRoll!!)?.mods?.set(position, Mod(true, value))
+        }
+
     }
 
 

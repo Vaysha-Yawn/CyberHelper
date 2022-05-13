@@ -21,6 +21,11 @@ class Home : Fragment(), HeaderView.HeaderBack {
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM:GameDAO by activityViewModels()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

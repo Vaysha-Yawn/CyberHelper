@@ -56,7 +56,7 @@ class TemplateCharacter() {
     val mapCharacter = mapOf<String, Character>(
         "Гриз" to Character(
             0, 0,
-            initGroupsParam(
+            attributes = initGroupsParam(
                 mapOf(
                     "Базовые параметры" to mapOf(//название группы
                         "listParamStr" to mapOf(//тип листа

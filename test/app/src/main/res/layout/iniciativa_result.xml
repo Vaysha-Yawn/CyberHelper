@@ -6,61 +6,70 @@
     android:layout_height="match_parent"
     android:background="@color/dark">
 
-    <FrameLayout
-        android:id="@+id/frameLayout8"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#050414"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/CyberHelper"
-            style="@style/Text.H2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Cyber Helper" />
-    </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout5"
+    <com.example.test.views.HeaderView
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="100dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/title"
-            style="@style/Text.H2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Проверка инициативы" />
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/title"
+        style="@style/Text.H2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Проверка инициативы"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/result" />
-    </LinearLayout>
+    <ImageView
+        android:layout_marginTop="40dp"
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/resultRv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/more"
+        style="@style/Text.H2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/apply"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
-        app:layout_constraintVertical_bias="0.0"
-        android:layout_marginHorizontal="40dp"/>
+        android:drawablePadding="10dp"
+        android:gravity="start"
+        android:text="Подробнее"
+        app:drawableStartCompat="@drawable/ic_next"
+        app:drawableTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultRv" />
+
+    <ListView
+        android:id="@+id/moreRV"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_marginHorizontal="20dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/more" />
+
 
     <Button
         android:id="@+id/apply"

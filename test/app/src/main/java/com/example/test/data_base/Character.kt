@@ -1,10 +1,8 @@
 package com.example.test.data_base
 
 import io.realm.RealmList
-import io.realm.RealmMap
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
-import java.util.jar.Attributes
 
 open class Character(
     @PrimaryKey
