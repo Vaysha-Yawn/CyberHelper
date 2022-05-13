@@ -1,7 +1,9 @@
 package com.example.test.viewModels
 
+import com.example.test.data_base.Character
 import com.example.test.data_base.InitiativeFight
 import io.realm.Realm
+import io.realm.RealmList
 
 class InitiativeFightDAO {
 
@@ -18,15 +20,33 @@ class InitiativeFightDAO {
     }
 
     fun addInitiativeFight(
+        gameId:Int,
         nameFight: String,
         listIdCharacter: List<Int>
     ): InitiativeFight {
         val initiativeFight = InitiativeFight(
-            getNewId(), nameFight, listIdCharacter
+            getNewId(), gameId, nameFight = nameFight, listIdCharacter = listIdCharacter
         )
         realm.executeTransaction { transactionRealm ->
             transactionRealm.insert(initiativeFight)
         }
         return initiativeFight
     }
+
+    fun loadByGameId(gameId: Int): RealmList<InitiativeFight> {
+        val list = RealmList<InitiativeFight>()
+        val res = realm.where(InitiativeFight::class.java).equalTo("gameId", gameId).findAll()
+        res.forEach {
+            list.add(it)
+        }
+        return list
+    }
+
+    fun deleteInitiativeFight(id: Int) {
+        realm.executeTransaction {
+            val initiativeFightRealm = realm.where(InitiativeFight::class.java).equalTo("id", id).findFirst()
+            initiativeFightRealm?.deleteFromRealm()
+        }
+    }
+
 }

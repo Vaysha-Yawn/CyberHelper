@@ -5,22 +5,35 @@ import androidx.lifecycle.ViewModel
 import com.example.test.data_base.InitiativeFight
 import io.realm.RealmList
 
-class initiativeFightVM : ViewModel() {
+class InitiativeFightVM() : ViewModel() {
 
     private val DAO = InitiativeFightDAO()
 
     val fightList = MutableLiveData<RealmList<InitiativeFight>>(RealmList<InitiativeFight>())
 
+    fun loadList(gameId: Int){
+        fightList.value = DAO.loadByGameId(gameId)
+    }
+
     fun addInitiativeFight(
-        id: Int,
+        gameId:Int,
         nameFight: String,
         listIdCharacter: List<Int>
     ) {
         val initiativeFight = DAO.addInitiativeFight(
-            id,
+            gameId,
             nameFight,
             listIdCharacter
         )
         fightList.value!!.add(initiativeFight)
     }
+
+    fun deleteInitiativeFight(id: Int){
+        val initiativeFight = fightList.value!!.singleOrNull {
+            it.id == id
+        }
+        fightList.value!!.remove(initiativeFight)
+        DAO.deleteInitiativeFight(id)
+    }
+
 }

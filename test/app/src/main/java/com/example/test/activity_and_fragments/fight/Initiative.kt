@@ -50,7 +50,7 @@ class Initiative : Fragment(),
             btnNext.setOnClickListener {
                 if (edit.text.toString() != "") {
                     val fewRolls = fr.getFragment<FewRoll>().getFewRoll()
-                    val bundle = calculateFewRollToBundle(fewRolls)
+                    val bundle = calculateFewRollToBundle(fewRolls, edit.text.toString())
                     view.findNavController()
                         .navigate(R.id.action_Initiative_to_InitiativeResult, bundle)
                 } else {
@@ -72,7 +72,7 @@ class Initiative : Fragment(),
         (activity as FightHost).backToHome()
     }
 
-    private fun calculateFewRollToBundle(fewRolls: FewRolls): Bundle {
+    private fun calculateFewRollToBundle(fewRolls: FewRolls, nameFight:String): Bundle {
         val list = mutableListOf<Goal>()
         val mapIDtoRes = mutableMapOf<Goal, Int>()
         val listMore = mutableListOf<String>()
@@ -94,7 +94,7 @@ class Initiative : Fragment(),
             list.add(i)
             mapIDtoRes.remove(i)
         }
-        return bundleOf(Pair("listGoal", list), Pair("listMore", listMore))
+        return bundleOf(Pair("listGoal", list), Pair("listMore", listMore), Pair("nameFight", nameFight))
     }
 
 }

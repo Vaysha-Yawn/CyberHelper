@@ -8,18 +8,16 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.activity_and_fragments.about.About
 import com.example.test.activity_and_fragments.hosts.FightHost
 import com.example.test.data_base.Goal
-import com.example.test.databinding.CardDeleteBinding
 import com.example.test.databinding.CardIniciativaBinding
 import com.example.test.databinding.IniciativaResultBinding
 import com.example.test.viewModels.CharacterDAO
+import com.example.test.viewModels.InitiativeFightVM
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.views.HeaderView
 
@@ -30,15 +28,20 @@ class InitiativeResult : Fragment(), HeaderView.HeaderBack {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
+    private lateinit var mInitiativeFightVM: InitiativeFightVM
 
-    private lateinit var listGoal :MutableList<Goal>
+    private lateinit var listGoal: MutableList<Goal>
     private var listMore = mutableListOf<String>()
+    private lateinit var nameFight: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        mInitiativeFightVM = ViewModelProvider(this)[InitiativeFightVM::class.java]
+        nameFight = requireArguments().get("nameFight") as String
         list = mutableListOf<String>()
         listGoal = requireArguments().get("listGoal") as MutableList<Goal>
-        for (i in listGoal){
+        for (i in listGoal) {
             list.add(i.name)
         }
         listMore = requireArguments().get("listMore") as MutableList<String>
@@ -53,7 +56,8 @@ class InitiativeResult : Fragment(), HeaderView.HeaderBack {
         val binding = IniciativaResultBinding.bind(view)
         fun bind() = with(binding) {
             header.setBack(true, this@InitiativeResult, requireActivity(), viewLifecycleOwner)
-            resultRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            resultRv.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             val adapter = AdapterInitiative()
             resultRv.adapter = adapter
             adapter.setData(list)
@@ -62,15 +66,19 @@ class InitiativeResult : Fragment(), HeaderView.HeaderBack {
             moreRV.adapter = adapterList
 
             more.setOnClickListener {
-                if (moreRV.visibility == View.VISIBLE){
+                if (moreRV.visibility == View.VISIBLE) {
                     moreRV.visibility = View.GONE
-                }else{
+                } else {
                     moreRV.visibility = View.VISIBLE
                 }
             }
 
             apply.setOnClickListener {
-                //
+                val listId = mutableListOf<Int>()
+                for (i in listGoal){
+                    listId.add(i.characterId)
+                }
+                mInitiativeFightVM.addInitiativeFight(mCharacterVM.gameId, nameFight, listId)
                 (activity as FightHost).backToHome()
             }
         }
@@ -118,9 +126,10 @@ class InitiativeResult : Fragment(), HeaderView.HeaderBack {
         view: View,
     ) : RecyclerView.ViewHolder(view) {
         private val binding = CardIniciativaBinding.bind(view)
+
         @SuppressLint("SetTextI18n")
         fun bind(position: Int) = with(binding) {
-            num.text = (position+1).toString()
+            num.text = (position + 1).toString()
             name.text = list[position]
         }
     }

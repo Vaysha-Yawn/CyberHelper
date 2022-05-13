@@ -13,6 +13,7 @@ import com.example.test.activity_and_fragments.hosts.PresentHost
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.adapters.CharacterAdapter
 import com.example.test.viewModels.GameDAO
+import com.example.test.viewModels.InitiativeFightVM
 import com.example.test.views.HeaderView
 import java.lang.Exception
 
@@ -20,6 +21,7 @@ class Home : Fragment(), HeaderView.HeaderBack {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM:GameDAO by activityViewModels()
+    private val mInitiativeFightVM: InitiativeFightVM by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,8 @@ class Home : Fragment(), HeaderView.HeaderBack {
         val view = inflater.inflate(R.layout.home, container, false)
         try{
             val gameId = mCharacterVM.gameId
+
+            mInitiativeFightVM.loadList(gameId)
 
             val nameGame: TextView = view.findViewById(R.id.Home_NameGame)
             mGameVM.initGameName(gameId)
