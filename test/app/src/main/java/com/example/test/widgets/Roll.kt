@@ -1,7 +1,6 @@
 package com.example.test.widgets
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +19,8 @@ import com.example.test.viewModels.SkillTestVM
 import com.example.test.views.DropDownView
 import kotlin.properties.Delegates
 
+private var pos = R.id.radioButton
+
 class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
     DropDownAdapterRV.TemplateHolder.CheckChoose {
 
@@ -27,7 +28,7 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private var keyFragment by Delegates.notNull<Int>()
     private var keyAllGoals = 0
-    private var pos = 0
+
     private var goal = ""
 
     private lateinit var m1D10FR: m1D10
@@ -36,7 +37,7 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        goal = arguments?.getString("goal", "")?:""
+        goal = arguments?.getString("goal", "") ?: ""
         keyAllGoals = arguments?.getInt("keyAllGoals") ?: 0
         pos = requireArguments().getInt("pos")
         keyFragment = requireArguments().getInt("keyFragment")
@@ -53,7 +54,6 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
         /////////////////////////////////
 
         if (mSkillVM.mapGoal[keyAllGoals]?.value.isNullOrEmpty() || keyAllGoals == 0) {
-            //Toast.makeText(requireContext(), "Сгенерировано заново", Toast.LENGTH_SHORT).show()
             keyAllGoals = mSkillVM.createId()
 
             mSkillVM.mapGoal[keyAllGoals] = MutableLiveData()
@@ -119,7 +119,7 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
 
         /////////////////////////////////
         goalDD = view.findViewById(R.id.goalDD)
-        if ( goal == "") {
+        if (goal == "") {
             goalDD.visibility = View.GONE
         } else {
             val list = mutableListOf<String>()
@@ -139,9 +139,6 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
     override fun whenValueTo(position: Int) {
         val chosenGoal = mSkillVM.mapGoal[keyAllGoals]?.value?.get(position)!!
         mSkillVM.mapGoalMap[keyFragment]?.value?.set(pos, chosenGoal)
-
-        Log.d("DD", mSkillVM.mapGoalMap[keyFragment]?.value?.values.toString())
-
         mSkillVM.mapRoll[keyFragment]?.get(pos)?.goal = chosenGoal
     }
 
@@ -185,8 +182,26 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
         //
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    fun getRollBundle(goal: Boolean, keyAllGoals: Int, keyFragment: Int, id: Int): Bundle {
+        val bundle = Bundle()
+        if (goal) {
+            bundle.putString("goal", "goal")
+        } else {
+            bundle.putString("goal", "")
+        }
+        bundle.putInt("keyAllGoals", keyAllGoals)
+        bundle.putInt("keyFragment", keyFragment)
+        bundle.putInt("pos", id)
+        return bundle
+    }
+
+    fun getRoll(): OneRoll {
+        return OneRoll(
+            mSkillVM.mapGoalMap[keyFragment]?.value?.get(pos)!!,
+            modificatorsFR.getListMods(),
+            m1D10FR.get1d10(),
+            m1D10FR.getCritical(),
+        )
     }
 
 }

@@ -9,41 +9,42 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.test.R
+import com.example.test.adapters.RollAdapterVP2
 import com.example.test.data_base.Goal
 import com.example.test.databinding.FewRollBinding
-import com.example.test.adapters.RollAdapterVP2
-import com.example.test.viewModels.CharacterDAO
-import com.example.test.viewModels.FewRollVM
-import com.example.test.viewModels.FewRolls
-import com.example.test.viewModels.SkillTestVM
+import com.example.test.viewModels.*
 import kotlin.properties.Delegates
 
-
+// todo не переживает поворот экрана
 class FewRoll : Fragment() {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
     private val mCharacterVM: CharacterDAO by activityViewModels()
 
-    private lateinit var ViewPager2:ViewPager2
+    private lateinit var ViewPager2: ViewPager2
 
     private var keyFragment by Delegates.notNull<Int>()
+
+    private val VM: FewRollVM by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.few_roll, container, false)
-
+        //VM = ViewModelProvider(this)[FewRollVM::class.java]
         keyFragment = requireArguments().getInt("keyFragment")
 
         val binding = FewRollBinding.bind(view)
 
-        val VM = ViewModelProvider(this)[FewRollVM::class.java]
         val keyAllGoals = mSkillVM.createId()
+
+        VM.add(R.id.radioButton, Roll().apply {
+            arguments = Roll().getRollBundle(true, keyAllGoals, keyFragment, R.id.radioButton)
+        })
 
         mSkillVM.mapGoal[keyAllGoals] = MutableLiveData()
         mSkillVM.mapRoll[keyFragment] = mutableMapOf()
@@ -68,15 +69,21 @@ class FewRoll : Fragment() {
 
         mSkillVM.mapGoal[keyAllGoals]?.value = goalsList
 
-        val adapter = RollAdapterVP2(this@FewRoll, keyAllGoals, keyFragment)
+        val adapter = RollAdapterVP2(
+            childFragmentManager,
+            lifecycle
+        )
 
         fun bind() = with(binding) {
 
             ViewPager2 = VP2
             VP2.adapter = adapter
-            VM.add(R.id.radioButton)
+
+            VM.fragments.observe(viewLifecycleOwner) {
+                adapter.setData(it)
+            }
+
             delete.setOnClickListener {
-                // todo:он удаляет следующий фрагмент, а не нужный
                 if (radioGroup.childCount >= 2) {
                     val id = radioGroup.checkedRadioButtonId
                     val position = VM.getIndex(id)
@@ -86,8 +93,9 @@ class FewRoll : Fragment() {
                         radioGroup.check(VM.getElement(1))
                     }
                     radioGroup.removeView(view.findViewById(id))
-                    adapter.blablaRemove(VM.getIndex(id))
-                    VM.delete(id)
+                    mSkillVM.deleteRollInFewRoll(keyFragment, id)
+                    VM.delete(id, position)
+                    adapter.remove()
                 }
             }
 
@@ -99,10 +107,12 @@ class FewRoll : Fragment() {
                     radio.text = ""
                     radio.id = id
                     radioGroup.addView(radio)
-                    VM.add(id)
-                    adapter.blablaAdd(VM.list.value?.size ?: 1 - 1)
+                    VM.add(id, Roll().apply {
+                        arguments = Roll().getRollBundle(true, keyAllGoals, keyFragment, id)
+                    })
+                    adapter.add()
                     radioGroup.check(id)
-                }else{
+                } else {
                     Toast.makeText(
                         requireContext(),
                         "Выбран максимум целей",
@@ -125,27 +135,26 @@ class FewRoll : Fragment() {
         }
         bind()
 
-        VM.list.observe(viewLifecycleOwner) {
-            adapter.setData(it)
-        }
-
         return view
     }
 
-    fun getFewRollBundle(goal:Boolean, keyFragment:Int):Bundle{
+    fun getFewRollBundle(goal: Boolean, keyFragment: Int): Bundle {
         val bundle = Bundle()
-        if (goal){
+        if (goal) {
             bundle.putString("goal", "goal")
-        }else{
+        } else {
             bundle.putString("goal", "")
         }
         bundle.putInt("keyFragment", keyFragment)
         return bundle
     }
 
-    fun getFewRoll():FewRolls{
-        return  FewRolls(
-            mSkillVM.mapRoll[keyFragment]!!.values.toMutableList()
-        )
+    fun getFewRoll(): FewRolls {
+        val list = mutableListOf<OneRoll>()
+        for (fragmentRoll in VM.fragments.value!!) {
+            list.add(fragmentRoll.getRoll())
+        }
+        return FewRolls(list)
     }
+
 }

@@ -1,47 +1,39 @@
 package com.example.test.adapters
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.test.viewModels.FewRolls
 import com.example.test.widgets.Roll
 
-class RollAdapterVP2(fragment: Fragment, private val keyAllGoals: Int,  private val keyFragment: Int) :
-    FragmentStateAdapter(fragment) {
-    var list = listOf<Int>()
-    var lastIndex = 0
+class RollAdapterVP2(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
+    FragmentStateAdapter(fragmentManager, lifecycle) {
 
-    fun newIndex():Int{
-        lastIndex+=0
-        return lastIndex
-    }
+    var fragments = mutableListOf<Roll>()
 
     override fun getItemCount(): Int {
-        return list.size
+        return fragments.size
     }
 
     override fun createFragment(position: Int): Fragment {
-        val fragment = Roll()
-        val bundle = Bundle()
-        bundle.putString("goal", "goal")
-        bundle.putInt("keyAllGoals", keyAllGoals )
-        bundle.putInt("keyFragment", keyFragment )
-        bundle.putInt("pos",  newIndex())
-        fragment.arguments = bundle
-        return fragment
+        return fragments[position]
     }
 
-    fun setData(list: List<Int>) {
-        this.list = list
+    override fun getItemId(position: Int): Long {
+        return fragments[position].hashCode().toLong()
+    }
+
+    fun add() {
         notifyDataSetChanged()
     }
 
-    fun blablaAdd(position: Int) {
-        notifyItemInserted(position)
+    fun remove() {
+        notifyDataSetChanged()
     }
 
-    fun blablaRemove(position: Int) {
-        notifyItemRemoved(position)
+    fun setData(fragments: MutableList<Roll>) {
+        this.fragments = fragments
+        notifyDataSetChanged()
     }
 
 }
