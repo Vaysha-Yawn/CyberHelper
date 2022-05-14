@@ -1,6 +1,7 @@
 package com.example.test.widgets
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,13 +45,6 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
 
         mSkillVM.mapRoll[keyFragment]?.set(pos, OneRoll())
 
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.roll, container, false)
         /////////////////////////////////
 
         if (mSkillVM.mapGoal[keyAllGoals]?.value.isNullOrEmpty() || keyAllGoals == 0) {
@@ -78,6 +72,16 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
         }
 
         /////////////////////////////////
+
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.roll, container, false)
+        /////////////////////////////////
+
         fun loadFragmentLight(fragment: Fragment, id: Int) {
             childFragmentManager.commit {
                 replace(id, fragment)
@@ -140,6 +144,9 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
         val chosenGoal = mSkillVM.mapGoal[keyAllGoals]?.value?.get(position)!!
         mSkillVM.mapGoalMap[keyFragment]?.value?.set(pos, chosenGoal)
         mSkillVM.mapRoll[keyFragment]?.get(pos)?.goal = chosenGoal
+        Log.d("aaa", pos.toString())
+        Log.d("aaa", mSkillVM.mapGoalMap[keyFragment]?.value?.keys.toString())
+        Log.d("aaa", mSkillVM.mapGoalMap[keyFragment]?.value?.values.toString())
     }
 
     override fun checkChoose(position: Int): Boolean {
