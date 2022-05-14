@@ -12,7 +12,7 @@ class RollAdapterVP2(fragment: Fragment, private val keyAllGoals: Int,  private 
     var lastIndex = 0
 
     fun newIndex():Int{
-        lastIndex+=1
+        lastIndex+=0
         return lastIndex
     }
 
@@ -26,7 +26,7 @@ class RollAdapterVP2(fragment: Fragment, private val keyAllGoals: Int,  private 
         bundle.putString("goal", "goal")
         bundle.putInt("keyAllGoals", keyAllGoals )
         bundle.putInt("keyFragment", keyFragment )
-        bundle.putInt("position",  newIndex())
+        bundle.putInt("pos",  newIndex())
         fragment.arguments = bundle
         return fragment
     }

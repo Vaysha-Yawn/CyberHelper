@@ -29,7 +29,7 @@ class SkillTestVM : ViewModel() {
     val mapGoal = mutableMapOf<Int, MutableLiveData<MutableList<Goal>>>()
     val mapGoalMap = mutableMapOf<Int, MutableLiveData<MutableMap<Int, Goal>>>()
     val mapMod = mutableMapOf<Int, MutableLiveData<MutableList<Mod>>>()
-    val mapRoll = mutableMapOf<Int, MutableList<OneRoll>>()
+    val mapRoll = mutableMapOf<Int, MutableMap<Int, OneRoll>>()
 
     val map =
         mutableMapOf<Int, MutableMap<Int, String>>()// где первое число - ключ фрагмента  2 - ключ виджет, строка - указание - в каком мапе искать
@@ -43,6 +43,12 @@ class SkillTestVM : ViewModel() {
 
     /////////////////////////////////////////////
 
+    fun deleteRollInFewRoll(keyFragment:Int, pos:Int){
+        mapRoll[keyFragment]?.remove(pos)
+        mapGoalMap[keyFragment]?.value?.remove(pos)
+    }
+
+    /////////////////////////////////////////////
     fun clearVM() {
         onCleared()
     }

@@ -44,6 +44,7 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <LinearLayout
+        android:id="@+id/linLay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bcg_blue_line_dark"

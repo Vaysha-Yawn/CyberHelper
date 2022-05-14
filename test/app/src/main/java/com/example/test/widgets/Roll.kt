@@ -1,6 +1,7 @@
 package com.example.test.widgets
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,7 +41,7 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
         pos = requireArguments().getInt("pos")
         keyFragment = requireArguments().getInt("keyFragment")
 
-        mSkillVM.mapRoll[keyFragment]?.add(pos, OneRoll())
+        mSkillVM.mapRoll[keyFragment]?.set(pos, OneRoll())
 
     }
 
@@ -138,14 +139,17 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
     override fun whenValueTo(position: Int) {
         val chosenGoal = mSkillVM.mapGoal[keyAllGoals]?.value?.get(position)!!
         mSkillVM.mapGoalMap[keyFragment]?.value?.set(pos, chosenGoal)
+
+        Log.d("DD", mSkillVM.mapGoalMap[keyFragment]?.value?.values.toString())
+
         mSkillVM.mapRoll[keyFragment]?.get(pos)?.goal = chosenGoal
     }
 
     override fun checkChoose(position: Int): Boolean {
         var r = true
         val chosenGoal = mSkillVM.mapGoal[keyAllGoals]?.value?.get(position)
+        val map = mSkillVM.mapGoalMap[keyFragment]?.value
         if (chosenGoal != null) {
-            val map = mSkillVM.mapGoalMap[keyFragment]?.value
             if (map != null) {
                 for ((key, value) in map) {
                     if (value == chosenGoal) {
@@ -173,6 +177,7 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
             ).show()
             r = false
         }
+
         return r
     }
 
@@ -182,7 +187,6 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
 
     override fun onDestroy() {
         super.onDestroy()
-        mSkillVM.mapRoll[keyFragment]?.removeAt(pos)
     }
 
 }

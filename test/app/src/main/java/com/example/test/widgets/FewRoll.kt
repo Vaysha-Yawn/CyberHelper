@@ -46,7 +46,7 @@ class FewRoll : Fragment() {
         val keyAllGoals = mSkillVM.createId()
 
         mSkillVM.mapGoal[keyAllGoals] = MutableLiveData()
-        mSkillVM.mapRoll[keyFragment] = mutableListOf()
+        mSkillVM.mapRoll[keyFragment] = mutableMapOf()
 
         // заполняем лист
         val goalsList = mutableListOf<Goal>()
@@ -76,6 +76,7 @@ class FewRoll : Fragment() {
             VP2.adapter = adapter
             VM.add(R.id.radioButton)
             delete.setOnClickListener {
+                // todo:он удаляет следующий фрагмент, а не нужный
                 if (radioGroup.childCount >= 2) {
                     val id = radioGroup.checkedRadioButtonId
                     val position = VM.getIndex(id)
@@ -144,7 +145,7 @@ class FewRoll : Fragment() {
 
     fun getFewRoll():FewRolls{
         return  FewRolls(
-            mSkillVM.mapRoll[keyFragment]!!
+            mSkillVM.mapRoll[keyFragment]!!.values.toMutableList()
         )
     }
 }

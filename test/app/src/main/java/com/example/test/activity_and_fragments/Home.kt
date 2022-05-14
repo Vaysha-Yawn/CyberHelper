@@ -138,12 +138,12 @@ class Home : Fragment(), HeaderView.HeaderBack {
         private val binding = CardInitiativeFightBinding.bind(view)
         fun bind(mapPair: Pair<String, MutableList<Character>>) = with(binding) {
             more.setOnClickListener {
-                if (gridCharacter.visibility == View.VISIBLE) {
-                    gridCharacter.visibility = View.GONE
+                if (linLay.visibility == View.VISIBLE) {
+                    linLay.visibility = View.GONE
                     val draw = it.context.resources.getDrawable(R.drawable.more)
                     more.background = draw
                 } else {
-                    gridCharacter.visibility = View.VISIBLE
+                    linLay.visibility = View.VISIBLE
                     more.background = it.context.resources.getDrawable(R.drawable.less)
                 }
             }
