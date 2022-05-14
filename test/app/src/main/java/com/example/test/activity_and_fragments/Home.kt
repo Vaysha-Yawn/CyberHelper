@@ -9,10 +9,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.activity_and_fragments.hosts.PresentHost
 import com.example.test.adapters.CharacterAdapter
+import com.example.test.data_base.Character
 import com.example.test.databinding.CardInitiativeFightBinding
 import com.example.test.databinding.HomeBinding
 import com.example.test.viewModels.CharacterDAO
@@ -40,8 +42,8 @@ class Home : Fragment(), HeaderView.HeaderBack {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.home, container, false)
+        val adapterFight = AdapterInitiativeFight()
         try {
-
             val binding = HomeBinding.bind(view)
             with(binding) {
                 mGameVM.gameName.observe(viewLifecycleOwner) { name ->
@@ -68,6 +70,9 @@ class Home : Fragment(), HeaderView.HeaderBack {
                 }
 
                 header.setBack(true, this@Home, requireActivity(), viewLifecycleOwner)
+
+                InitiativeFightsRV.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                InitiativeFightsRV.adapter = adapterFight
             }
 
             //CharacterAdapter ищем, подключаем
@@ -76,8 +81,11 @@ class Home : Fragment(), HeaderView.HeaderBack {
             hGridView.adapter = adapter
 
             // Устанавливаем данные
-            mCharacterVM.characterList.observe(viewLifecycleOwner) {
-                adapter.setCharacterList(it, true)
+            mCharacterVM.characterList.observe(viewLifecycleOwner) { listCharacter->
+                adapter.setCharacterList(listCharacter, true)
+                mInitiativeFightVM.fightList.observe(viewLifecycleOwner){ listFight->
+                    adapterFight.setData(mInitiativeFightVM.findFightCharacter(listFight, listCharacter))
+                }
             }
 
         } catch (e: Exception) {
@@ -93,7 +101,9 @@ class Home : Fragment(), HeaderView.HeaderBack {
 
     class AdapterInitiativeFight :
         RecyclerView.Adapter<AdapterInitiativeFightTemplateHolder>() {
-        var count = 1
+
+        var map =  mutableMapOf<String, MutableList<Character>>()
+
         override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
@@ -108,15 +118,15 @@ class Home : Fragment(), HeaderView.HeaderBack {
             holder: AdapterInitiativeFightTemplateHolder,
             position: Int
         ) {
-            holder.bind(position)
+            holder.bind(map.toList()[position])
         }
 
         override fun getItemCount(): Int {
-            return count
+            return map.size
         }
 
-        fun setData(count: Int) {
-            this.count = count
+        fun setData(map: MutableMap<String, MutableList<Character>>) {
+            this.map = map
             notifyDataSetChanged()
         }
 
@@ -126,7 +136,7 @@ class Home : Fragment(), HeaderView.HeaderBack {
         view: View,
     ) : RecyclerView.ViewHolder(view) {
         private val binding = CardInitiativeFightBinding.bind(view)
-        fun bind(position: Int) = with(binding) {
+        fun bind(mapPair: Pair<String, MutableList<Character>>) = with(binding) {
             more.setOnClickListener {
                 if (gridCharacter.visibility == View.VISIBLE) {
                     gridCharacter.visibility = View.GONE
@@ -139,14 +149,11 @@ class Home : Fragment(), HeaderView.HeaderBack {
             delete.setOnClickListener {
                 // todo: показывает диалог фрагмент с подтверждением удаления
             }
-            //title.text =
+            title.text = mapPair.first
             val adapter = CharacterAdapter()
             gridCharacter.adapter = adapter
-            //adapter.setCharacterList(it, true)
-
+            adapter.setCharacterList(mapPair.second, true)
         }
 
     }
-    // todo подумать о связи между листом персонажей и initiativeFight. нам нужно отобразить список персонажей, который является выборкой из общего листа песонажей
-    //
 }
