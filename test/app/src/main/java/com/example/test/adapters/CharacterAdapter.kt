@@ -1,24 +1,26 @@
 package com.example.test.adapters
 
+import android.content.res.ColorStateList
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageButton
 import android.widget.TextView
-import android.os.Bundle
 import android.widget.Toast
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.data_base.Character
 import com.example.test.data_base.TemplateParamStr
-import java.lang.Exception
+import com.example.test.databinding.CardCharacterBinding
 
 
-class CharacterAdapter() : BaseAdapter() {
+class CharacterAdapter : BaseAdapter() {
 
     private var characterList = emptyList<Character>()
     private var presOrNew = true//true - Present, false - New
+    private var color: Int? = null
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
@@ -44,6 +46,16 @@ class CharacterAdapter() : BaseAdapter() {
                 Toast.makeText(view.context, "$e", Toast.LENGTH_SHORT).show()
             }
         }
+        val binding = CardCharacterBinding.bind(view)
+        with(binding) {
+            if (color != null) {
+                linLay.backgroundTintList = ColorStateList.valueOf(color!!)
+                HomeCardAvatar.backgroundTintList = ColorStateList.valueOf(color!!)
+
+            }
+        }
+
+
         return view
     }
 
@@ -55,7 +67,8 @@ class CharacterAdapter() : BaseAdapter() {
 
     override fun getCount(): Int = characterList.size
 
-    fun setCharacterList(charList: List<Character>, presentOrNew: Boolean) {
+    fun setCharacterList(charList: List<Character>, presentOrNew: Boolean, colorBackground: Int?) {
+        this.color = colorBackground
         characterList = charList
         presOrNew = presentOrNew
         notifyDataSetChanged()

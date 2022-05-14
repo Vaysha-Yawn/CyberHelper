@@ -21,26 +21,21 @@ import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
 import com.example.test.viewModels.InitiativeFightVM
 import com.example.test.views.HeaderView
-import kotlin.properties.Delegates
 
 class Home : Fragment(), HeaderView.HeaderBack {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM:GameDAO by activityViewModels()
     private val mInitiativeFightVM: InitiativeFightVM by activityViewModels()
-    private var gameId by Delegates.notNull<Int>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        gameId = mCharacterVM.gameId
-        mInitiativeFightVM.loadList(gameId)
-        mGameVM.initGameName(gameId)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val gameId = mCharacterVM.gameId
+        mInitiativeFightVM.loadList(gameId)
+        mGameVM.initGameName(gameId)
+
         val view = inflater.inflate(R.layout.home, container, false)
         val adapterFight = AdapterInitiativeFight()
         try {
@@ -82,9 +77,14 @@ class Home : Fragment(), HeaderView.HeaderBack {
 
             // Устанавливаем данные
             mCharacterVM.characterList.observe(viewLifecycleOwner) { listCharacter->
-                adapter.setCharacterList(listCharacter, true)
-                mInitiativeFightVM.fightList.observe(viewLifecycleOwner){ listFight->
-                    adapterFight.setData(mInitiativeFightVM.findFightCharacter(listFight, listCharacter))
+                adapter.setCharacterList(listCharacter, true, null)
+                mInitiativeFightVM.fightList.observe(viewLifecycleOwner) { listFight ->
+                    adapterFight.setData(
+                        mInitiativeFightVM.findFightCharacter(
+                            listFight,
+                            listCharacter
+                        )
+                    )
                 }
             }
 
@@ -152,7 +152,7 @@ class Home : Fragment(), HeaderView.HeaderBack {
             title.text = mapPair.first
             val adapter = CharacterAdapter()
             gridCharacter.adapter = adapter
-            adapter.setCharacterList(mapPair.second, true)
+            adapter.setCharacterList(mapPair.second, true, R.color.cyan)
         }
 
     }

@@ -28,7 +28,7 @@
         android:backgroundTint="@color/cyan"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/delete"
@@ -40,14 +40,15 @@
         android:backgroundTint="@color/cyan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <GridView
+        android:background="@drawable/bcg_rectangle_round"
+        android:backgroundTint="@color/cyan"
         android:id="@+id/gridCharacter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="20dp"
         android:horizontalSpacing="10dp"
         android:numColumns="3"
         android:verticalSpacing="20dp"

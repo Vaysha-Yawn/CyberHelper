@@ -10,11 +10,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.activity_and_fragments.hosts.NewHost
+import com.example.test.adapters.CharacterAdapter
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
-import com.example.test.adapters.CharacterAdapter
 import com.example.test.viewModels.NewCharacterVM
-import java.lang.Exception
 
 class NewGame : Fragment() {
 
@@ -46,7 +45,7 @@ class NewGame : Fragment() {
             // Устанавливаем данные
 
             mCharacterVM.characterList.observe(viewLifecycleOwner) {
-                adapter.setCharacterList(it, false)
+                adapter.setCharacterList(it, false, null)
             }
 
             view.findViewById<Button>(R.id.NewGame_Clear).setOnClickListener {

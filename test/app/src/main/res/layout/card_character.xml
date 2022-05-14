@@ -5,17 +5,18 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="0dp"
+    android:id="@+id/root"
     app:cardPreventCornerOverlap="true"
-    android:background="#1B1A22"
     android:layout_marginStart="10dp"
     android:layout_marginEnd="10dp"
     >
 
     <LinearLayout
+        android:id="@+id/linLay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#1B1A22"
+        android:background="@drawable/bcg_simple"
         android:paddingStart="10dp"
         android:paddingEnd="10dp">
 
@@ -27,7 +28,7 @@
             android:layout_gravity="center"
             app:srcCompat="@drawable/avatar"
             tools:ignore="SpeakableTextPresentCheck"
-            android:background="#1B1A22"/>
+            android:background="@drawable/bcg_simple" />
 
         <TextView
             android:id="@+id/HomeCard_Name"
@@ -36,7 +37,6 @@
             android:text="Эмгыр Вар Эмрейс"
             style="@style/Text.H2"
             android:maxWidth="150dp"
-            android:background="#1B1A22"
             android:gravity="center"
             android:layout_gravity="center"/>
     </LinearLayout>
