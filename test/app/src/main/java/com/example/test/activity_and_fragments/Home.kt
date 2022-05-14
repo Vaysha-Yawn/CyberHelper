@@ -77,7 +77,7 @@ class Home : Fragment(), HeaderView.HeaderBack {
 
             // Устанавливаем данные
             mCharacterVM.characterList.observe(viewLifecycleOwner) { listCharacter->
-                adapter.setCharacterList(listCharacter, true, null)
+                adapter.setCharacterList(listCharacter, true)
                 mInitiativeFightVM.fightList.observe(viewLifecycleOwner) { listFight ->
                     adapterFight.setData(
                         mInitiativeFightVM.findFightCharacter(
@@ -140,7 +140,8 @@ class Home : Fragment(), HeaderView.HeaderBack {
             more.setOnClickListener {
                 if (gridCharacter.visibility == View.VISIBLE) {
                     gridCharacter.visibility = View.GONE
-                    more.background = it.context.resources.getDrawable(R.drawable.more)
+                    val draw = it.context.resources.getDrawable(R.drawable.more)
+                    more.background = draw
                 } else {
                     gridCharacter.visibility = View.VISIBLE
                     more.background = it.context.resources.getDrawable(R.drawable.less)
@@ -152,7 +153,7 @@ class Home : Fragment(), HeaderView.HeaderBack {
             title.text = mapPair.first
             val adapter = CharacterAdapter()
             gridCharacter.adapter = adapter
-            adapter.setCharacterList(mapPair.second, true, R.color.cyan)
+            adapter.setCharacterList(mapPair.second, true)
         }
 
     }

@@ -63,7 +63,7 @@ class InitiativeResult : Fragment(), HeaderView.HeaderBack {
             resultRv.adapter = adapter
             adapter.setData(list)
 
-            val adapterList = ArrayAdapter(requireContext(), R.layout.more, listMore)
+            val adapterList = ArrayAdapter(requireContext(), R.layout.more_item, listMore)
             moreRV.adapter = adapterList
 
             more.setOnClickListener {

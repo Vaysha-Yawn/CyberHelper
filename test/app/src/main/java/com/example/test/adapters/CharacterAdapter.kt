@@ -20,7 +20,6 @@ class CharacterAdapter : BaseAdapter() {
 
     private var characterList = emptyList<Character>()
     private var presOrNew = true//true - Present, false - New
-    private var color: Int? = null
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
@@ -48,11 +47,7 @@ class CharacterAdapter : BaseAdapter() {
         }
         val binding = CardCharacterBinding.bind(view)
         with(binding) {
-            if (color != null) {
-                linLay.backgroundTintList = ColorStateList.valueOf(color!!)
-                HomeCardAvatar.backgroundTintList = ColorStateList.valueOf(color!!)
 
-            }
         }
 
 
@@ -67,8 +62,7 @@ class CharacterAdapter : BaseAdapter() {
 
     override fun getCount(): Int = characterList.size
 
-    fun setCharacterList(charList: List<Character>, presentOrNew: Boolean, colorBackground: Int?) {
-        this.color = colorBackground
+    fun setCharacterList(charList: List<Character>, presentOrNew: Boolean) {
         characterList = charList
         presOrNew = presentOrNew
         notifyDataSetChanged()
