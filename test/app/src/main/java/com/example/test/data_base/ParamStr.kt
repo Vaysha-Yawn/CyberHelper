@@ -7,5 +7,6 @@ open class ParamStr(
     var name:String = "",
     var value:String = "",
     var removable:Boolean = true, //   Можно ли его удалить
+    var currentGroup:String = ""
 ): RealmObject()
 
