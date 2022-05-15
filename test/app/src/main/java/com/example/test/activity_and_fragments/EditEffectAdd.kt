@@ -94,7 +94,7 @@ class EditEffectAdd : Fragment() {
         }
         val options = arrayListOf<String>()
         param?.options?.forEach { options.add(it) }
-        bundle.putStringArrayList("list", options)
+        bundle.putStringArrayList("listId", options)
         //loadFragment(R.id.property, DropDownList(), bundle)
 
         // настраиваем переключение и запоминание знака

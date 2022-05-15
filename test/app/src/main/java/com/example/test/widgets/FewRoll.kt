@@ -26,8 +26,6 @@ class FewRoll : Fragment() {
 
     private lateinit var ViewPager2: ViewPager2
 
-    private var keyFragment by Delegates.notNull<Int>()
-
     private val VM: FewRollVM by activityViewModels()
 
     override fun onCreateView(
@@ -36,38 +34,13 @@ class FewRoll : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.few_roll, container, false)
         //VM = ViewModelProvider(this)[FewRollVM::class.java]
-        keyFragment = requireArguments().getInt("keyFragment")
 
         val binding = FewRollBinding.bind(view)
-
-        val keyAllGoals = mSkillVM.createId()
-
-        VM.add(R.id.radioButton, Roll().apply {
-            arguments = Roll().getRollBundle(true, keyAllGoals, keyFragment, R.id.radioButton)
-        })
-
-        mSkillVM.mapGoal[keyAllGoals] = MutableLiveData()
-        mSkillVM.mapRoll[keyFragment] = mutableMapOf()
-
-        // заполняем лист
-        val goalsList = mutableListOf<Goal>()
-        mCharacterVM.characterList.value?.forEach {
-            if (it.gameId == mCharacterVM.gameId) {
-                if (it.id != mCharacterVM.characterId) {
-                    val goal = Goal()
-                    goal.characterId = it.id
-                    val name = it.attributes.singleOrNull { gp ->
-                        gp.title == "Базовые параметры"
-                    }?.attributes?.listParamStr?.singleOrNull { pn ->
-                        pn.name == "Имя персонажа"
-                    }?.value ?: ""
-                    goal.name = name
-                    goalsList.add(goal)
-                }
-            }
+        if (VM.chosenRolls.isEmpty()){
+            VM.add(R.id.radioButton, Roll().apply {
+                arguments = Roll().getRollBundle(true,R.id.radioButton)
+            })
         }
-
-        mSkillVM.mapGoal[keyAllGoals]?.value = goalsList
 
         val adapter = RollAdapterVP2(
             childFragmentManager,
@@ -80,7 +53,7 @@ class FewRoll : Fragment() {
             VP2.adapter = adapter
 
             VM.fragments.observe(viewLifecycleOwner) {
-                adapter.setData(it)
+                adapter.setData(it.values.toMutableList())
             }
 
             delete.setOnClickListener {
@@ -93,14 +66,13 @@ class FewRoll : Fragment() {
                         radioGroup.check(VM.getElement(1))
                     }
                     radioGroup.removeView(view.findViewById(id))
-                    mSkillVM.deleteRollInFewRoll(keyFragment, id)
                     VM.delete(id, position)
                     adapter.remove()
                 }
             }
 
             add.setOnClickListener {
-                if (radioGroup.childCount <= 6 && mSkillVM.mapGoal[keyAllGoals]?.value?.size!! > adapter.itemCount) {
+                if (radioGroup.childCount <= 6 && VM.allGoals.size > adapter.itemCount) {
                     val id = View.generateViewId()
                     val radio = RadioButton(view.context)
                     radio.buttonTintList = view.context.resources.getColorStateList(R.color.yellow)
@@ -108,7 +80,7 @@ class FewRoll : Fragment() {
                     radio.id = id
                     radioGroup.addView(radio)
                     VM.add(id, Roll().apply {
-                        arguments = Roll().getRollBundle(true, keyAllGoals, keyFragment, id)
+                        arguments = Roll().getRollBundle(true, id)
                     })
                     adapter.add()
                     radioGroup.check(id)
@@ -138,23 +110,18 @@ class FewRoll : Fragment() {
         return view
     }
 
-    fun getFewRollBundle(goal: Boolean, keyFragment: Int): Bundle {
+    fun getFewRollBundle(goal: Boolean): Bundle {
         val bundle = Bundle()
         if (goal) {
             bundle.putString("goal", "goal")
         } else {
             bundle.putString("goal", "")
         }
-        bundle.putInt("keyFragment", keyFragment)
         return bundle
     }
 
     fun getFewRoll(): FewRolls {
-        val list = mutableListOf<OneRoll>()
-        for (fragmentRoll in VM.fragments.value!!) {
-            list.add(fragmentRoll.getRoll())
-        }
-        return FewRolls(list)
+        return FewRolls(VM.chosenRolls.values.toMutableList())
     }
 
 }

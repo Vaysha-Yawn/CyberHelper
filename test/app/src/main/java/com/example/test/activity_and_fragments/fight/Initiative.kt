@@ -16,6 +16,7 @@ import com.example.test.activity_and_fragments.hosts.FightHost
 import com.example.test.data_base.Goal
 import com.example.test.databinding.IniciativaBinding
 import com.example.test.viewModels.CharacterDAO
+import com.example.test.viewModels.FewRollVM
 import com.example.test.viewModels.FewRolls
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.views.HeaderView
@@ -27,6 +28,7 @@ class Initiative : Fragment(),
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
+    private val VM: FewRollVM by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,8 +43,14 @@ class Initiative : Fragment(),
         fun bind() = with(binding) {
             title.text = "Проверка инициативы"
 
+            // подготовка
+            if (VM.allGoals.isNullOrEmpty()) {
+                VM.setAllGoals(mCharacterVM)
+            }
+            VM.keyFragment = View.generateViewId()
+
             val fragment = FewRoll()
-            fragment.arguments = FewRoll().getFewRollBundle(true, 0)
+            fragment.arguments = FewRoll().getFewRollBundle(true )
             childFragmentManager.commit {
                 replace(R.id.fr, fragment)
             }

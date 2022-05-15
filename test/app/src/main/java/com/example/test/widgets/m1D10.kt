@@ -8,12 +8,15 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.test.R
+import com.example.test.viewModels.FewRollVM
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.views.PlusMinusView
 
 class m1D10 : Fragment() {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
+
+    private val VM: FewRollVM by activityViewModels()
 
     private lateinit var criticalDummy: LinearLayout
     private lateinit var PMCritical: PlusMinusView
@@ -26,11 +29,10 @@ class m1D10 : Fragment() {
         val view = inflater.inflate(R.layout.m1_d10, container, false)
 
         val arg = this.arguments
-        val keyRoll = arg?.getInt("keyRoll")
-        val keyFragment = arg?.getInt("keyFragment")
-        val key1d10 = arg?.getInt("key1d10")
-        val keyCrit = arg?.getInt("keyCrit")
+        val keyRoll = arg?.getInt("keyRoll") ?: 0
+        val keyFragment = arg?.getInt("keyFragment") ?: 0
 
+        val pos = arg?.getInt("pos") ?: 0
 
         criticalDummy = view.findViewById<LinearLayout>(R.id.criticalDummy)
         PMCritical = view.findViewById<PlusMinusView>(R.id.PMCritical)
@@ -38,9 +40,11 @@ class m1D10 : Fragment() {
 
         PMCritical.setListener(10, 1, object : PlusMinusView.NumberEvent {
             override fun numberEvent(number: Int) {
-                if (keyFragment != null && keyRoll != null) {
-                    mSkillVM.mapRoll[keyFragment]?.get(keyRoll)?.crit = number
+                if (pos!=0){
+                    VM.chosenRolls[pos]?.crit = number
                 }
+                mSkillVM.mapRoll[keyFragment]?.get(keyRoll)?.crit = number
+
             }
         }
         )
@@ -54,9 +58,11 @@ class m1D10 : Fragment() {
                     criticalDummy.visibility = View.VISIBLE
                     PMCritical.visibility = View.GONE
                 }
-                if (keyFragment != null && keyRoll != null) {
-                    mSkillVM.mapRoll[keyFragment]?.get(keyRoll)?.m1d10 = number
+                if (pos!=0){
+                    VM.chosenRolls[pos]?.m1d10 = number
                 }
+                mSkillVM.mapRoll[keyFragment]?.get(keyRoll)?.m1d10 = number
+
             }
 
         })
@@ -76,4 +82,13 @@ class m1D10 : Fragment() {
         }
     }
 
+    fun setCritical(crit:Int) {
+        val PMCritical = view?.findViewById<PlusMinusView>(R.id.PMCritical)
+        PMCritical?.setValue(crit)
+    }
+
+    fun setM1d10(value:Int) {
+        val m1d10 = view?.findViewById<PlusMinusView>(R.id.m1d10)
+            m1d10?.setValue(value)
+    }
 }

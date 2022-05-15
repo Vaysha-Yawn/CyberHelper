@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
 import com.example.test.R
 import com.example.test.viewModels.CharacterDAO
+import com.example.test.viewModels.FewRollVM
 import com.example.test.viewModels.GameDAO
 import com.example.test.viewModels.SkillTestVM
 
@@ -15,6 +17,7 @@ class FightHost : AppCompatActivity() {
     private val mGameVM: GameDAO by viewModels()
     private val mSkillVM: SkillTestVM by viewModels()
     private val mCharacterVM: CharacterDAO by viewModels()
+    private val VM: FewRollVM by viewModels()
     private var characterId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {

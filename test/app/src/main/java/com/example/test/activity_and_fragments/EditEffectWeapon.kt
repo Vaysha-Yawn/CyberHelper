@@ -43,7 +43,7 @@ class EditEffectWeapon : Fragment() {
         TemplateFightType().mapFightType.keys.forEach {
             options.add(it)
         }
-        bundle.putStringArrayList("list", options)
+        bundle.putStringArrayList("listId", options)
         loadFragment(R.id.weapon_edit_type_RV, DropDownList(), bundle)
 
 
