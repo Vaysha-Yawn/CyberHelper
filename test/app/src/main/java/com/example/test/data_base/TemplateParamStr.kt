@@ -2,21 +2,17 @@ package com.example.test.data_base
 
 import io.realm.RealmList
 
-class TemplateParamStr(){
+class TemplateParamStr {
 
     val mapParamStr = mapOf<String, ParamStr>(
-        "Имя персонажа" to ParamStr("Имя персонажа", "", removable = false,),
-        "Название игры" to ParamStr("Название игры", "", removable = false),
-        "Семья" to ParamStr("Семья", "", removable = false,),
-        "Мотивация" to ParamStr("Мотивация", "", removable = false, ),
+        "Имя персонажа" to ParamStr("Имя персонажа", "", removable = false, "Базовые параметры"),
+        "Название игры" to ParamStr("Название игры", "", removable = false, ""),
+        "Семья" to ParamStr("Семья", "", removable = false),
+        "Мотивация" to ParamStr("Мотивация", "", removable = false),
     )
 
     val mapParamStrItem = mapOf<String, ParamStr>(
-        "Особенность" to ParamStr("Особенность", "", removable = true,),
-    )
-
-    val mapParamStrSupporting = mapOf<String, ParamStr>(
-        "Название игры" to ParamStr("Название игры", "", removable = false),
+        "Особенность" to ParamStr("Особенность", "", removable = true),
     )
 
     fun initParamStr(param: ParamStr, value: String): ParamStr {

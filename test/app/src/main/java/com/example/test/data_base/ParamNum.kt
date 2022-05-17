@@ -1,6 +1,5 @@
 package com.example.test.data_base
 
-import io.realm.RealmList
 import io.realm.RealmObject
 
 open class ParamNum(
@@ -9,6 +8,7 @@ open class ParamNum(
     var removable: Boolean = true, //   Можно ли его удалить
     var maxValue: Int? = null,
     var minValue: Int? = null,
-    var currentGroup:String = ""
+    var currentGroup: String = "",
+    var forItemOrCharacter: Boolean = false, //  true - Item, false - Character
 ) : RealmObject()
 

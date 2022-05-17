@@ -3,15 +3,15 @@ package com.example.test.data_base
 import io.realm.Realm
 import io.realm.RealmList
 
-class TemplateParamNum() {
+class TemplateParamNum {
     val realm = Realm.getDefaultInstance()
 
     val mapSampleParamNum = mutableMapOf<String, ParamNum>(
-        "Параметр" to ParamNum("Параметр", 0, true, 10, 0, ),
-        "Навык" to ParamNum("Навык", 0, true, 10, 0, ),
+        "Параметр" to ParamNum("Параметр", 0, true, 10, 0),
+        "Навык" to ParamNum("Навык", 0, true, 10, 0),
     )
 
-    fun initParamNumBySample(nameSample:String, nameParam:String): ParamNum{
+    fun initParamNumBySample(nameSample: String, nameParam: String): ParamNum {
         val paramSample = mapSampleParamNum.getValue(nameSample)
         realm.executeTransaction {
             paramSample.name = nameParam
@@ -20,23 +20,37 @@ class TemplateParamNum() {
     }
 
     val mapParamNum = mutableMapOf<String, ParamNum>(
-        "Здоровье" to ParamNum("Здоровье", 0, false, 100, 0),
-        "Тяжелое ранение" to ParamNum("Тяжелое ранение", 0, false,  50, 0),
-        "Испытание против смерти" to ParamNum("Испытание против смерти", 0, false,  10, 0, ),
+        "Здоровье" to ParamNum("Здоровье", 0, false, 100, 0, "Базовые параметры"),
+        "Тяжелое ранение" to ParamNum("Тяжелое ранение", 0, false, 50, 0, "Базовые параметры"),
+        "Испытание против смерти" to ParamNum(
+            "Испытание против смерти",
+            0,
+            false,
+            10,
+            0,
+            "Базовые параметры"
+        ),
 
-        "Возраст" to ParamNum("Возраст", 0, false,  null, 0, ),
+        "Возраст" to ParamNum("Возраст", 0, false, null, 0, "Базовые параметры"),
 
-        "Деньги, евробаксы" to ParamNum("Деньги, евробаксы", 0, false,  null, 0, ),
+        "Деньги, евробаксы" to ParamNum(
+            "Деньги, евробаксы",
+            0,
+            false,
+            null,
+            0,
+            "Базовые параметры"
+        ),
 
-        "Броня для головы" to ParamNum("Броня для головы", 0, false, null, 0, ),
-        "Броня для тела" to ParamNum("Броня для тела", 0, false, null, 0, ),
+        "Броня для головы" to ParamNum("Броня для головы", 0, false, null, 0),
+        "Броня для тела" to ParamNum("Броня для тела", 0, false, null, 0),
 
-        "Интеллект" to ParamNum("Интеллект", 0, false, 10, 0, ),
-        "Воля" to ParamNum("Воля", 0, false, 10, 0, ),
-        "Харизма" to ParamNum("Харизма", 0, false, 10, 0, ),
-        "Эмпатия" to ParamNum("Эмпатия", 0, false, 10, 0, ),
-        "Техника" to ParamNum("Техника", 0, false, 10, 0, ),
-        "Реакция" to ParamNum("Реакция", 0, false, 10, 0, ),
+        "Интеллект" to ParamNum("Интеллект", 0, false, 10, 0),
+        "Воля" to ParamNum("Воля", 0, false, 10, 0),
+        "Харизма" to ParamNum("Харизма", 0, false, 10, 0),
+        "Эмпатия" to ParamNum("Эмпатия", 0, false, 10, 0),
+        "Техника" to ParamNum("Техника", 0, false, 10, 0),
+        "Реакция" to ParamNum("Реакция", 0, false, 10, 0),
         "Удача" to ParamNum("Удача", 0, false, 10, 0, ),
         "Телосложение" to ParamNum("Телосложение", 0, false, 10, 0, ),
         "Ловкость" to ParamNum("Ловкость", 0, false, 10, 0, ),

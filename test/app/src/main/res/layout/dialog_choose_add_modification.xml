@@ -7,6 +7,7 @@
     android:padding="40dp">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Text.H2"
@@ -22,7 +23,7 @@
         android:orientation="horizontal">
         <Button
             android:paddingVertical="15dp"
-            android:id="@+id/modStylePM"
+            android:id="@+id/variant1"
             android:text="Указать числом"
             style="@style/Text.H2"
             android:textAllCaps="false"
@@ -37,7 +38,7 @@
             android:layout_height="wrap_content"/>
         <Button
             android:paddingVertical="15dp"
-            android:id="@+id/modStyleDD"
+            android:id="@+id/variant2"
             android:text="Выбрать из списка"
             style="@style/Text.H2"
             android:textAllCaps="false"

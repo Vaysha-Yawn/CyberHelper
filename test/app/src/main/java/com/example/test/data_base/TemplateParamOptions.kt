@@ -2,7 +2,7 @@ package com.example.test.data_base
 
 import io.realm.RealmList
 
-class TemplateParamOptions() {
+class TemplateParamOptions {
     val mapParamOptions = mapOf<String, ParamOptions>(
         "Пол" to ParamOptions(
             "Пол",
@@ -10,6 +10,7 @@ class TemplateParamOptions() {
             false,
             "Выберите пол",
             RealmList<String>("Мужской", "Женский"),
+            "Базовые параметры"
         ),
         "Роль" to ParamOptions(
             "Роль",
@@ -17,6 +18,7 @@ class TemplateParamOptions() {
             false,
             "Выберите роль",
             RealmList<String>("Рокер", "Соло", "Нетраннер", "Кочевник", "Техник", "Фиксер"),
+            "Базовые параметры"
         ),
         "Значимость" to ParamOptions(
             "Значимость",
@@ -24,6 +26,7 @@ class TemplateParamOptions() {
             false,
             "Выберите значимость",
             RealmList<String>("Главный герой", "Второстепенный герой"),
+            "Базовые параметры"
         ),
     )
 

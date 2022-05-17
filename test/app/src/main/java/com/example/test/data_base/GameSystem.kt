@@ -7,16 +7,17 @@ import io.realm.annotations.PrimaryKey
 open class GameSystem(
     @PrimaryKey
     var id: Int = 0,
-    var name: String? = null,
+    var name: String = "",
     var groups: RealmList<String> = RealmList<String>(),
-    var typesItem: RealmList<RealmPair<String,String>> =  RealmList<RealmPair<String,String>>(),
+    var typesItem: RealmList<RealmPair<String, RealmList<String>>> = RealmList<RealmPair<String, RealmList<String>>>(),
     // где первая строка - название группы, вторая название типа
+    var tabsToGroup: RealmList<RealmPair<Int, RealmList<String>>> = RealmList<RealmPair<Int, RealmList<String>>>(),
+    // где число - номер вкладки, вторая строка - название группы, не более 5 названий, названия и иконка вкладки не изменяются, подстраивайтесь под них
     var templateCharacter: RealmList<Character> = RealmList<Character>(),
     var templateItem: RealmList<Item> = RealmList<Item>(),
     var templateParamNum: RealmList<ParamNum> = RealmList<ParamNum>(),
     var templateParamStr: RealmList<ParamStr> = RealmList<ParamStr>(),
     var templateParamOptions: RealmList<ParamOptions> = RealmList<ParamOptions>(),
-
     //var initiativaSystem
 ) : RealmObject()
 

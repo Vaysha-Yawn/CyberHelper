@@ -129,12 +129,12 @@ class ModDialogFragment(private val addMod:AddMod) : DialogFragment() {
         val binding = DialogChooseAddModificationBinding.bind(view)
         fun bind() = with(binding) {
 
-            modStyleDD.setOnClickListener {
+            variant1.setOnClickListener {
                 addMod.addMod(true)
                 dismiss()
             }
 
-            modStylePM.setOnClickListener {
+            variant2.setOnClickListener {
                 addMod.addMod(false)
                 dismiss()
             }

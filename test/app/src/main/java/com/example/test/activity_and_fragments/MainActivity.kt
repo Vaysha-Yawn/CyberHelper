@@ -1,18 +1,25 @@
 package com.example.test.activity_and_fragments
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
 import android.view.View.GONE
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import com.example.test.R
 import com.example.test.activity_and_fragments.about.About
 import com.example.test.activity_and_fragments.hosts.LoadHost
 import com.example.test.activity_and_fragments.hosts.NewHost
 import com.example.test.activity_and_fragments.hosts.PresentHost
 import com.example.test.activity_and_fragments.setting.SettingsHost
-import java.lang.Exception
+import com.example.test.data_base.TemplateGameSystem
+import com.example.test.databinding.DialogChooseAddModificationBinding
+import com.example.test.viewModels.GameSystemDAO
 
 class MainActivity : AppCompatActivity() {
 
@@ -58,4 +65,40 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "$e", Toast.LENGTH_LONG).show()
         }
     }
+
+}
+
+class ChooseSystemDialogFragment : DialogFragment() {
+
+    private val mGameSystemDAO: GameSystemDAO by viewModels()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+        val view = inflater.inflate(R.layout.dialog_choose_add_modification, container, false)
+
+        val binding = DialogChooseAddModificationBinding.bind(view)
+        fun bind() = with(binding) {
+            title.text = "Выберите нужную игровую систему"
+            variant1.text = "Киберпанк"
+            variant2.text = "ДнД"
+            variant1.setOnClickListener {
+                mGameSystemDAO.addGameSystem(TemplateGameSystem().cyberPuckSystem)
+                mGameSystemDAO.initGameSystemById(0)
+                dismiss()
+            }
+            variant2.setOnClickListener {
+                mGameSystemDAO.addGameSystem(TemplateGameSystem().DnDSystem)
+                mGameSystemDAO.initGameSystemById(1)
+                dismiss()
+            }
+        }
+        bind()
+
+        return view
+    }
+
 }
