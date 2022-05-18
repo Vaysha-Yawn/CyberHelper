@@ -9,9 +9,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.adapters.DropDownAdapterRV
-import com.example.test.data_base.SpecialGameData
-import com.example.test.data_base.TemplateParamNum
-import com.example.test.data_base.TemplateParamOptions
+import com.example.test.data_base.DTemplateParamNum
+import com.example.test.data_base.DTemplateParamOptions
 import com.example.test.data_base.TemplateParamStr
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.views.DropDownView
@@ -60,7 +59,7 @@ class AddNewParam : Fragment(), HeaderView.HeaderBack,
                 }
                 if (mod == 0 || mod == 1) {
                     if (arr.isEmpty()) {
-                        for (key in TemplateParamOptions().mapParamOptions.keys) {
+                        for (key in DTemplateParamOptions().mapParamOptions.keys) {
                             options.add(key)
                         }
                     } else {
@@ -71,7 +70,7 @@ class AddNewParam : Fragment(), HeaderView.HeaderBack,
                         }
                     }
                 } else {
-                    for (key in TemplateParamOptions().mapParamOptionsItem.keys) {
+                    for (key in DTemplateParamOptions().mapParamOptionsItem.keys) {
                         options.add(key)
                     }
                 }
@@ -90,7 +89,7 @@ class AddNewParam : Fragment(), HeaderView.HeaderBack,
                 }
                 if (mod == 0 || mod == 1) {
                     if (arr.isEmpty()) {
-                        for (key in TemplateParamNum().mapParamNum.keys) {
+                        for (key in DTemplateParamNum().mapParamNum.keys) {
                             options.add(key)
                         }
                     } else {
@@ -101,7 +100,7 @@ class AddNewParam : Fragment(), HeaderView.HeaderBack,
                         }
                     }
                 } else {
-                    for (key in TemplateParamNum().mapParamNumItem.keys) {
+                    for (key in DTemplateParamNum().mapParamNumItem.keys) {
                         options.add(key)
                     }
                 }
@@ -170,9 +169,9 @@ class AddNewParam : Fragment(), HeaderView.HeaderBack,
         when (type) {
             "options" -> {
                 val param = if (indexItem == -1) {
-                    TemplateParamOptions().mapParamOptions[res]!!
+                    DTemplateParamOptions().mapParamOptions[res]!!
                 } else {
-                    TemplateParamOptions().mapParamOptionsItem[res]!!
+                    DTemplateParamOptions().mapParamOptionsItem[res]!!
                 }
                 val bundle = Bundle()
                 bundle.putString("paramName", res)

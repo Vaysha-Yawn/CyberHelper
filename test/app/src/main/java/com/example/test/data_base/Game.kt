@@ -7,5 +7,5 @@ open class Game(
     @PrimaryKey
     var id: Int = 0,
     var name: String? = null,
-    var gameSystem: Int = 0,
+    var gameSystemId: Int = 0,
 ): RealmObject()

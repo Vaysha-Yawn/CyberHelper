@@ -1,16 +1,16 @@
 package com.example.test.activity_and_fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
+import com.example.test.data_base.DTemplateParamOptions
 import com.example.test.data_base.EffectAdd
-import com.example.test.data_base.TemplateParamOptions
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
 
@@ -18,10 +18,6 @@ class EditEffectAdd : Fragment() {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,7 +82,7 @@ class EditEffectAdd : Fragment() {
         // подключаем выбор параметра
         val bundle = Bundle()
         bundle.putString("them", "green")
-        val param = TemplateParamOptions().mapParamOptionsSupporting["Параметры для влияния"]
+        val param = DTemplateParamOptions().mapParamOptionsSupporting["Параметры для влияния"]
         if (effectAdd.property == "") {
             bundle.putString("main", param?.defMain)
         } else {

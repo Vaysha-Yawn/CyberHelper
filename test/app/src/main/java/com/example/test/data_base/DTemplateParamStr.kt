@@ -2,7 +2,7 @@ package com.example.test.data_base
 
 import io.realm.RealmList
 
-class TemplateParamStr {
+class DTemplateParamStr {
 
     val mapParamStr = mapOf<String, ParamStr>(
         "Имя персонажа" to ParamStr("Имя персонажа", "", removable = false, "Базовые параметры"),

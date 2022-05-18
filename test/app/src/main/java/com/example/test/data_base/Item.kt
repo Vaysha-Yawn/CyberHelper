@@ -16,7 +16,7 @@ open class Item(
     var type: String = ""
 ) : RealmObject()
 
-class TemplateItem() {
+class TemplateItem {
 
     val melle = "Ближний бой"
     val distant_battle = "Дальний бой"
@@ -277,16 +277,16 @@ class TemplateItem() {
                 true,
                 effectsAdd = RealmList(EffectAdd(true, "move", 4, true, null, null)),
                 otherParamNum = RealmList<ParamNum>(
-                    TemplateParamNum().initParamNum(
-                        TemplateParamNum().mapParamNumItem["Атака программы"]!!,
+                    DTemplateParamNum().initParamNum(
+                        DTemplateParamNum().mapParamNumItem["Атака программы"]!!,
                         0
                     ),
-                    TemplateParamNum().initParamNum(
-                        TemplateParamNum().mapParamNumItem["Защита программы"]!!,
+                    DTemplateParamNum().initParamNum(
+                        DTemplateParamNum().mapParamNumItem["Защита программы"]!!,
                         0
                     ),
-                    TemplateParamNum().initParamNum(
-                        TemplateParamNum().mapParamNumItem["Установка программы"]!!,
+                    DTemplateParamNum().initParamNum(
+                        DTemplateParamNum().mapParamNumItem["Установка программы"]!!,
                         7
                     )
                 )
@@ -312,16 +312,16 @@ class TemplateItem() {
                     )
                 ),
                 otherParamNum = RealmList<ParamNum>(
-                    TemplateParamNum().initParamNum(
-                        TemplateParamNum().mapParamNumItem["Атака программы"]!!,
+                    DTemplateParamNum().initParamNum(
+                        DTemplateParamNum().mapParamNumItem["Атака программы"]!!,
                         2
                     ),
-                    TemplateParamNum().initParamNum(
-                        TemplateParamNum().mapParamNumItem["Защита программы"]!!,
+                    DTemplateParamNum().initParamNum(
+                        DTemplateParamNum().mapParamNumItem["Защита программы"]!!,
                         0
                     ),
-                    TemplateParamNum().initParamNum(
-                        TemplateParamNum().mapParamNumItem["Установка программы"]!!,
+                    DTemplateParamNum().initParamNum(
+                        DTemplateParamNum().mapParamNumItem["Установка программы"]!!,
                         0
                     )
                 )
@@ -331,16 +331,16 @@ class TemplateItem() {
                 "Stops the first successful non–Hellhound attack from dealing brain damage. After stopping this attack, the Flack derezzes itself.",
                 true,
                 otherParamNum = RealmList<ParamNum>(
-                    TemplateParamNum().initParamNum(
-                        TemplateParamNum().mapParamNumItem["Атака программы"]!!,
+                    DTemplateParamNum().initParamNum(
+                        DTemplateParamNum().mapParamNumItem["Атака программы"]!!,
                         0
                     ),
-                    TemplateParamNum().initParamNum(
-                        TemplateParamNum().mapParamNumItem["Защита программы"]!!,
+                    DTemplateParamNum().initParamNum(
+                        DTemplateParamNum().mapParamNumItem["Защита программы"]!!,
                         0
                     ),
-                    TemplateParamNum().initParamNum(
-                        TemplateParamNum().mapParamNumItem["Установка программы"]!!,
+                    DTemplateParamNum().initParamNum(
+                        DTemplateParamNum().mapParamNumItem["Установка программы"]!!,
                         1
                     )
                 )
@@ -360,24 +360,24 @@ class TemplateItem() {
                     )
                 ),
                 otherParamNum = RealmList<ParamNum>(
-                    TemplateParamNum().initParamNum(
-                        TemplateParamNum().mapParamNumItem["Атака программы"]!!,
+                    DTemplateParamNum().initParamNum(
+                        DTemplateParamNum().mapParamNumItem["Атака программы"]!!,
                         8
                     ),
-                    TemplateParamNum().initParamNum(
-                        TemplateParamNum().mapParamNumItem["Защита программы"]!!,
+                    DTemplateParamNum().initParamNum(
+                        DTemplateParamNum().mapParamNumItem["Защита программы"]!!,
                         7
                     ),
-                    TemplateParamNum().initParamNum(
-                        TemplateParamNum().mapParamNumItem["Установка программы"]!!,
+                    DTemplateParamNum().initParamNum(
+                        DTemplateParamNum().mapParamNumItem["Установка программы"]!!,
                         25
                     ),
-                    TemplateParamNum().initParamNum(
-                        TemplateParamNum().mapParamNumItem["Внимательность программы"]!!,
+                    DTemplateParamNum().initParamNum(
+                        DTemplateParamNum().mapParamNumItem["Внимательность программы"]!!,
                         8
                     ),
-                    TemplateParamNum().initParamNum(
-                        TemplateParamNum().mapParamNumItem["Скорость программы"]!!,
+                    DTemplateParamNum().initParamNum(
+                        DTemplateParamNum().mapParamNumItem["Скорость программы"]!!,
                         6
                     )
                 )

@@ -3,7 +3,7 @@ package com.example.test.data_base
 import io.realm.Realm
 import io.realm.RealmList
 
-class TemplateParamNum {
+class DTemplateParamNum {
     val realm = Realm.getDefaultInstance()
 
     val mapSampleParamNum = mutableMapOf<String, ParamNum>(

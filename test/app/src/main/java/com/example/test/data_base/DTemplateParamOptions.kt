@@ -2,7 +2,7 @@ package com.example.test.data_base
 
 import io.realm.RealmList
 
-class TemplateParamOptions {
+class DTemplateParamOptions {
     val mapParamOptions = mapOf<String, ParamOptions>(
         "Пол" to ParamOptions(
             "Пол",
@@ -74,7 +74,7 @@ class TemplateParamOptions {
 
     fun createListAllNamParamNum(): RealmList<String> {
         val list = RealmList<String>()
-        for (key in TemplateParamNum().mapParamNum.keys) {
+        for (key in DTemplateParamNum().mapParamNum.keys) {
             list.add(key)
         }
         return list

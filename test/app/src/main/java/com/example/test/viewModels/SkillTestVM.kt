@@ -96,7 +96,7 @@ class SkillTestVM : ViewModel() {
             if (roll.mods!!.isNotEmpty()) {
                 for (mod in roll.mods!!) {
                     val res = if (mod.style) {
-                        SpecialGameData().modValue[(mod.value - 1)].toInt()
+                        DSpecialGameData().modValue[(mod.value - 1)].toInt()
                     } else {
                         mod.value
                     }
@@ -169,7 +169,7 @@ class SkillTestVM : ViewModel() {
             if (roll.mods!!.isNotEmpty()) {
                 for (mod in roll.mods!!) {
                     val res = if (mod.style) {
-                        SpecialGameData().modValue[(mod.value - 1)].toInt()
+                        DSpecialGameData().modValue[(mod.value - 1)].toInt()
                     } else {
                         mod.value
                     }

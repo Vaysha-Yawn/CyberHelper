@@ -1,7 +1,7 @@
 package com.example.test.data_base
 
-class SpecialGameData() {
-// убрать emptyList кроме item
+class DSpecialGameData {
+    // убрать emptyList кроме item
     val groupPreferences = mapOf(
         "Базовые параметры" to mapOf(
             "str" to emptyList(), "num" to emptyList(), "options" to emptyList()

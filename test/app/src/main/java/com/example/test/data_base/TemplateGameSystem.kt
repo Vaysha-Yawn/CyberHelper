@@ -239,16 +239,16 @@ class TemplateGameSystem {
                 true,
                 effectsAdd = RealmList(EffectAdd(true, "move", 4, true, null, null)),
                 otherParamNum = RealmList<ParamNum>(
-                    TemplateParamNum().initParamNum(
-                        TemplateParamNum().mapParamNumItem["Атака программы"]!!,
+                    DTemplateParamNum().initParamNum(
+                        DTemplateParamNum().mapParamNumItem["Атака программы"]!!,
                         0
                     ),
-                    TemplateParamNum().initParamNum(
-                        TemplateParamNum().mapParamNumItem["Защита программы"]!!,
+                    DTemplateParamNum().initParamNum(
+                        DTemplateParamNum().mapParamNumItem["Защита программы"]!!,
                         0
                     ),
-                    TemplateParamNum().initParamNum(
-                        TemplateParamNum().mapParamNumItem["Установка программы"]!!,
+                    DTemplateParamNum().initParamNum(
+                        DTemplateParamNum().mapParamNumItem["Установка программы"]!!,
                         7
                     )
                 ),
@@ -305,10 +305,10 @@ class TemplateGameSystem {
                     ga.listParamStr = TemplateParamStr().createListParamStr(value)
                 }
                 "listParamNum" -> {
-                    ga.listParamNum = TemplateParamNum().createListParamNum(value)
+                    ga.listParamNum = DTemplateParamNum().createListParamNum(value)
                 }
                 "listParamOptions" -> {
-                    ga.listParamOptions = TemplateParamOptions().createListParamOptions(value)
+                    ga.listParamOptions = DTemplateParamOptions().createListParamOptions(value)
                 }
                 "listItem" -> {
                     ga.listItem = TemplateItem().createListItem(value)

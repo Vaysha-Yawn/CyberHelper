@@ -7,21 +7,17 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.*
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.adapters.DropDownAdapterRV
-import com.example.test.data_base.TemplateParamOptions
+import com.example.test.data_base.DTemplateParamOptions
 import com.example.test.databinding.EditOptionBinding
 import com.example.test.viewModels.CharacterDAO
 
 class Edit_Options : Fragment(){
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,9 +49,9 @@ class Edit_Options : Fragment(){
             }
 
             val param = if (mod == 0 || mod == 1) {
-                TemplateParamOptions().mapParamOptions[paramName]!!
+                DTemplateParamOptions().mapParamOptions[paramName]!!
             } else {
-                TemplateParamOptions().mapParamOptionsItem[paramName]!!
+                DTemplateParamOptions().mapParamOptionsItem[paramName]!!
             }
 
             titleView.text = paramName

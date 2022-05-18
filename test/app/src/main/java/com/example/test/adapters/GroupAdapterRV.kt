@@ -10,13 +10,12 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
+import com.example.test.data_base.DSpecialGameData
 import com.example.test.data_base.GroupParam
-import com.example.test.data_base.ParamTypes
-import com.example.test.data_base.SpecialGameData
 import com.example.test.databinding.CardGroupParamBinding
 
 
-class GroupAdapterRV() :
+class GroupAdapterRV :
     RecyclerView.Adapter<GroupAdapterRV.TemplateHolder>() {
 
     private var newOrPres = true
@@ -65,7 +64,7 @@ class GroupAdapterRV() :
             addParamOptions.visibility = View.GONE
             addItem.visibility = View.GONE
 
-            val gpPref = SpecialGameData().groupPreferences[groupTitle]!!
+            val gpPref = DSpecialGameData().groupPreferences[groupTitle]!!
 
             val arrayList = ArrayList<String>()
 

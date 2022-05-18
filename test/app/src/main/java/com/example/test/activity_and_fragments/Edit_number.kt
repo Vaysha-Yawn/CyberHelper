@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.data_base.TemplateParamNum
+import com.example.test.data_base.DTemplateParamNum
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.views.PlusMinusView
 
@@ -46,9 +46,9 @@ class Edit_number : Fragment() {
         }
 
         val param = if (mod == 0 || mod == 1) {
-            TemplateParamNum().mapParamNum[paramName]!!
+            DTemplateParamNum().mapParamNum[paramName]!!
         } else {
-            TemplateParamNum().mapParamNumItem[paramName]!!
+            DTemplateParamNum().mapParamNumItem[paramName]!!
         }
 
         titleView.text = param.name

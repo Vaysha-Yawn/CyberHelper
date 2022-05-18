@@ -1,9 +1,8 @@
 package com.example.test.data_base
 
-import io.realm.Realm
 import io.realm.RealmList
 
-class TemplateFightType {
+class DTemplateFightType {
 
 
     val variation = mapOf(

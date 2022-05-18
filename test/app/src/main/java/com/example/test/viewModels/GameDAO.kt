@@ -6,7 +6,6 @@ import com.example.test.data_base.Character
 import com.example.test.data_base.Game
 import io.realm.Realm
 import io.realm.RealmList
-import io.realm.RealmResults
 
 open class GameDAO : ViewModel() {
 
@@ -54,7 +53,7 @@ open class GameDAO : ViewModel() {
         }
     }
 
-    private fun loadGameById(id: Int): Game {
+    fun loadGameById(id: Int): Game {
         return realm.where(Game::class.java).equalTo("id", id).findFirst()!!
     }
 

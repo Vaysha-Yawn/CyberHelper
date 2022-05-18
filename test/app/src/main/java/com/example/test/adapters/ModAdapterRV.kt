@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
+import com.example.test.data_base.DSpecialGameData
 import com.example.test.data_base.Mod
-import com.example.test.data_base.SpecialGameData
 import com.example.test.databinding.CardModBinding
 import com.example.test.views.PlusMinusView
 
@@ -56,7 +56,7 @@ class ModTemplateHolder(
         if (mod.style){
             PMLinear.visibility = View.GONE
             DD.visibility = View.VISIBLE
-            DD.setDDArrayAndListener(SpecialGameData().modName, this@ModTemplateHolder, null)
+            DD.setDDArrayAndListener(DSpecialGameData().modName, this@ModTemplateHolder, null)
         }else{
             PMLinear.visibility = View.VISIBLE
             DD.visibility = View.GONE

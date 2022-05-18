@@ -12,14 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.activity_and_fragments.hosts.PresentHost
-import com.example.test.data_base.SpecialGameData
 import com.example.test.data_base.TemplateParamStr
-import com.example.test.adapters.DropDownAdapterRV
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
 import com.example.test.viewModels.SkillTestVM
-import com.example.test.views.DropDownView
 import com.example.test.views.HeaderView
 
 
