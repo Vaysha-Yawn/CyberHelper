@@ -20,7 +20,6 @@ import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
 import com.example.test.viewModels.GameSystemDAO
 import com.example.test.viewModels.NewCharacterVM
-import com.example.test.widgets.ModDialogFragment
 
 class NewGame : Fragment() {
 
@@ -126,12 +125,10 @@ class ChooseSystemDialogFragment : DialogFragment() {
             variant2.text = "ДнД"
             variant1.setOnClickListener {
                 mGameSystemDAO.addGameSystem(TemplateGameSystem().cyberPuckSystem)
-                mGameSystemDAO.initGameSystemById(0)
                 dismiss()
             }
             variant2.setOnClickListener {
                 mGameSystemDAO.addGameSystem(TemplateGameSystem().DnDSystem)
-                mGameSystemDAO.initGameSystemById(1)
                 dismiss()
             }
         }

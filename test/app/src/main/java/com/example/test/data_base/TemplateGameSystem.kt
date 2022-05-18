@@ -387,7 +387,7 @@ class TemplateGameSystem {
     )
 
     val DnDSystem = GameSystem(
-        1,
+        2,
         "DnDSystem",
         RealmList<String>(
             "Базовые параметры", "Параметры", "Навыки", "Биография", "Особенности персонажа",
