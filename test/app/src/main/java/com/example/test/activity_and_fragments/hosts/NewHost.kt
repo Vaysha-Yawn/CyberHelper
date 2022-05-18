@@ -8,11 +8,13 @@ import com.example.test.R
 import com.example.test.activity_and_fragments.MainActivity
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
+import com.example.test.viewModels.GameSystemDAO
 
 class NewHost : AppCompatActivity() {
 
     private val mCharacterVM: CharacterDAO by viewModels()
     private val mGameVM: GameDAO by viewModels()
+    private val mGameSystemVM: GameSystemDAO by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

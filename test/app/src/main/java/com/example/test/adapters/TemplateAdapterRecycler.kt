@@ -13,32 +13,28 @@ import com.example.test.data_base.TemplateParamStr
 import com.example.test.databinding.CardCharacterBinding
 
 
-class TemplateAdapterRecycler : RecyclerView.Adapter<TemplateAdapterRecycler.TemplateHolder>() {
+class TemplateAdapterRecycler (private val newOrPres: Boolean) : RecyclerView.Adapter<TemplateAdapterRecycler.TemplateHolder>() {
 
     private var characterList = emptyList<Character>()
-    private var gameId = 0
-    private var type = ""
 
-    class TemplateHolder(view: View, private val gameId: String, private val type: String) :
+    class TemplateHolder(view: View, private val newOrPres: Boolean,) :
         RecyclerView.ViewHolder(view) {
         private val binding = CardCharacterBinding.bind(view)
-        fun bind(character: Character) = with(binding) {
+        fun bind(character: Character, position:Int) = with(binding) {
             val name =
                 TemplateParamStr().readParamStr(character, "Базовые параметры", "Имя персонажа")
             HomeCardName.text = name
             HomeCardAvatar.setOnClickListener { v ->
-                val r =
-                    v.context.getSharedPreferences("id", 0).getString("newGameId", "0")!!.toInt()
-                if (gameId.toInt() == r) {
+                if (newOrPres) {
                     val bundle = Bundle()
-                    bundle.putString("name", name)
+                    bundle.putInt("position", position)
                     v.findNavController().navigate(
                         R.id.action_new_choiceTemplate_to_new_newCharacterByTemplate,
                         bundle
                     )
                 } else {
                     val bundle = Bundle()
-                    bundle.putString("name", name)
+                    bundle.putInt("position", position)
                     v.findNavController().navigate(
                         R.id.action_choiceTemplate_to_newCharacterByTemplate2,
                         bundle
@@ -51,21 +47,19 @@ class TemplateAdapterRecycler : RecyclerView.Adapter<TemplateAdapterRecycler.Tem
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TemplateHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.card_character, parent, false)
-        return TemplateHolder(view, gameId.toString(), type)
+        return TemplateHolder(view, newOrPres)
     }
 
     override fun onBindViewHolder(holder: TemplateHolder, position: Int) {
-        holder.bind(characterList[position])
+        holder.bind(characterList[position], position)
     }
 
     override fun getItemCount(): Int {
         return characterList.size
     }
 
-    fun setData(list: List<Character>, gamId: Int, typer: String) {
+    fun setData(list: List<Character>) {
         this.characterList = list
-        this.gameId = gamId
-        this.type = typer
         notifyDataSetChanged()
     }
 

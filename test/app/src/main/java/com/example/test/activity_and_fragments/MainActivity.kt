@@ -67,38 +67,3 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-
-class ChooseSystemDialogFragment : DialogFragment() {
-
-    private val mGameSystemDAO: GameSystemDAO by viewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
-        val view = inflater.inflate(R.layout.dialog_choose_add_modification, container, false)
-
-        val binding = DialogChooseAddModificationBinding.bind(view)
-        fun bind() = with(binding) {
-            title.text = "Выберите нужную игровую систему"
-            variant1.text = "Киберпанк"
-            variant2.text = "ДнД"
-            variant1.setOnClickListener {
-                mGameSystemDAO.addGameSystem(TemplateGameSystem().cyberPuckSystem)
-                mGameSystemDAO.initGameSystemById(0)
-                dismiss()
-            }
-            variant2.setOnClickListener {
-                mGameSystemDAO.addGameSystem(TemplateGameSystem().DnDSystem)
-                mGameSystemDAO.initGameSystemById(1)
-                dismiss()
-            }
-        }
-        bind()
-
-        return view
-    }
-
-}

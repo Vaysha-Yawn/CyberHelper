@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import android.widget.Toast.LENGTH_SHORT
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.test.R
@@ -16,6 +18,7 @@ import com.example.test.data_base.*
 import com.example.test.viewModels.NewCharacterVM
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
+import com.example.test.viewModels.GameSystemDAO
 import com.example.test.views.HeaderView
 import com.example.test.views.PlusMinusView
 import io.realm.RealmList
@@ -26,7 +29,7 @@ class NewCharacterByTemplate : Fragment(), HeaderView.HeaderBack {
 
     private lateinit var mNewCharacterVM: NewCharacterVM
     private val mCharacterVM: CharacterDAO by activityViewModels()
-    private val mGameVM: GameDAO by activityViewModels()
+    private val mGameSystemVM: GameSystemDAO by viewModels()
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     override fun onCreateView(
@@ -44,10 +47,9 @@ class NewCharacterByTemplate : Fragment(), HeaderView.HeaderBack {
         }
 
         tvgender.setOnClickListener {
-            if (tvgender.isChecked){
+            if (tvgender.isChecked) {
                 mNewCharacterVM.genderSetCheck()
-            }
-            else{
+            } else {
                 mNewCharacterVM.genderSetUnCheck()
             }
         }
@@ -57,64 +59,72 @@ class NewCharacterByTemplate : Fragment(), HeaderView.HeaderBack {
 
         val done = view.findViewById<Button>(R.id.newByTemplate_Done)
         done.setOnClickListener {
-            val nameCharacter = view.findViewById<EditText>(R.id.newByTemplate_EditNameCharacter).text.toString()
-            if (nameCharacter!="") {
-                try{
-                val name = this.requireArguments().getString("name", "")
-                val templateCharacter = TemplateCharacter().mapCharacter[name]
-                if (templateCharacter==null){
-                    Toast.makeText(view.context, "Error", Toast.LENGTH_SHORT).show()
-                }
-                else{
-                    val gender = tvgender.text.toString()
-                    val age = PM.getValue().toIntOrNull()
-                    val attributes = templateCharacter.attributes
-                    attributes.forEach { gp ->
-                        if (gp.title == "Базовые параметры") {
-                            gp.attributes!!.listParamStr.forEach { ps ->
-                                if (ps.name == "Имя персонажа") {
-                                    ps.value = nameCharacter
+            val nameCharacter =
+                view.findViewById<EditText>(R.id.newByTemplate_EditNameCharacter).text.toString()
+            if (nameCharacter != "") {
+                try {
+                    val position = this.requireArguments().getInt("position")
+
+                    val templateCharacter = mGameSystemVM.getTemplatesCharacter()[position]
+
+                    if (templateCharacter == null) {
+                        Toast.makeText(view.context, "Error", Toast.LENGTH_SHORT).show()
+                    } else {
+                        val gender = tvgender.text.toString()
+                        val age = PM.getValue().toIntOrNull()
+                        val attributes = templateCharacter.attributes
+                        attributes.forEach { gp ->
+                            if (gp.title == "Базовые параметры") {
+                                gp.attributes!!.listParamStr.forEach { ps ->
+                                    if (ps.name == "Имя персонажа") {
+                                        ps.value = nameCharacter
+                                    }
                                 }
-                            }
-                            gp.attributes!!.listParamNum.forEach { ps ->
-                                if (ps.name == "Возраст") {
-                                    ps.value = age?:0
+                                gp.attributes!!.listParamNum.forEach { ps ->
+                                    if (ps.name == "Возраст") {
+                                        ps.value = age ?: 0
+                                    }
                                 }
-                            }
-                            gp.attributes!!.listParamOptions.forEach { ps ->
-                                if (ps.name == "Пол") {
-                                    ps.value = gender
+                                gp.attributes!!.listParamOptions.forEach { ps ->
+                                    if (ps.name == "Пол") {
+                                        ps.value = gender
+                                    }
                                 }
                             }
                         }
+                        addCharacter(gameId, attributes)
                     }
-                    addCharacter(gameId, attributes)
-                }
 
-                val r = view.context.getSharedPreferences("id", 0).getString("newGameId", "0")!!.toInt()
-                if (gameId==r){
-                    view.findNavController().navigate(R.id.action_new_newCharacterByTemplate_to_newGame)
+                    val r = view.context.getSharedPreferences("id", 0).getString("newGameId", "0")!!
+                        .toInt()
+                    if (gameId == r) {
+                        view.findNavController()
+                            .navigate(R.id.action_new_newCharacterByTemplate_to_newGame)
+                    } else {
+                        view.findNavController()
+                            .navigate(R.id.action_pres_newCharacterByTemplate_to_home2)
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(view.context, "$e", Toast.LENGTH_SHORT).show()
                 }
-                else{
-                    view.findNavController().navigate(R.id.action_pres_newCharacterByTemplate_to_home2)
-                }
-                }catch (e: Exception){Toast.makeText(view.context, "$e", Toast.LENGTH_SHORT).show()}
             } else {
                 Toast.makeText(view.context, "Введите, пожалуйста, имя", Toast.LENGTH_SHORT).show()
             }
 
         }
 
-        view.findViewById<HeaderView>(R.id.header).setBack(true, this, requireActivity(), viewLifecycleOwner)
+        view.findViewById<HeaderView>(R.id.header)
+            .setBack(true, this, requireActivity(), viewLifecycleOwner)
         return view
     }
 
-    private fun addCharacter(gameId: Int, attributes: RealmList<GroupParam>
-    ){
+    private fun addCharacter(
+        gameId: Int, attributes: RealmList<GroupParam>
+    ) {
 
         mCharacterVM.addCharacter(gameId, attributes)
 
-        Toast.makeText (  view?.context, "Персанаж создан", LENGTH_SHORT).show()
+        Toast.makeText(view?.context, "Персанаж создан", LENGTH_SHORT).show()
     }
 
     override fun back() {

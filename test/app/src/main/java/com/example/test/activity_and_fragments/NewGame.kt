@@ -5,15 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.os.bundleOf
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.activity_and_fragments.hosts.NewHost
 import com.example.test.adapters.CharacterAdapter
+import com.example.test.data_base.TemplateGameSystem
+import com.example.test.databinding.DialogChooseAddModificationBinding
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
+import com.example.test.viewModels.GameSystemDAO
 import com.example.test.viewModels.NewCharacterVM
+import com.example.test.widgets.ModDialogFragment
 
 class NewGame : Fragment() {
 
@@ -28,13 +35,23 @@ class NewGame : Fragment() {
         val view = inflater.inflate(R.layout.new_game, container, false)
         try {
             val gameId = mCharacterVM.gameId
+
+            // подключаем выбор игровой системы
+            val dialogFragment = ChooseSystemDialogFragment()
+            dialogFragment.isCancelable = false
+            dialogFragment.show(childFragmentManager, "chooseSystem")
+
+
             val tvGameName = view.findViewById<TextView>(R.id.NewGame_EditNameGame)
             tvGameName.text = mNewVM.gameName.value
 
             val newCharacter = view.findViewById<Button>(R.id.NewGame_NewCharacter)
             newCharacter.setOnClickListener {
                 mNewVM.gameName.value = tvGameName.text.toString()
-                view.findNavController().navigate(R.id.action_newGame_to_new_choiceTemplate)
+                view.findNavController().navigate(
+                    R.id.action_newGame_to_new_choiceTemplate,
+                    bundleOf("newOrPres" to true)
+                )
             }
 
             //CharacterAdapter ищем, подключаем
@@ -87,4 +104,40 @@ class NewGame : Fragment() {
         mGameVM.addGame(gameId, nameGame)
         Toast.makeText(view?.context, "Новая игра № $gameId", Toast.LENGTH_SHORT).show()
     }
+}
+
+
+class ChooseSystemDialogFragment : DialogFragment() {
+
+    private val mGameSystemDAO: GameSystemDAO by viewModels()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+        val view = inflater.inflate(R.layout.dialog_choose_add_modification, container, false)
+
+        val binding = DialogChooseAddModificationBinding.bind(view)
+        fun bind() = with(binding) {
+            title.text = "Выберите нужную игровую систему"
+            variant1.text = "Киберпанк"
+            variant2.text = "ДнД"
+            variant1.setOnClickListener {
+                mGameSystemDAO.addGameSystem(TemplateGameSystem().cyberPuckSystem)
+                mGameSystemDAO.initGameSystemById(0)
+                dismiss()
+            }
+            variant2.setOnClickListener {
+                mGameSystemDAO.addGameSystem(TemplateGameSystem().DnDSystem)
+                mGameSystemDAO.initGameSystemById(1)
+                dismiss()
+            }
+        }
+        bind()
+
+        return view
+    }
+
 }

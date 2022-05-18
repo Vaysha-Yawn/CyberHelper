@@ -1,8 +1,10 @@
 package com.example.test.viewModels
 
 import androidx.lifecycle.ViewModel
+import com.example.test.data_base.Character
 import com.example.test.data_base.GameSystem
 import io.realm.Realm
+import io.realm.RealmList
 
 open class GameSystemDAO : ViewModel() {
 
@@ -22,6 +24,10 @@ open class GameSystemDAO : ViewModel() {
 
     fun initGameSystemById(id: Int) {
         currentGameSystem = realm.where(GameSystem::class.java).equalTo("id", id).findFirst()!!
+    }
+
+    fun getTemplatesCharacter(): RealmList<Character> {
+        return currentGameSystem.templateCharacter
     }
 
     //UPDATE
