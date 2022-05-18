@@ -10,7 +10,8 @@ class DTemplateParamOptions {
             false,
             "Выберите пол",
             RealmList<String>("Мужской", "Женский"),
-            "Базовые параметры"
+            "Базовые параметры",
+            false
         ),
         "Роль" to ParamOptions(
             "Роль",
@@ -18,7 +19,8 @@ class DTemplateParamOptions {
             false,
             "Выберите роль",
             RealmList<String>("Рокер", "Соло", "Нетраннер", "Кочевник", "Техник", "Фиксер"),
-            "Базовые параметры"
+            "Базовые параметры",
+            false
         ),
         "Значимость" to ParamOptions(
             "Значимость",
@@ -26,7 +28,7 @@ class DTemplateParamOptions {
             false,
             "Выберите значимость",
             RealmList<String>("Главный герой", "Второстепенный герой"),
-            "Базовые параметры"
+            "Базовые параметры", false
         ),
     )
 
@@ -36,7 +38,13 @@ class DTemplateParamOptions {
             "",
             true,
             "Выберите тип программы",
-            RealmList<String>("Усиление", "Нападение", "Защита", "Противонетраннерский", "Противопрограммный")
+            RealmList<String>(
+                "Усиление",
+                "Нападение",
+                "Защита",
+                "Противонетраннерский",
+                "Противопрограммный"
+            ), "", true
         ),
     )
 
@@ -47,28 +55,45 @@ class DTemplateParamOptions {
             false,
             "Выберите тип оружия",
             RealmList<String>("Ближний бой", "Дальний бой", "Автоматический огонь", "Взрывчатка"),
-        ),
-        "Параметры для влияния" to ParamOptions(
-            "Параметры для влияния",
             "",
-            false,
-            "Выберите параметр",
-            createListAllNamParamNum(), // надо добавить сюда реально используемые значения, все, которые возможны,
+            true
         ),
         "Способность" to ParamOptions(
             "Способность",
             "",
             false,
             "Выберите способность",
-            RealmList<String>("Детектор", "Лазейка", "Следопыт", "Побег", "Шокер", "Дешифровка", "Управление", "Вирус", "Маскировка"),
+            RealmList<String>(
+                "Детектор",
+                "Лазейка",
+                "Следопыт",
+                "Побег",
+                "Шокер",
+                "Дешифровка",
+                "Управление",
+                "Вирус",
+                "Маскировка"
+            ),
+            "", true
         ),
         "Проверка по навыку" to ParamOptions(
             "Проверка по навыку",
             "",
             false,
             "Выберите навык",
-            RealmList<String>("Внимательность", "Выслеживание", "Образование", "Знание местности", "Интерфейс", "Стрельба", "Вождение", "Уклонение", "Атлетика",
-                "Скрытность",),
+            RealmList<String>(
+                "Внимательность",
+                "Выслеживание",
+                "Образование",
+                "Знание местности",
+                "Интерфейс",
+                "Стрельба",
+                "Вождение",
+                "Уклонение",
+                "Атлетика",
+                "Скрытность",
+            ),
+            "", true
         ),
     )
 
@@ -88,8 +113,9 @@ class DTemplateParamOptions {
     fun createListParamOptions(map: Map<String, String>): RealmList<ParamOptions> {
         val list = RealmList<ParamOptions>()
         for ((key, value) in map) {
-            if (mapParamOptions[key]!=null){
-            list.add(initParamOptions(mapParamOptions[key]!!, value))}
+            if (mapParamOptions[key] != null) {
+                list.add(initParamOptions(mapParamOptions[key]!!, value))
+            }
         }
         return list
     }
@@ -108,3 +134,13 @@ class DTemplateParamOptions {
         return value
     }
 }
+
+/*
+"Параметры для влияния" to ParamOptions(
+"Параметры для влияния",
+"",
+false,
+"Выберите параметр",
+createListAllNamParamNum(), // надо добавить сюда реально используемые значения, все, которые возможны,
+"", true
+),*/

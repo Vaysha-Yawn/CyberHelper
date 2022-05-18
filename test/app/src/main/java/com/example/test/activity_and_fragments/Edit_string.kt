@@ -10,14 +10,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.data_base.TemplateParamStr
+import com.example.test.data_base.ParamStr
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
+import com.example.test.viewModels.GameSystemDAO
 
 class Edit_string : Fragment() {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
+    private val mGameSystemVM: GameSystemDAO by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,14 +57,18 @@ class Edit_string : Fragment() {
         applyBtn.setOnClickListener {
             val result = editView.text.toString()
             when(mod){
-                0->{//при добавлении параметра персонажу
-                    val param = TemplateParamStr().mapParamStr[paramName]!!
+                0-> {//при добавлении параметра персонажу
+                    var param: ParamStr = ParamStr()
+                    for (i in mGameSystemVM.currentGameSystem.templateParamStr) {
+                        if (i.name == paramName) {
+                            param = i
+                        }
+                    }
                     param.value = result
-                    mCharacterVM.addCharacterParamStr( characterId, groupTitle, param)
+                    mCharacterVM.addCharacterParamStr(characterId, groupTitle, param)
                     view.findNavController().popBackStack()
                 }
                 1->{// при обновлении параметра персонажа
-                    val param = TemplateParamStr().mapParamStr[paramName]!!
                     if (paramName == "Название игры") {
                         mGameVM.updateGameName(gameId, result)
                     } else {
@@ -74,15 +80,25 @@ class Edit_string : Fragment() {
                         )
                     }
                 }
-                2->{// при добавлении параметра предмету
-                    val param = TemplateParamStr().mapParamStrItem[paramName]!!
+                2-> {// при добавлении параметра предмету
+                    var param: ParamStr = ParamStr()
+                    for (i in mGameSystemVM.currentGameSystem.templateParamStr) {
+                        if (i.name == paramName) {
+                            param = i
+                        }
+                    }
                     param.value = result
                     param.removable = true
                     mCharacterVM.LOCaddParamStrItem(param)
                     view.findNavController().popBackStack()
                 }
-                3->{// при обновлении параметра предмета
-                    val param = TemplateParamStr().mapParamStrItem[paramName]!!
+                3-> {// при обновлении параметра предмета
+                    var param: ParamStr = ParamStr()
+                    for (i in mGameSystemVM.currentGameSystem.templateParamStr) {
+                        if (i.name == paramName) {
+                            param = i
+                        }
+                    }
                     param.value = result
                     param.removable = true
                     mCharacterVM.LOCupdateParamStrItem(indexParam, param)

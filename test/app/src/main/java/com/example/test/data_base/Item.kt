@@ -394,7 +394,7 @@ class DTemplateItem {
 
     val mapItem = mapGroupToItems["Снаряжение"]
 
-    fun createListItem(map: Map<String, String>): RealmList<Item> {
+    /*fun createListItem(map: Map<String, String>): RealmList<Item> {
         val list = RealmList<Item>()
         for ((key, value) in map) {
             when (key) {
@@ -421,7 +421,7 @@ class DTemplateItem {
             }
         }
         return list
-    }
+    }*/
 
     /*fun readItem(character: Character, titleGroup:String, nameItem:String):Item {
         var value = Item()

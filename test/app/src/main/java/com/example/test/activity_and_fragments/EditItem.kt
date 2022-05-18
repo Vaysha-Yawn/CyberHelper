@@ -15,12 +15,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.adapters.*
 import com.example.test.data_base.Item
-import com.example.test.data_base.TemplateItem
 import com.example.test.viewModels.CharacterDAO
+import com.example.test.viewModels.GameSystemDAO
 
 class EditItem : Fragment() {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mGameSystemVM: GameSystemDAO by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +53,9 @@ class EditItem : Fragment() {
             descriptionTV.text = editItem.description
         } else {
             if (template != "") {
-                editItem = TemplateItem().mapGroupToItems[groupTitle]?.get(template)!!
+                editItem = mGameSystemVM.currentGameSystem.templateItem.singleOrNull {
+                    it.group == groupTitle && it.name == template
+                }!!
             } else {
                 mCharacterVM.item.value = Item()
             }
@@ -222,13 +225,13 @@ class EditItem : Fragment() {
                             view.findNavController().popBackStack()
                         } else {
                             // todo: изменения не сохраняются, нужна более жесткая артиллерия вроде Реалма
-                            TemplateItem().mapGroupToItems[groupTitle]?.set(item.name, item)
+                            /*mGameSystemVM.currentGameSystem.templateItem.singleOrNull {
+                                it.group == groupTitle && it.name == template
+                            }!!*/
+                            //TemplateItem().mapGroupToItems[groupTitle]?.set(item.name, item)
                             mCharacterVM.LOCitemClear()
                             view.findNavController().popBackStack()
-                            Toast.makeText(view.context, "${TemplateItem().mapGroupToItems[groupTitle]?.get(item.name)?.name}", Toast.LENGTH_SHORT)
-                                .show()
                         }
-
                     } else {
                         mCharacterVM.updateCharacterParamItem(characterId, item, groupTitle, index)
                         Toast.makeText(view.context, "Предмет успешно изменен", Toast.LENGTH_SHORT)

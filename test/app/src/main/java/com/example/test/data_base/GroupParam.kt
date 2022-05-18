@@ -16,9 +16,9 @@ open class GroupAttributes(
 ) : RealmObject()
 
 
-class TemplateCharacter {
+/*class TemplateCharacter {
 
-    fun initGroupsParam(map: Map<String, Map<String, Map<String, String>>>): RealmList<GroupParam> {
+    *//*fun initGroupsParam(map: Map<String, Map<String, Map<String, String>>>): RealmList<GroupParam> {
         val list = RealmList<GroupParam>()
         for ((key, value) in map) {
             val gp = GroupParam()
@@ -27,9 +27,9 @@ class TemplateCharacter {
             list.add(gp)
         }
         return list
-    }
+    }*//*
 
-    fun initGroupAttributes(
+    *//*fun initGroupAttributes(
         map: Map<String, Map<String, String>>
     ): GroupAttributes {
         val ga = GroupAttributes()
@@ -51,7 +51,7 @@ class TemplateCharacter {
 
         }
         return ga
-    }
+    }*//*
 
     val mapCharacter = mapOf<String, Character>(
         "Гриз" to Character(
@@ -153,4 +153,4 @@ class TemplateCharacter {
         ),
     )
 
-}
+}*/

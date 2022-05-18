@@ -5,35 +5,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.activity_and_fragments.EditItem
 import com.example.test.adapters.DropDownAdapterRV
-import com.example.test.data_base.TemplateItem
 import com.example.test.databinding.CardAddOrChooseBinding
 import com.example.test.databinding.EditTemplateItemBinding
+import com.example.test.viewModels.GameSystemDAO
 import com.example.test.views.HeaderView
 
 
 class EditTemplateItemFragment : Fragment(), HeaderView.HeaderBack {
 
+    private val mGameSystemVM: GameSystemDAO by activityViewModels()
     private val options = mutableMapOf<String, MutableList<String>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        for (i in TemplateItem().mapGroupToItems) {
-            val templateItems = i.value.toList()
-            val list = mutableListOf<String>()
-            for (item in templateItems) {
-                list.add(item.second.name)
-
+        for (i in mGameSystemVM.currentGameSystem.templateItem) {
+            if (options[i.group] == null) {
+                options[i.group] = mutableListOf(i.name)
+            } else {
+                options[i.group]?.add(i.name)
             }
-            options[i.key] = list
         }
-
     }
 
     override fun onCreateView(
