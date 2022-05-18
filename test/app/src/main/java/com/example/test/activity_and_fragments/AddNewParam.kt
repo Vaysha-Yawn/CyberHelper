@@ -11,8 +11,8 @@ import com.example.test.R
 import com.example.test.adapters.DropDownAdapterRV
 import com.example.test.data_base.DTemplateParamNum
 import com.example.test.data_base.DTemplateParamOptions
-import com.example.test.data_base.TemplateParamStr
 import com.example.test.viewModels.CharacterDAO
+import com.example.test.viewModels.GameSystemDAO
 import com.example.test.views.DropDownView
 import com.example.test.views.HeaderView
 
@@ -20,6 +20,7 @@ class AddNewParam : Fragment(), HeaderView.HeaderBack,
     DropDownAdapterRV.TemplateHolder.WhenValueTo {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mGameSystemDAO: GameSystemDAO by activityViewModels()
 
     private var type: String = ""
     private var indexItem: Int = 0
@@ -119,10 +120,10 @@ class AddNewParam : Fragment(), HeaderView.HeaderBack,
                 }
                 if (mod == 0 || mod == 1) {
                     if (arr.isEmpty()) {
-                        for (key in TemplateParamStr().mapParamStr.keys) {
-                            options.add(key)
-                            options.remove("Имя персонажа")
-                            options.remove("Название игры")
+                        for (i in mGameSystemDAO.currentGameSystem.templateParamStr) {
+                            if (i.name != "Имя персонажа" && i.name != "Название игры" && i.forItemOrCharacter == false) {
+                                options.add(i.name)
+                            }
                         }
                     } else {
                         arr.forEach {
@@ -132,8 +133,11 @@ class AddNewParam : Fragment(), HeaderView.HeaderBack,
                         }
                     }
                 } else {
-                    for (key in TemplateParamStr().mapParamStrItem.keys) {
-                        options.add(key)
+                    for (i in mGameSystemDAO.currentGameSystem.templateParamStr) {
+                        // не верь примечанию ниже
+                        if (i.name != "Имя персонажа" && i.name != "Название игры" && i.forItemOrCharacter == true) {
+                            options.add(i.name)
+                        }
                     }
                 }
             }

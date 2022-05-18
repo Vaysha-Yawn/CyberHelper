@@ -5,28 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.activity_and_fragments.*
-import com.example.test.data_base.TemplateParamStr
+import com.example.test.data_base.DTemplateParamStr
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
+import com.example.test.viewModels.GameSystemDAO
 import com.example.test.views.HeaderView
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import java.lang.Exception
 
 
 class CharacterList : Fragment(), HeaderView.HeaderBack {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
+    private val mGameSystemVM: GameSystemDAO by activityViewModels()
 
     // todo создать переменную, которая будет сохранять номер выбранного фрагмента
 
@@ -45,7 +43,7 @@ class CharacterList : Fragment(), HeaderView.HeaderBack {
                 list.forEach {
                     if (it.id == characterId) {
                         tvName.text =
-                            TemplateParamStr().readParamStr(
+                            DTemplateParamStr().readParamStr(
                                 it,
                                 "Базовые параметры",
                                 "Имя персонажа"
@@ -65,35 +63,50 @@ class CharacterList : Fragment(), HeaderView.HeaderBack {
                 when (it.itemId) {
                     R.id.Base -> {
                         childFragmentManager.commit {
-                            replace(R.id.Character_list_fragment_container, CharacterList_Base().getFragment(1))
+                            replace(
+                                R.id.Character_list_fragment_container,
+                                CharacterList_Base().getFragment(0)
+                            )
                         }
                         return@setOnNavigationItemSelectedListener true
                     }
 
                     R.id.Skill_and_HP -> {
                         childFragmentManager.commit {
-                            replace(R.id.Character_list_fragment_container,  CharacterList_Base().getFragment(2))
+                            replace(
+                                R.id.Character_list_fragment_container,
+                                CharacterList_Base().getFragment(1)
+                            )
                         }
                         return@setOnNavigationItemSelectedListener true
                     }
 
                     R.id.Armor_and_weapon -> {
                         childFragmentManager.commit {
-                            replace(R.id.Character_list_fragment_container,  CharacterList_Base().getFragment(3))
+                            replace(
+                                R.id.Character_list_fragment_container,
+                                CharacterList_Base().getFragment(2)
+                            )
                         }
                         return@setOnNavigationItemSelectedListener true
                     }
 
                     R.id.Stuff -> {
                         childFragmentManager.commit {
-                            replace(R.id.Character_list_fragment_container,  CharacterList_Base().getFragment(4))
+                            replace(
+                                R.id.Character_list_fragment_container,
+                                CharacterList_Base().getFragment(3)
+                            )
                         }
                         return@setOnNavigationItemSelectedListener true
                     }
 
                     R.id.About -> {
                         childFragmentManager.commit {
-                            replace(R.id.Character_list_fragment_container,  CharacterList_Base().getFragment(5))
+                            replace(
+                                R.id.Character_list_fragment_container,
+                                CharacterList_Base().getFragment(4)
+                            )
                         }
                         return@setOnNavigationItemSelectedListener true
                     }

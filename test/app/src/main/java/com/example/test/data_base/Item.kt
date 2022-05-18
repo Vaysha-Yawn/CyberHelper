@@ -16,7 +16,7 @@ open class Item(
     var type: String = ""
 ) : RealmObject()
 
-class TemplateItem {
+class DTemplateItem {
 
     val melle = "Ближний бой"
     val distant_battle = "Дальний бой"

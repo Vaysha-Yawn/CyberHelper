@@ -27,18 +27,18 @@ class PresentHost : AppCompatActivity() {
         mCharacterVM.loadCharactersByGameId(gameId)
         mGameVM.initGameName(gameId)
         mGameSystemVM.initGameSystemById(mGameVM.loadGameById(gameId).gameSystemId)
-       /* val loadFragment = intent.getStringExtra("fragment")?:""
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        val navController = navHostFragment.navController
-        when(loadFragment){
-            "CharacterMenu"->{
-                val characterId = intent.getIntExtra("characterId", 0)
-                val bundle = Bundle()
-                bundle.putInt("characterId", characterId)
-                navController.navigate(R.id.characterMenu, bundle)
-            }
-        }*/
+        /* val loadFragment = intent.getStringExtra("fragment")?:""
+         val navHostFragment =
+             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+         val navController = navHostFragment.navController
+         when(loadFragment){
+             "CharacterMenu"->{
+                 val characterId = intent.getIntExtra("characterId", 0)
+                 val bundle = Bundle()
+                 bundle.putInt("characterId", characterId)
+                 navController.navigate(R.id.characterMenu, bundle)
+             }
+         }*/
     }
 
     fun backToMain() {

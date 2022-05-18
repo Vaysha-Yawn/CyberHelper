@@ -9,7 +9,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.data_base.Character
-import com.example.test.data_base.TemplateParamStr
+import com.example.test.data_base.DTemplateParamStr
 import com.example.test.databinding.CardCharacterBinding
 
 
@@ -22,7 +22,7 @@ class TemplateAdapterRecycler (private val newOrPres: Boolean) : RecyclerView.Ad
         private val binding = CardCharacterBinding.bind(view)
         fun bind(character: Character, position:Int) = with(binding) {
             val name =
-                TemplateParamStr().readParamStr(character, "Базовые параметры", "Имя персонажа")
+                DTemplateParamStr().readParamStr(character, "Базовые параметры", "Имя персонажа")
             HomeCardName.text = name
             HomeCardAvatar.setOnClickListener { v ->
                 if (newOrPres) {

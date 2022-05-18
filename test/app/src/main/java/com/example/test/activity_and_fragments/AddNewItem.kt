@@ -4,22 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.adapters.DropDownAdapterRV
-import com.example.test.data_base.TemplateItem
 import com.example.test.databinding.AddNewParamItemBinding
 import com.example.test.viewModels.CharacterDAO
-import com.example.test.views.DropDownView
+import com.example.test.viewModels.GameSystemDAO
 import com.example.test.views.HeaderView
 
 class AddNewItem : Fragment(), HeaderView.HeaderBack,
     DropDownAdapterRV.TemplateHolder.WhenValueTo {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mGameSystemDAO: GameSystemDAO by activityViewModels()
 
     private var indexItem: Int = 0
     private var groupTitle: String = ""
@@ -37,13 +36,9 @@ class AddNewItem : Fragment(), HeaderView.HeaderBack,
         val gameId = mCharacterVM.gameId
         val r = requireContext().getSharedPreferences("id", 0).getString("newGameId", "0")!!.toInt()
         newOrPres = gameId == r
-        val templateItems = TemplateItem().mapGroupToItems[groupTitle]?.toList()
-        if (templateItems!= null){
-            for(item in templateItems){
-                options.add(item.second.name)
-            }
-        }else{
-            Toast.makeText(requireContext(), "Группа не найдена или в ней нет шаблонов предметов", Toast.LENGTH_SHORT).show()
+        val templateItems = mGameSystemDAO.currentGameSystem.templateItem
+        for (item in templateItems) {
+            options.add(item.name)
         }
     }
 
@@ -60,10 +55,12 @@ class AddNewItem : Fragment(), HeaderView.HeaderBack,
 
             addParamNum.setOnClickListener {
                 val bundle = EditItem().getEditItemBundle(groupTitle, indexItem, null)
-                if (newOrPres){
-                    view?.findNavController()?.navigate(R.id.action_addNewItem2_to_new_itemEdit, bundle)
-                }else{
-                    view?.findNavController()?.navigate(R.id.action_addNewItem_to_pres_itemEdit, bundle)
+                if (newOrPres) {
+                    view?.findNavController()
+                        ?.navigate(R.id.action_addNewItem2_to_new_itemEdit, bundle)
+                } else {
+                    view?.findNavController()
+                        ?.navigate(R.id.action_addNewItem_to_pres_itemEdit, bundle)
                 }
             }
 
@@ -80,9 +77,9 @@ class AddNewItem : Fragment(), HeaderView.HeaderBack,
     override fun whenValueTo(position: Int) {
         val res = options[position]
         val bundle = EditItem().getEditItemBundle(groupTitle, indexItem, res)
-        if (newOrPres){
+        if (newOrPres) {
             view?.findNavController()?.navigate(R.id.action_addNewItem2_to_new_itemEdit, bundle)
-        }else{
+        } else {
             view?.findNavController()?.navigate(R.id.action_addNewItem_to_pres_itemEdit, bundle)
         }
     }

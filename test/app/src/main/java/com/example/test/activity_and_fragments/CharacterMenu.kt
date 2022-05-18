@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.data_base.TemplateParamStr
+import com.example.test.data_base.DTemplateParamStr
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
 import com.example.test.viewModels.SkillTestVM
@@ -42,7 +42,7 @@ class CharacterMenu : Fragment(), HeaderView.HeaderBack {
             list.forEach {
                 if (it.id == characterId) {
                     tvName.text =
-                        TemplateParamStr().readParamStr(it, "Базовые параметры", "Имя персонажа")
+                        DTemplateParamStr().readParamStr(it, "Базовые параметры", "Имя персонажа")
                 }
             }
         }

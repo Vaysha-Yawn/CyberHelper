@@ -1,6 +1,5 @@
 package com.example.test.adapters
 
-import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,7 @@ import android.widget.Toast
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.data_base.Character
-import com.example.test.data_base.TemplateParamStr
+import com.example.test.data_base.DTemplateParamStr
 import com.example.test.databinding.CardCharacterBinding
 
 
@@ -27,7 +26,7 @@ class CharacterAdapter : BaseAdapter() {
         val view = convertView ?: inflater.inflate(R.layout.card_character, parent, false)
 
         val character: Character = getItem(position)
-        val name = TemplateParamStr().readParamStr(character, "Базовые параметры", "Имя персонажа")
+        val name = DTemplateParamStr().readParamStr(character, "Базовые параметры", "Имя персонажа")
 
         view.findViewById<TextView>(R.id.HomeCard_Name).text = name
 

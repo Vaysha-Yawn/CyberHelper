@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
@@ -38,6 +39,7 @@ class Home : Fragment(), HeaderView.HeaderBack {
 
         val view = inflater.inflate(R.layout.home, container, false)
         val adapterFight = AdapterInitiativeFight()
+
         try {
             val binding = HomeBinding.bind(view)
             with(binding) {
@@ -57,7 +59,10 @@ class Home : Fragment(), HeaderView.HeaderBack {
                 }
 
                 HomeNewCharacter.setOnClickListener {
-                    view.findNavController().navigate(R.id.action_home2_to_choiceTemplate)
+                    view.findNavController().navigate(
+                        R.id.action_home2_to_choiceTemplate,
+                        bundleOf("newOrPres" to false)
+                    )
                 }
 
                 HomeButton.setOnClickListener {

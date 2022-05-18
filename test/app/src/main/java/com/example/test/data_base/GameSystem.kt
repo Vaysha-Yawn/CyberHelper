@@ -11,8 +11,8 @@ open class GameSystem(
     var groups: RealmList<String> = RealmList<String>(),
     var typesItem: RealmList<RealmPair<String, RealmList<String>>> = RealmList<RealmPair<String, RealmList<String>>>(),
     // где первая строка - название группы, вторая название типа
-    var tabsToGroup: RealmList<RealmPair<Int, RealmList<String>>> = RealmList<RealmPair<Int, RealmList<String>>>(),
-    // где число - номер вкладки, вторая строка - название группы, не более 5 названий, названия и иконка вкладки не изменяются, подстраивайтесь под них
+    var tabsToGroup: RealmList<RealmList<String>> = RealmList<RealmList<String>>(),
+    // где порядок - номер вкладки, вторая строка - название группы, не более 5 названий, названия и иконка вкладки не изменяются, подстраивайтесь под них
     var templateCharacter: RealmList<Character> = RealmList<Character>(),
     var templateItem: RealmList<Item> = RealmList<Item>(),
     var templateParamNum: RealmList<ParamNum> = RealmList<ParamNum>(),
