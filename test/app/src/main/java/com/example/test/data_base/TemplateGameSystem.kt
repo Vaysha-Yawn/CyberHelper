@@ -192,6 +192,7 @@ class TemplateGameSystem {
 
         ParamNum("Итого репутация", 0, false, null, 0, "Репутация", false),
     )
+
     val paramOptionsCyberPuckSystem = RealmList<ParamOptions>(
         ParamOptions(
             "Тип оружия",
@@ -267,26 +268,36 @@ class TemplateGameSystem {
         ),
         RealmList(RealmPair("Оружие", RealmList("Дальний бой", "Ближний бой"))),
 
-        RealmList<RealmList<String>>(
-            RealmList(
-                "Базовые параметры"
+        RealmList(
+            RealmSomething(
+                RealmList(
+                    "Базовые параметры"
+                )
             ),
-            RealmList(
-                "Параметры",
-                "Навыки"
+            RealmSomething(
+                RealmList(
+                    "Параметры",
+                    "Навыки"
+                )
             ),
-            RealmList(
-                "Броня",
-                "Оружие"
+            RealmSomething(
+                RealmList(
+                    "Броня",
+                    "Оружие"
+                )
             ),
-            RealmList(
-                "Киберимпланты",
-                "Снаряжение",
-                "Программы"
+            RealmSomething(
+                RealmList(
+                    "Киберимпланты",
+                    "Снаряжение",
+                    "Программы"
+                )
             ),
-            RealmList(
-                "Репутация",
-                "Биография"
+            RealmSomething(
+                RealmList(
+                    "Репутация",
+                    "Биография"
+                )
             ),
         ),
         RealmList<Character>(
@@ -382,11 +393,11 @@ class TemplateGameSystem {
             "Базовые параметры", "Параметры", "Навыки", "Биография", "Особенности персонажа",
             "Информация о игроке", "Снаряжение", "Заклинания", "Экипированное"
         ),
-        RealmList<RealmPair<String, RealmList<String>>>(
+        RealmList<RealmPair>(
             // Оружие, Броня, Артефакты, Безделушки, Зелья
         ),
         // где первая строка - название группы, вторая название типа
-        RealmList<RealmList<String>>(),
+        RealmList<RealmSomething>(),
         // где число - номер вкладки, вторая строка - название группы, не более 5 названий, названия и иконка вкладки не изменяются, подстраивайтесь под них
         // 1 "Базовые параметры"
         // 2 "Параметры", "Навыки",

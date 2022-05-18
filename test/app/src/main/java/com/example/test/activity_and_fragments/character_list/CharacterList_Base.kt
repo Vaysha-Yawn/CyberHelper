@@ -47,7 +47,7 @@ class CharacterList_Base : Fragment() {
             list.forEach { character ->
                 if (character.id == characterId) {
                     val listNameGroup = mGameSystemVM.currentGameSystem.tabsToGroup[groupNumber]!!
-                    listNameGroup.forEach { nameGroup ->
+                    listNameGroup.key.forEach { nameGroup ->
                         character.attributes.forEach { gp ->
                             if (gp.title == nameGroup) {
                                 groupList.add(gp)
