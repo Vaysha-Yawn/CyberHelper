@@ -13,7 +13,6 @@ import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.activity_and_fragments.hosts.NewHost
 import com.example.test.adapters.CharacterAdapter
-import com.example.test.data_base.GameSystem
 import com.example.test.data_base.TemplateGameSystem
 import com.example.test.databinding.DialogChooseAddModificationBinding
 import com.example.test.viewModels.CharacterDAO
@@ -37,7 +36,7 @@ class NewGame : Fragment() {
             val gameId = mCharacterVM.gameId
 
             // подключаем выбор игровой системы
-            if (mGameSystemDAO.currentGameSystem == GameSystem()) {
+            if (mGameSystemDAO.currentGameSystem == null) {
                 val dialogFragment = ChooseSystemDialogFragment()
                 dialogFragment.isCancelable = false
                 dialogFragment.show(childFragmentManager, "chooseSystem")
@@ -102,7 +101,8 @@ class NewGame : Fragment() {
     }
 
     private fun addGame(gameId: Int, nameGame: String) {
-        mGameVM.addGame(gameId, nameGame)
+        val gameSystemId = mGameSystemDAO.addGameSystem(mGameSystemDAO.currentGameSystem!!)
+        mGameVM.addGame(gameId, nameGame, gameSystemId)
         Toast.makeText(view?.context, "Новая игра № $gameId", Toast.LENGTH_SHORT).show()
     }
 }

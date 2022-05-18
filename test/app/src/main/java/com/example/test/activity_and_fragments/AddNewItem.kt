@@ -36,7 +36,7 @@ class AddNewItem : Fragment(), HeaderView.HeaderBack,
         val gameId = mCharacterVM.gameId
         val r = requireContext().getSharedPreferences("id", 0).getString("newGameId", "0")!!.toInt()
         newOrPres = gameId == r
-        val templateItems = mGameSystemDAO.currentGameSystem.templateItem
+        val templateItems = mGameSystemDAO.currentGameSystem!!.templateItem
         for (item in templateItems) {
             options.add(item.name)
         }

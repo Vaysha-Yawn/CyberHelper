@@ -46,7 +46,7 @@ class CharacterList_Base : Fragment() {
         mCharacterVM.characterList.observe(viewLifecycleOwner) { list ->
             list.forEach { character ->
                 if (character.id == characterId) {
-                    val listNameGroup = mGameSystemVM.currentGameSystem.tabsToGroup[groupNumber]!!
+                    val listNameGroup = mGameSystemVM.currentGameSystem!!.tabsToGroup[groupNumber]!!
                     listNameGroup.key.forEach { nameGroup ->
                         character.attributes.forEach { gp ->
                             if (gp.title == nameGroup) {

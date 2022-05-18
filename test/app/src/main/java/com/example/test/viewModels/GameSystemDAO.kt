@@ -10,13 +10,13 @@ open class GameSystemDAO : ViewModel() {
 
     private var realm: Realm = Realm.getDefaultInstance()
 
-    var currentGameSystem = GameSystem()
+    var currentGameSystem: GameSystem? = null
 
     //CREATE
     private fun getNewGameId(): Int {
         var id = realm.where(GameSystem::class.java).max("id")?.toInt()
         if (id == null) {
-            id = 1
+            id = 3
         } else {
             id += 1
         }
@@ -24,12 +24,14 @@ open class GameSystemDAO : ViewModel() {
     }
 
 
-    fun addGameSystem(gameSystem: GameSystem) {
-        gameSystem.id = getNewGameId()
+    fun addGameSystem(gameSystem: GameSystem): Int {
+        val id = getNewGameId()
+        gameSystem.id = id
         realm.executeTransaction { transactionRealm ->
             transactionRealm.insert(gameSystem)
         }
         currentGameSystem = gameSystem
+        return id
     }
 
     //READ
@@ -39,7 +41,7 @@ open class GameSystemDAO : ViewModel() {
     }
 
     fun getTemplatesCharacter(): RealmList<Character> {
-        return currentGameSystem.templateCharacter
+        return currentGameSystem?.templateCharacter ?: RealmList<Character>()
     }
 
     //UPDATE

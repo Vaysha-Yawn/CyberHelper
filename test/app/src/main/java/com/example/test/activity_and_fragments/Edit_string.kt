@@ -59,7 +59,7 @@ class Edit_string : Fragment() {
             when(mod){
                 0-> {//при добавлении параметра персонажу
                     var param: ParamStr = ParamStr()
-                    for (i in mGameSystemVM.currentGameSystem.templateParamStr) {
+                    for (i in mGameSystemVM.currentGameSystem!!.templateParamStr) {
                         if (i.name == paramName) {
                             param = i
                         }
@@ -82,7 +82,7 @@ class Edit_string : Fragment() {
                 }
                 2-> {// при добавлении параметра предмету
                     var param: ParamStr = ParamStr()
-                    for (i in mGameSystemVM.currentGameSystem.templateParamStr) {
+                    for (i in mGameSystemVM.currentGameSystem!!.templateParamStr) {
                         if (i.name == paramName) {
                             param = i
                         }
@@ -94,7 +94,7 @@ class Edit_string : Fragment() {
                 }
                 3-> {// при обновлении параметра предмета
                     var param: ParamStr = ParamStr()
-                    for (i in mGameSystemVM.currentGameSystem.templateParamStr) {
+                    for (i in mGameSystemVM.currentGameSystem!!.templateParamStr) {
                         if (i.name == paramName) {
                             param = i
                         }

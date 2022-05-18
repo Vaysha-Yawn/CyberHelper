@@ -120,7 +120,7 @@ class AddNewParam : Fragment(), HeaderView.HeaderBack,
                 }
                 if (mod == 0 || mod == 1) {
                     if (arr.isEmpty()) {
-                        for (i in mGameSystemDAO.currentGameSystem.templateParamStr) {
+                        for (i in mGameSystemDAO.currentGameSystem!!.templateParamStr) {
                             if (i.name != "Имя персонажа" && i.name != "Название игры" && i.forItemOrCharacter == false) {
                                 options.add(i.name)
                             }
@@ -133,7 +133,7 @@ class AddNewParam : Fragment(), HeaderView.HeaderBack,
                         }
                     }
                 } else {
-                    for (i in mGameSystemDAO.currentGameSystem.templateParamStr) {
+                    for (i in mGameSystemDAO.currentGameSystem!!.templateParamStr) {
                         // не верь примечанию ниже
                         if (i.name != "Имя персонажа" && i.name != "Название игры" && i.forItemOrCharacter == true) {
                             options.add(i.name)

@@ -30,10 +30,11 @@ open class GameDAO : ViewModel() {
 
     //CREATE
 
-    fun addGame(id: Int, name: String) {
+    fun addGame(id: Int, name: String, gameSystemId: Int) {
         val game = Game()
         game.id = id
         game.name = name
+        game.gameSystemId = gameSystemId
         realm.executeTransaction { transactionRealm ->
             transactionRealm.insert(game)
         }

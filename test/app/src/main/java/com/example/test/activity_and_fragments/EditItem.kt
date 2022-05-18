@@ -53,7 +53,7 @@ class EditItem : Fragment() {
             descriptionTV.text = editItem.description
         } else {
             if (template != "") {
-                editItem = mGameSystemVM.currentGameSystem.templateItem.singleOrNull {
+                editItem = mGameSystemVM.currentGameSystem!!.templateItem.singleOrNull {
                     it.group == groupTitle && it.name == template
                 }!!
             } else {

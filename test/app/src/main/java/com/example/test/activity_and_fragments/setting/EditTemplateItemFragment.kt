@@ -26,7 +26,7 @@ class EditTemplateItemFragment : Fragment(), HeaderView.HeaderBack {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        for (i in mGameSystemVM.currentGameSystem.templateItem) {
+        for (i in mGameSystemVM.currentGameSystem!!.templateItem) {
             if (options[i.group] == null) {
                 options[i.group] = mutableListOf(i.name)
             } else {
