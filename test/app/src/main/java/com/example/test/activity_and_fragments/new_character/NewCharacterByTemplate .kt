@@ -61,50 +61,47 @@ class NewCharacterByTemplate : Fragment(), HeaderView.HeaderBack {
             val nameCharacter =
                 view.findViewById<EditText>(R.id.newByTemplate_EditNameCharacter).text.toString()
             if (nameCharacter != "") {
-                try {
-                    val position = this.requireArguments().getInt("position")
 
-                    val templateCharacter = mGameSystemVM.getTemplatesCharacter()[position]
+                val position = this.requireArguments().getInt("position")
 
-                    if (templateCharacter == null) {
-                        Toast.makeText(view.context, "Error", Toast.LENGTH_SHORT).show()
-                    } else {
-                        val gender = tvgender.text.toString()
-                        val age = PM.getValue().toIntOrNull()
-                        val attributes = templateCharacter.attributes
-                        attributes.forEach { gp ->
-                            if (gp.title == "Базовые параметры") {
-                                gp.attributes!!.listParamStr.forEach { ps ->
-                                    if (ps.name == "Имя персонажа") {
-                                        ps.value = nameCharacter
-                                    }
+                val templateCharacter = mGameSystemVM.getTemplatesCharacter()[position]
+
+                if (templateCharacter == null) {
+                    Toast.makeText(view.context, "Error", Toast.LENGTH_SHORT).show()
+                } else {
+                    val gender = tvgender.text.toString()
+                    val age = PM.getValue().toIntOrNull()
+                    val attributes = templateCharacter.attributes
+                    attributes.forEach { gp ->
+                        if (gp.title == "Базовые параметры") {
+                            gp.attributes!!.listParamStr.forEach { ps ->
+                                if (ps.name == "Имя персонажа") {
+                                    ps.value = nameCharacter
                                 }
-                                gp.attributes!!.listParamNum.forEach { ps ->
-                                    if (ps.name == "Возраст") {
-                                        ps.value = age ?: 0
-                                    }
+                            }
+                            gp.attributes!!.listParamNum.forEach { ps ->
+                                if (ps.name == "Возраст") {
+                                    ps.value = age ?: 0
                                 }
-                                gp.attributes!!.listParamOptions.forEach { ps ->
-                                    if (ps.name == "Пол") {
-                                        ps.value = gender
-                                    }
+                            }
+                            gp.attributes!!.listParamOptions.forEach { ps ->
+                                if (ps.name == "Пол") {
+                                    ps.value = gender
                                 }
                             }
                         }
-                        addCharacter(gameId, attributes)
                     }
+                    addCharacter(gameId, attributes)
+                }
 
-                    val r = view.context.getSharedPreferences("id", 0).getString("newGameId", "0")!!
-                        .toInt()
-                    if (gameId == r) {
-                        view.findNavController()
-                            .navigate(R.id.action_new_newCharacterByTemplate_to_newGame)
-                    } else {
-                        view.findNavController()
-                            .navigate(R.id.action_pres_newCharacterByTemplate_to_home2)
-                    }
-                } catch (e: Exception) {
-                    Toast.makeText(view.context, "$e", Toast.LENGTH_SHORT).show()
+                val r = view.context.getSharedPreferences("id", 0).getString("newGameId", "0")!!
+                    .toInt()
+                if (gameId == r) {
+                    view.findNavController()
+                        .navigate(R.id.action_new_newCharacterByTemplate_to_newGame)
+                } else {
+                    view.findNavController()
+                        .navigate(R.id.action_pres_newCharacterByTemplate_to_home2)
                 }
             } else {
                 Toast.makeText(view.context, "Введите, пожалуйста, имя", Toast.LENGTH_SHORT).show()
