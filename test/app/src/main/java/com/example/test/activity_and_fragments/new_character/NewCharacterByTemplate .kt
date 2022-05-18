@@ -5,31 +5,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Switch
+import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.data_base.*
-import com.example.test.viewModels.NewCharacterVM
+import com.example.test.data_base.GroupParam
 import com.example.test.viewModels.CharacterDAO
-import com.example.test.viewModels.GameDAO
 import com.example.test.viewModels.GameSystemDAO
+import com.example.test.viewModels.NewCharacterVM
 import com.example.test.views.HeaderView
 import com.example.test.views.PlusMinusView
 import io.realm.RealmList
-import java.lang.Exception
 
 
 class NewCharacterByTemplate : Fragment(), HeaderView.HeaderBack {
 
     private lateinit var mNewCharacterVM: NewCharacterVM
     private val mCharacterVM: CharacterDAO by activityViewModels()
-    private val mGameSystemVM: GameSystemDAO by viewModels()
+    private val mGameSystemVM: GameSystemDAO by activityViewModels()
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     override fun onCreateView(
