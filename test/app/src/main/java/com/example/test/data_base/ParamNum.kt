@@ -10,5 +10,17 @@ open class ParamNum(
     var minValue: Int? = null,
     var currentGroup: String = "",
     var forItemOrCharacter: Boolean = false, //  true - Item, false - Character
-) : RealmObject()
+) : RealmObject(){
+    fun getCopy():ParamNum{
+        val param = ParamNum()
+        param.name = this.name
+        param.value = this.value
+        param.removable = this.removable
+        param.maxValue = this.maxValue
+        param.minValue = this.minValue
+        param.currentGroup = this.currentGroup
+        param.forItemOrCharacter = this.forItemOrCharacter
+        return param
+    }
+}
 

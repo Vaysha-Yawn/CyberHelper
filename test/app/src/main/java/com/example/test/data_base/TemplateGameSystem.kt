@@ -386,6 +386,111 @@ class TemplateGameSystem {
         paramOptionsCyberPuckSystem,
     )
 
+    /////// дозаполнять
+    val paramNumDnDSystem = RealmList<ParamNum>(
+        ParamNum("Текущие хиты", 0, false, null, 0, "Базовые параметры", false),
+        ParamNum("Временные хиты", 0, false, null, 0, "Базовые параметры", false),
+        ParamNum("Бонус к инициативе", 0, false, null, 0, "Базовые параметры", false),
+        ParamNum("Скорость", 0, false, null, 0, "Базовые параметры", false),
+
+        ParamNum("Класс доспеха", 0, false, null, 0, "Броня", false),
+
+        ParamNum("Сила", 0, false, null, 0, "Параметры", false),
+        ParamNum("Ловкость", 0, false, null, 0, "Параметры", false),
+        ParamNum("Телосложение", 0, false, null, 0, "Параметры", false),
+        ParamNum("Харизма", 0, false, null, 0, "Параметры", false),
+        ParamNum("Техника", 0, false, null, 0, "Параметры", false),
+        ParamNum("Реакция", 0, false, null, 0, "Параметры", false),
+        ParamNum("Удача", 0, false, null, 0, "Параметры", false),
+        ParamNum("Телосложение", 0, false, null, 0, "Параметры", false),
+        ParamNum("Ловкость", 0, false, null, 0, "Параметры", false),
+        ParamNum("Скорость", 0, false, null, 0, "Параметры", false),
+
+        ParamNum("Внимательность", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Выслеживание", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Образование", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Знание местности", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Интерфейс", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Стрельба", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Вождение", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Уклонение", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Атлетика", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Скрытность", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Рукопашный бой", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Оружие ближнего боя", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Знание техники", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Кибертехника", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Первая помощь", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Подкуп", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Допрос", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Убеждение", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Концентрация", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Общение", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Проницательность", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Игра на инструменте", 0, true, 10, 0, "Навыки", false),
+
+        ParamNum("Итого репутация", 0, false, null, 0, "Репутация", false),
+    )
+
+    val paramOptionsDnDSystem = RealmList<ParamOptions>(
+        ParamOptions(
+            "Тип оружия",
+            "",
+            false,
+            "Выберите тип оружия",
+            RealmList<String>("Ближний бой", "Дальний бой", "Автоматический огонь", "Взрывчатка"),
+            "",
+            true
+        ),
+        ParamOptions(
+            "Тип программы",
+            "",
+            true,
+            "Выберите тип программы",
+            RealmList<String>(
+                "Усиление",
+                "Нападение",
+                "Защита",
+                "Противонетраннерский",
+                "Противопрограммный"
+            ), "", true
+        ),
+        ParamOptions(
+            "Значимость",
+            "",
+            false,
+            "Выберите значимость",
+            RealmList<String>("Главный герой", "Второстепенный герой"),
+            "Базовые параметры", false
+        ),
+        ParamOptions(
+            "Роль",
+            "",
+            false,
+            "Выберите роль",
+            RealmList<String>("Рокер", "Соло", "Нетраннер", "Кочевник", "Техник", "Фиксер"),
+            "Базовые параметры",
+            false
+        ),
+        ParamOptions(
+            "Пол",
+            "",
+            false,
+            "Выберите пол",
+            RealmList<String>("Мужской", "Женский"),
+            "Базовые параметры",
+            false
+        ),
+    )
+    val paramStrDnDSystem = RealmList<ParamStr>(
+        ParamStr("Имя персонажа", "", removable = false, "Базовые параметры", false),
+        ParamStr("Название игры", "", removable = false),
+        ParamStr("Семья", "", removable = false, "Биография", false),
+        ParamStr("Мотивация", "", removable = false, "Биография", false),
+        ParamStr("Особенность", "", removable = true, "", true),
+    )
+
+
     val DnDSystem = GameSystem(
         2,
         "DnDSystem",
@@ -544,6 +649,7 @@ class TemplateGameSystem {
         }
         return ga
     }
+
 }
 
 // Расчет инициативы
