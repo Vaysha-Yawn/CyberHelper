@@ -253,7 +253,7 @@ class TemplateGameSystem {
 
     val cyberPuckSystem = GameSystem(
         1,
-        "TemplateGameSystem",
+        "cyberPuckSystem",
         RealmList(
             "Базовые параметры",
             "Параметры",

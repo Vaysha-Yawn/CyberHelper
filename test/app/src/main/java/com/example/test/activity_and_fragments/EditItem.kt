@@ -42,15 +42,21 @@ class EditItem : Fragment() {
         val descriptionTV = view.findViewById<TextView>(R.id.edit_description)
         var editItem: Item = Item()
         if (index != -1) {
-            editItem = mCharacterVM.characterList.value!!.singleOrNull { character ->
-                character.id == characterId
-            }?.attributes?.singleOrNull { gp ->
-                gp.title == groupTitle
-            }?.attributes?.listItem?.get(index)!!
+            if (template != "") {
+                editItem = mGameSystemVM.currentGameSystem!!.templateItem.singleOrNull {
+                    it.group == groupTitle && it.name == template
+                }!!
+            } else {
+                editItem = mCharacterVM.characterList.value!!.singleOrNull { character ->
+                    character.id == characterId
+                }?.attributes?.singleOrNull { gp ->
+                    gp.title == groupTitle
+                }?.attributes?.listItem?.get(index)!!
 
-            mCharacterVM.item.value = editItem
-            nameTV.text = editItem.name
-            descriptionTV.text = editItem.description
+                mCharacterVM.item.value = editItem
+                nameTV.text = editItem.name
+                descriptionTV.text = editItem.description
+            }
         } else {
             if (template != "") {
                 editItem = mGameSystemVM.currentGameSystem!!.templateItem.singleOrNull {
@@ -224,20 +230,43 @@ class EditItem : Fragment() {
                             view.findNavController().popBackStack()
                             view.findNavController().popBackStack()
                         } else {
-                            // todo: изменения не сохраняются, нужна более жесткая артиллерия вроде Реалма
-                            /*mGameSystemVM.currentGameSystem.templateItem.singleOrNull {
-                                it.group == groupTitle && it.name == template
-                            }!!*/
-                            //TemplateItem().mapGroupToItems[groupTitle]?.set(item.name, item)
+                            /// todo добавить шаблон
+                            mGameSystemVM.addTemplateItem(
+                                item,
+                                mGameSystemVM.currentGameSystem!!.id
+                            )
                             mCharacterVM.LOCitemClear()
+                            view.findNavController().popBackStack()
                             view.findNavController().popBackStack()
                         }
                     } else {
-                        mCharacterVM.updateCharacterParamItem(characterId, item, groupTitle, index)
-                        Toast.makeText(view.context, "Предмет успешно изменен", Toast.LENGTH_SHORT)
-                            .show()
-                        mCharacterVM.LOCitemClear()
-                        view.findNavController().popBackStack()
+                        if (!setTemplate) {
+                            mCharacterVM.updateCharacterParamItem(
+                                characterId,
+                                item,
+                                groupTitle,
+                                index
+                            )
+                            Toast.makeText(
+                                view.context,
+                                "Предмет успешно изменен",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                            mCharacterVM.LOCitemClear()
+                            view.findNavController().popBackStack()
+                            view.findNavController().popBackStack()
+                        } else {
+                            /// todo изменить шаблон
+                            mGameSystemVM.updateTemplateItem(
+                                index,
+                                item,
+                                mGameSystemVM.currentGameSystem!!.id
+                            )
+                            mCharacterVM.LOCitemClear()
+                            view.findNavController().popBackStack()
+                            view.findNavController().popBackStack()
+                        }
                     }
                 }
             } catch (e: Exception) {

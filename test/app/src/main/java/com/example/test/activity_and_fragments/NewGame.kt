@@ -101,8 +101,11 @@ class NewGame : Fragment() {
     }
 
     private fun addGame(gameId: Int, nameGame: String) {
-        val gameSystemId = mGameSystemDAO.addGameSystem(mGameSystemDAO.currentGameSystem!!)
-        mGameVM.addGame(gameId, nameGame, gameSystemId)
+        mGameVM.addGame(
+            gameId,
+            nameGame,
+            mGameSystemDAO.findGameSystemId(mGameSystemDAO.currentGameSystem!!.name)!!
+        )
         Toast.makeText(view?.context, "Новая игра № $gameId", Toast.LENGTH_SHORT).show()
     }
 }
@@ -126,12 +129,10 @@ class ChooseSystemDialogFragment : DialogFragment() {
             variant1.text = "Киберпанк"
             variant2.text = "ДнД"
             variant1.setOnClickListener {
-                //mGameSystemDAO.addGameSystem(TemplateGameSystem().cyberPuckSystem)
                 mGameSystemDAO.currentGameSystem = TemplateGameSystem().cyberPuckSystem
                 dismiss()
             }
             variant2.setOnClickListener {
-                //mGameSystemDAO.addGameSystem(TemplateGameSystem().DnDSystem)
                 mGameSystemDAO.currentGameSystem = TemplateGameSystem().DnDSystem
                 dismiss()
             }

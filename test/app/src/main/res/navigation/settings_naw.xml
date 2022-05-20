@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/settings_naw"
-    app:startDestination="@id/settingsMainFragment">
+    app:startDestination="@id/settingsChoseSystem">
     <fragment
         android:id="@+id/settingsMainFragment"
         android:name="com.example.test.activity_and_fragments.setting.SettingsMainFragment"
         android:label="fragment_settings_main"
-        tools:layout="@layout/fragment_settings_main" >
+        tools:layout="@layout/fragment_settings_main">
         <action
             android:id="@+id/action_settingsMainFragment_to_settingFightType2"
             app:destination="@id/settingFightType2" />
@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/editTemplateItemFragment"
         android:name="com.example.test.activity_and_fragments.setting.EditTemplateItemFragment"
-        android:label="EditTemplateItemFragment" >
+        android:label="EditTemplateItemFragment">
         <action
             android:id="@+id/action_editTemplateItemFragment_to_editItem"
             app:destination="@id/editItem" />
@@ -33,4 +33,12 @@
         android:name="com.example.test.activity_and_fragments.EditItem"
         android:label="edit_item"
         tools:layout="@layout/edit_item" />
+    <fragment
+        android:id="@+id/settingsChoseSystem"
+        android:name="com.example.test.activity_and_fragments.setting.SettingsChoseSystem"
+        android:label="SettingsChoseSystem">
+        <action
+            android:id="@+id/action_settingsChoseSystem_to_settingsMainFragment"
+            app:destination="@id/settingsMainFragment" />
+    </fragment>
 </navigation>

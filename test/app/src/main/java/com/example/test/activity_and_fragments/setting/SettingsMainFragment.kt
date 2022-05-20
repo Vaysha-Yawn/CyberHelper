@@ -1,22 +1,21 @@
 package com.example.test.activity_and_fragments.setting
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.databinding.FragmentSettingsMainBinding
+import com.example.test.viewModels.GameSystemDAO
 import com.example.test.views.HeaderView
-import java.lang.Exception
 
 
 class SettingsMainFragment : Fragment(), HeaderView.HeaderBack {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private val mGameSystemDAO: GameSystemDAO by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

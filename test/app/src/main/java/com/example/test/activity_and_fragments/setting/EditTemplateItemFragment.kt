@@ -113,7 +113,7 @@ class EditTemplateItemFragment : Fragment(), HeaderView.HeaderBack {
 
         override fun whenValueTo(position: Int) {
             val res = list[position]
-            val bundle = EditItem().getEditItemBundleForTemplate(groupTitle, -1, res, true)
+            val bundle = EditItem().getEditItemBundleForTemplate(groupTitle, position, res, true)
             view.findNavController().navigate(R.id.action_editTemplateItemFragment_to_editItem, bundle)
 
         }
