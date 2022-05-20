@@ -36,7 +36,7 @@ class EditItem : Fragment() {
         val groupTitle = args?.getString("groupTitle", "") ?: ""
         val index = args?.getInt("index", -1) ?: -1
         val template = args?.getString("template", "") ?: ""
-        val setTemplate = args?.getBoolean("template", false) ?: false
+        val setTemplate = args?.getBoolean("setTemplate", false) ?: false
 
         val nameTV = view.findViewById<TextView>(R.id.edit_name)
         val descriptionTV = view.findViewById<TextView>(R.id.edit_description)
@@ -233,7 +233,8 @@ class EditItem : Fragment() {
                             /// todo добавить шаблон
                             mGameSystemVM.addTemplateItem(
                                 item,
-                                mGameSystemVM.currentGameSystem!!.id
+                                mGameSystemVM.currentGameSystem!!.id,
+                                groupTitle
                             )
                             mCharacterVM.LOCitemClear()
                             view.findNavController().popBackStack()
@@ -302,7 +303,7 @@ class EditItem : Fragment() {
         } else {
             bundle.putString("template", "")
         }
-        bundle.putBoolean("template", setTemplate)
+        bundle.putBoolean("setTemplate", setTemplate)
         return bundle
     }
 }

@@ -57,7 +57,7 @@ class SettingsChoseSystem : Fragment(), HeaderView.HeaderBack,
     override fun whenValueTo(position: Int) {
         val res = options[position]
         mGameSystemDAO.initGameSystemById(mGameSystemDAO.findGameSystemId(res)!!)
-        view?.findNavController()?.navigate(R.id.action_settingsMainFragment_to_settingFightType2)
+        view?.findNavController()?.navigate(R.id.action_settingsChoseSystem_to_settingsMainFragment)
     }
 
 }
