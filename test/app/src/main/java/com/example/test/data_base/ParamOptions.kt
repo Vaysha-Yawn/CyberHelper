@@ -13,15 +13,7 @@ open class ParamOptions(
     var forItemOrCharacter: Boolean = false, //  true - Item, false - Character
 ): RealmObject(){
     fun getCopy():ParamOptions{
-        val param = ParamOptions()
-        param.name = this.name
-        param.value = this.value
-        param.removable = this.removable
-        param.defMain = this.defMain
-        param.options = this.options
-        param.currentGroup = this.currentGroup
-        param.forItemOrCharacter = this.forItemOrCharacter
-        return param
+        return realm.copyFromRealm(this)
     }
 }
 

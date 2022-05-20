@@ -16,18 +16,7 @@ open class Item(
     var type: String = ""
 ) : RealmObject(){
     fun getCopy():Item{
-        val param = Item()
-        param.name = this.name
-        param.description = this.description
-        param.removable = this.removable
-        param.effectsAdd = this.effectsAdd
-        param.effectsWeapon = this.effectsWeapon
-        param.otherParamNum = this.otherParamNum
-        param.otherParamStr = this.otherParamStr
-        param.otherParamOptions = this.otherParamOptions
-        param.group = this.group
-        param.type = this.type
-        return param
+        return realm.copyFromRealm(this)
     }
 }
 

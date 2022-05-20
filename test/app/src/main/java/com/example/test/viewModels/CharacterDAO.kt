@@ -147,14 +147,14 @@ open class CharacterDAO : ViewModel() {
         }
     }
 
-    fun LOCupdateDescriptionItem(description:String) {
+    fun LOCupdateDescriptionItem(description: String) {
         realm.executeTransaction {
             item.value!!.description = description
         }
     }
 
 
-    //
+    //////////////////////////////////////////////////
 
     fun updateCharacterParamStr(
         characterId: Int, value: String,

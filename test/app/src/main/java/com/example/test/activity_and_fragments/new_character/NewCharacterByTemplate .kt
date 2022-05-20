@@ -64,7 +64,7 @@ class NewCharacterByTemplate : Fragment(), HeaderView.HeaderBack {
 
                 val position = this.requireArguments().getInt("position")
 
-                val templateCharacter = mGameSystemVM.getTemplatesCharacter()[position]
+                val templateCharacter = mGameSystemVM.getTemplatesCharacter()[position]?.getCopy()
 
                 if (templateCharacter == null) {
                     Toast.makeText(view.context, "Error", Toast.LENGTH_SHORT).show()
