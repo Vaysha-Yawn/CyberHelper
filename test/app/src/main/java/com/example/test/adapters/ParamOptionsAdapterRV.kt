@@ -14,7 +14,7 @@ import com.example.test.databinding.CardStringBinding
 import io.realm.RealmList
 
 
-class ParamOptionsAdapterRV() :
+class ParamOptionsAdapterRV :
     RecyclerView.Adapter<ParamOptionsAdapterRV.TemplateHolder>() {
 
     private var newOrPres = true
@@ -87,13 +87,13 @@ class ParamOptionsAdapterRV() :
                         if (newOrPres) {
                             view.findNavController()
                                 .navigate(
-                                    R.id.action_new_characterList_to_new_edit_string,
+                                    R.id.action_new_characterList_to_dropDownEdit,
                                     bundle
                                 )
                         } else {
                             view.findNavController()
                                 .navigate(
-                                    R.id.action_characterList_to_edit_string,
+                                    R.id.action_pres_characterList_to_pres_dropDownEdit,
                                     bundle
                                 )
                         }
