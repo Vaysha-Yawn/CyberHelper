@@ -26,8 +26,6 @@ class CharacterList : Fragment(), HeaderView.HeaderBack {
     private val mGameVM: GameDAO by activityViewModels()
     private val mGameSystemVM: GameSystemDAO by activityViewModels()
 
-    // todo создать переменную, которая будет сохранять номер выбранного фрагмента
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,16 +50,26 @@ class CharacterList : Fragment(), HeaderView.HeaderBack {
                 }
             }
 
-            view.findViewById<HeaderView>(R.id.headerView).setBack(true, this, requireActivity(), viewLifecycleOwner)
+            view.findViewById<HeaderView>(R.id.headerView)
+                .setBack(true, this, requireActivity(), viewLifecycleOwner)
 
             val menu = view.findViewById<BottomNavigationView>(R.id.CharacterList_Menu)
             childFragmentManager.commit {
-                replace(R.id.Character_list_fragment_container, CharacterList_Base())
+                if (mCharacterVM.currentCharacterListTab != null) {
+                    replace(
+                        R.id.Character_list_fragment_container,
+                        CharacterList_Base().getFragment(mCharacterVM.currentCharacterListTab!!)
+                    )
+                } else {
+                    replace(R.id.Character_list_fragment_container, CharacterList_Base())
+                }
             }
+
 
             menu.setOnItemSelectedListener setOnNavigationItemSelectedListener@{
                 when (it.itemId) {
                     R.id.Base -> {
+                        mCharacterVM.currentCharacterListTab = 0
                         childFragmentManager.commit {
                             replace(
                                 R.id.Character_list_fragment_container,
@@ -72,6 +80,7 @@ class CharacterList : Fragment(), HeaderView.HeaderBack {
                     }
 
                     R.id.Skill_and_HP -> {
+                        mCharacterVM.currentCharacterListTab = 1
                         childFragmentManager.commit {
                             replace(
                                 R.id.Character_list_fragment_container,
@@ -82,6 +91,7 @@ class CharacterList : Fragment(), HeaderView.HeaderBack {
                     }
 
                     R.id.Armor_and_weapon -> {
+                        mCharacterVM.currentCharacterListTab = 2
                         childFragmentManager.commit {
                             replace(
                                 R.id.Character_list_fragment_container,
@@ -92,6 +102,7 @@ class CharacterList : Fragment(), HeaderView.HeaderBack {
                     }
 
                     R.id.Stuff -> {
+                        mCharacterVM.currentCharacterListTab = 3
                         childFragmentManager.commit {
                             replace(
                                 R.id.Character_list_fragment_container,
@@ -102,6 +113,7 @@ class CharacterList : Fragment(), HeaderView.HeaderBack {
                     }
 
                     R.id.About -> {
+                        mCharacterVM.currentCharacterListTab = 4
                         childFragmentManager.commit {
                             replace(
                                 R.id.Character_list_fragment_container,
@@ -130,7 +142,8 @@ class CharacterList : Fragment(), HeaderView.HeaderBack {
                 }
             }
 
-            view.findViewById<HeaderView>(R.id.headerView).setBack(true, this, requireActivity(), viewLifecycleOwner)
+            view.findViewById<HeaderView>(R.id.headerView)
+                .setBack(true, this, requireActivity(), viewLifecycleOwner)
 
         } catch (e: Exception) {
             Toast.makeText(view?.context, "$e", Toast.LENGTH_SHORT).show()

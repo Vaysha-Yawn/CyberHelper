@@ -36,6 +36,8 @@ open class CharacterDAO : ViewModel() {
 
     val item = MutableLiveData<Item>(Item())
 
+    var currentCharacterListTab :Int? = null
+
     //CREATE////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private fun getNewCharacterId(): Int {
