@@ -72,30 +72,27 @@ class GroupAdapterRV :
                 when (key) {
                     "str" -> {
                         addParamStr.visibility = View.VISIBLE
-                        if (value.isNotEmpty()) {
-                            value.forEach {
-                                arrayList.add(it)
-                            }
+                        for (i in attributes.listParamStr){
+                            arrayList.add(i.name)
                         }
                     }
                     "num" -> {
                         addParamNum.visibility = View.VISIBLE
-                        if (value.isNotEmpty()) {
-                            value.forEach {
-                                arrayList.add(it)
-                            }
+                        for (i in attributes.listParamNum){
+                            arrayList.add(i.name)
                         }
                     }
                     "options" -> {
                         addParamOptions.visibility = View.VISIBLE
-                        if (value.isNotEmpty()) {
-                            value.forEach {
-                                arrayList.add(it)
-                            }
-                         }
+                        for (i in attributes.listParamOptions){
+                            arrayList.add(i.name)
+                        }
                     }
                     "item" -> {
                         addItem.visibility = View.VISIBLE
+                        for (i in attributes.listItem){
+                            arrayList.add(i.name)
+                        }
                     }
                 }
             }
@@ -131,6 +128,7 @@ class GroupAdapterRV :
             addItem.setOnClickListener { view ->
                 val bundle = Bundle()
                 bundle.putString("groupTitle", groupTitle)
+                bundle.putStringArrayList("arr", arrayList)
                 bundle.putInt("index", -1)
                 if (newOrPres) {
                     view.findNavController()

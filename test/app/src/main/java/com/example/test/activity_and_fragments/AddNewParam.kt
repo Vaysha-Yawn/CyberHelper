@@ -47,95 +47,45 @@ class AddNewParam : Fragment(), HeaderView.HeaderBack,
 
         when (type) {
             "options" -> {
-                val listAlreadyParam = mutableListOf<String>()
-                val arrParam = mCharacterVM.characterList.value?.singleOrNull {
-                    it.id == characterId
-                }?.attributes?.singleOrNull {
-                    it.title == groupTitle
-                }?.attributes?.listParamOptions
-                if (arrParam?.isNotEmpty() == true) {
-                    arrParam.forEach {
-                        listAlreadyParam.add(it.name)
-                    }
-                }
                 if (mod == 0 || mod == 1) {
-                    if (arr.isEmpty()) {
-                        for (key in DTemplateParamOptions().mapParamOptions.keys) {
-                            options.add(key)
-                        }
-                    } else {
-                        arr.forEach {
-                            if (!listAlreadyParam.contains(it)) {
-                                options.add(it)
-                            }
+                    for (i in mGameSystemDAO.currentGameSystem!!.templateParamOptions){
+                        if (i.forItemOrCharacter == false && !arr.contains(i.name) && i.currentGroup == groupTitle){
+                            options.add(i.name)
                         }
                     }
                 } else {
-                    for (key in DTemplateParamOptions().mapParamOptionsItem.keys) {
-                        options.add(key)
+                    for (i in mGameSystemDAO.currentGameSystem!!.templateParamOptions){
+                        if (i.forItemOrCharacter == true && !arr.contains(i.name) && i.currentGroup == groupTitle){
+                            options.add(i.name)
+                        }
                     }
                 }
             }
             "num" -> {
-                val listAlreadyParam = mutableListOf<String>()
-                val arrParam = mCharacterVM.characterList.value?.singleOrNull {
-                    it.id == characterId
-                }?.attributes?.singleOrNull {
-                    it.title == groupTitle
-                }?.attributes?.listParamNum
-                if (arrParam?.isNotEmpty() == true) {
-                    arrParam.forEach {
-                        listAlreadyParam.add(it.name)
-                    }
-                }
                 if (mod == 0 || mod == 1) {
-                    if (arr.isEmpty()) {
-                        for (key in DTemplateParamNum().mapParamNum.keys) {
-                            options.add(key)
-                        }
-                    } else {
-                        arr.forEach {
-                            if (!listAlreadyParam.contains(it)) {
-                                options.add(it)
-                            }
+                    for (i in mGameSystemDAO.currentGameSystem!!.templateParamNum){
+                        if (i.forItemOrCharacter == false && !arr.contains(i.name) && i.currentGroup == groupTitle){
+                            options.add(i.name)
                         }
                     }
                 } else {
-                    for (key in DTemplateParamNum().mapParamNumItem.keys) {
-                        options.add(key)
+                    for (i in mGameSystemDAO.currentGameSystem!!.templateParamNum){
+                        if (i.forItemOrCharacter == true && !arr.contains(i.name) && i.currentGroup == groupTitle){
+                            options.add(i.name)
+                        }
                     }
                 }
             }
             "string" -> {
-                val listAlreadyParam = mutableListOf<String>()
-                val arrParam = mCharacterVM.characterList.value?.singleOrNull {
-                    it.id == characterId
-                }?.attributes?.singleOrNull {
-                    it.title == groupTitle
-                }?.attributes?.listParamStr
-                if (arrParam?.isNotEmpty() == true) {
-                    arrParam.forEach {
-                        listAlreadyParam.add(it.name)
-                    }
-                }
                 if (mod == 0 || mod == 1) {
-                    if (arr.isEmpty()) {
-                        for (i in mGameSystemDAO.currentGameSystem!!.templateParamStr) {
-                            if (i.name != "Имя персонажа" && i.name != "Название игры" && i.forItemOrCharacter == false) {
-                                options.add(i.name)
-                            }
-                        }
-                    } else {
-                        arr.forEach {
-                            if (!listAlreadyParam.contains(it)) {
-                                options.add(it)
-                            }
+                    for (i in mGameSystemDAO.currentGameSystem!!.templateParamStr){
+                        if (i.forItemOrCharacter == false && !arr.contains(i.name) && i.currentGroup == groupTitle){
+                            options.add(i.name)
                         }
                     }
                 } else {
-                    for (i in mGameSystemDAO.currentGameSystem!!.templateParamStr) {
-                        // не верь примечанию ниже
-                        if (i.name != "Имя персонажа" && i.name != "Название игры" && i.forItemOrCharacter == true) {
+                    for (i in mGameSystemDAO.currentGameSystem!!.templateParamStr){
+                        if (i.forItemOrCharacter == true && !arr.contains(i.name) && i.currentGroup == groupTitle){
                             options.add(i.name)
                         }
                     }
@@ -180,9 +130,6 @@ class AddNewParam : Fragment(), HeaderView.HeaderBack,
                 val bundle = Bundle()
                 bundle.putString("paramName", res)
                 bundle.putString("value", param.defMain)
-                // todo: изменить получение groupTitle, чтобы оно соответствовало параметру,
-                //  сейчас откуда взялось, туда и прибавилось
-                //   или добавить ограничение, перечисление во всех группах
                 bundle.putString("titleGroup", groupTitle)
                 bundle.putInt("indexItem", indexItem)
                 bundle.putInt("indexParam", -1)
