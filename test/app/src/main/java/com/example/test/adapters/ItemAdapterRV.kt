@@ -121,6 +121,16 @@ class ItemAdapterRV() :
                 val optionsList = item.otherParamOptions
                 adapterOptions.setData(optionsList, groupTitle, newOrPres,true, index,3)
             }
+            baseLay.visibility = View.GONE
+            titleLay.setOnClickListener {
+                if  (baseLay.visibility == View.VISIBLE){
+                    baseLay.visibility = View.GONE
+                    moreOrLess.background = moreOrLess.context.getDrawable(R.drawable.more)
+                }else{
+                    baseLay.visibility = View.VISIBLE
+                    moreOrLess.background = moreOrLess.context.getDrawable(R.drawable.less)
+                }
+            }
 
         }
     }
