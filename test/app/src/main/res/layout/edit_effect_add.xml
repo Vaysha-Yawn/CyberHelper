@@ -39,32 +39,16 @@
                 android:text="Тип эффекта"
                 android:textColor="@color/light_grey" />
 
-            <LinearLayout
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
+            <androidx.appcompat.widget.SwitchCompat
+                style="@style/Text.H2"
+                android:layout_marginTop="10dp"
+                app:thumbTint="@color/green"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/permanent_true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Постоянный"
-                    style="@style/Button_green_outline"
-                    />
-               <Space
-                   android:layout_width="0dp"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="1"/>
-
-                <Button
-                    android:id="@+id/permanent_false"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Временный"
-                    style="@style/Button_green_full"
-                    />
-            </LinearLayout>
+                android:backgroundTint="@color/green"
+                android:text="Временный"
+                android:id="@+id/permanent"
+                />
 
             <TextView
                 style="@style/Text.H2"
@@ -76,12 +60,14 @@
                 android:text="Характеристика, на которую оказывается влияние:"
                 android:textColor="@color/light_grey" />
 
-            <androidx.fragment.app.FragmentContainerView
+            <com.example.test.views.DropDownView
+                app:DD_color="@color/green"
+                app:main_text="Выберите характеристику"
+                app:text_color="@color/black"
                 android:id="@+id/property"
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp" />
+                android:layout_height="wrap_content"/>
 
             <TextView
                 style="@style/Text.H2"

@@ -9,17 +9,44 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
+import com.example.test.adapters.DropDownAdapterRV
 import com.example.test.data_base.DTemplateParamOptions
 import com.example.test.data_base.EffectAdd
 import com.example.test.databinding.EditEffectAddBinding
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
+import com.example.test.viewModels.GameSystemDAO
+import com.example.test.views.DropDownView
 import com.example.test.views.HeaderView
 
-class EditEffectAdd : Fragment(), HeaderView.HeaderBack {
+class EditEffectAdd : Fragment(), HeaderView.HeaderBack, DropDownAdapterRV.TemplateHolder.WhenValueTo {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
+    private val mGameSystemDAO: GameSystemDAO by activityViewModels()
+
+    private var groupTitle = ""
+    private var indexItem = -1
+    private var indexEff = -1
+    private lateinit var effectAdd: EffectAdd
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Требуемые аргументы
+        val characterId = mCharacterVM.characterId
+        val args = this.arguments
+        groupTitle = args?.getString("groupTitle", "") ?: ""
+        indexItem = args?.getInt("indexItem", -1) ?: -1
+        indexEff = args?.getInt("indexEff", -1) ?: -1
+
+        // ищем старый эффект или создаем новый
+        effectAdd = EffectAdd()
+        if (indexEff != -1) {
+            effectAdd = mCharacterVM.item.value!!.effectsAdd[indexEff]!!
+        }
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,73 +54,39 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack {
     ): View? {
         val view = inflater.inflate(R.layout.edit_effect_add, container, false)
 
-        // Требуемые аргументы
-        val characterId = mCharacterVM.characterId
-        val args = this.arguments
-        val groupTitle = args?.getString("groupTitle", "") ?: ""
-        val indexItem = args?.getInt("indexItem", -1) ?: -1
-        val indexEff = args?.getInt("indexEff", -1) ?: -1
-
-        // ищем старый эффект или создаем новый
-        var effectAdd = EffectAdd()
-        if (indexEff != -1) {
-            effectAdd = mCharacterVM.item.value!!.effectsAdd[indexEff]!!
-        }
-
         // настраиваем логику для параметра permanent постоянный или временный
-
-        fun setfill(style: Boolean, btn: Button) {
-            if (style) {
-                btn.setBackgroundResource(R.drawable.btn_green_full)
-                btn.setTextColor(android.graphics.Color.BLACK)
-            } else {
-                btn.setBackgroundResource(R.drawable.btn_green_outline)
-                btn.setTextColor(android.graphics.Color.parseColor("#00FF99"))
-            }
-        }
-        var permanent = effectAdd.permanent
+        var Effpermanent = effectAdd.permanent
         val binding = EditEffectAddBinding.bind(view)
+
         with(binding){
-            setfill(permanent, permanentTrue)
-            setfill(!permanent, permanentFalse)
-            if (permanent) {
+
+            if (Effpermanent) {
+                Effpermanent = true
+                permanent.isChecked = true
+                permanent.text = "Постоянный"
                 linPermanentFalse.visibility = View.GONE
             } else {
+                permanent.isChecked = false
+                permanent.text = "Временный"
                 linPermanentFalse.visibility = View.VISIBLE
             }
-            permanentTrue.setOnClickListener {
-                if (!permanent) {
-                    permanent = true
-                    setfill(permanent, permanentTrue)
-                    setfill(!permanent, permanentFalse)
+
+            permanent.setOnClickListener {
+                if(permanent.isChecked){
+                    Effpermanent = false
+                    permanent.isChecked = false
+                    permanent.text = "Временный"
+                    linPermanentFalse.visibility = View.VISIBLE
+                }else{
+                    Effpermanent = true
+                    permanent.isChecked = true
+                    permanent.text = "Постоянный"
                     linPermanentFalse.visibility = View.GONE
                 }
             }
-
-            permanentFalse.setOnClickListener {
-                if (permanent) {
-                    permanent = false
-                    setfill(permanent, permanentTrue)
-                    setfill(!permanent, permanentFalse)
-                    linPermanentFalse.visibility = View.VISIBLE
-                }
-            }
-
+            // подключаем выбор параметра
+            property.setDDArrayAndListener(getListParamNumNames(), this@EditEffectAdd, null)
         }
-
-        // подключаем выбор параметра
-        val bundle = Bundle()
-        bundle.putString("them", "green")
-        val param = DTemplateParamOptions().mapParamOptionsSupporting["Параметры для влияния"]
-        if (effectAdd.property == "") {
-            bundle.putString("main", param?.defMain)
-        } else {
-            bundle.putString("main", effectAdd.property)
-        }
-        val options = arrayListOf<String>()
-        param?.options?.forEach { options.add(it) }
-        bundle.putStringArrayList("listId", options)
-        //loadFragment(R.id.property, DropDownList(), bundle)
 
         // настраиваем переключение и запоминание знака
         val btnSign = view.findViewById<Button>(R.id.sign)
@@ -149,7 +142,7 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack {
             val frag1: Fragment = childFragmentManager.findFragmentById(R.id.property)!!
             val property =
                 frag1.view?.findViewById<TextView>(R.id.main)?.text.toString()
-            if (property == param?.defMain) {
+            if (property == "Выберите характеристику") {
                 res = 0
                 Toast.makeText(view.context, "Выберите параметр", Toast.LENGTH_SHORT).show()
             }
@@ -180,7 +173,7 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack {
                 frag3.view?.findViewById<EditText>(R.id.edit)?.text.toString()
                     .toIntOrNull()
             if (duration == 0) {
-                if (!permanent) {
+                if (!Effpermanent) {
                     res = 0
                     Toast.makeText(
                         view.context, "Значение длительности должно быть больше нуля",
@@ -197,7 +190,7 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack {
                     .toIntOrNull()
 
             if (rollback == 0) {
-                if (!permanent) {
+                if (!Effpermanent) {
                     res = 0
                     Toast.makeText(
                         view.context, "Значение отката должно быть больше нуля",
@@ -206,7 +199,7 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack {
                 }
             }
 
-            if (!permanent) {
+            if (!Effpermanent) {
                 if (duration == null) {
                     res = 0
                     Toast.makeText(
@@ -230,7 +223,7 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack {
                 if (indexEff == -1) {//новый эффект
                         mCharacterVM.LOCaddEffectAddItem(
                             EffectAdd(
-                                permanent,
+                                Effpermanent,
                                 property,
                                 impact!!,
                                 sign,
@@ -241,7 +234,7 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack {
                 } else {
                         mCharacterVM.LOCupdateEffectAddItem(
                             indexEff, EffectAdd(
-                                permanent,
+                                Effpermanent,
                                 property,
                                 impact!!,
                                 sign,
@@ -259,5 +252,17 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack {
 
     override fun back() {
         view?.findNavController()?.popBackStack()
+    }
+
+    override fun whenValueTo(position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    private fun getListParamNumNames():MutableList<String>{
+        val list = mutableListOf<String>()
+        for (i in mGameSystemDAO.currentGameSystem!!.templateParamNum){
+            list.add(i.name)
+        }
+        return  list
     }
 }
