@@ -38,7 +38,9 @@ class AddNewItem : Fragment(), HeaderView.HeaderBack,
         newOrPres = gameId == r
         val templateItems = mGameSystemDAO.currentGameSystem!!.templateItem
         for (item in templateItems) {
-            options.add(item.name)
+            if (item.group == groupTitle){
+                options.add(item.name)
+            }
         }
     }
 

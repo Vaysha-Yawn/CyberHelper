@@ -29,11 +29,9 @@ class EffectWeaponAdapterRV():
         fun bind(effect: EffectWeapon, groupTitle:String, newOrPres: Boolean, readOrEdit: Boolean, indexItem:Int, indexEff:Int) = with(binding){
             type.text = effect.fightType?:""
             damage.text = "${effect.numCount}d${effect.dX}"
-            if (effect.wearout!=null){
-                wearout.text = "${effect.wearout} раз"
-            }else{
+            // todo: убрать все упоминания о износе
                 linlayWearout.visibility = View.GONE
-            }
+
             if (readOrEdit){// при чтении
                 linearLayout3.visibility = View.GONE
             }else{// при редактировании

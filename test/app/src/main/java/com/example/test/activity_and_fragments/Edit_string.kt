@@ -61,7 +61,7 @@ class Edit_string : Fragment() {
                     var param: ParamStr = ParamStr()
                     for (i in mGameSystemVM.currentGameSystem!!.templateParamStr) {
                         if (i.name == paramName) {
-                            param = i
+                            param = i.getCopy()
                         }
                     }
                     param.value = result
@@ -84,7 +84,7 @@ class Edit_string : Fragment() {
                     var param: ParamStr = ParamStr()
                     for (i in mGameSystemVM.currentGameSystem!!.templateParamStr) {
                         if (i.name == paramName) {
-                            param = i
+                            param = i.getCopy()
                         }
                     }
                     param.value = result
@@ -96,7 +96,7 @@ class Edit_string : Fragment() {
                     var param: ParamStr = ParamStr()
                     for (i in mGameSystemVM.currentGameSystem!!.templateParamStr) {
                         if (i.name == paramName) {
-                            param = i
+                            param = i.getCopy()
                         }
                     }
                     param.value = result

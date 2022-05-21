@@ -304,15 +304,13 @@ class DTemplateItem {
                         "Banhammer против адских гончих",
                         "Нетраннинг против адских гончих",
                         3,
-                        6,
-                        null
+                        6
                     ),
                     EffectWeapon(
                         "Banhammer против программ",
                         "Нетраннинг против программ",
                         2,
-                        6,
-                        null
+                        6
                     )
                 ),
                 otherParamNum = RealmList<ParamNum>(
@@ -359,8 +357,7 @@ class DTemplateItem {
                         "Hellhound",
                         "Нетраннинг против людей",
                         3,
-                        6,
-                        null
+                        6
                     )
                 ),
                 otherParamNum = RealmList<ParamNum>(

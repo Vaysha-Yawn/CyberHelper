@@ -11,10 +11,12 @@ import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.data_base.DTemplateParamOptions
 import com.example.test.data_base.EffectAdd
+import com.example.test.databinding.EditEffectAddBinding
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
+import com.example.test.views.HeaderView
 
-class EditEffectAdd : Fragment() {
+class EditEffectAdd : Fragment(), HeaderView.HeaderBack {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
@@ -49,34 +51,34 @@ class EditEffectAdd : Fragment() {
                 btn.setTextColor(android.graphics.Color.parseColor("#00FF99"))
             }
         }
-
-        val linPermanentFalse = view.findViewById<LinearLayout>(R.id.lin_permanent_false)
-        val btn_permanent_true = view.findViewById<Button>(R.id.permanent_true)
-        val btn_permanent_false = view.findViewById<Button>(R.id.permanent_false)
         var permanent = effectAdd.permanent
-        setfill(permanent, btn_permanent_true)
-        setfill(!permanent, btn_permanent_false)
-        if (permanent) {
-            linPermanentFalse.visibility = View.GONE
-        } else {
-            linPermanentFalse.visibility = View.VISIBLE
-        }
-        btn_permanent_true.setOnClickListener {
-            if (!permanent) {
-                permanent = true
-                setfill(permanent, btn_permanent_true)
-                setfill(!permanent, btn_permanent_false)
-                linPermanentFalse.visibility = View.GONE
-            }
-        }
-
-        btn_permanent_false.setOnClickListener {
+        val binding = EditEffectAddBinding.bind(view)
+        with(binding){
+            setfill(permanent, permanentTrue)
+            setfill(!permanent, permanentFalse)
             if (permanent) {
-                permanent = false
-                setfill(permanent, btn_permanent_true)
-                setfill(!permanent, btn_permanent_false)
+                linPermanentFalse.visibility = View.GONE
+            } else {
                 linPermanentFalse.visibility = View.VISIBLE
             }
+            permanentTrue.setOnClickListener {
+                if (!permanent) {
+                    permanent = true
+                    setfill(permanent, permanentTrue)
+                    setfill(!permanent, permanentFalse)
+                    linPermanentFalse.visibility = View.GONE
+                }
+            }
+
+            permanentFalse.setOnClickListener {
+                if (permanent) {
+                    permanent = false
+                    setfill(permanent, permanentTrue)
+                    setfill(!permanent, permanentFalse)
+                    linPermanentFalse.visibility = View.VISIBLE
+                }
+            }
+
         }
 
         // подключаем выбор параметра
@@ -255,13 +257,7 @@ class EditEffectAdd : Fragment() {
         return view
     }
 
-    private fun loadFragment(frCont: Int, fragment: Fragment, bundle: Bundle?) {
-        if (bundle != null) {
-            fragment.arguments = bundle
-        }
-        val transaction = childFragmentManager.beginTransaction()
-        transaction.replace(frCont, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
+    override fun back() {
+        view?.findNavController()?.popBackStack()
     }
 }

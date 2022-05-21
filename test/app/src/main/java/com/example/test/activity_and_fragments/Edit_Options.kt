@@ -12,12 +12,16 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.data_base.DTemplateParamOptions
+import com.example.test.data_base.ParamNum
+import com.example.test.data_base.ParamOptions
 import com.example.test.databinding.EditOptionBinding
 import com.example.test.viewModels.CharacterDAO
+import com.example.test.viewModels.GameSystemDAO
 
 class Edit_Options : Fragment(){
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mGameSystemVM: GameSystemDAO by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,10 +52,19 @@ class Edit_Options : Fragment(){
                 view.findNavController().popBackStack()
             }
 
-            val param = if (mod == 0 || mod == 1) {
-                DTemplateParamOptions().mapParamOptions[paramName]!!
+            var param = ParamOptions()
+            if (mod == 0 || mod == 1) {
+                for(i in mGameSystemVM.currentGameSystem!!.templateParamOptions) {
+                    if (i.forItemOrCharacter == false && i.name == paramName){
+                        param = i.getCopy()
+                    }
+                }
             } else {
-                DTemplateParamOptions().mapParamOptionsItem[paramName]!!
+                for(i in mGameSystemVM.currentGameSystem!!.templateParamOptions) {
+                    if (i.forItemOrCharacter == true && i.name == paramName){
+                        param = i.getCopy()
+                    }
+                }
             }
 
             titleView.text = paramName
