@@ -14,22 +14,13 @@ open class GameSystemDAO : ViewModel() {
     var currentGameSystem: GameSystem? = null
 
     //CREATE
-    private fun getNewGameId(): Int {
-        var id = realm.where(GameSystem::class.java).max("id")?.toInt()
-        if (id == null) {
-            id = 3
-        } else {
-            id += 1
-        }
-        return id
-    }
 
 
     fun addGameSystem(gameSystem: GameSystem): Int {
-        val id = getNewGameId()
+        val id = realm.where(GameSystem::class.java).max("id")?.toInt()?.plus(1)!!
         gameSystem.id = id
         realm.executeTransaction { transactionRealm ->
-            transactionRealm.insert(gameSystem)
+            transactionRealm.copyToRealm(gameSystem)
         }
         currentGameSystem = gameSystem
         return id

@@ -587,7 +587,7 @@ class TemplateGameSystem {
         ),
         templateCharacter = RealmList<Character>(
             Character(
-                0,
+                4,
                 0,
                 initGroupsParam(
                     mapOf(

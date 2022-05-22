@@ -6,7 +6,7 @@ import io.realm.annotations.PrimaryKey
 
 open class GameSystem(
     @PrimaryKey
-    var id: Int = 0,
+    var id: Int = 2,
     var name: String = "",
     var groups: RealmList<String> = RealmList<String>(),
     var typesItem: RealmList<RealmPair> = RealmList<RealmPair>(),
