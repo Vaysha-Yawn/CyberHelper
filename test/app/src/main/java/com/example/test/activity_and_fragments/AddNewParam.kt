@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.adapters.DropDownAdapterRV
-import com.example.test.data_base.DTemplateParamNum
 import com.example.test.data_base.DTemplateParamOptions
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameSystemDAO
@@ -99,8 +99,8 @@ class AddNewParam : Fragment(), HeaderView.HeaderBack,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.add_new_param_item, container, false)
-        // todo: обработать нажатие на кнопку создать параметр
-        // todo: при возвращении оно снова создает список
+
+        view.findViewById<Button>(R.id.add_param_num).visibility = View.GONE
 
         view.findViewById<DropDownView>(R.id.drop_down_fragment)
             .setDDArrayAndListener(options, this, null)

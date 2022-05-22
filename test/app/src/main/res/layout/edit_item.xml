@@ -68,6 +68,22 @@
 
             <TextView
                 style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="start"
+                android:text="Тип предмета"
+                android:textColor="@color/light_grey" />
+
+            <com.example.test.views.DropDownView
+                android:id="@+id/typeItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:main_text="Выберите тип предмета" />
+
+            <TextView
+                style="@style/Text.H2"
                 android:textColor="@color/light_grey"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

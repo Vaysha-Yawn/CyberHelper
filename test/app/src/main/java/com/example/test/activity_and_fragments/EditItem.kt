@@ -17,6 +17,7 @@ import com.example.test.adapters.*
 import com.example.test.data_base.Item
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameSystemDAO
+import com.example.test.views.DropDownView
 
 class EditItem : Fragment() {
 
@@ -196,6 +197,17 @@ class EditItem : Fragment() {
                     .navigate(R.id.action_pres_itemEdit_to_pres_editEffectWeapon, bundle)
             }
         }
+
+        // выпадающий список для выбора типа предмета
+        val list = mGameSystemVM.currentGameSystem!!.typesItem.singleOrNull {
+            it.key == groupTitle
+        }?.value ?: listOf("Прочее")
+        view.findViewById<DropDownView>(R.id.typeItem)
+            .setDDArrayAndListener(list, object : DropDownAdapterRV.TemplateHolder.WhenValueTo {
+                override fun whenValueTo(position: Int) {
+                    mCharacterVM.item.value!!.type = list[position]
+                }
+            }, null)
 
         // кнопки закрыть или подтвердить
         val closeBtn = view.findViewById<Button>(R.id.weapon_edit_close)

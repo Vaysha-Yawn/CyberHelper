@@ -3,7 +3,6 @@ package com.example.test.data_base
 import android.app.Application
 import io.realm.Realm
 import io.realm.RealmConfiguration
-import io.realm.mongodb.sync.SyncConfiguration
 
 class App:Application() {
     override fun onCreate() {
@@ -11,7 +10,7 @@ class App:Application() {
         Realm.init(this)
 
         val config = RealmConfiguration.Builder()
-            .name("сса")
+            .name("ss")
             .allowQueriesOnUiThread(true)
             .allowWritesOnUiThread(true)
             .deleteRealmIfMigrationNeeded()

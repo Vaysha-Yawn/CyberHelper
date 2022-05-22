@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="@color/cyan"
+                android:backgroundTint="@color/green"
                 android:hint="Введите название атаки"
                 android:maxLength="20"
                 android:minHeight="48dp" />
@@ -56,7 +56,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="30dp"
                 android:gravity="start"
-                android:text="Тип оружия"
+                android:text="Тип урона"
                 android:textColor="@color/light_grey" />
 
             <com.example.test.views.DropDownView
@@ -65,7 +65,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                app:main_text="Выберите тип оружия" />
+                app:main_text="Выберите тип урона" />
 
             <TextView
                 style="@style/Text.H2"

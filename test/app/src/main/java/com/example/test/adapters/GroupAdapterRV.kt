@@ -10,7 +10,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.data_base.DSpecialGameData
 import com.example.test.data_base.GroupParam
 import com.example.test.databinding.CardGroupParamBinding
 
@@ -64,40 +63,38 @@ class GroupAdapterRV :
             addParamOptions.visibility = View.GONE
             addItem.visibility = View.GONE
 
-            val gpPref = DSpecialGameData().groupPreferences[groupTitle]!!
+            //val gpPref = DSpecialGameData().groupPreferences[groupTitle]!!
 
             val arrayList = ArrayList<String>()
 
-            for ((key, value) in gpPref) {
+            /*for ((key, value) in gpPref) {
                 when (key) {
-                    "str" -> {
-                        addParamStr.visibility = View.VISIBLE
-                        for (i in attributes.listParamStr){
-                            arrayList.add(i.name)
-                        }
-                    }
-                    "num" -> {
-                        addParamNum.visibility = View.VISIBLE
-                        for (i in attributes.listParamNum){
-                            arrayList.add(i.name)
-                        }
-                    }
-                    "options" -> {
-                        addParamOptions.visibility = View.VISIBLE
-                        for (i in attributes.listParamOptions){
-                            arrayList.add(i.name)
-                        }
-                    }
-                    "item" -> {
-                        addItem.visibility = View.VISIBLE
-                        for (i in attributes.listItem){
-                            arrayList.add(i.name)
-                        }
-                    }
-                }
+                    "str" -> {*/
+            addParamStr.visibility = View.VISIBLE
+            for (i in attributes.listParamStr) {
+                arrayList.add(i.name)
             }
 
-            fun openAddParam(view: View, type:String){
+            //"num" -> {
+            addParamNum.visibility = View.VISIBLE
+            for (i in attributes.listParamNum) {
+                arrayList.add(i.name)
+            }
+
+            //"options" -> {
+            addParamOptions.visibility = View.VISIBLE
+            for (i in attributes.listParamOptions) {
+                arrayList.add(i.name)
+            }
+
+            //"item" -> {
+            addItem.visibility = View.VISIBLE
+            for (i in attributes.listItem) {
+                arrayList.add(i.name)
+            }
+
+
+            fun openAddParam(view: View, type: String) {
                 val bundle = Bundle()
                 bundle.putString("groupTitle", groupTitle)
                 bundle.putString("type", type)
