@@ -380,6 +380,7 @@ class TemplateGameSystem {
                 )
             )
         ),
+
         templateItem = paramItemCyberPuckSystem,
         templateParamNum = paramNumCyberPuckSystem,
         templateParamStr = paramStrCyberPuckSystem,
@@ -388,73 +389,58 @@ class TemplateGameSystem {
 
     /////// дозаполнять
     val paramNumDnDSystem = RealmList<ParamNum>(
+        ParamNum("Уровень", 0, false, null, 0, "Базовые параметры", false),
+        ParamNum("Опыт", 0, false, null, 0, "Базовые параметры", false),
+
+        ParamNum("Вдохновение", 0, false, null, 0, "Базовые параметры", false),
+        ParamNum("Бонус мастерства", 0, false, null, 0, "Базовые параметры", false),
+
         ParamNum("Текущие хиты", 0, false, null, 0, "Базовые параметры", false),
         ParamNum("Временные хиты", 0, false, null, 0, "Базовые параметры", false),
+        ParamNum("Максимальные хиты", 0, false, null, 0, "Базовые параметры", false),
         ParamNum("Бонус к инициативе", 0, false, null, 0, "Базовые параметры", false),
         ParamNum("Скорость", 0, false, null, 0, "Базовые параметры", false),
 
-        ParamNum("Класс доспеха", 0, false, null, 0, "Броня", false),
+        ParamNum("Класс доспеха", 0, false, null, 0, "Базовые параметры", false),
 
         ParamNum("Сила", 0, false, null, 0, "Параметры", false),
         ParamNum("Ловкость", 0, false, null, 0, "Параметры", false),
         ParamNum("Телосложение", 0, false, null, 0, "Параметры", false),
+        ParamNum("Интеллект", 0, false, null, 0, "Параметры", false),
+        ParamNum("Мудрость", 0, false, null, 0, "Параметры", false),
         ParamNum("Харизма", 0, false, null, 0, "Параметры", false),
-        ParamNum("Техника", 0, false, null, 0, "Параметры", false),
-        ParamNum("Реакция", 0, false, null, 0, "Параметры", false),
-        ParamNum("Удача", 0, false, null, 0, "Параметры", false),
-        ParamNum("Телосложение", 0, false, null, 0, "Параметры", false),
-        ParamNum("Ловкость", 0, false, null, 0, "Параметры", false),
-        ParamNum("Скорость", 0, false, null, 0, "Параметры", false),
 
-        ParamNum("Внимательность", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Выслеживание", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Образование", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Знание местности", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Интерфейс", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Стрельба", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Вождение", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Уклонение", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Атлетика", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Скрытность", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Рукопашный бой", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Оружие ближнего боя", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Знание техники", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Кибертехника", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Первая помощь", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Подкуп", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Допрос", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Убеждение", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Концентрация", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Общение", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Проницательность", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Игра на инструменте", 0, true, 10, 0, "Навыки", false),
+        ParamNum("Сила", 0, false, null, 0, "Спасброски", false),
+        ParamNum("Ловкость", 0, false, null, 0, "Спасброски", false),
+        ParamNum("Телосложение", 0, false, null, 0, "Спасброски", false),
+        ParamNum("Интеллект", 0, false, null, 0, "Спасброски", false),
+        ParamNum("Мудрость", 0, false, null, 0, "Спасброски", false),
+        ParamNum("Харизма", 0, false, null, 0, "Спасброски", false),
 
-        ParamNum("Итого репутация", 0, false, null, 0, "Репутация", false),
+        ParamNum("Акробатика", 0, false, 30, 0, "Навыки", false),
+        ParamNum("Анализ", 0, false, 30, 0, "Навыки", false),
+        ParamNum("Атлетика", 0, false, 30, 0, "Навыки", false),
+        ParamNum("Внимательность", 0, false, 30, 0, "Навыки", false),
+        ParamNum("Выживание", 0, false, 30, 0, "Навыки", false),
+        ParamNum("Выступление", 0, false, 30, 0, "Навыки", false),
+        ParamNum("Запугивание", 0, false, 30, 0, "Навыки", false),
+        ParamNum("Истроия", 0, false, 30, 0, "Навыки", false),
+        ParamNum("Ловкость рук", 0, false, 30, 0, "Навыки", false),
+        ParamNum("Магия", 0, false, 30, 0, "Навыки", false),
+        ParamNum("Проницательность", 0, false, 30, 0, "Навыки", false),
+        ParamNum("Религия", 0, false, 30, 0, "Навыки", false),
+        ParamNum("Скрытность", 0, false, 30, 0, "Навыки", false),
+        ParamNum("Убеждение", 0, false, 30, 0, "Навыки", false),
+        ParamNum("Уход за животными", 0, false, 30, 0, "Навыки", false),
+
+        ParamNum("Пассивная мудрость(внимательность)", 0, false, null, 0, "Навыки", false),
+        ParamNum("Медные", 0, false, null, 0, "Деньги", false),
+        ParamNum("Серебрянные", 0, false, null, 0, "Деньги", false),
+        ParamNum("Золотые", 0, false, null, 0, "Деньги", false),
+        ParamNum("Платиновые", 0, false, null, 0, "Деньги", false),
     )
 
     val paramOptionsDnDSystem = RealmList<ParamOptions>(
-        ParamOptions(
-            "Тип оружия",
-            "",
-            false,
-            "Выберите тип оружия",
-            RealmList<String>("Ближний бой", "Дальний бой", "Автоматический огонь", "Взрывчатка"),
-            "",
-            true
-        ),
-        ParamOptions(
-            "Тип программы",
-            "",
-            true,
-            "Выберите тип программы",
-            RealmList<String>(
-                "Усиление",
-                "Нападение",
-                "Защита",
-                "Противонетраннерский",
-                "Противопрограммный"
-            ), "", true
-        ),
         ParamOptions(
             "Значимость",
             "",
@@ -464,11 +450,25 @@ class TemplateGameSystem {
             "Базовые параметры", false
         ),
         ParamOptions(
-            "Роль",
+            "Класс",
             "",
             false,
-            "Выберите роль",
-            RealmList<String>("Рокер", "Соло", "Нетраннер", "Кочевник", "Техник", "Фиксер"),
+            "Выберите класс",
+            RealmList<String>(
+                "Колдун",
+                "Бард",
+                "Варвар",
+                "Воин",
+                "Волшебник",
+                "Друид",
+                "Жрец",
+                "Изобретатель",
+                "Монах",
+                "Паладин",
+                "Плут",
+                "Следопыт",
+                "Чародей"
+            ),
             "Базовые параметры",
             false
         ),
@@ -481,13 +481,55 @@ class TemplateGameSystem {
             "Базовые параметры",
             false
         ),
+        ParamOptions(
+            "Раса",
+            "",
+            false,
+            "Выберите класс",
+            RealmList<String>(
+                "Эльф",
+                "Дварф",
+                "Гном",
+                "Человек",
+                "Полурослик",
+                "Драконорожденный",
+                "Аракокра",
+                "Тифлинг",
+                "Голиаф",
+                "Дженази",
+                "Полуорк"
+            ),
+            "Базовые параметры",
+            false
+        ),
+        ParamOptions(
+            "Мировоззрение",
+            "",
+            false,
+            "Выберите мировоззрение",
+            RealmList<String>(
+                "Законопослушный-добрый",
+                "Законопослушный-нейтральный",
+                "Законопослушный-злой",
+                "Истинно-добрый",
+                "Истинно-нейтральный",
+                "Истинно-злой",
+                "Хаотично-добрый",
+                "Хаотично-нейтральный",
+                "Хаотично-злой"
+            ),
+            "Базовые параметры",
+            false
+        ),
     )
     val paramStrDnDSystem = RealmList<ParamStr>(
         ParamStr("Имя персонажа", "", removable = false, "Базовые параметры", false),
         ParamStr("Название игры", "", removable = false),
-        ParamStr("Семья", "", removable = false, "Биография", false),
-        ParamStr("Мотивация", "", removable = false, "Биография", false),
-        ParamStr("Особенность", "", removable = true, "", true),
+        ParamStr("Кость хитов", "1д6", removable = false, "Базовые параметры", false),
+        ParamStr("Черты характера", "", removable = false, "Биография", false),
+        ParamStr("Идеалы", "", removable = false, "Биография", false),
+        ParamStr("Привязанности", "", removable = true, "Биография", false),
+        ParamStr("Слабости", "", removable = true, "Биография", false),
     )
 
 
@@ -495,25 +537,170 @@ class TemplateGameSystem {
         2,
         "DnDSystem",
         RealmList<String>(
-            "Базовые параметры", "Параметры", "Навыки", "Биография", "Особенности персонажа",
-            "Информация о игроке", "Снаряжение", "Заклинания", "Экипированное"
+            "Базовые параметры",
+            "Параметры",
+            "Навыки",
+            "Биография",
+            "Особенности персонажа",
+            "Информация о игроке",
+            "Снаряжение",
+            "Атаки и заклинания",
+            "Экипированное",
+            "Спасброски",
+            "Деньги"
         ),
         RealmList<RealmPair>(
-            // Оружие, Броня, Артефакты, Безделушки, Зелья
+            RealmPair(
+                "Оружие",
+                RealmList<String>(
+                    "Простое рукопашное",
+                    "Простое дальнобойное",
+                    "Воинское рукопашное",
+                    "Воинское дальнобойное"
+                )
+            ),
+            RealmPair(
+                "Броня",
+                RealmList<String>("Лёгкий доспех", "Средний доспех", "Тяжёлый доспех", "Щит")
+            ),
+            RealmPair(
+                "Снаряжение",
+                RealmList<String>("Прочее", "Инструменты", "Зелья", "Артефакты")
+            ),
+        ),
+        typesAttack = RealmList(
+            "Дробящий",
+            "Колющий",
+            "Рубящий",
+            "Излучением",
+            "Некротический",
+            "Звуком",
+            "Психический"
         ),
         // где первая строка - название группы, вторая название типа
-        tabsToGroup = RealmList<RealmSomething>(),
-        // где число - номер вкладки, вторая строка - название группы, не более 5 названий, названия и иконка вкладки не изменяются, подстраивайтесь под них
-        // 1 "Базовые параметры"
-        // 2 "Параметры", "Навыки",
-        // 3 "Экипированное"
-        // 4 "Снаряжение", "Заклинания"
-        // 5 "Особенности персонажа" "Информация о игроке" "Биография"
-        templateCharacter = RealmList<Character>(),
+        tabsToGroup = RealmList<RealmSomething>(
+            RealmSomething(RealmList("Базовые параметры")),
+            RealmSomething(RealmList("Параметры", "Навыки", "Спасброски")),
+            RealmSomething(RealmList("Экипированное", "Атаки и заклинания")),
+            RealmSomething(RealmList("Снаряжение", "Деньги")),
+            RealmSomething(RealmList("Особенности персонажа", "Информация о игроке", "Биография")),
+        ),
+        templateCharacter = RealmList<Character>(
+            Character(
+                0,
+                0,
+                initGroupsParam(
+                    mapOf(
+                        "Базовые параметры" to mapOf(//название группы
+                            "listParamStr" to mapOf(
+                                //тип листа
+                                "Имя персонажа" to "Кетчбурьмек",//название параметра и значение
+                                "Кость хитов" to "1д8",
+
+                                ),
+                            "listParamNum" to mapOf(
+                                "Возраст" to "30",
+                                "Уровень" to "80",
+                                "Опыт" to "0",
+                                "Вдохновение" to "0",
+                                "Бонус мастерства" to "15",
+                                "Текущие хиты" to "16",
+                                "Временные хиты" to "2",
+                                "Максимальные хиты" to "18",
+                                "Бонус к инициативе" to "0",
+                                "Скорость" to "30",
+                                "Класс доспеха" to "18",
+                            ),
+                            "listParamOptions" to mapOf(
+                                "Значимость" to "Главный герой",
+                                "Класс" to "Изобретатель",
+                                "Раса" to "Гном",
+                                "Пол" to "Мужской",
+                                "Мировоззрение" to "Законопослушный-злой",
+                            )
+                        ),
+                        "Параметры" to mapOf(
+                            "listParamNum" to mapOf(
+                                "Сила" to "7",
+                                "Ловкость" to "7",
+                                "Телосложение" to "7",
+                                "Интеллект" to "7",
+                                "Мудрость" to "7",
+                                "Харизма" to "7",
+                            ),
+                        ),
+                        "Навыки" to mapOf(
+                            "listParamNum" to mapOf(
+                                "Акробатика" to "2",
+                                "Анализ" to "2",
+                                "Атлетика" to "2",
+                                "Внимательность" to "2",
+                                "Выживание" to "2",
+                                "Выступление" to "2",
+                                "Запугивание" to "2",
+                                "Истроия" to "2",
+                                "Ловкость рук" to "2",
+                                "Магия" to "2",
+                                "Проницательность" to "2",
+                                "Религия" to "2",
+                                "Скрытность" to "2",
+                                "Убеждение" to "2",
+                                "Уход за животными" to "2",
+                            ),
+                        ),
+                        "Спасброски" to mapOf(
+                            "listParamNum" to mapOf(
+                                "Сила" to "7",
+                                "Ловкость" to "7",
+                                "Телосложение" to "7",
+                                "Интеллект" to "7",
+                                "Мудрость" to "7",
+                                "Харизма" to "7",
+                            ),
+                        ),
+                        "Экипированное" to mapOf(
+                            "listItem" to mapOf(
+
+                            ),
+                        ),
+                        "Атаки и заклинания" to mapOf(
+                            "listItem" to mapOf(
+
+                            ),
+                        ),
+                        "Снаряжение" to mapOf(
+                            "listItem" to mapOf(
+                                "mapItem" to "100 евробаксов немаркированными купюрами",
+                            ),
+                        ),
+                        "Деньги" to mapOf(
+                            "listParamNum" to mapOf(
+                                "Медные" to "8",
+                                "Серебрянные" to "6",
+                                "Золотые" to "2",
+                                "Платиновые" to "3",
+                            ),
+                        ),
+                        "Биография" to mapOf(
+                            "listParamStr" to mapOf(
+                                "Черты характера" to "",
+                                "Идеалы" to "",
+                                "Привязанности" to "",
+                                "Слабости" to "",
+                            ),
+                        ),
+                    ),
+                    paramStrDnDSystem,
+                    paramNumDnDSystem,
+                    paramOptionsDnDSystem,
+                    RealmList<Item>()
+                )
+            )
+        ),
         templateItem = RealmList<Item>(),
-        templateParamNum = RealmList<ParamNum>(),
-        templateParamStr = RealmList<ParamStr>(),
-        templateParamOptions = RealmList<ParamOptions>(),
+        templateParamNum = paramNumDnDSystem,
+        templateParamStr = paramStrDnDSystem,
+        templateParamOptions = paramOptionsDnDSystem,
     )
 
 
