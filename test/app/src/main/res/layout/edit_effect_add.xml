@@ -40,13 +40,14 @@
                 android:textColor="@color/light_grey" />
 
             <androidx.appcompat.widget.SwitchCompat
+                android:checked="false"
                 android:id="@+id/permanent"
                 style="@style/Text.H2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/green"
-                android:text="Временный"
+                android:text="Постоянный"
                 app:thumbTint="@color/green" />
 
             <TextView

@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.adapters.DropDownAdapterRV
-import com.example.test.data_base.DTemplateParamOptions
 import com.example.test.data_base.EffectAdd
 import com.example.test.databinding.EditEffectAddBinding
 import com.example.test.viewModels.CharacterDAO
@@ -67,12 +67,11 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack,
         with(binding) {
 
             if (Effpermanent) {
-                Effpermanent = true
-                permanent.isChecked = true
+                permanent.isChecked = false
                 permanent.text = "Постоянный"
                 linPermanentFalse.visibility = View.GONE
             } else {
-                permanent.isChecked = false
+                permanent.isChecked = true
                 permanent.text = "Временный"
                 linPermanentFalse.visibility = View.VISIBLE
             }
@@ -80,12 +79,10 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack,
             permanent.setOnClickListener {
                 if (permanent.isChecked) {
                     Effpermanent = false
-                    permanent.isChecked = false
                     permanent.text = "Временный"
                     linPermanentFalse.visibility = View.VISIBLE
                 } else {
                     Effpermanent = true
-                    permanent.isChecked = true
                     permanent.text = "Постоянный"
                     linPermanentFalse.visibility = View.GONE
                 }
@@ -146,18 +143,13 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack,
         applyBtn.setOnClickListener {
             var res = 1
 
-            if (effectAdd.property == "Выберите характеристику") {
+            if (view.findViewById<DropDownView>(R.id.property)
+                    .getValueFromDD() == "Выберите характеристику"
+            ) {
                 res = 0
                 Toast.makeText(view.context, "Выберите параметр", Toast.LENGTH_SHORT).show()
             }
 
-            if (effectAdd.impact == null) {
-                res = 0
-                Toast.makeText(
-                    view.context, "Значение влияния должно быть числом",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
             if (effectAdd.impact == 0) {
                 res = 0
                 Toast.makeText(
@@ -183,21 +175,6 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack,
                     ).show()
                 }
 
-                if (effectAdd.duration == null) {
-                    res = 0
-                    Toast.makeText(
-                        view.context, "Значение длительности должно быть числом",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-                if (effectAdd.rollback == null) {
-                    res = 0
-                    Toast.makeText(
-                        view.context, "Значение отката должно быть числом",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
             } else {
                 effectAdd.duration = null
                 effectAdd.rollback = null

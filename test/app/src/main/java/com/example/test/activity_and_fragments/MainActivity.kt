@@ -2,6 +2,7 @@ package com.example.test.activity_and_fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View.GONE
 import android.widget.Button
 import androidx.activity.viewModels
@@ -27,10 +28,12 @@ class MainActivity : AppCompatActivity() {
 
         if (mGameSystemDAO.findGameSystemId("cyberPuckSystem") == null) {
             mGameSystemDAO.addGameSystem(TemplateGameSystem().cyberPuckSystem)
+            Log.d("aaaaa", "Система киберпанк создана")
         }
 
         if (mGameSystemDAO.findGameSystemId("DnDSystem") == null) {
             mGameSystemDAO.addGameSystem(TemplateGameSystem().DnDSystem)
+            Log.d("aaaaa", "Система днд создана")
         }
 
         val vContinue = findViewById<Button>(R.id.Main_Continue)
