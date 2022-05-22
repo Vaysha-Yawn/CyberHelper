@@ -228,9 +228,7 @@ class EditItem : Fragment() {
                                 .show()
                             mCharacterVM.LOCitemClear()
                             view.findNavController().popBackStack()
-                            view.findNavController().popBackStack()
                         } else {
-                            /// todo добавить шаблон
                             mGameSystemVM.addTemplateItem(
                                 item,
                                 mGameSystemVM.currentGameSystem!!.id,
@@ -256,9 +254,7 @@ class EditItem : Fragment() {
                                 .show()
                             mCharacterVM.LOCitemClear()
                             view.findNavController().popBackStack()
-                            view.findNavController().popBackStack()
                         } else {
-                            /// todo изменить шаблон
                             mGameSystemVM.updateTemplateItem(
                                 index,
                                 item,

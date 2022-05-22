@@ -13,7 +13,7 @@ import com.example.test.data_base.EffectWeapon
 import io.realm.RealmList
 
 
-class EffectWeaponAdapterRV():
+class EffectWeaponAdapterRV :
     RecyclerView.Adapter<EffectWeaponAdapterRV.TemplateHolder>() {
 
     private var list = listOf<EffectWeapon>()
@@ -29,8 +29,6 @@ class EffectWeaponAdapterRV():
         fun bind(effect: EffectWeapon, groupTitle:String, newOrPres: Boolean, readOrEdit: Boolean, indexItem:Int, indexEff:Int) = with(binding){
             type.text = effect.fightType?:""
             damage.text = "${effect.numCount}d${effect.dX}"
-            // todo: убрать все упоминания о износе
-                linlayWearout.visibility = View.GONE
 
             if (readOrEdit){// при чтении
                 linearLayout3.visibility = View.GONE

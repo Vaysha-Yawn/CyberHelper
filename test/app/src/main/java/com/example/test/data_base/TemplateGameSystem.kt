@@ -268,7 +268,7 @@ class TemplateGameSystem {
         ),
         RealmList(RealmPair("Оружие", RealmList("Дальний бой", "Ближний бой"))),
 
-        RealmList(
+        tabsToGroup = RealmList(
             RealmSomething(
                 RealmList(
                     "Базовые параметры"
@@ -300,7 +300,7 @@ class TemplateGameSystem {
                 )
             ),
         ),
-        RealmList<Character>(
+        templateCharacter = RealmList<Character>(
             Character(
                 0, 0,
                 attributes = initGroupsParam(
@@ -380,10 +380,10 @@ class TemplateGameSystem {
                 )
             )
         ),
-        paramItemCyberPuckSystem,
-        paramNumCyberPuckSystem,
-        paramStrCyberPuckSystem,
-        paramOptionsCyberPuckSystem,
+        templateItem = paramItemCyberPuckSystem,
+        templateParamNum = paramNumCyberPuckSystem,
+        templateParamStr = paramStrCyberPuckSystem,
+        templateParamOptions = paramOptionsCyberPuckSystem,
     )
 
     /////// дозаполнять
@@ -502,18 +502,18 @@ class TemplateGameSystem {
             // Оружие, Броня, Артефакты, Безделушки, Зелья
         ),
         // где первая строка - название группы, вторая название типа
-        RealmList<RealmSomething>(),
+        tabsToGroup = RealmList<RealmSomething>(),
         // где число - номер вкладки, вторая строка - название группы, не более 5 названий, названия и иконка вкладки не изменяются, подстраивайтесь под них
         // 1 "Базовые параметры"
         // 2 "Параметры", "Навыки",
         // 3 "Экипированное"
         // 4 "Снаряжение", "Заклинания"
         // 5 "Особенности персонажа" "Информация о игроке" "Биография"
-        RealmList<Character>(),
-        RealmList<Item>(),
-        RealmList<ParamNum>(),
-        RealmList<ParamStr>(),
-        RealmList<ParamOptions>(),
+        templateCharacter = RealmList<Character>(),
+        templateItem = RealmList<Item>(),
+        templateParamNum = RealmList<ParamNum>(),
+        templateParamStr = RealmList<ParamStr>(),
+        templateParamOptions = RealmList<ParamOptions>(),
     )
 
 
