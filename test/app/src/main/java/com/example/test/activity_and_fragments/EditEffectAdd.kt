@@ -18,8 +18,10 @@ import com.example.test.viewModels.GameDAO
 import com.example.test.viewModels.GameSystemDAO
 import com.example.test.views.DropDownView
 import com.example.test.views.HeaderView
+import com.example.test.views.PlusMinusView
 
-class EditEffectAdd : Fragment(), HeaderView.HeaderBack, DropDownAdapterRV.TemplateHolder.WhenValueTo {
+class EditEffectAdd : Fragment(), HeaderView.HeaderBack,
+    DropDownAdapterRV.TemplateHolder.WhenValueTo {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
@@ -29,6 +31,8 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack, DropDownAdapterRV.Templ
     private var indexItem = -1
     private var indexEff = -1
     private lateinit var effectAdd: EffectAdd
+    private var arr = mutableListOf<String>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +43,8 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack, DropDownAdapterRV.Templ
         groupTitle = args?.getString("groupTitle", "") ?: ""
         indexItem = args?.getInt("indexItem", -1) ?: -1
         indexEff = args?.getInt("indexEff", -1) ?: -1
+
+        arr = getListParamNumNames()
 
         // ищем старый эффект или создаем новый
         effectAdd = EffectAdd()
@@ -58,7 +64,7 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack, DropDownAdapterRV.Templ
         var Effpermanent = effectAdd.permanent
         val binding = EditEffectAddBinding.bind(view)
 
-        with(binding){
+        with(binding) {
 
             if (Effpermanent) {
                 Effpermanent = true
@@ -72,12 +78,12 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack, DropDownAdapterRV.Templ
             }
 
             permanent.setOnClickListener {
-                if(permanent.isChecked){
+                if (permanent.isChecked) {
                     Effpermanent = false
                     permanent.isChecked = false
                     permanent.text = "Временный"
                     linPermanentFalse.visibility = View.VISIBLE
-                }else{
+                } else {
                     Effpermanent = true
                     permanent.isChecked = true
                     permanent.text = "Постоянный"
@@ -85,49 +91,50 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack, DropDownAdapterRV.Templ
                 }
             }
             // подключаем выбор параметра
-            property.setDDArrayAndListener(getListParamNumNames(), this@EditEffectAdd, null)
+            property.setDDArrayAndListener(arr, this@EditEffectAdd, null)
+
+            //  подключаем фрагмент значение влияния
+            impact.setValue(effectAdd.impact)
+            impact.setListener(null, 0, object : PlusMinusView.NumberEvent {
+                override fun numberEvent(number: Int) {
+                    effectAdd.impact = number
+                }
+
+            })
+
+            // подключаем фрагмент длительность
+            duration.setValue(effectAdd.duration ?: 0)
+            duration.setListener(null, 0, object : PlusMinusView.NumberEvent {
+                override fun numberEvent(number: Int) {
+                    effectAdd.duration = number
+                }
+            })
+
+            // подключаем фрагмент откат
+            rollback.setValue(effectAdd.rollback ?: 0)
+            rollback.setListener(null, 0, object : PlusMinusView.NumberEvent {
+                override fun numberEvent(number: Int) {
+                    effectAdd.rollback = number
+                }
+            })
         }
 
         // настраиваем переключение и запоминание знака
         val btnSign = view.findViewById<Button>(R.id.sign)
-        var sign = effectAdd.sign
-        if (sign) {
+        if (effectAdd.sign) {
             btnSign.setBackgroundResource(R.drawable.btn_sign_plus_green)
         } else {
             btnSign.setBackgroundResource(R.drawable.btn_sign_minus_green)
         }
         btnSign.setOnClickListener {
-            if (sign) {
-                sign = false
+            if (effectAdd.sign) {
+                effectAdd.sign = false
                 btnSign.setBackgroundResource(R.drawable.btn_sign_minus_green)
             } else {
-                sign = true
+                effectAdd.sign = true
                 btnSign.setBackgroundResource(R.drawable.btn_sign_plus_green)
             }
         }
-
-        //  подключаем фрагмент значение влияния
-        val bundleImpact = Bundle()
-        bundleImpact.putInt("value", effectAdd.impact)
-        bundleImpact.putInt("minValue", 0)
-        bundleImpact.putString("them", "green")
-        //loadFragment(R.id.impact, PlusAndMinus(), bundleImpact)
-
-
-        // подключаем фрагмент длительность
-        val bundleDuration = Bundle()
-        bundleDuration.putInt("value", effectAdd.duration ?: 0)
-        bundleDuration.putInt("minValue", 0)
-        bundleDuration.putString("them", "green")
-        //loadFragment(R.id.duration, PlusAndMinus(), bundleDuration)
-
-        // подключаем фрагмент откат
-        val bundleRollback = Bundle()
-        bundleRollback.putInt("value", effectAdd.rollback ?: 0)
-        bundleRollback.putInt("minValue", 0)
-        bundleRollback.putString("them", "green")
-        //loadFragment(R.id.rollback, PlusAndMinus(), bundleRollback)
-
 
         // закрыть и подтвердить
         val closeBtn = view.findViewById<Button>(R.id.weapon_edit_close)
@@ -139,27 +146,19 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack, DropDownAdapterRV.Templ
         applyBtn.setOnClickListener {
             var res = 1
 
-            val frag1: Fragment = childFragmentManager.findFragmentById(R.id.property)!!
-            val property =
-                frag1.view?.findViewById<TextView>(R.id.main)?.text.toString()
-            if (property == "Выберите характеристику") {
+            if (effectAdd.property == "Выберите характеристику") {
                 res = 0
                 Toast.makeText(view.context, "Выберите параметр", Toast.LENGTH_SHORT).show()
             }
 
-            val frag2: Fragment =
-                childFragmentManager.findFragmentById(R.id.impact)!!
-            val impact =
-                frag2.view?.findViewById<EditText>(R.id.edit)?.text.toString()
-                    .toIntOrNull()
-            if (impact == null) {
+            if (effectAdd.impact == null) {
                 res = 0
                 Toast.makeText(
                     view.context, "Значение влияния должно быть числом",
                     Toast.LENGTH_SHORT
                 ).show()
             }
-            if (impact == 0) {
+            if (effectAdd.impact == 0) {
                 res = 0
                 Toast.makeText(
                     view.context, "Значение влияния должно быть больше нуля",
@@ -167,47 +166,32 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack, DropDownAdapterRV.Templ
                 ).show()
             }
 
-            val frag3: Fragment =
-                childFragmentManager.findFragmentById(R.id.duration)!!
-            var duration: Int? =
-                frag3.view?.findViewById<EditText>(R.id.edit)?.text.toString()
-                    .toIntOrNull()
-            if (duration == 0) {
-                if (!Effpermanent) {
+            if (!Effpermanent) {
+                if (effectAdd.duration == 0) {
                     res = 0
                     Toast.makeText(
                         view.context, "Значение длительности должно быть больше нуля",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            }
 
-
-            val frag4: Fragment =
-                childFragmentManager.findFragmentById(R.id.rollback)!!
-            var rollback: Int? =
-                frag4.view?.findViewById<EditText>(R.id.edit)?.text.toString()
-                    .toIntOrNull()
-
-            if (rollback == 0) {
-                if (!Effpermanent) {
+                if (effectAdd.rollback == 0) {
                     res = 0
                     Toast.makeText(
                         view.context, "Значение отката должно быть больше нуля",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            }
 
-            if (!Effpermanent) {
-                if (duration == null) {
+                if (effectAdd.duration == null) {
                     res = 0
                     Toast.makeText(
                         view.context, "Значение длительности должно быть числом",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-                if (rollback == null) {
+
+                if (effectAdd.rollback == null) {
                     res = 0
                     Toast.makeText(
                         view.context, "Значение отката должно быть числом",
@@ -215,33 +199,33 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack, DropDownAdapterRV.Templ
                     ).show()
                 }
             } else {
-                duration = null
-                rollback = null
+                effectAdd.duration = null
+                effectAdd.rollback = null
             }
 
             if (res == 1) {// если проверка прошла успешно
                 if (indexEff == -1) {//новый эффект
-                        mCharacterVM.LOCaddEffectAddItem(
-                            EffectAdd(
-                                Effpermanent,
-                                property,
-                                impact!!,
-                                sign,
-                                duration,
-                                rollback
-                            )
+                    mCharacterVM.LOCaddEffectAddItem(
+                        EffectAdd(
+                            Effpermanent,
+                            effectAdd.property,
+                            effectAdd.impact,
+                            effectAdd.sign,
+                            effectAdd.duration,
+                            effectAdd.rollback
                         )
+                    )
                 } else {
-                        mCharacterVM.LOCupdateEffectAddItem(
-                            indexEff, EffectAdd(
-                                Effpermanent,
-                                property,
-                                impact!!,
-                                sign,
-                                duration,
-                                rollback
-                            )
+                    mCharacterVM.LOCupdateEffectAddItem(
+                        indexEff, EffectAdd(
+                            Effpermanent,
+                            effectAdd.property,
+                            effectAdd.impact,
+                            effectAdd.sign,
+                            effectAdd.duration,
+                            effectAdd.rollback
                         )
+                    )
                 }
                 view.findNavController().popBackStack()
             }
@@ -255,14 +239,14 @@ class EditEffectAdd : Fragment(), HeaderView.HeaderBack, DropDownAdapterRV.Templ
     }
 
     override fun whenValueTo(position: Int) {
-        TODO("Not yet implemented")
+        effectAdd.property = arr[position]
     }
 
-    private fun getListParamNumNames():MutableList<String>{
+    private fun getListParamNumNames(): MutableList<String> {
         val list = mutableListOf<String>()
-        for (i in mGameSystemDAO.currentGameSystem!!.templateParamNum){
+        for (i in mGameSystemDAO.currentGameSystem!!.templateParamNum) {
             list.add(i.name)
         }
-        return  list
+        return list
     }
 }

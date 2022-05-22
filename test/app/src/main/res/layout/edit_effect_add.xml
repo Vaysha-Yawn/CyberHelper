@@ -22,12 +22,12 @@
                 style="@style/Text.Title.Small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
                 android:text="Редактирование эффекта влияния"
                 android:textColor="@color/light_grey"
-                android:textSize="26sp"
-                android:layout_marginStart="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginTop="0dp"/>
+                android:textSize="26sp" />
 
             <TextView
                 style="@style/Text.H2"
@@ -40,15 +40,14 @@
                 android:textColor="@color/light_grey" />
 
             <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/permanent"
                 style="@style/Text.H2"
-                android:layout_marginTop="10dp"
-                app:thumbTint="@color/green"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:backgroundTint="@color/green"
                 android:text="Временный"
-                android:id="@+id/permanent"
-                />
+                app:thumbTint="@color/green" />
 
             <TextView
                 style="@style/Text.H2"
@@ -61,13 +60,13 @@
                 android:textColor="@color/light_grey" />
 
             <com.example.test.views.DropDownView
+                android:id="@+id/property"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 app:DD_color="@color/green"
                 app:main_text="Выберите характеристику"
-                app:text_color="@color/black"
-                android:id="@+id/property"
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                app:text_color="@color/black" />
 
             <TextView
                 style="@style/Text.H2"
@@ -88,27 +87,31 @@
                     android:id="@+id/sign"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/btn_sign_plus_green"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="SpeakableTextPresentCheck"
-                    android:layout_marginEnd="20dp"/>
+                    tools:ignore="SpeakableTextPresentCheck" />
 
-                <androidx.fragment.app.FragmentContainerView
+
+                <com.example.test.views.PlusMinusView
                     android:id="@+id/impact"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="170dp"
+                    android:layout_height="match_parent"
+                    app:PM_small="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:PM_color="@color/green"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <LinearLayout
                 android:id="@+id/lin_permanent_false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
                     style="@style/Text.H2"
                     android:layout_width="match_parent"
@@ -119,13 +122,14 @@
                     android:text="Длительность эффекта"
                     android:textColor="@color/light_grey" />
 
-                <androidx.fragment.app.FragmentContainerView
-                    android:id="@+id/duration"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <com.example.test.views.PlusMinusView
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp" />
-
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/duration"
+                    android:layout_width="170dp"
+                    android:layout_height="match_parent"
+                    app:PM_small="true"
+                    app:PM_color="@color/green"/>
                 <TextView
                     style="@style/Text.H2"
                     android:layout_width="match_parent"
@@ -136,16 +140,17 @@
                     android:text="Откат"
                     android:textColor="@color/light_grey" />
 
-                <androidx.fragment.app.FragmentContainerView
+                <com.example.test.views.PlusMinusView
+                    android:layout_gravity="center_horizontal"
                     android:id="@+id/rollback"
-                    android:layout_width="wrap_content"
+                    android:layout_width="170dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_marginTop="20dp" />
             </LinearLayout>
+
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="50dp"/>
+                android:layout_height="50dp" />
         </LinearLayout>
     </ScrollView>
 
@@ -158,8 +163,8 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            style="@style/Text.H2"
             android:id="@+id/weapon_edit_close"
+            style="@style/Text.H2"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_green_outline"
@@ -171,8 +176,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            style="@style/Text.H2"
             android:id="@+id/weapon_edit_apply"
+            style="@style/Text.H2"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_green_full"
