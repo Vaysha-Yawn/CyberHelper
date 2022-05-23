@@ -14,16 +14,21 @@ import com.example.test.activity_and_fragments.hosts.NewHost
 import com.example.test.activity_and_fragments.hosts.PresentHost
 import com.example.test.activity_and_fragments.setting.SettingsHost
 import com.example.test.data_base.TemplateGameSystem
+import com.example.test.viewModels.GameDAO
 import com.example.test.viewModels.GameSystemDAO
 
 class MainActivity : AppCompatActivity() {
 
     private val mGameSystemDAO: GameSystemDAO by viewModels()
+    private val mGameDAO: GameDAO by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val gameId = getSharedPreferences("id", 0).getString("PresentGame", "0")?.toInt()
+
+        mGameDAO.initAllGames()
+        val haveGamesBoolean = mGameDAO.gameList.value?.isEmpty()
+
         val load = findViewById<Button>(R.id.Main_Load)
 
         if (mGameSystemDAO.findGameSystemId("cyberPuckSystem") == null) {
@@ -37,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val vContinue = findViewById<Button>(R.id.Main_Continue)
-        if (gameId != 0) {
+        if (haveGamesBoolean == false) {
             load.setOnClickListener {
                 val i = Intent(this, LoadHost::class.java)
                 startActivity(i)

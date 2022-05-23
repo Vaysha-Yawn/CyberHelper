@@ -17,7 +17,7 @@ open class GameSystemDAO : ViewModel() {
 
 
     fun addGameSystem(gameSystem: GameSystem): Int {
-        val id = realm.where(GameSystem::class.java).max("id")?.toInt()?.plus(1)!!
+        val id = realm.where(GameSystem::class.java).max("id")?.toInt()?.plus(1)?:1
         gameSystem.id = id
         realm.executeTransaction { transactionRealm ->
             transactionRealm.copyToRealm(gameSystem)
