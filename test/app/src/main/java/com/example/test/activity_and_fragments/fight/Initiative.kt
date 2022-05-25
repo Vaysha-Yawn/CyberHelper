@@ -54,17 +54,40 @@ class Initiative : Fragment(),
             }
 
             btnNext.setOnClickListener {
-                if (edit.text.toString() != "") {
-                    val fewRolls = fr.getFragment<FewRoll>().getFewRoll()
+                val fewRolls = fr.getFragment<FewRoll>().getFewRoll()
+                var res = 1
+                if (edit.text.toString() == ""){
+                    res = 0
+                    Toast.makeText(
+                        requireContext(),
+                        "Введите название боя",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                for (roll in fewRolls.rolls){
+                    if (roll.goal.name == ""){
+                        res = 0
+                        Toast.makeText(
+                            requireContext(),
+                            "Выберите цель",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                if (fewRolls.rolls.size<2){
+                    res = 0
+                    Toast.makeText(
+                        requireContext(),
+                        "Не менее 2х целей",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                if (res==1) {
                     val bundle = calculateFewRollToBundle(fewRolls, edit.text.toString())
                     view.findNavController()
                         .navigate(R.id.action_Initiative_to_InitiativeResult, bundle)
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Пожалуйста, введите название боя",
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
             }
             header.setBack(true, this@Initiative, requireActivity(), viewLifecycleOwner)
