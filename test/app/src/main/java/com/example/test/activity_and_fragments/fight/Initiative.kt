@@ -9,7 +9,6 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.activity_and_fragments.hosts.FightHost
@@ -30,27 +29,26 @@ class Initiative : Fragment(),
     private val mSkillVM: SkillTestVM by activityViewModels()
     private val VM: FewRollVM by activityViewModels()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (VM.allGoals.isEmpty()) {
+            VM.setAllGoals(mCharacterVM)
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.iniciativa, container, false)
 
-        mSkillVM.mapGoalMap[0] = MutableLiveData()
-        mSkillVM.mapGoalMap[0]?.value = mutableMapOf()
-
         val binding = IniciativaBinding.bind(view)
         fun bind() = with(binding) {
             title.text = "Проверка инициативы"
 
-            // подготовка
-            if (VM.allGoals.isNullOrEmpty()) {
-                VM.setAllGoals(mCharacterVM)
-            }
-            VM.keyFragment = View.generateViewId()
-
+            // может есть менее радикальный метод,чем каждый раз создавать новый экемпляр?
             val fragment = FewRoll()
-            fragment.arguments = FewRoll().getFewRollBundle(true )
+            fragment.arguments = FewRoll().getFewRollBundle(true)
             childFragmentManager.commit {
                 replace(R.id.fr, fragment)
             }
@@ -80,7 +78,7 @@ class Initiative : Fragment(),
         (activity as FightHost).backToHome()
     }
 
-    private fun calculateFewRollToBundle(fewRolls: FewRolls, nameFight:String): Bundle {
+    private fun calculateFewRollToBundle(fewRolls: FewRolls, nameFight: String): Bundle {
         val list = mutableListOf<Goal>()
         val mapIDtoRes = mutableMapOf<Goal, Int>()
         val listMore = mutableListOf<String>()
@@ -93,7 +91,7 @@ class Initiative : Fragment(),
                 mCharacterVM.characterList.value!!
             )
             mapIDtoRes[goal] = res.first
-            for (s in res.second){
+            for (s in res.second) {
                 listMore.add(s)
             }
         }
@@ -102,7 +100,11 @@ class Initiative : Fragment(),
             list.add(i)
             mapIDtoRes.remove(i)
         }
-        return bundleOf(Pair("listGoal", list), Pair("listMore", listMore), Pair("nameFight", nameFight))
+        return bundleOf(
+            Pair("listGoal", list),
+            Pair("listMore", listMore),
+            Pair("nameFight", nameFight)
+        )
     }
 
 }

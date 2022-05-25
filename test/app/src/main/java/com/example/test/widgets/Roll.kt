@@ -14,6 +14,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.test.R
 import com.example.test.adapters.DropDownAdapterRV
 import com.example.test.data_base.Goal
+import com.example.test.databinding.RollBinding
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.FewRollVM
 import com.example.test.viewModels.OneRoll
@@ -33,7 +34,7 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
 
     private lateinit var m1D10FR: m1D10
     private lateinit var modificatorsFR: Modificators
-    private lateinit var goalDD: DropDownView
+    private lateinit var goalDDView: DropDownView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,14 +46,9 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
             VM.chosenRolls[pos] = OneRoll()
         }
 
-        /////////////////////////////////
-
-        if (VM.allGoals.isNullOrEmpty()) {
+        if (VM.allGoals.isEmpty()) {
             VM.setAllGoals(mCharacterVM)
         }
-
-        /////////////////////////////////
-
     }
 
     override fun onCreateView(
@@ -60,7 +56,6 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.roll, container, false)
-        /////////////////////////////////
 
         fun loadFragmentLight(fragment: Fragment, id: Int) {
             childFragmentManager.commit {
@@ -69,7 +64,6 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
             }
         }
 
-        /////////////////////////////////
         val key1d10 = mSkillVM.createId()
         mSkillVM.mapInt[key1d10] = MutableLiveData<Int>()
         mSkillVM.mapInt[key1d10]?.value = 1
@@ -98,47 +92,38 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
         modificatorsFR = view.findViewById<FragmentContainerView>(R.id.modFr).getFragment()
 
         /////////////////////////////////
-        goalDD = view.findViewById(R.id.goalDD)
+        goalDDView = view.findViewById(R.id.goalDD)
         if (goal == "") {
-            goalDD.visibility = View.GONE
+            goalDDView.visibility = View.GONE
         } else {
             val list = mutableListOf<String>()
             VM.allGoals.forEach { g ->
                 list.add(g.name)
             }
             if (list.isEmpty()) {
-                goalDD.setMainText("Целей нет")
+                goalDDView.setMainText("Целей нет")
             }
-            goalDD.setDDArrayAndListener(list, this, this)
+            goalDDView.setDDArrayAndListener(list, this, this)
         }
-
-        /////////////////////////////////
-        return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val id = savedInstanceState?.getInt("pos")
-        if (id != null) {
-            val m1D10FR =
-                view.findViewById<FragmentContainerView>(R.id.m1d10Fr).getFragment<m1D10>()
-            val modificatorsFR =
-                view.findViewById<FragmentContainerView>(R.id.modFr).getFragment<Modificators>()
-            val goalDD = view.findViewById<DropDownView>(R.id.goalDD)
-
-            pos = id
+        VM.chosenRolls[pos]?.goal?.name?.let { goalDDView.setMainText(it) }
+        /*val binding = RollBinding.bind(view)
+        with(binding){
             val oneRoll = VM.chosenRolls[pos]
             if (oneRoll != null) {
                 Log.d("eeeee", pos.toString() + "Успешно загружен")
                 if (oneRoll.crit != null) {
                     m1D10FR.setCritical(oneRoll.crit!!)
                 }
-                //m1D10FR.setM1d10(oneRoll.m1d10)
-                m1D10FR.setM1d10(6)
-                oneRoll.mods?.let { modificatorsFR.setListMods(it) }
-                goalDD.setMainText(oneRoll.goal.name)
+                m1d10Fr.getFragment<m1D10>().setM1d10(oneRoll.m1d10)
+                oneRoll.mods?.let {
+                    modFr.getFragment<Modificators>().setListMods(it) }
+
             }
-        }
+        }*/
+
+        /////////////////////////////////
+
+        return view
     }
 
     override fun whenValueTo(position: Int) {

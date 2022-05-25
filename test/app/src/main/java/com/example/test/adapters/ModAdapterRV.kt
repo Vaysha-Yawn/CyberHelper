@@ -56,10 +56,12 @@ class ModTemplateHolder(
         if (mod.style){
             PMLinear.visibility = View.GONE
             DD.visibility = View.VISIBLE
+            DD.setMainText(DSpecialGameData().modName[mod.value])
             DD.setDDArrayAndListener(DSpecialGameData().modName, this@ModTemplateHolder, null)
         }else{
             PMLinear.visibility = View.VISIBLE
             DD.visibility = View.GONE
+            PM.setValue(mod.value)
             PM.setListener(99, 0, this@ModTemplateHolder)
         }
         delete.setOnClickListener { view ->
@@ -85,6 +87,6 @@ class ModTemplateHolder(
     }
 
     override fun numberEvent(number: Int) {
-        listener.putModValue(adapterPosition, position)
+        listener.putModValue(adapterPosition, number)
     }
 }

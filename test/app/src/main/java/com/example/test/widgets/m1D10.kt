@@ -22,6 +22,9 @@ class m1D10 : Fragment() {
     private lateinit var PMCritical: PlusMinusView
     private lateinit var m1d10: PlusMinusView
 
+    private var m1d10Value = 0
+    private var PMCriticalValue = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,13 +41,23 @@ class m1D10 : Fragment() {
         PMCritical = view.findViewById<PlusMinusView>(R.id.PMCritical)
         m1d10 = view.findViewById<PlusMinusView>(R.id.m1d10)
 
+        if (pos != 0) {
+            val roll = VM.chosenRolls[pos]
+            if (roll != null) {
+                m1d10.setValue(roll.m1d10)
+                if (roll.crit != null) {
+                    PMCritical.setValue(roll.crit!!)
+                }
+            }
+        }
+
         PMCritical.setListener(10, 1, object : PlusMinusView.NumberEvent {
             override fun numberEvent(number: Int) {
-                if (pos!=0){
+                if (pos != 0) {
                     VM.chosenRolls[pos]?.crit = number
                 }
                 mSkillVM.mapRoll[keyFragment]?.get(keyRoll)?.crit = number
-
+                VM.chosenRolls[pos]?.crit = number
             }
         }
         )
@@ -58,11 +71,11 @@ class m1D10 : Fragment() {
                     criticalDummy.visibility = View.VISIBLE
                     PMCritical.visibility = View.GONE
                 }
-                if (pos!=0){
+                if (pos != 0) {
                     VM.chosenRolls[pos]?.m1d10 = number
                 }
                 mSkillVM.mapRoll[keyFragment]?.get(keyRoll)?.m1d10 = number
-
+                VM.chosenRolls[pos]?.m1d10 = number
             }
 
         })
@@ -82,17 +95,13 @@ class m1D10 : Fragment() {
         }
     }
 
-    fun setCritical(crit:Int) {
-        val PMCritical = view?.findViewById<PlusMinusView>(R.id.PMCritical)
-        PMCritical?.setValue(crit)
-    }
-
-    fun setM1d10(value:Int) {
-        val m1d10 = view?.findViewById<PlusMinusView>(R.id.m1d10)
-            m1d10?.setValue(value)
-    }
-
-    fun getM1d10Bundle(keyRoll: Int, pos: Int, keyFragment: Int, key1d10: Int, keyCrit: Int, ):Bundle{
+    fun getM1d10Bundle(
+        keyRoll: Int,
+        pos: Int,
+        keyFragment: Int,
+        key1d10: Int,
+        keyCrit: Int,
+    ): Bundle {
         val bundle = Bundle()
         bundle.putInt("keyRoll", keyRoll)
         bundle.putInt("pos", pos)

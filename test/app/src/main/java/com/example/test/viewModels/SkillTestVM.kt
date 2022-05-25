@@ -8,7 +8,7 @@ import io.realm.RealmList
 // для разных роллов разные классы, кроме произвольного число
 data class OneRoll(
     var goal: Goal = Goal(),
-    var mods: MutableList<Mod>? = null,
+    var mods: MutableLiveData<MutableList<Mod>>? = null,
     var m1d10: Int = 0,
     var crit: Int? = null,
 )
@@ -93,8 +93,8 @@ class SkillTestVM : ViewModel() {
             }
         }
         if (roll.mods != null) {
-            if (roll.mods!!.isNotEmpty()) {
-                for (mod in roll.mods!!) {
+            if (roll.mods!!.value!!.isNotEmpty()) {
+                for (mod in roll.mods!!.value!!) {
                     val res = if (mod.style) {
                         DSpecialGameData().modValue[(mod.value - 1)].toInt()
                     } else {
@@ -166,8 +166,8 @@ class SkillTestVM : ViewModel() {
         }
 
         if (roll.mods != null) {
-            if (roll.mods!!.isNotEmpty()) {
-                for (mod in roll.mods!!) {
+            if (roll.mods!!.value!!.isNotEmpty()) {
+                for (mod in roll.mods!!.value!!) {
                     val res = if (mod.style) {
                         DSpecialGameData().modValue[(mod.value - 1)].toInt()
                     } else {

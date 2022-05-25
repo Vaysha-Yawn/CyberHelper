@@ -5,55 +5,56 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.MutableLiveData
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.test.R
 import com.example.test.adapters.RollAdapterVP2
-import com.example.test.data_base.Goal
 import com.example.test.databinding.FewRollBinding
-import com.example.test.viewModels.*
-import kotlin.properties.Delegates
+import com.example.test.viewModels.CharacterDAO
+import com.example.test.viewModels.FewRollVM
+import com.example.test.viewModels.FewRolls
+import com.example.test.viewModels.SkillTestVM
 
 // todo не переживает поворот экрана
 class FewRoll : Fragment() {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
     private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val VM: FewRollVM by activityViewModels()
 
     private lateinit var ViewPager2: ViewPager2
-
-    private val VM: FewRollVM by activityViewModels()
+    private lateinit var adapter: RollAdapterVP2
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.few_roll, container, false)
-
         val binding = FewRollBinding.bind(view)
-        if (VM.chosenRolls.isEmpty()){
-            VM.add(R.id.radioButton, Roll().apply {
-                arguments = Roll().getRollBundle(true,R.id.radioButton)
-            })
-        }
-
-        val adapter = RollAdapterVP2(
-            childFragmentManager,
-            lifecycle
-        )
 
         fun bind() = with(binding) {
 
+            if (VM.chosenRolls.isEmpty()) {
+                val id = R.id.radioButton
+                VM.add(id, Roll().apply {
+                    arguments = Roll().getRollBundle(true, id)
+                })
+            } else {
+                reCreateRoll(view.findViewById(R.id.radioGroup), view)
+            }
+
+            adapter = RollAdapterVP2(
+                childFragmentManager,
+                lifecycle
+            )
+
+
             ViewPager2 = VP2
             VP2.adapter = adapter
-
-            VM.fragments.observe(viewLifecycleOwner) {
-                adapter.setData(it.values.toMutableList())
-            }
 
             delete.setOnClickListener {
                 if (radioGroup.childCount >= 2) {
@@ -65,14 +66,17 @@ class FewRoll : Fragment() {
                         radioGroup.check(VM.getElement(1))
                     }
                     radioGroup.removeView(view.findViewById(id))
-                    VM.delete(id, position)
-                    adapter.remove()
+                    VM.delete(id)
+                    VM.fragments.observe(viewLifecycleOwner) {
+                        adapter.setData(it.values.toMutableList())
+                    }
                 }
+                adapter.remove()
             }
 
             add.setOnClickListener {
                 if (radioGroup.childCount <= 6 && VM.allGoals.size > adapter.itemCount) {
-                    val id = View.generateViewId()
+                    val id = VM.getNewId()
                     val radio = RadioButton(view.context)
                     radio.buttonTintList = view.context.resources.getColorStateList(R.color.yellow)
                     radio.text = ""
@@ -81,8 +85,11 @@ class FewRoll : Fragment() {
                     VM.add(id, Roll().apply {
                         arguments = Roll().getRollBundle(true, id)
                     })
-                    adapter.add()
+                    VM.fragments.observe(viewLifecycleOwner) {
+                        adapter.setData(it.values.toMutableList())
+                    }
                     radioGroup.check(id)
+                    adapter.add()
                 } else {
                     Toast.makeText(
                         requireContext(),
@@ -106,6 +113,10 @@ class FewRoll : Fragment() {
         }
         bind()
 
+        VM.fragments.observe(viewLifecycleOwner) {
+            adapter.setData(it.values.toMutableList())
+        }
+
         return view
     }
 
@@ -121,6 +132,18 @@ class FewRoll : Fragment() {
 
     fun getFewRoll(): FewRolls {
         return FewRolls(VM.chosenRolls.values.toMutableList())
+    }
+
+    private fun reCreateRoll(radioGroup: RadioGroup, view: View) {
+        radioGroup.removeView(view.findViewById(R.id.radioButton))
+        for (id in VM.listId.value!!) {
+            val radio = RadioButton(view.context)
+            radio.buttonTintList = view.context.resources.getColorStateList(R.color.yellow)
+            radio.text = ""
+            radio.id = id
+            radioGroup.addView(radio)
+        }
+        radioGroup.check(VM.getElement(0))
     }
 
 }
