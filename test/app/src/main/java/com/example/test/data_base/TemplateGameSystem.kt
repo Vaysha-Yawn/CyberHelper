@@ -522,6 +522,7 @@ class TemplateGameSystem {
             false
         ),
     )
+
     val paramStrDnDSystem = RealmList<ParamStr>(
         ParamStr("Имя персонажа", "", removable = false, "Базовые параметры", false),
         ParamStr("Название игры", "", removable = false),
