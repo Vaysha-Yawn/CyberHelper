@@ -41,7 +41,9 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
 
         pos = requireArguments().getInt("pos")
 
-        VM.chosenRolls[pos] = OneRoll()
+        if (VM.chosenRolls[pos] == null) {
+            VM.chosenRolls[pos] = OneRoll()
+        }
 
         /////////////////////////////////
 
@@ -77,13 +79,7 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
         mSkillVM.mapInt[keyCrit]?.value = 1
 
         val fragment = m1D10()
-        val bundle = Bundle()
-        bundle.putInt("keyRoll", pos)
-        bundle.putInt("pos", pos)
-        bundle.putInt("keyFragment", 0)
-        bundle.putInt("key1d10", key1d10)
-        bundle.putInt("keyCrit", keyCrit)
-        fragment.arguments = bundle
+        fragment.arguments = fragment.getM1d10Bundle(pos, pos, 0, key1d10, keyCrit)
         loadFragmentLight(fragment, R.id.m1d10Fr)
 
         m1D10FR = view.findViewById<FragmentContainerView>(R.id.m1d10Fr).getFragment()
@@ -191,13 +187,6 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
 
     fun getRoll(): OneRoll {
         return VM.chosenRolls[pos]!!
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        // put
-        outState.putInt("pos", pos)
-        Log.d("eeeee", pos.toString() + "Успешно сохранен")
     }
 
 }

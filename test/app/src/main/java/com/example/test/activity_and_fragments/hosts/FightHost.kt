@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.NavHostFragment
 import com.example.test.R
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.FewRollVM
@@ -23,21 +21,23 @@ class FightHost : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.host_fight)
-        val loadFragment = intent.getStringExtra("fragment")?:""
+        /*val loadFragment = intent.getStringExtra("fragment")?:""
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
 
         navController.navigate(R.id.Initiative)
-
+*/
         characterId = intent.getIntExtra("characterId", 0)
         val gameId = getSharedPreferences("id", 0).getString("PresentGame", "0")!!.toInt()
         mCharacterVM.initGameId(gameId)
-        mCharacterVM.loadCharactersByGameId(gameId)
+        if (mCharacterVM.characterList.value.isNullOrEmpty()) {
+            mCharacterVM.loadCharactersByGameId(gameId)
+        }
         mGameVM.initGameName(gameId)
         mCharacterVM.characterId = characterId
     }
-    
+
     fun backToCharacterMenu() {
         val i = Intent(this, PresentHost::class.java)
         i.putExtra("fragment", "CharacterMenu")
@@ -52,5 +52,3 @@ class FightHost : AppCompatActivity() {
         finish()
     }
 }
-
-// этот текст написан через Acode 

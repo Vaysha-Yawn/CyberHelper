@@ -33,7 +33,6 @@ class FewRoll : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.few_roll, container, false)
-        //VM = ViewModelProvider(this)[FewRollVM::class.java]
 
         val binding = FewRollBinding.bind(view)
         if (VM.chosenRolls.isEmpty()){

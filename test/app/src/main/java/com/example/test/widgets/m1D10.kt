@@ -91,4 +91,14 @@ class m1D10 : Fragment() {
         val m1d10 = view?.findViewById<PlusMinusView>(R.id.m1d10)
             m1d10?.setValue(value)
     }
+
+    fun getM1d10Bundle(keyRoll: Int, pos: Int, keyFragment: Int, key1d10: Int, keyCrit: Int, ):Bundle{
+        val bundle = Bundle()
+        bundle.putInt("keyRoll", keyRoll)
+        bundle.putInt("pos", pos)
+        bundle.putInt("keyFragment", keyFragment)
+        bundle.putInt("key1d10", key1d10)
+        bundle.putInt("keyCrit", keyCrit)
+        return bundle
+    }
 }
