@@ -24,7 +24,9 @@ class PresentHost : AppCompatActivity() {
 
         val gameId = getSharedPreferences("id", 0).getString("PresentGame", "0")!!.toInt()
         mCharacterVM.initGameId(gameId)
-        mCharacterVM.loadCharactersByGameId(gameId)
+        if  (mCharacterVM.characterList.value.isNullOrEmpty()){
+            mCharacterVM.loadCharactersByGameId(gameId)
+        }
         mGameVM.initGameName(gameId)
         mGameSystemVM.initGameSystemById(mGameVM.loadGameById(gameId).gameSystemId)
         /* val loadFragment = intent.getStringExtra("fragment")?:""

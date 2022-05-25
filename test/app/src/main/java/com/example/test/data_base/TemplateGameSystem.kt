@@ -389,6 +389,7 @@ class TemplateGameSystem {
 
     /////// дозаполнять
     val paramNumDnDSystem = RealmList<ParamNum>(
+        ParamNum("Возраст", 0, false, null, 0, "Базовые параметры", false),
         ParamNum("Уровень", 0, false, null, 0, "Базовые параметры", false),
         ParamNum("Опыт", 0, false, null, 0, "Базовые параметры", false),
 

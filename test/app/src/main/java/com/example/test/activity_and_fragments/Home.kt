@@ -26,19 +26,20 @@ import com.example.test.views.HeaderView
 class Home : Fragment(), HeaderView.HeaderBack {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
-    private val mGameVM:GameDAO by activityViewModels()
+    private val mGameVM: GameDAO by activityViewModels()
     private val mInitiativeFightVM: InitiativeFightVM by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.home, container, false)
+        val adapterFight = AdapterInitiativeFight()
+
         val gameId = mCharacterVM.gameId
         mInitiativeFightVM.loadList(gameId)
         mGameVM.initGameName(gameId)
-
-        val view = inflater.inflate(R.layout.home, container, false)
-        val adapterFight = AdapterInitiativeFight()
 
         try {
             val binding = HomeBinding.bind(view)
@@ -71,7 +72,8 @@ class Home : Fragment(), HeaderView.HeaderBack {
 
                 header.setBack(true, this@Home, requireActivity(), viewLifecycleOwner)
 
-                InitiativeFightsRV.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                InitiativeFightsRV.layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 InitiativeFightsRV.adapter = adapterFight
             }
 
@@ -81,7 +83,7 @@ class Home : Fragment(), HeaderView.HeaderBack {
             hGridView.adapter = adapter
 
             // Устанавливаем данные
-            mCharacterVM.characterList.observe(viewLifecycleOwner) { listCharacter->
+            mCharacterVM.characterList.observe(viewLifecycleOwner) { listCharacter ->
                 adapter.setCharacterList(listCharacter, true)
                 mInitiativeFightVM.fightList.observe(viewLifecycleOwner) { listFight ->
                     adapterFight.setData(
@@ -107,7 +109,7 @@ class Home : Fragment(), HeaderView.HeaderBack {
     class AdapterInitiativeFight :
         RecyclerView.Adapter<AdapterInitiativeFightTemplateHolder>() {
 
-        var map =  mutableMapOf<String, MutableList<Character>>()
+        var map = mutableMapOf<String, MutableList<Character>>()
 
         override fun onCreateViewHolder(
             parent: ViewGroup,
