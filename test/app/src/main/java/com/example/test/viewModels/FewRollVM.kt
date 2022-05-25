@@ -43,11 +43,13 @@ class FewRollVM : ViewModel() {
     fun add(id: Int, fragment: Roll) {
         listId.value?.add(id)
         fragments.value!![id] = fragment
+        chosenRolls[id] = OneRoll()
     }
 
     fun delete(id: Int) {
         listId.value?.remove(id)
         fragments.value!!.remove(id)
+        chosenRolls.remove(id)
     }
 
     fun getIndex(element: Int): Int {
