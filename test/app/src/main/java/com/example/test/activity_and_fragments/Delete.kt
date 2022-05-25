@@ -10,10 +10,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
+import com.example.test.viewModels.InitiativeFightVM
 import io.realm.Realm
 
 class Delete : Fragment() {
@@ -161,6 +164,19 @@ class Delete : Fragment() {
                 view.findViewById<Button>(R.id.delete).setOnClickListener {
                     val id = mCharacterVM.characterId
                     mCharacterVM.deleteEffectAdd(id, titleGroup, indexItem, indexEff)
+                    view.findNavController().popBackStack()
+                }
+            }
+
+            "InitiativeFight"->{
+                val id = this.requireArguments().getInt("id", 0)
+                val gameId = this.requireArguments().getInt("gameId", 0)
+                val key = this.requireArguments().getString("key", "")
+                view.findViewById<TextView>(R.id.description).text =
+                    "Вы уверены, что хотите удалить $key ?"
+                view.findViewById<Button>(R.id.delete).setOnClickListener {
+                   val mInitiativeFightVM = ViewModelProvider(this).get(InitiativeFightVM::class.java)
+                    mInitiativeFightVM.deleteInitiativeFight(id)
                     view.findNavController().popBackStack()
                 }
             }

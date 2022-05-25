@@ -23,7 +23,7 @@ import com.example.test.viewModels.GameDAO
 import com.example.test.viewModels.InitiativeFightVM
 import com.example.test.views.HeaderView
 
-class Home : Fragment(), HeaderView.HeaderBack {
+class Home : Fragment(), HeaderView.HeaderBack, AdapterInitiativeFightTemplateHolder.DeleteInitiativeFight {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
@@ -35,7 +35,7 @@ class Home : Fragment(), HeaderView.HeaderBack {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.home, container, false)
-        val adapterFight = AdapterInitiativeFight()
+        val adapterFight = AdapterInitiativeFight(this)
 
         val gameId = mCharacterVM.gameId
         mInitiativeFightVM.loadList(gameId)
@@ -106,62 +106,76 @@ class Home : Fragment(), HeaderView.HeaderBack {
         (activity as PresentHost).backToMain()
     }
 
-    class AdapterInitiativeFight :
-        RecyclerView.Adapter<AdapterInitiativeFightTemplateHolder>() {
-
-        var map = mutableMapOf<String, MutableList<Character>>()
-
-        override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int
-        ): AdapterInitiativeFightTemplateHolder {
-            val view =
-                LayoutInflater.from(parent.context)
-                    .inflate(R.layout.card_initiative_fight, parent, false)
-            return AdapterInitiativeFightTemplateHolder(view)
-        }
-
-        override fun onBindViewHolder(
-            holder: AdapterInitiativeFightTemplateHolder,
-            position: Int
-        ) {
-            holder.bind(map.toList()[position])
-        }
-
-        override fun getItemCount(): Int {
-            return map.size
-        }
-
-        fun setData(map: MutableMap<String, MutableList<Character>>) {
-            this.map = map
-            notifyDataSetChanged()
-        }
-
+    override fun deleteInitiativeFight(position:Int, name:String) {
+        val bundle = Bundle()
+        val id = mInitiativeFightVM.fightList.value?.get(position)?.id!!
+        bundle.putInt("id", id)
+        bundle.putInt("gameId", mCharacterVM.gameId)
+        bundle.putString("param", "InitiativeFight")
+        bundle.putString("key", "бой $name")
+        view?.findNavController()
+            ?.navigate(R.id.action_home2_to_pres_delete, bundle)
     }
 
-    class AdapterInitiativeFightTemplateHolder(
-        view: View,
-    ) : RecyclerView.ViewHolder(view) {
-        private val binding = CardInitiativeFightBinding.bind(view)
-        fun bind(mapPair: Pair<String, MutableList<Character>>) = with(binding) {
-            more.setOnClickListener {
-                if (linLay.visibility == View.VISIBLE) {
-                    linLay.visibility = View.GONE
-                    val draw = it.context.resources.getDrawable(R.drawable.more)
-                    more.background = draw
-                } else {
-                    linLay.visibility = View.VISIBLE
-                    more.background = it.context.resources.getDrawable(R.drawable.less)
-                }
-            }
-            delete.setOnClickListener {
-                // todo: показывает диалог фрагмент с подтверждением удаления
-            }
-            title.text = mapPair.first
-            val adapter = CharacterAdapter()
-            gridCharacter.adapter = adapter
-            adapter.setCharacterList(mapPair.second, true)
-        }
 
+}
+class AdapterInitiativeFight(private val del: AdapterInitiativeFightTemplateHolder.DeleteInitiativeFight) :
+    RecyclerView.Adapter<AdapterInitiativeFightTemplateHolder>() {
+
+    var map = mutableMapOf<String, MutableList<Character>>()
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): AdapterInitiativeFightTemplateHolder {
+        val view =
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.card_initiative_fight, parent, false)
+        return AdapterInitiativeFightTemplateHolder(view, del)
+    }
+
+    override fun onBindViewHolder(
+        holder: AdapterInitiativeFightTemplateHolder,
+        position: Int
+    ) {
+        holder.bind(map.toList()[position])
+    }
+
+    override fun getItemCount(): Int {
+        return map.size
+    }
+
+    fun setData(map: MutableMap<String, MutableList<Character>>) {
+        this.map = map
+        notifyDataSetChanged()
+    }
+
+}
+
+class AdapterInitiativeFightTemplateHolder(
+    view: View, private val del: DeleteInitiativeFight
+) : RecyclerView.ViewHolder(view) {
+    private val binding = CardInitiativeFightBinding.bind(view)
+    fun bind(mapPair: Pair<String, MutableList<Character>>) = with(binding) {
+        more.setOnClickListener {
+            if (linLay.visibility == View.VISIBLE) {
+                linLay.visibility = View.GONE
+                val draw = it.context.resources.getDrawable(R.drawable.more)
+                more.background = draw
+            } else {
+                linLay.visibility = View.VISIBLE
+                more.background = it.context.resources.getDrawable(R.drawable.less)
+            }
+        }
+        delete.setOnClickListener {
+            del.deleteInitiativeFight(adapterPosition, mapPair.first)
+        }
+        title.text = mapPair.first
+        val adapter = CharacterAdapter()
+        gridCharacter.adapter = adapter
+        adapter.setCharacterList(mapPair.second, true)
+    }
+    interface DeleteInitiativeFight{
+        fun deleteInitiativeFight(position: Int, name:String)
     }
 }

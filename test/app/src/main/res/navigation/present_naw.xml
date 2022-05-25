@@ -142,6 +142,9 @@
         <action
             android:id="@+id/action_home2_to_edit_string2"
             app:destination="@id/pres_edit_string" />
+         <action
+             android:id="@+id/action_home2_to_pres_delete"
+             app:destination="@id/pres_delete" />
      </fragment>
     <fragment
         android:id="@+id/pres_dropDownEdit"
