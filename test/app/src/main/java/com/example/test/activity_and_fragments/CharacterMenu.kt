@@ -2,11 +2,13 @@ package com.example.test.activity_and_fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -60,10 +62,15 @@ class CharacterMenu : Fragment(), HeaderView.HeaderBack {
 
         view.findViewById<ImageButton>(R.id.CharacterMenu_UseItem).setOnClickListener { }
 
-        if (fightId != null) {
-            view.findViewById<ImageButton>(R.id.CharacterMenu_EndMove).setOnClickListener {
+        val end = view.findViewById<ImageButton>(R.id.CharacterMenu_EndMove)
+        val endLinLay = view.findViewById<LinearLayout>(R.id.endLinLay)
+        if (fightId != null && fightId != 0) {
+            endLinLay.visibility = View.VISIBLE
+            end.setOnClickListener {
                 endMove(fightId)
             }
+        }else{
+            endLinLay.visibility = View.GONE
         }
 
         view.findViewById<HeaderView>(R.id.header)
