@@ -84,7 +84,7 @@ class Home : Fragment(), HeaderView.HeaderBack, AdapterInitiativeFightTemplateHo
 
             // Устанавливаем данные
             mCharacterVM.characterList.observe(viewLifecycleOwner) { listCharacter ->
-                adapter.setCharacterList(listCharacter, true)
+                adapter.setCharacterList(listCharacter, true, false)
                 mInitiativeFightVM.fightList.observe(viewLifecycleOwner) { listFight ->
                     adapterFight.setData(
                         mInitiativeFightVM.findFightCharacter(
@@ -173,7 +173,7 @@ class AdapterInitiativeFightTemplateHolder(
         title.text = mapPair.first
         val adapter = CharacterAdapter()
         gridCharacter.adapter = adapter
-        adapter.setCharacterList(mapPair.second, true)
+        adapter.setCharacterList(mapPair.second, true, true)
     }
     interface DeleteInitiativeFight{
         fun deleteInitiativeFight(position: Int, name:String)

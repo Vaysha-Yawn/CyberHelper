@@ -4,41 +4,53 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="0dp"
     android:id="@+id/root"
-    app:cardPreventCornerOverlap="true"
     android:layout_marginStart="10dp"
     android:layout_marginEnd="10dp"
     >
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linLay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/bcg_simple"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp">
+        android:background="@drawable/bcg_simple">
 
         <ImageButton
-            android:layout_marginTop="10dp"
             android:id="@+id/HomeCard_Avatar"
-            android:layout_width="70dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bcg_simple"
+            app:layout_constraintBottom_toTopOf="@+id/HomeCard_Name"
+            app:layout_constraintEnd_toEndOf="@+id/HomeCard_Name"
+            app:layout_constraintStart_toStartOf="@+id/HomeCard_Name"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/avatar"
-            tools:ignore="SpeakableTextPresentCheck"
-            android:background="@drawable/bcg_simple" />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/HomeCard_Name"
+            style="@style/Text.H2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Эмгыр Вар Эмрейс"
-            style="@style/Text.H2"
-            android:maxWidth="150dp"
             android:gravity="center"
-            android:layout_gravity="center"/>
-    </LinearLayout>
+            android:maxWidth="150dp"
+            android:text="Эмгыр Вар Эмрейс"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/HomeCard_Avatar" />
+
+        <TextView
+            android:id="@+id/iniciative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/iniciativa"
+            android:text="1"
+            style="@style/Text.H2"
+            android:maxLength="1"
+            app:layout_constraintEnd_toEndOf="@+id/HomeCard_Avatar"
+            app:layout_constraintTop_toTopOf="@+id/HomeCard_Avatar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

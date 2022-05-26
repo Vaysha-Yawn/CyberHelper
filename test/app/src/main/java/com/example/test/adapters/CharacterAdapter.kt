@@ -19,6 +19,7 @@ class CharacterAdapter : BaseAdapter() {
 
     private var characterList = emptyList<Character>()
     private var presOrNew = true//true - Present, false - New
+    private var iniciativa = false
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
@@ -46,7 +47,12 @@ class CharacterAdapter : BaseAdapter() {
         }
         val binding = CardCharacterBinding.bind(view)
         with(binding) {
-
+            if (iniciativa){
+                iniciative.visibility = View.VISIBLE
+                iniciative.text = (position+1).toString()
+            }else{
+                iniciative.visibility = View.GONE
+            }
         }
 
 
@@ -61,9 +67,10 @@ class CharacterAdapter : BaseAdapter() {
 
     override fun getCount(): Int = characterList.size
 
-    fun setCharacterList(charList: List<Character>, presentOrNew: Boolean) {
-        characterList = charList
-        presOrNew = presentOrNew
+    fun setCharacterList(charList: List<Character>, presentOrNew: Boolean, iniciativa: Boolean) {
+        this.characterList = charList
+        this.presOrNew = presentOrNew
+        this.iniciativa = iniciativa
         notifyDataSetChanged()
     }
 

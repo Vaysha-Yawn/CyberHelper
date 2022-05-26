@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="39dp"
-    android:height="38dp"
-    android:viewportWidth="39"
-    android:viewportHeight="38">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+            <item android:width="30dp" android:height="30dp"
+                android:gravity="center">
+                <shape
+                    android:shape="oval">
+                    <solid android:color="@color/black"/>
+                </shape>
+            </item>
+            <item android:width="30dp" android:height="30dp"
+                android:gravity="center">
+                <shape android:shape="oval">
+                    <gradient
+                        android:endColor="@color/black"
+                        android:startColor="@color/grey"
+                        android:type="radial"
+                        android:gradientRadius="10dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
 
-    <path
-        android:fillColor="#050414"
-        android:pathData="M 19.7917 0 C 28.0759712475 0 34.7917 6.71572875254 34.7917 15 C 34.7917 23.2842712475 28.0759712475 30 19.7917 30 C 11.5074287525 30 4.7917 23.2842712475 4.7917 15 C 4.7917 6.71572875254 11.5074287525 0 19.7917 0 Z" />
-</vector>
+</layer-list>
