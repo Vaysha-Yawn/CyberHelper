@@ -16,6 +16,7 @@ import com.example.test.R
 import com.example.test.activity_and_fragments.hosts.PresentHost
 import com.example.test.adapters.CharacterAdapter
 import com.example.test.data_base.Character
+import com.example.test.data_base.InitiativeFight
 import com.example.test.databinding.CardInitiativeFightBinding
 import com.example.test.databinding.HomeBinding
 import com.example.test.viewModels.CharacterDAO
@@ -84,13 +85,10 @@ class Home : Fragment(), HeaderView.HeaderBack, AdapterInitiativeFightTemplateHo
 
             // Устанавливаем данные
             mCharacterVM.characterList.observe(viewLifecycleOwner) { listCharacter ->
-                adapter.setCharacterList(listCharacter, true, false)
+                adapter.setCharacterList(listCharacter, true, null)
                 mInitiativeFightVM.fightList.observe(viewLifecycleOwner) { listFight ->
                     adapterFight.setData(
-                        mInitiativeFightVM.findFightCharacter(
-                            listFight,
-                            listCharacter
-                        )
+                        listFight, mInitiativeFightVM.findFightCharacter(listFight, listCharacter)
                     )
                 }
             }
@@ -122,7 +120,8 @@ class Home : Fragment(), HeaderView.HeaderBack, AdapterInitiativeFightTemplateHo
 class AdapterInitiativeFight(private val del: AdapterInitiativeFightTemplateHolder.DeleteInitiativeFight) :
     RecyclerView.Adapter<AdapterInitiativeFightTemplateHolder>() {
 
-    var map = mutableMapOf<String, MutableList<Character>>()
+    var list = mutableListOf<InitiativeFight>()
+    var map = mutableMapOf<Int, MutableList<Character>>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -138,15 +137,16 @@ class AdapterInitiativeFight(private val del: AdapterInitiativeFightTemplateHold
         holder: AdapterInitiativeFightTemplateHolder,
         position: Int
     ) {
-        holder.bind(map.toList()[position])
+        holder.bind(list[position], map.values.toList()[position])
     }
 
     override fun getItemCount(): Int {
         return map.size
     }
 
-    fun setData(map: MutableMap<String, MutableList<Character>>) {
+    fun setData(list: MutableList<InitiativeFight>, map:MutableMap<Int, MutableList<Character>>) {
         this.map = map
+        this.list = list
         notifyDataSetChanged()
     }
 
@@ -156,7 +156,7 @@ class AdapterInitiativeFightTemplateHolder(
     view: View, private val del: DeleteInitiativeFight
 ) : RecyclerView.ViewHolder(view) {
     private val binding = CardInitiativeFightBinding.bind(view)
-    fun bind(mapPair: Pair<String, MutableList<Character>>) = with(binding) {
+    fun bind(InitiativeFight:InitiativeFight, listCharacter:List<Character>) = with(binding) {
         more.setOnClickListener {
             if (linLay.visibility == View.VISIBLE) {
                 linLay.visibility = View.GONE
@@ -168,12 +168,13 @@ class AdapterInitiativeFightTemplateHolder(
             }
         }
         delete.setOnClickListener {
-            del.deleteInitiativeFight(adapterPosition, mapPair.first)
+            del.deleteInitiativeFight(adapterPosition, InitiativeFight.nameFight)
         }
-        title.text = mapPair.first
+        title.text = InitiativeFight.nameFight
         val adapter = CharacterAdapter()
         gridCharacter.adapter = adapter
-        adapter.setCharacterList(mapPair.second, true, true)
+
+        adapter.setCharacterList(listCharacter, true, InitiativeFight.id)
     }
     interface DeleteInitiativeFight{
         fun deleteInitiativeFight(position: Int, name:String)

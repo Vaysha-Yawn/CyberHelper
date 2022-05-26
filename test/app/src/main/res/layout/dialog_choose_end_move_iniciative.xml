@@ -8,13 +8,12 @@
     android:padding="40dp">
 
     <TextView
-        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Text.H2"
+        android:id="@+id/title"
         android:text="Выберите бой"
-        android:gravity="start"
-        />
+        android:gravity="start"/>
 
     <com.example.test.views.DropDownView
         android:id="@+id/DD"

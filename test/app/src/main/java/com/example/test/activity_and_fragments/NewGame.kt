@@ -62,7 +62,7 @@ class NewGame : Fragment() {
             // Устанавливаем данные
 
             mCharacterVM.characterList.observe(viewLifecycleOwner) {
-                adapter.setCharacterList(it, false, false)
+                adapter.setCharacterList(it, false, null)
             }
 
             view.findViewById<Button>(R.id.NewGame_Clear).setOnClickListener {

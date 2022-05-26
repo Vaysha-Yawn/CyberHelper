@@ -24,6 +24,7 @@ class TemplateAdapterRecycler (private val newOrPres: Boolean) : RecyclerView.Ad
             val name =
                 DTemplateParamStr().readParamStr(character, "Базовые параметры", "Имя персонажа")
             HomeCardName.text = name
+            iniciative.visibility = View.GONE
             HomeCardAvatar.setOnClickListener { v ->
                 if (newOrPres) {
                     val bundle = Bundle()

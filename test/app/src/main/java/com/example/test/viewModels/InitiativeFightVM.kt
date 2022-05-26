@@ -4,11 +4,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.test.data_base.Character
 import com.example.test.data_base.InitiativeFight
+import io.realm.Realm
 import io.realm.RealmList
 
 class InitiativeFightVM() : ViewModel() {
 
     private val DAO = InitiativeFightDAO()
+    private var realm: Realm = Realm.getDefaultInstance()
 
     val fightList = MutableLiveData<RealmList<InitiativeFight>>(RealmList<InitiativeFight>())
 
@@ -37,39 +39,31 @@ class InitiativeFightVM() : ViewModel() {
         DAO.deleteInitiativeFight(id)
     }
 
-    fun findEndMoveByCharacterId(characterId: Int):Map<Int, String> {
-        val map = mutableMapOf<Int,String>()
-        for (fight in fightList.value!!) {
-            if(fight.listIdCharacter.contains(characterId)){
-                map[fight.id] = fight.nameFight
-            }
-        }
-        return map
-    }
-
     fun endMove(characterId: Int, iniciativeFightId: Int) {
         DAO.endMove(characterId, iniciativeFightId)
         val list = fightList.value?.singleOrNull {
             it.id == iniciativeFightId
         }?.listIdCharacter
-        list?.remove(characterId)
-        list?.add(characterId)
+
+        realm.executeTransaction {
+            list?.remove(characterId)
+            list?.add(characterId)
+        }
     }
 
     fun findFightCharacter(
         listFight: RealmList<InitiativeFight>,
         listCharacter: RealmList<Character>
-    )
-            : MutableMap<String, MutableList<Character>> {
-        val map = mutableMapOf<String, MutableList<Character>>()
+    ): MutableMap<Int, MutableList<Character>> {
+        val map = mutableMapOf<Int, MutableList<Character>>()
         for (fight in listFight) {
-            map[fight.nameFight] = mutableListOf()
+            map[fight.id] = mutableListOf()
             for (id in fight.listIdCharacter) {
                 listCharacter.singleOrNull {
                     it.id == id
                 }.let {
                     if (it != null) {
-                        map[fight.nameFight]?.add(it)
+                        map[fight.id]?.add(it)
                     }
                 }
             }

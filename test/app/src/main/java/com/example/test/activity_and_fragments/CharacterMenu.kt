@@ -8,24 +8,19 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.adapters.DropDownAdapterRV
 import com.example.test.data_base.DTemplateParamStr
-import com.example.test.databinding.DialogChooseAddModificationBinding
-import com.example.test.databinding.DialogChooseEndMoveIniciativeBinding
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
 import com.example.test.viewModels.InitiativeFightVM
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.views.HeaderView
-import com.example.test.widgets.ModDialogFragment
 
 
-class CharacterMenu : Fragment(), HeaderView.HeaderBack, ChooseFightDialogFragment.EndMove {
+class CharacterMenu : Fragment(), HeaderView.HeaderBack {
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
@@ -42,6 +37,7 @@ class CharacterMenu : Fragment(), HeaderView.HeaderBack, ChooseFightDialogFragme
         val view = inflater.inflate(R.layout.character_menu, container, false)
 
         characterId = this.requireArguments().getInt("characterId", 0)
+        val fightId: Int? = arguments?.getInt("fightId")
         mCharacterVM.initCharacterId(characterId)
 
         val tvName = view.findViewById<TextView>(R.id.CharacterMenu_NameCharacter)
@@ -63,13 +59,15 @@ class CharacterMenu : Fragment(), HeaderView.HeaderBack, ChooseFightDialogFragme
         }
 
         view.findViewById<ImageButton>(R.id.CharacterMenu_UseItem).setOnClickListener { }
-        view.findViewById<ImageButton>(R.id.CharacterMenu_EndMove).setOnClickListener {
-            val map = mInitiativeFightVM.findEndMoveByCharacterId(characterId)
-            val dialogFragment = ChooseFightDialogFragment(this, map)
-            dialogFragment.show(childFragmentManager, "chooseMod")
+
+        if (fightId != null) {
+            view.findViewById<ImageButton>(R.id.CharacterMenu_EndMove).setOnClickListener {
+                endMove(fightId)
+            }
         }
 
-        view.findViewById<HeaderView>(R.id.header).setBack(true, this, requireActivity(), viewLifecycleOwner)
+        view.findViewById<HeaderView>(R.id.header)
+            .setBack(true, this, requireActivity(), viewLifecycleOwner)
 
         return view
     }
@@ -78,13 +76,14 @@ class CharacterMenu : Fragment(), HeaderView.HeaderBack, ChooseFightDialogFragme
         view?.findNavController()?.popBackStack()
     }
 
-    override fun endMove(iniciativeId: Int) {
+    private fun endMove(iniciativeId: Int) {
         mInitiativeFightVM.endMove(characterId, iniciativeId)
+        view?.findNavController()?.popBackStack()
     }
 
 }
 
-class ChooseFightDialogFragment(private val endMove:EndMove, private val mapIniciativaFight:Map<Int,String>) : DialogFragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo {
+/*class ChooseFightDialogFragment(private val endMove:EndMove, private val mapIniciativaFight:Map<Int,String>) : DialogFragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -92,7 +91,7 @@ class ChooseFightDialogFragment(private val endMove:EndMove, private val mapInic
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        val view = inflater.inflate(R.layout.dialog_choose_endMove_iniciative, container, false)
+        val view = inflater.inflate(R.layout.dialog_choose_end_move_iniciative, container, false)
 
         val binding = DialogChooseEndMoveIniciativeBinding.bind(view)
         fun bind() = with(binding) {
@@ -113,4 +112,4 @@ class ChooseFightDialogFragment(private val endMove:EndMove, private val mapInic
         endMove.endMove(mapIniciativaFight.keys.toList()[position])
         dismiss()
     }
-}
+}*/

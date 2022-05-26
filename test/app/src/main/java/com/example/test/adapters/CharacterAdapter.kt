@@ -19,7 +19,7 @@ class CharacterAdapter : BaseAdapter() {
 
     private var characterList = emptyList<Character>()
     private var presOrNew = true//true - Present, false - New
-    private var iniciativa = false
+    private var iniciativaId:Int? = null
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
@@ -35,6 +35,9 @@ class CharacterAdapter : BaseAdapter() {
             try {
                 val bundle = Bundle()
                 bundle.putInt("characterId", character.id)
+                if (position==0 && iniciativaId!=null){
+                    bundle.putInt("fightId", iniciativaId!!)
+                }
                 if (presOrNew) {
                     view.findNavController().navigate(R.id.action_home2_to_characterMenu2, bundle)
                 } else {
@@ -47,7 +50,7 @@ class CharacterAdapter : BaseAdapter() {
         }
         val binding = CardCharacterBinding.bind(view)
         with(binding) {
-            if (iniciativa){
+            if (iniciativaId!=null){
                 iniciative.visibility = View.VISIBLE
                 iniciative.text = (position+1).toString()
             }else{
@@ -67,10 +70,10 @@ class CharacterAdapter : BaseAdapter() {
 
     override fun getCount(): Int = characterList.size
 
-    fun setCharacterList(charList: List<Character>, presentOrNew: Boolean, iniciativa: Boolean) {
+    fun setCharacterList(charList: List<Character>, presentOrNew: Boolean, iniciativaId: Int?) {
         this.characterList = charList
         this.presOrNew = presentOrNew
-        this.iniciativa = iniciativa
+        this.iniciativaId = iniciativaId
         notifyDataSetChanged()
     }
 
