@@ -49,4 +49,11 @@ class InitiativeFightDAO {
         }
     }
 
+    fun endMove(characterId:Int, iniciativeFightId:Int) {
+        realm.executeTransaction {
+            val initiativeFightRealm = realm.where(InitiativeFight::class.java).equalTo("id", iniciativeFightId).findFirst()
+            initiativeFightRealm?.listIdCharacter?.remove(characterId)
+            initiativeFightRealm?.listIdCharacter?.add(characterId)
+        }
+    }
 }

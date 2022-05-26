@@ -4,12 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
 import com.example.test.R
 import com.example.test.activity_and_fragments.MainActivity
-import com.example.test.viewModels.CharacterDAO
-import com.example.test.viewModels.GameDAO
-import com.example.test.viewModels.GameSystemDAO
-import com.example.test.viewModels.SkillTestVM
+import com.example.test.viewModels.*
 
 class PresentHost : AppCompatActivity() {
 
@@ -17,6 +15,7 @@ class PresentHost : AppCompatActivity() {
     private val mCharacterVM: CharacterDAO by viewModels()
     private val mGameVM: GameDAO by viewModels()
     private val mGameSystemVM: GameSystemDAO by viewModels()
+    private val mInitiativeFightVM: InitiativeFightVM by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

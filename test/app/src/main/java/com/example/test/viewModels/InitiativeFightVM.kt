@@ -12,12 +12,12 @@ class InitiativeFightVM() : ViewModel() {
 
     val fightList = MutableLiveData<RealmList<InitiativeFight>>(RealmList<InitiativeFight>())
 
-    fun loadList(gameId: Int){
+    fun loadList(gameId: Int) {
         fightList.value = DAO.loadByGameId(gameId)
     }
 
     fun addInitiativeFight(
-        gameId:Int,
+        gameId: Int,
         nameFight: String,
         listIdCharacter: RealmList<Int>
     ) {
@@ -29,7 +29,7 @@ class InitiativeFightVM() : ViewModel() {
         fightList.value!!.add(initiativeFight)
     }
 
-    fun deleteInitiativeFight(id: Int){
+    fun deleteInitiativeFight(id: Int) {
         val initiativeFight = fightList.value!!.singleOrNull {
             it.id == id
         }
@@ -37,16 +37,38 @@ class InitiativeFightVM() : ViewModel() {
         DAO.deleteInitiativeFight(id)
     }
 
-    fun findFightCharacter(listFight: RealmList<InitiativeFight>, listCharacter: RealmList<Character>)
-    : MutableMap<String, MutableList<Character>>{
+    fun findEndMoveByCharacterId(characterId: Int):Map<Int, String> {
+        val map = mutableMapOf<Int,String>()
+        for (fight in fightList.value!!) {
+            if(fight.listIdCharacter.contains(characterId)){
+                map[fight.id] = fight.nameFight
+            }
+        }
+        return map
+    }
+
+    fun endMove(characterId: Int, iniciativeFightId: Int) {
+        DAO.endMove(characterId, iniciativeFightId)
+        val list = fightList.value?.singleOrNull {
+            it.id == iniciativeFightId
+        }?.listIdCharacter
+        list?.remove(characterId)
+        list?.add(characterId)
+    }
+
+    fun findFightCharacter(
+        listFight: RealmList<InitiativeFight>,
+        listCharacter: RealmList<Character>
+    )
+            : MutableMap<String, MutableList<Character>> {
         val map = mutableMapOf<String, MutableList<Character>>()
-        for ( fight in listFight){
+        for (fight in listFight) {
             map[fight.nameFight] = mutableListOf()
-            for (id in fight.listIdCharacter){
+            for (id in fight.listIdCharacter) {
                 listCharacter.singleOrNull {
                     it.id == id
                 }.let {
-                    if (it!=null){
+                    if (it != null) {
                         map[fight.nameFight]?.add(it)
                     }
                 }
