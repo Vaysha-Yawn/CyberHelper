@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -37,52 +38,111 @@
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
-    <Button
-        android:layout_marginTop="30dp"
-        android:id="@+id/add_param_str"
-        style="@style/Button_plus_green"
+    <TextView
+        android:id="@+id/addTitle"
+        style="@style/Text.Title.Small"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingVertical="10dp"
-        android:paddingHorizontal="10dp"
-        android:text="Добавить характеристику текстом  "
-        android:textSize="16sp" />
+        android:layout_marginTop="30dp"
+        android:text="Добавить параметр или предмет"
+        android:textColor="@color/light_grey" />
 
-    <Button
-        android:layout_marginTop="30dp"
-        android:id="@+id/add_param_num"
-        style="@style/Button_plus_green"
-        android:layout_width="match_parent"
+    <TableLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingVertical="10dp"
-        android:paddingHorizontal="10dp"
-        android:text="Добавить характеристику числом  "
-        android:textSize="16sp" />
+        android:layout_gravity="center">
 
-    <Button
-        android:layout_marginTop="30dp"
-        android:id="@+id/add_param_options"
-        style="@style/Button_plus_green"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingVertical="10dp"
-        android:paddingHorizontal="10dp"
-        android:text="Добавить характеристику опции  "
-        android:textSize="16sp" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
 
-    <Button
-        android:layout_marginTop="30dp"
-        android:id="@+id/add_item"
-        style="@style/Button_plus_green"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingVertical="10dp"
-        android:paddingHorizontal="10dp"
-        android:text="Добавить предмет"
-        android:textSize="16sp" />
+            <Button
+                android:id="@+id/add_param_str"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/btn_plus_string"
+                tools:ignore="SpeakableTextPresentCheck" />
+            <androidx.legacy.widget.Space
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/add_param_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/btn_plus_number"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="текстом"
+                android:textColor="@color/light_grey" />
+            <androidx.legacy.widget.Space
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="числом"
+                android:textColor="@color/light_grey" />
+        </TableRow>
+        <TableRow  android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+            <Button
+                android:id="@+id/add_param_options"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/ic_btn_plus_dd"
+                tools:ignore="SpeakableTextPresentCheck" />
+            <androidx.legacy.widget.Space
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/add_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/btn_plus_item"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="выбором"
+                android:textColor="@color/light_grey" />
+            <androidx.legacy.widget.Space
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="предмет"
+                android:textColor="@color/light_grey" />
+        </TableRow>
+    </TableLayout>
 
 </LinearLayout>

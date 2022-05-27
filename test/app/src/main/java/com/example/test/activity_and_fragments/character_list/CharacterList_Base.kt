@@ -19,7 +19,7 @@ import com.example.test.viewModels.GameSystemDAO
 
 class CharacterList_Base : Fragment() {
 
-    private  val KEY = "groupNumber"
+    private val KEY = "groupNumber"
 
     private val mCharacterVM: CharacterDAO by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
@@ -44,26 +44,25 @@ class CharacterList_Base : Fragment() {
         //
         val groupList = mutableListOf<GroupParam>()
         mCharacterVM.characterList.observe(viewLifecycleOwner) { list ->
-            list.forEach { character ->
-                if (character.id == characterId) {
-                    val listNameGroup = mGameSystemVM.currentGameSystem!!.tabsToGroup[groupNumber]!!
-                    listNameGroup.key.forEach { nameGroup ->
-                        character.attributes.forEach { gp ->
-                            if (gp.title == nameGroup) {
-                                groupList.add(gp)
-                            }
-                        }
+            val character = list.singleOrNull { character ->
+                character.id == characterId
+            }
+            val listNameGroup = mGameSystemVM.currentGameSystem!!.tabsToGroup[groupNumber]!!
+            for (nameGroup in listNameGroup.key) {
+                for (gp in character?.attributes!!)
+                    if (gp.title == nameGroup) {
+                        groupList.add(gp)
                     }
-                }
             }
         }
+
         val r = view.context.getSharedPreferences("id", 0).getString("newGameId", "0")!!.toInt()
         val newOrPres = gameId == r
         adapterGroup.setData(groupList, newOrPres)
         return view
     }
 
-    fun getFragment(groupNumber: Int):CharacterList_Base{
+    fun getFragment(groupNumber: Int): CharacterList_Base {
         val bundle = Bundle()
         bundle.putInt(KEY, groupNumber)
         return CharacterList_Base().apply {

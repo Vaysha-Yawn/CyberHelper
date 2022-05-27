@@ -8,14 +8,29 @@
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/bcg_blue_line_dark.xml" value="0.3535" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/bcg_rectangle_round.xml" value="0.3535" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/bcg_skill_for.xml" value="0.3535" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/btn_add_orange.xml" value="0.252" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/btn_blue_plus.xml" value="0.252" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/btn_button_dark_orange_add.xml" value="0.252" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/btn_cyan.xml" value="0.252" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/btn_plus_dd.xml" value="0.252" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/btn_plus_item.xml" value="0.252" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/btn_plus_number.xml" value="0.3675" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/btn_plus_string.xml" value="0.354" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/dd_icon.xml" value="0.252" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/delete.xml" value="0.354" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/drop_down_dark_blue.xml" value="0.3535" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/ic_btn_plus_dd.xml" value="0.354" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/ic_less.xml" value="0.3485" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/ic_next.xml" value="0.3485" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/ic_plus_circle.xml" value="0.3675" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/iniciativa.xml" value="0.3485" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/less.xml" value="0.3485" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/more.xml" value="0.3485" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/num_item_round.xml" value="0.3485" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/number.xml" value="0.252" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/plus.xml" value="0.252" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/result.xml" value="0.3485" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/sword.xml" value="0.3675" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/yellow_lighting.xml" value="0.3535" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/add_new_param_item.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/card_add_or_choose.xml" value="0.36666666666666664" />
@@ -25,6 +40,7 @@
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/card_iniciativa.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/card_initiative_fight.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/card_item.xml" value="0.35260416666666666" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/card_string.xml" value="0.3009833262077811" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/character_list.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/character_list__about.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/character_list__armor.xml" value="0.36666666666666664" />

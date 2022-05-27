@@ -530,8 +530,8 @@ class TemplateGameSystem {
         ParamStr("Кость хитов", "1д6", removable = false, "Базовые параметры", false),
         ParamStr("Черты характера", "", removable = false, "Биография", false),
         ParamStr("Идеалы", "", removable = false, "Биография", false),
-        ParamStr("Привязанности", "", removable = true, "Биография", false),
-        ParamStr("Слабости", "", removable = true, "Биография", false),
+        ParamStr("Привязанности", "", removable = false, "Биография", false),
+        ParamStr("Слабости", "", removable = false, "Биография", false),
     )
 
 
