@@ -411,12 +411,12 @@ class TemplateGameSystem {
         ParamNum("Мудрость", 0, false, null, 0, "Параметры", false),
         ParamNum("Харизма", 0, false, null, 0, "Параметры", false),
 
-        ParamNum("Сила", 0, false, null, 0, "Спасброски", false),
-        ParamNum("Ловкость", 0, false, null, 0, "Спасброски", false),
-        ParamNum("Телосложение", 0, false, null, 0, "Спасброски", false),
-        ParamNum("Интеллект", 0, false, null, 0, "Спасброски", false),
-        ParamNum("Мудрость", 0, false, null, 0, "Спасброски", false),
-        ParamNum("Харизма", 0, false, null, 0, "Спасброски", false),
+        ParamNum("Сила спасбросок", 0, false, null, 0, "Спасброски", false),
+        ParamNum("Ловкость спасбросок", 0, false, null, 0, "Спасброски", false),
+        ParamNum("Телосложение спасбросок", 0, false, null, 0, "Спасброски", false),
+        ParamNum("Интеллект спасбросок", 0, false, null, 0, "Спасброски", false),
+        ParamNum("Мудрость спасбросок", 0, false, null, 0, "Спасброски", false),
+        ParamNum("Харизма спасбросок", 0, false, null, 0, "Спасброски", false),
 
         ParamNum("Акробатика", 0, false, 30, 0, "Навыки", false),
         ParamNum("Анализ", 0, false, 30, 0, "Навыки", false),
@@ -652,12 +652,12 @@ class TemplateGameSystem {
                         ),
                         "Спасброски" to mapOf(
                             "listParamNum" to mapOf(
-                                "Сила" to "7",
-                                "Ловкость" to "7",
-                                "Телосложение" to "7",
-                                "Интеллект" to "7",
-                                "Мудрость" to "7",
-                                "Харизма" to "7",
+                                "Сила спасбросок" to "7",
+                                "Ловкость спасбросок" to "7",
+                                "Телосложение спасбросок" to "7",
+                                "Интеллект спасбросок" to "7",
+                                "Мудрость спасбросок" to "7",
+                                "Харизма спасбросок" to "7",
                             ),
                         ),
                         "Экипированное" to mapOf(

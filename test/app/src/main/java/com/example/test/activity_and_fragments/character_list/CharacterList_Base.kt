@@ -47,6 +47,7 @@ class CharacterList_Base : Fragment() {
             val character = list.singleOrNull { character ->
                 character.id == characterId
             }
+
             val listNameGroup = mGameSystemVM.currentGameSystem!!.tabsToGroup[groupNumber]!!
             for (nameGroup in listNameGroup.key) {
                 for (gp in character?.attributes!!)
