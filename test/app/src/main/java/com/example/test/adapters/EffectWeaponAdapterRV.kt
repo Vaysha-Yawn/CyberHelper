@@ -9,14 +9,14 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.data_base.EffectWeapon
+import com.example.test.data_base.EffectDamage
 import io.realm.RealmList
 
 
 class EffectWeaponAdapterRV :
     RecyclerView.Adapter<EffectWeaponAdapterRV.TemplateHolder>() {
 
-    private var list = listOf<EffectWeapon>()
+    private var list = listOf<EffectDamage>()
     private var newOrPres = true
     private var groupTitle = ""
     private var readOrEdit = true// true - read, edit - false
@@ -26,7 +26,7 @@ class EffectWeaponAdapterRV :
     class TemplateHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = com.example.test.databinding.CardEffectWeaponBinding.bind(view)
         @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables")
-        fun bind(effect: EffectWeapon, groupTitle:String, newOrPres: Boolean, readOrEdit: Boolean, indexItem:Int, indexEff:Int) = with(binding){
+        fun bind(effect: EffectDamage, groupTitle:String, newOrPres: Boolean, readOrEdit: Boolean, indexItem:Int, indexEff:Int) = with(binding){
             type.text = effect.fightType?:""
             damage.text = "${effect.numCount}d${effect.dX}"
 
@@ -79,7 +79,7 @@ class EffectWeaponAdapterRV :
         return list.size
     }
 
-    fun setData(list: RealmList<EffectWeapon>, groupTitle:String, newOrPres: Boolean, readOrEdit: Boolean, indexItem:Int){
+    fun setData(list: RealmList<EffectDamage>, groupTitle:String, newOrPres: Boolean, readOrEdit: Boolean, indexItem:Int){
         this.list = list
         this.groupTitle = groupTitle
         this.newOrPres = newOrPres

@@ -70,7 +70,7 @@ class ItemAdapterRV() :
                 adapterAdd.setData(addList, groupTitle, newOrPres, true, index)
             }
 
-            if (item.effectsWeapon == RealmList<EffectWeapon>()) {
+            if (item.effectsDamage == RealmList<EffectDamage>()) {
                 nameEffectWeaponRV.visibility = View.GONE
                 effectWeaponRV.visibility = View.GONE
             } else {
@@ -78,7 +78,7 @@ class ItemAdapterRV() :
                 effectWeaponRV.layoutManager =
                     LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
                 effectWeaponRV.adapter = adapterWeapon
-                val weaponList = item.effectsWeapon
+                val weaponList = item.effectsDamage
                 adapterWeapon.setData(weaponList, groupTitle, newOrPres, true, index)
             }
 

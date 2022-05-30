@@ -114,7 +114,7 @@ class EditItem : Fragment() {
             val addList = item!!.effectsAdd
             adapterAdd.setData(addList, groupTitle, newOrPres, false, index)
 
-            val weaponList = item.effectsWeapon
+            val weaponList = item.effectsDamage
             adapterWeapon.setData(weaponList, groupTitle, newOrPres, false, index)
 
             val numList = item.otherParamNum

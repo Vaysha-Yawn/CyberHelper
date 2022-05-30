@@ -83,15 +83,15 @@ open class CharacterDAO : ViewModel() {
         }
     }
 
-    fun LOCaddEffectWeaponItem(effectWeapon: EffectWeapon){
+    fun LOCaddEffectWeaponItem(effectDamage: EffectDamage){
         realm.executeTransaction {
-            item.value!!.effectsWeapon.add( effectWeapon)
+            item.value!!.effectsDamage.add( effectDamage)
         }
     }
 
-    fun LOCupdateEffectWeaponItem(indexEff:Int, effectWeapon: EffectWeapon){
+    fun LOCupdateEffectWeaponItem(indexEff:Int, effectDamage: EffectDamage){
         realm.executeTransaction {
-            item.value!!.effectsWeapon[indexEff] = effectWeapon
+            item.value!!.effectsDamage[indexEff] = effectDamage
         }
     }
 
@@ -243,7 +243,7 @@ open class CharacterDAO : ViewModel() {
             character.id == id
         }?.attributes?.singleOrNull { gp ->
             gp.title == titleGroup
-        }?.attributes?.listItem?.get(indexItem)?.effectsWeapon
+        }?.attributes?.listItem?.get(indexItem)?.effectsDamage
         if (list != null) {
             val effect = list[indexEff]!!
             realm.executeTransaction {
@@ -270,11 +270,11 @@ open class CharacterDAO : ViewModel() {
             character.id == id
         }?.attributes?.singleOrNull { gp ->
             gp.title == titleGroup
-        }?.attributes?.listItem?.get(indexItem)?.effectsWeapon
+        }?.attributes?.listItem?.get(indexItem)?.effectsDamage
         if (list != null) {
             if (list.size >= indexEff || indexEff < 0) {// новый
                 val effect =
-                    EffectWeapon(name, type, numCount, dX)
+                    EffectDamage(name, type, numCount, dX)
                 realm.executeTransaction {
                     list.add(effect)
                 }
@@ -584,7 +584,7 @@ open class CharacterDAO : ViewModel() {
                 character.id == id
             }?.attributes?.singleOrNull { gp ->
                 gp.title == titleGroup
-            }?.attributes?.listItem?.get(indexItem)?.effectsWeapon?.deleteFromRealm(indexEff)
+            }?.attributes?.listItem?.get(indexItem)?.effectsDamage?.deleteFromRealm(indexEff)
         }
     }
 

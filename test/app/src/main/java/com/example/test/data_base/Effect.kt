@@ -15,7 +15,7 @@ open class EffectAdd(
     var rollback:Int? = null,// откат
 ):RealmObject()
 
-open class EffectWeapon(
+open class EffectDamage(
     var name: String = "",
     var fightType: String? = "", // Ближний_бой    Дальний_бой   Автоматический_огонь   Взрывчатка, Нетраннинг против программ, Нетраннинг против людей, Нетраннинг против адских гончих,
     var numCount: Int = 0, // Колличество бросков кубика

@@ -13,22 +13,22 @@ class TemplateGameSystem {
             "Киберрука",
             "",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Киберрука", melle, 1, 6)),
+            effectsDamage = RealmList<EffectDamage>(EffectDamage("Киберрука", melle, 1, 6)),
             group = "Оружие"
         ),
         Item(
             "Нож",
             "",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Нож", melle, 1, 6)),
+            effectsDamage = RealmList<EffectDamage>(EffectDamage("Нож", melle, 1, 6)),
             group = "Оружие"
         ),
         Item(
             "Большие костяшки",
             "",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(
-                EffectWeapon(
+            effectsDamage = RealmList<EffectDamage>(
+                EffectDamage(
                     "Большие костяшки",
                     melle,
                     2,
@@ -41,8 +41,8 @@ class TemplateGameSystem {
             "Пистолет среднего калибра",
             "",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(
-                EffectWeapon(
+            effectsDamage = RealmList<EffectDamage>(
+                EffectDamage(
                     "Пистолет среднего калибра",
                     distant_battle,
                     2,
@@ -55,8 +55,8 @@ class TemplateGameSystem {
             "Большие костяшки (пара)",
             "Усиленные остяшки пальцев наносят такие же тяжёлые удары,как костеты",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(
-                EffectWeapon(
+            effectsDamage = RealmList<EffectDamage>(
+                EffectDamage(
                     "Большие костяшки (пара)",
                     melle,
                     2,
@@ -69,8 +69,8 @@ class TemplateGameSystem {
             "Киеррука (Потрошители)",
             "Киберрука, в которой спрятаны потрошители",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(
-                EffectWeapon(
+            effectsDamage = RealmList<EffectDamage>(
+                EffectDamage(
                     "Киберрука (Потрошители)",
                     melle,
                     2,
@@ -83,8 +83,8 @@ class TemplateGameSystem {
             "Моноструна (одна)",
             "Прикрепленная к пальцу проволока из моноволокна режет любые органические материалы и пластик. Может служить удавкой, резиком или кнутом",
             true,
-            effectsWeapon = RealmList<EffectWeapon>(
-                EffectWeapon(
+            effectsDamage = RealmList<EffectDamage>(
+                EffectDamage(
                     "Моноструна (одна)",
                     melle,
                     2,

@@ -8,7 +8,7 @@ open class Item(
     var description: String = "", // Например имплант или другое
     var removable: Boolean = true, //   Можно ли его удалить
     var effectsAdd: RealmList<EffectAdd> = RealmList<EffectAdd>(),
-    var effectsWeapon: RealmList<EffectWeapon> = RealmList<EffectWeapon>(),
+    var effectsDamage: RealmList<EffectDamage> = RealmList<EffectDamage>(),
     var otherParamNum: RealmList<ParamNum> = RealmList<ParamNum>(),
     var otherParamStr: RealmList<ParamStr> = RealmList<ParamStr>(),
     var otherParamOptions: RealmList<ParamOptions> = RealmList<ParamOptions>(),
@@ -34,22 +34,22 @@ class DTemplateItem {
                 "Киберрука",
                 "",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Киберрука", melle, 1, 6))
+                effectsDamage = RealmList<EffectDamage>(EffectDamage("Киберрука", melle, 1, 6))
             ),
 
             "Нож" to Item(
                 "Нож",
                 "",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Нож", melle, 1, 6))
+                effectsDamage = RealmList<EffectDamage>(EffectDamage("Нож", melle, 1, 6))
             ),
 
             "Большие костяшки" to Item(
                 "Большие костяшки",
                 "",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(
-                    EffectWeapon(
+                effectsDamage = RealmList<EffectDamage>(
+                    EffectDamage(
                         "Большие костяшки",
                         melle,
                         2,
@@ -62,8 +62,8 @@ class DTemplateItem {
                 "Пистолет среднего калибра",
                 "",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(
-                    EffectWeapon(
+                effectsDamage = RealmList<EffectDamage>(
+                    EffectDamage(
                         "Пистолет среднего калибра",
                         distant_battle,
                         2,
@@ -76,8 +76,8 @@ class DTemplateItem {
                 "Пистолет-пулемёт среднего калибра",
                 "",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(
-                    EffectWeapon(
+                effectsDamage = RealmList<EffectDamage>(
+                    EffectDamage(
                         "Пистолет-пулемёт среднего калибра",
                         automatic_fire,
                         2,
@@ -90,22 +90,22 @@ class DTemplateItem {
                 "Потрошители",
                 "",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Потрошители", melle, 2, 6))
+                effectsDamage = RealmList<EffectDamage>(EffectDamage("Потрошители", melle, 2, 6))
             ),
 
             "Моноструна" to Item(
                 "Моноструна",
                 "",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(EffectWeapon("Моноструна", melle, 2, 6))
+                effectsDamage = RealmList<EffectDamage>(EffectDamage("Моноструна", melle, 2, 6))
             ),
 
             "Пистолет крупного калибра" to Item(
                 "Пистолет крупного калибра",
                 "",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(
-                    EffectWeapon(
+                effectsDamage = RealmList<EffectDamage>(
+                    EffectDamage(
                         "Пистолет крупного калибра",
                         distant_battle,
                         3,
@@ -118,8 +118,8 @@ class DTemplateItem {
                 "Пистолет сверхкрупного калибра",
                 "",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(
-                    EffectWeapon(
+                effectsDamage = RealmList<EffectDamage>(
+                    EffectDamage(
                         "Пистолет сверхкрупного калибра",
                         distant_battle,
                         4,
@@ -132,8 +132,8 @@ class DTemplateItem {
                 "Автомат",
                 "",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(
-                    EffectWeapon(
+                effectsDamage = RealmList<EffectDamage>(
+                    EffectDamage(
                         "Автомат",
                         automatic_fire,
                         5,
@@ -146,8 +146,8 @@ class DTemplateItem {
                 "Дробовик",
                 "",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(
-                    EffectWeapon(
+                effectsDamage = RealmList<EffectDamage>(
+                    EffectDamage(
                         "Дробовик",
                         distant_battle,
                         5,
@@ -160,8 +160,8 @@ class DTemplateItem {
                 "Ракетная установка",
                 "",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(
-                    EffectWeapon(
+                effectsDamage = RealmList<EffectDamage>(
+                    EffectDamage(
                         "Ракетная установка",
                         distant_battle,
                         7,
@@ -174,8 +174,8 @@ class DTemplateItem {
                 "Взрывчатка С9",
                 "",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(
-                    EffectWeapon(
+                effectsDamage = RealmList<EffectDamage>(
+                    EffectDamage(
                         "Взрывчатка С9",
                         explosive,
                         8,
@@ -190,8 +190,8 @@ class DTemplateItem {
                 "Большие костяшки (пара)",
                 "Усиленные остяшки пальцев наносят такие же тяжёлые удары,как костеты",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(
-                    EffectWeapon(
+                effectsDamage = RealmList<EffectDamage>(
+                    EffectDamage(
                         "Большие костяшки (пара)",
                         melle,
                         2,
@@ -203,8 +203,8 @@ class DTemplateItem {
                 "Киеррука (Потрошители)",
                 "Киберрука, в которой спрятаны потрошители",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(
-                    EffectWeapon(
+                effectsDamage = RealmList<EffectDamage>(
+                    EffectDamage(
                         "Киберрука (Потрошители)",
                         melle,
                         2,
@@ -216,8 +216,8 @@ class DTemplateItem {
                 "Моноструна (одна)",
                 "Прикрепленная к пальцу проволока из моноволокна режет любые органические материалы и пластик. Может служить удавкой, резиком или кнутом",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(
-                    EffectWeapon(
+                effectsDamage = RealmList<EffectDamage>(
+                    EffectDamage(
                         "Моноструна (одна)",
                         melle,
                         2,
@@ -229,8 +229,8 @@ class DTemplateItem {
                 "Потрошители (пара)",
                 "Трехдюймовые когти из карбостекла наносят режущие и колющие удары",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(
-                    EffectWeapon(
+                effectsDamage = RealmList<EffectDamage>(
+                    EffectDamage(
                         "Потрошители (пара)",
                         melle,
                         2,
@@ -299,14 +299,14 @@ class DTemplateItem {
                 "Banhammer",
                 "Does 3d6 REZ to Hellhounds, 2d6 REZ to all others. Can only hurt programs.",
                 false,
-                effectsWeapon = RealmList<EffectWeapon>(
-                    EffectWeapon(
+                effectsDamage = RealmList<EffectDamage>(
+                    EffectDamage(
                         "Banhammer против адских гончих",
                         "Нетраннинг против адских гончих",
                         3,
                         6
                     ),
-                    EffectWeapon(
+                    EffectDamage(
                         "Banhammer против программ",
                         "Нетраннинг против программ",
                         2,
@@ -352,8 +352,8 @@ class DTemplateItem {
                 "Hellhound",
                 "Does 3d6 Damage direct to a runner’s brain. Can only hurt Netrunners. Brain damage isn’t modified by location.",
                 true,
-                effectsWeapon = RealmList<EffectWeapon>(
-                    EffectWeapon(
+                effectsDamage = RealmList<EffectDamage>(
+                    EffectDamage(
                         "Hellhound",
                         "Нетраннинг против людей",
                         3,

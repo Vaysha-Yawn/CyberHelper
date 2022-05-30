@@ -12,7 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.adapters.DropDownAdapterRV
-import com.example.test.data_base.EffectWeapon
+import com.example.test.data_base.EffectDamage
 import com.example.test.databinding.EditEffectWeaponBinding
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameSystemDAO
@@ -36,9 +36,9 @@ class EditEffectWeapon : Fragment() {
         val indexItem = args?.getInt("indexItem", -1) ?: -1
         val indexEff = args?.getInt("indexEff", -1) ?: -1
 
-        var effectWeapon = EffectWeapon()
+        var effectWeapon = EffectDamage()
         if (indexEff != -1) {
-            effectWeapon = mCharacterVM.item.value!!.effectsWeapon[indexEff]!!
+            effectWeapon = mCharacterVM.item.value!!.effectsDamage[indexEff]!!
         }
 
         // подключаем фрагмент выпадающего списка
@@ -128,7 +128,7 @@ class EditEffectWeapon : Fragment() {
             if (res == 1) {// если проверка прошла успешно
                 if (indexEff == -1) {
                     mCharacterVM.LOCaddEffectWeaponItem(
-                        EffectWeapon(
+                        EffectDamage(
                             name,
                             effectWeapon.fightType,
                             effectWeapon.numCount,
@@ -138,7 +138,7 @@ class EditEffectWeapon : Fragment() {
                 } else {
                     mCharacterVM.LOCupdateEffectWeaponItem(
                         indexEff,
-                        EffectWeapon(
+                        EffectDamage(
                             name, effectWeapon.fightType,
                             effectWeapon.numCount,
                             effectWeapon.dX,
