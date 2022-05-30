@@ -131,8 +131,8 @@ class EditEffectWeapon : Fragment() {
                         EffectDamage(
                             name,
                             effectWeapon.fightType,
-                            effectWeapon.numCount,
-                            effectWeapon.dX,
+                            numCount = effectWeapon.numCount,
+                            dX = effectWeapon.dX,
                         )
                     )
                 } else {
@@ -140,8 +140,8 @@ class EditEffectWeapon : Fragment() {
                         indexEff,
                         EffectDamage(
                             name, effectWeapon.fightType,
-                            effectWeapon.numCount,
-                            effectWeapon.dX,
+                            numCount = effectWeapon.numCount,
+                            dX = effectWeapon.dX,
                         )
                     )
                 }

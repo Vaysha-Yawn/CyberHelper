@@ -13,14 +13,19 @@ class TemplateGameSystem {
             "Киберрука",
             "",
             true,
-            effectsDamage = RealmList<EffectDamage>(EffectDamage("Киберрука", melle, 1, 6)),
+            effectsDamage = RealmList<EffectDamage>(EffectDamage(
+                "Киберрука",
+                melle,
+                numCount = 1,
+                dX = 6
+            )),
             group = "Оружие"
         ),
         Item(
             "Нож",
             "",
             true,
-            effectsDamage = RealmList<EffectDamage>(EffectDamage("Нож", melle, 1, 6)),
+            effectsDamage = RealmList<EffectDamage>(EffectDamage("Нож", melle, numCount = 1, dX = 6)),
             group = "Оружие"
         ),
         Item(
@@ -31,8 +36,8 @@ class TemplateGameSystem {
                 EffectDamage(
                     "Большие костяшки",
                     melle,
-                    2,
-                    6
+                    numCount = 2,
+                    dX = 6
                 )
             ),
             group = "Оружие"
@@ -45,8 +50,8 @@ class TemplateGameSystem {
                 EffectDamage(
                     "Пистолет среднего калибра",
                     distant_battle,
-                    2,
-                    6
+                    numCount = 2,
+                    dX = 6
                 )
             ),
             group = "Оружие"
@@ -59,8 +64,8 @@ class TemplateGameSystem {
                 EffectDamage(
                     "Большие костяшки (пара)",
                     melle,
-                    2,
-                    6
+                    numCount = 2,
+                    dX = 6
                 )
             ),
             group = "Киберимпланты"
@@ -73,8 +78,8 @@ class TemplateGameSystem {
                 EffectDamage(
                     "Киберрука (Потрошители)",
                     melle,
-                    2,
-                    6
+                    numCount = 2,
+                    dX = 6
                 )
             ),
             group = "Киберимпланты"
@@ -87,8 +92,8 @@ class TemplateGameSystem {
                 EffectDamage(
                     "Моноструна (одна)",
                     melle,
-                    2,
-                    6
+                    numCount = 2,
+                    dX = 6
                 )
             ),
             group = "Киберимпланты"

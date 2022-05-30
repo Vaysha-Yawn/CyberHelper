@@ -274,7 +274,7 @@ open class CharacterDAO : ViewModel() {
         if (list != null) {
             if (list.size >= indexEff || indexEff < 0) {// новый
                 val effect =
-                    EffectDamage(name, type, numCount, dX)
+                    EffectDamage(name, type, numCount = numCount, dX = dX)
                 realm.executeTransaction {
                     list.add(effect)
                 }

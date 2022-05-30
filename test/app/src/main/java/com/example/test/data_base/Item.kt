@@ -34,14 +34,24 @@ class DTemplateItem {
                 "Киберрука",
                 "",
                 true,
-                effectsDamage = RealmList<EffectDamage>(EffectDamage("Киберрука", melle, 1, 6))
+                effectsDamage = RealmList<EffectDamage>(EffectDamage(
+                    "Киберрука",
+                    melle,
+                    numCount = 1,
+                    dX = 6
+                ))
             ),
 
             "Нож" to Item(
                 "Нож",
                 "",
                 true,
-                effectsDamage = RealmList<EffectDamage>(EffectDamage("Нож", melle, 1, 6))
+                effectsDamage = RealmList<EffectDamage>(EffectDamage(
+                    "Нож",
+                    melle,
+                    numCount = 1,
+                    dX = 6
+                ))
             ),
 
             "Большие костяшки" to Item(
@@ -52,8 +62,8 @@ class DTemplateItem {
                     EffectDamage(
                         "Большие костяшки",
                         melle,
-                        2,
-                        6
+                        numCount = 2,
+                        dX = 6
                     )
                 )
             ),
@@ -66,8 +76,8 @@ class DTemplateItem {
                     EffectDamage(
                         "Пистолет среднего калибра",
                         distant_battle,
-                        2,
-                        6
+                        numCount = 2,
+                        dX = 6
                     )
                 )
             ),
@@ -80,8 +90,8 @@ class DTemplateItem {
                     EffectDamage(
                         "Пистолет-пулемёт среднего калибра",
                         automatic_fire,
-                        2,
-                        6
+                        numCount = 2,
+                        dX = 6
                     )
                 )
             ),
@@ -90,14 +100,24 @@ class DTemplateItem {
                 "Потрошители",
                 "",
                 true,
-                effectsDamage = RealmList<EffectDamage>(EffectDamage("Потрошители", melle, 2, 6))
+                effectsDamage = RealmList<EffectDamage>(EffectDamage(
+                    "Потрошители",
+                    melle,
+                    numCount = 2,
+                    dX = 6
+                ))
             ),
 
             "Моноструна" to Item(
                 "Моноструна",
                 "",
                 true,
-                effectsDamage = RealmList<EffectDamage>(EffectDamage("Моноструна", melle, 2, 6))
+                effectsDamage = RealmList<EffectDamage>(EffectDamage(
+                    "Моноструна",
+                    melle,
+                    numCount = 2,
+                    dX = 6
+                ))
             ),
 
             "Пистолет крупного калибра" to Item(
@@ -108,8 +128,8 @@ class DTemplateItem {
                     EffectDamage(
                         "Пистолет крупного калибра",
                         distant_battle,
-                        3,
-                        6
+                        numCount = 3,
+                        dX = 6
                     )
                 )
             ),
@@ -122,8 +142,8 @@ class DTemplateItem {
                     EffectDamage(
                         "Пистолет сверхкрупного калибра",
                         distant_battle,
-                        4,
-                        6
+                        numCount = 4,
+                        dX = 6
                     )
                 )
             ),
@@ -136,8 +156,8 @@ class DTemplateItem {
                     EffectDamage(
                         "Автомат",
                         automatic_fire,
-                        5,
-                        6
+                        numCount = 5,
+                        dX = 6
                     )
                 )
             ),
@@ -150,8 +170,8 @@ class DTemplateItem {
                     EffectDamage(
                         "Дробовик",
                         distant_battle,
-                        5,
-                        6
+                        numCount = 5,
+                        dX = 6
                     )
                 )
             ),
@@ -164,8 +184,8 @@ class DTemplateItem {
                     EffectDamage(
                         "Ракетная установка",
                         distant_battle,
-                        7,
-                        10
+                        numCount = 7,
+                        dX = 10
                     )
                 )
             ),
@@ -178,8 +198,8 @@ class DTemplateItem {
                     EffectDamage(
                         "Взрывчатка С9",
                         explosive,
-                        8,
-                        10
+                        numCount = 8,
+                        dX = 10
                     )
                 )
             ),
@@ -194,8 +214,8 @@ class DTemplateItem {
                     EffectDamage(
                         "Большие костяшки (пара)",
                         melle,
-                        2,
-                        6
+                        numCount = 2,
+                        dX = 6
                     )
                 )
             ),
@@ -207,8 +227,8 @@ class DTemplateItem {
                     EffectDamage(
                         "Киберрука (Потрошители)",
                         melle,
-                        2,
-                        6
+                        numCount = 2,
+                        dX = 6
                     )
                 )
             ),
@@ -220,8 +240,8 @@ class DTemplateItem {
                     EffectDamage(
                         "Моноструна (одна)",
                         melle,
-                        2,
-                        6
+                        numCount = 2,
+                        dX = 6
                     )
                 )
             ),
@@ -233,8 +253,8 @@ class DTemplateItem {
                     EffectDamage(
                         "Потрошители (пара)",
                         melle,
-                        2,
-                        6
+                        numCount = 2,
+                        dX = 6
                     )
                 )
             ),
@@ -303,14 +323,14 @@ class DTemplateItem {
                     EffectDamage(
                         "Banhammer против адских гончих",
                         "Нетраннинг против адских гончих",
-                        3,
-                        6
+                        numCount = 3,
+                        dX = 6
                     ),
                     EffectDamage(
                         "Banhammer против программ",
                         "Нетраннинг против программ",
-                        2,
-                        6
+                        numCount = 2,
+                        dX = 6
                     )
                 ),
                 otherParamNum = RealmList<ParamNum>(
@@ -356,8 +376,8 @@ class DTemplateItem {
                     EffectDamage(
                         "Hellhound",
                         "Нетраннинг против людей",
-                        3,
-                        6
+                        numCount = 3,
+                        dX = 6
                     )
                 ),
                 otherParamNum = RealmList<ParamNum>(
