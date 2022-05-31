@@ -9,10 +9,10 @@ open class GroupParam(
 ) : RealmObject()
 
 open class GroupAttributes(
-    var listParamNum: RealmList<ParamNum> = RealmList<ParamNum>(),
-    var listParamStr: RealmList<ParamStr> = RealmList<ParamStr>(),
-    var listParamOptions: RealmList<ParamOptions> = RealmList<ParamOptions>(),
-    var listItem: RealmList<Item> = RealmList<Item>(),
+    var listParamNum: RealmList<ParamNum>? = RealmList<ParamNum>(),
+    var listParamStr: RealmList<ParamStr>? = RealmList<ParamStr>(),
+    var listParamOptions: RealmList<ParamOptions>? = RealmList<ParamOptions>(),
+    var listItem: RealmList<Item>? = RealmList<Item>(),
 ) : RealmObject()
 
 

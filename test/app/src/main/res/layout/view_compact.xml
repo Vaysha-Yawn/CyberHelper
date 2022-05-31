@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:gravity="start"
+        android:id="@+id/title"
+        style="@style/Text.H2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Модификаторы"
+        android:textColor="@color/white" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/add"
+        style="@style/Text.H2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_green_outline"
+        android:drawableEnd="@drawable/ic_plus_circle"
+        android:drawableTint="@color/green"
+        android:drawablePadding="20dp"
+        android:paddingHorizontal="40dp"
+        android:text="Добавить модификатор"
+        android:textAllCaps="false"
+        android:textColor="@color/green" />
+</LinearLayout>

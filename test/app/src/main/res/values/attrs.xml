@@ -12,4 +12,11 @@
     <declare-styleable name="TableView">
         <attr name="number_columns" format="color" />
     </declare-styleable>
+    <declare-styleable name="CompactView">
+        <attr name="CV_item_color" format="color" />
+        <attr name="CV_item_type" format="integer" />
+        <attr name="CV_item_hint" format="string" />
+        <attr name="CV_title" format="string" />
+        <attr name="CV_add_text" format="string" />
+    </declare-styleable>
 </resources>
