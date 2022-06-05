@@ -27,6 +27,9 @@
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/ic_plus_circle.xml" value="0.3675" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/iniciativa.xml" value="0.3485" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/less.xml" value="0.3485" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/line.xml" value="0.198" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/line_grey_medium.xml" value="0.198" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/line_grey_small.xml" value="0.198" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/more.xml" value="0.3485" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/num_item_round.xml" value="0.3485" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/drawable/number.xml" value="0.252" />
@@ -58,10 +61,12 @@
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/character_list__skill.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/character_list__stuff.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/character_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/choose_type_param.xml" value="0.33" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/dialog_choose_add_modification.xml" value="0.3009833262077811" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/dialog_choose_endMove_iniciative.xml" value="0.3009833262077811" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/drop_down_list.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/drop_down_list_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/edit_group.xml" value="0.25" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/edit_template_item.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/few_roll.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_edit_template_item.xml" value="0.36666666666666664" />
@@ -86,6 +91,7 @@
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/new_game.xml" value="0.2" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/roll.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/skill_result.xml" value="0.35260416666666666" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/tip_type_param.xml" value="0.15604959384352288" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/view_compact.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/drawable/bcg_rectangle_round.xml" value="0.34" />
         <entry key="..\:/Users/Viktorya/StudioProjects/CyberHelper/test/app/src/main/res/drawable/bcg_rectangle_round_light.xml" value="0.34" />
