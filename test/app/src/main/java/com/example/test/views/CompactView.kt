@@ -16,6 +16,7 @@ import com.example.test.adapters.DropDownAdapterRV
 import com.example.test.data_base.DSpecialGameData
 import com.example.test.data_base.Mod
 import com.example.test.databinding.CardModBinding
+import com.example.test.databinding.CardRvCompactStringBinding
 import com.example.test.databinding.HeaderBinding
 import com.example.test.databinding.ViewCompactBinding
 
@@ -96,21 +97,20 @@ class CompactView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, def
 
     }
 
-    class AdapterRV(
-        private val deleteMod: TemplateHolder.DeleteMod,
-        private val listener: TemplateHolder.PutModValue,
-
+    class PMAdapterRV(
+        private val deleteMod: PMTemplateHolder.DeleteMod,
+        private val listener: PMTemplateHolder.PutModValue,
     ) :
-        RecyclerView.Adapter<TemplateHolder>(), TemplateHolder.updView {
+        RecyclerView.Adapter<PMTemplateHolder>(), PMTemplateHolder.updView {
 
         var list = mutableListOf<Mod>()
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TemplateHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PMTemplateHolder {
             val view =
                 LayoutInflater.from(parent.context).inflate(R.layout.card_mod, parent, false)
-            return TemplateHolder(view, deleteMod, this, listener)
+            return PMTemplateHolder(view, deleteMod, this, listener)
         }
 
-        override fun onBindViewHolder(holder: TemplateHolder, position: Int) {
+        override fun onBindViewHolder(holder: PMTemplateHolder, position: Int) {
             holder.bind(list[position])
         }
 
@@ -129,7 +129,193 @@ class CompactView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, def
 
     }
 
-    class TemplateHolder(
+    class DDAdapterRV(
+        private val deleteMod: DDTemplateHolder.DeleteMod,
+        private val listener: DDTemplateHolder.PutModValue,
+    ) :
+        RecyclerView.Adapter<DDTemplateHolder>(), DDTemplateHolder.updView {
+
+        var list = mutableListOf<Mod>()
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DDTemplateHolder {
+            val view =
+                LayoutInflater.from(parent.context).inflate(R.layout.card_mod, parent, false)
+            return DDTemplateHolder(view, deleteMod, this, listener)
+        }
+
+        override fun onBindViewHolder(holder: DDTemplateHolder, position: Int) {
+            holder.bind(list[position])
+        }
+
+        override fun getItemCount(): Int {
+            return list.size
+        }
+
+        fun setData(list: MutableList<Mod>) {
+            this.list = list
+            notifyDataSetChanged()
+        }
+
+        override fun updateView() {
+            notifyDataSetChanged()
+        }
+
+    }
+
+    open abstract class AdapterRV() :
+        RecyclerView.Adapter<TemplateHolder>(), TemplateHolder.updView {
+        abstract val deleteMod: TemplateHolder.DeleteMod
+        abstract val list: MutableList<String>
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TemplateHolder {
+            val view =
+                LayoutInflater.from(parent.context).inflate(R.layout.card_mod, parent, false)
+            return TemplateHolder(view, deleteMod, this, listener)
+        }
+
+        override fun onBindViewHolder(holder: TemplateHolder, position: Int) {
+            holder.bind(list[position])
+        }
+
+        override fun getItemCount(): Int {
+            return list.size
+        }
+
+        fun setData(list: MutableList<String>) {
+            this.list = list
+            notifyDataSetChanged()
+        }
+
+        override fun updateView() {
+            notifyDataSetChanged()
+        }
+
+    }
+
+    open abstract class TemplateHolder(
+        view: View,
+        private val delete: DeleteMod,
+        private val updViewr: updView,
+        private val funBinding: InitBinding,
+    ) : RecyclerView.ViewHolder(view) {
+        abstract val binding :ViewCompactBinding
+
+        fun bind(){
+            funBinding.funBinding()
+        }
+
+        interface updView {
+            fun updateView()
+        }
+
+        interface DeleteMod {
+            fun deleteMod(position: Int)
+        }
+
+        interface InitBinding {
+            fun funBinding()
+        }
+
+    }
+
+    class EditTextAdapterRV(
+        private val deleteMod: EditTextTemplateHolder.DeleteMod,
+        private val listener: EditTextTemplateHolder.PutModValue,
+    ) :
+        RecyclerView.Adapter<EditTextTemplateHolder>(), EditTextTemplateHolder.updView {
+
+        var list = mutableListOf<Mod>()
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EditTextTemplateHolder {
+            val view =
+                LayoutInflater.from(parent.context).inflate(R.layout.card_mod, parent, false)
+            return EditTextTemplateHolder(view, deleteMod, this, listener)
+        }
+
+        override fun onBindViewHolder(holder: EditTextTemplateHolder, position: Int) {
+            holder.bind(list[position])
+        }
+
+        override fun getItemCount(): Int {
+            return list.size
+        }
+
+        fun setData(list: MutableList<Mod>) {
+            this.list = list
+            notifyDataSetChanged()
+        }
+
+        override fun updateView() {
+            notifyDataSetChanged()
+        }
+
+    }
+
+    class StringAdapterRV(
+        private val deleteMod: StringTemplateHolder.DeleteMod,
+        private val listener: StringTemplateHolder.EditString,
+    ) :
+        RecyclerView.Adapter<StringTemplateHolder>(), StringTemplateHolder.updView {
+
+        var list = mutableListOf<String>()
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StringTemplateHolder {
+            val view =
+                LayoutInflater.from(parent.context).inflate(R.layout.card_mod, parent, false)
+            return StringTemplateHolder(view, deleteMod, this, listener)
+        }
+
+        override fun onBindViewHolder(holder: StringTemplateHolder, position: Int) {
+            holder.bind(list[position])
+        }
+
+        override fun getItemCount(): Int {
+            return list.size
+        }
+
+        fun setData(list: MutableList<String>) {
+            this.list = list
+            notifyDataSetChanged()
+        }
+
+        override fun updateView() {
+            notifyDataSetChanged()
+        }
+
+    }
+
+    class StringTemplateHolder(
+        view: View,
+        private val delete: DeleteMod,
+        private val updViewr: updView,
+        private val listener: EditString,
+    ) : RecyclerView.ViewHolder(view) {
+        private val binding = CardRvCompactStringBinding.bind(view)
+
+        fun bind( value:String, ) = with(binding) {
+            stringEditableText.text = value
+            stringEditableEdit.setOnClickListener {
+                listener.editString(adapterPosition, value)
+            }
+            delete.setOnClickListener { view ->
+                this@StringTemplateHolder.delete.deleteMod(adapterPosition)
+                updViewr.updateView()
+            }
+        }
+
+        interface updView {
+            fun updateView()
+        }
+
+        interface DeleteMod {
+            fun deleteMod(position: Int)
+        }
+
+        interface EditString {
+            fun editString(position: Int, value:String)
+        }
+
+    }
+
+    class PMTemplateHolder(
         view: View,
         private val delete: DeleteMod,
         private val updViewr: updView,
@@ -148,6 +334,100 @@ class CompactView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, def
                 DD.visibility = View.GONE
                 PM.setValue(value.toInt())
                 PM.setListener(99, 0, this@TemplateHolder)
+
+            delete.setOnClickListener { view ->
+                this@TemplateHolder.delete.deleteMod(adapterPosition)
+                updViewr.updateView()
+            }
+        }
+
+        interface updView {
+            fun updateView()
+        }
+
+        interface DeleteMod {
+            fun deleteMod(position: Int)
+        }
+
+        interface PutModValue {
+            fun putModValue(position: Int, value:Int)
+        }
+
+        override fun whenValueTo(position: Int) {
+            listener.putModValue(adapterPosition, position)
+        }
+
+        override fun numberEvent(number: Int) {
+            listener.putModValue(adapterPosition, number)
+        }
+    }
+
+    class DDTemplateHolder(
+        view: View,
+        private val delete: DeleteMod,
+        private val updViewr: updView,
+        private val listener: PutModValue,
+    ) : RecyclerView.ViewHolder(view), DropDownAdapterRV.TemplateHolder.WhenValueTo, PlusMinusView.NumberEvent {
+        private val binding = CardModBinding.bind(view)
+
+        fun bind(style:Int, value:String, ) = with(binding) {
+
+            PMLinear.visibility = View.GONE
+            DD.visibility = View.VISIBLE
+            DD.setMainText(value)
+            DD.setDDArrayAndListener(DSpecialGameData().modName, this@TemplateHolder, null)
+
+            PMLinear.visibility = View.VISIBLE
+            DD.visibility = View.GONE
+            PM.setValue(value.toInt())
+            PM.setListener(99, 0, this@TemplateHolder)
+
+            delete.setOnClickListener { view ->
+                this@TemplateHolder.delete.deleteMod(adapterPosition)
+                updViewr.updateView()
+            }
+        }
+
+        interface updView {
+            fun updateView()
+        }
+
+        interface DeleteMod {
+            fun deleteMod(position: Int)
+        }
+
+        interface PutModValue {
+            fun putModValue(position: Int, value:Int)
+        }
+
+        override fun whenValueTo(position: Int) {
+            listener.putModValue(adapterPosition, position)
+        }
+
+        override fun numberEvent(number: Int) {
+            listener.putModValue(adapterPosition, number)
+        }
+    }
+
+    class EditTextTemplateHolder(
+        view: View,
+        private val delete: DeleteMod,
+        private val updViewr: updView,
+        private val listener: PutModValue,
+    ) : RecyclerView.ViewHolder(view), DropDownAdapterRV.TemplateHolder.WhenValueTo, PlusMinusView.NumberEvent {
+        private val binding = CardModBinding.bind(view)
+
+        fun bind(style:Int, value:String, ) = with(binding) {
+
+            PMLinear.visibility = View.GONE
+            DD.visibility = View.VISIBLE
+            DD.setMainText(value)
+            DD.setDDArrayAndListener(DSpecialGameData().modName, this@TemplateHolder, null)
+
+            PMLinear.visibility = View.VISIBLE
+            DD.visibility = View.GONE
+            PM.setValue(value.toInt())
+            PM.setListener(99, 0, this@TemplateHolder)
 
             delete.setOnClickListener { view ->
                 this@TemplateHolder.delete.deleteMod(adapterPosition)
