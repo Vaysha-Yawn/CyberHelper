@@ -8,13 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
+import com.example.test.databinding.FragmentNameSystemSettingsBinding
 import com.example.test.databinding.FragmentReviewSystemSettingsBinding
 import com.example.test.viewModels.GameSystemDAO
 import com.example.test.viewModels.SystemSettingsVM
 import com.example.test.views.HeaderView
 
 
-class ReviewSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
+class NameSystemSettingsFragment : Fragment(), HeaderView.HeaderBack  {
 
     private val gameSystemDAO:GameSystemDAO by activityViewModels()
     private val systemSettingsVM:SystemSettingsVM by activityViewModels()
@@ -28,12 +29,12 @@ class ReviewSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_review_system_settings, container, false)
-        val binding = FragmentReviewSystemSettingsBinding.bind(view)
+        val view = inflater.inflate(R.layout.fragment_name_system_settings, container, false)
+        val binding = FragmentNameSystemSettingsBinding.bind(view)
         with(binding){
-            header.setBack(true, this@ReviewSystemSettingsFragment, requireActivity(), viewLifecycleOwner)
+            header.setBack(true, this@NameSystemSettingsFragment, requireActivity(), viewLifecycleOwner)
             next.setOnClickListener {
-                view.findNavController().navigate(R.id.action_reviewSystemSettingsFragment_to_nameSystemSettingsFragment2)
+                view.findNavController().navigate(R.id.action_nameSystemSettingsFragment_to_typeDamageSystemSettingsFragment)
             }
         }
         return view
@@ -42,5 +43,4 @@ class ReviewSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
     override fun back() {
         view?.findNavController()?.popBackStack()
     }
-
 }

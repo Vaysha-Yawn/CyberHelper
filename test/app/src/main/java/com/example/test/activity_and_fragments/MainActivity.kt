@@ -12,7 +12,7 @@ import com.example.test.activity_and_fragments.about.About
 import com.example.test.activity_and_fragments.hosts.LoadHost
 import com.example.test.activity_and_fragments.hosts.NewHost
 import com.example.test.activity_and_fragments.hosts.PresentHost
-import com.example.test.activity_and_fragments.setting.SettingsHost
+import com.example.test.activity_and_fragments.hosts.SettingsHost
 import com.example.test.data_base.TemplateGameSystem
 import com.example.test.viewModels.GameDAO
 import com.example.test.viewModels.GameSystemDAO

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
+import com.example.test.activity_and_fragments.hosts.SettingsHost
 import com.example.test.databinding.FragmentSettingsMainBinding
 import com.example.test.viewModels.GameSystemDAO
 import com.example.test.views.HeaderView

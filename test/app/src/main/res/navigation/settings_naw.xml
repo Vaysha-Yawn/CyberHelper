@@ -40,5 +40,76 @@
         <action
             android:id="@+id/action_settingsChoseSystem_to_settingsMainFragment"
             app:destination="@id/settingsMainFragment" />
+        <action
+            android:id="@+id/action_settingsChoseSystem_to_reviewSystemSettingsFragment"
+            app:destination="@id/reviewSystemSettingsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/reviewSystemSettingsFragment"
+        android:name="com.example.test.activity_and_fragments.setting.system.ReviewSystemSettingsFragment"
+        android:label="ReviewSystemSettingsFragment" >
+        <action
+            android:id="@+id/action_reviewSystemSettingsFragment_to_nameSystemSettingsFragment2"
+            app:destination="@id/nameSystemSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nameSystemSettingsFragment"
+        android:name="com.example.test.activity_and_fragments.setting.system.NameSystemSettingsFragment"
+        android:label="NameSystemSettingsFragment" >
+        <action
+            android:id="@+id/action_nameSystemSettingsFragment_to_typeDamageSystemSettingsFragment"
+            app:destination="@id/typeDamageSystemSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/typeDamageSystemSettingsFragment"
+        android:name="com.example.test.activity_and_fragments.setting.system.TypeDamageSystemSettingsFragment"
+        android:label="TypeDamageSystemSettingsFragment" >
+        <action
+            android:id="@+id/action_typeDamageSystemSettingsFragment_to_groupSystemSettingsFragment"
+            app:destination="@id/groupSystemSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/groupSystemSettingsFragment"
+        android:name="com.example.test.activity_and_fragments.setting.system.GroupSystemSettingsFragment"
+        android:label="GroupSystemSettingsFragment" >
+        <action
+            android:id="@+id/action_groupSystemSettingsFragment_to_typeItemSystemSettingsFragment"
+            app:destination="@id/typeItemSystemSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/typeItemSystemSettingsFragment"
+        android:name="com.example.test.activity_and_fragments.setting.system.TypeItemSystemSettingsFragment"
+        android:label="TypeItemSystemSettingsFragment" >
+        <action
+            android:id="@+id/action_typeItemSystemSettingsFragment_to_paramCharacterSystemSettingsFragment"
+            app:destination="@id/paramCharacterSystemSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paramCharacterSystemSettingsFragment"
+        android:name="com.example.test.activity_and_fragments.setting.system.ParamCharacterSystemSettingsFragment"
+        android:label="ParamCharacterSystemSettingsFragment" >
+        <action
+            android:id="@+id/action_paramCharacterSystemSettingsFragment_to_paramItemSystemSettingsFragment"
+            app:destination="@id/paramItemSystemSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paramItemSystemSettingsFragment"
+        android:name="com.example.test.activity_and_fragments.setting.system.ParamItemSystemSettingsFragment"
+        android:label="ParamItemSystemSettingsFragment" >
+        <action
+            android:id="@+id/action_paramItemSystemSettingsFragment_to_templateItemSystemSettingsFragment"
+            app:destination="@id/templateItemSystemSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/templateItemSystemSettingsFragment"
+        android:name="com.example.test.activity_and_fragments.setting.system.TemplateItemSystemSettingsFragment"
+        android:label="TemplateItemSystemSettingsFragment" >
+        <action
+            android:id="@+id/action_templateItemSystemSettingsFragment_to_templateCharacterSystemSettingsFragment"
+            app:destination="@id/templateCharacterSystemSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/templateCharacterSystemSettingsFragment"
+        android:name="com.example.test.activity_and_fragments.setting.system.TemplateCharacterSystemSettingsFragment"
+        android:label="TemplateCharacterSystemSettingsFragment" />
 </navigation>

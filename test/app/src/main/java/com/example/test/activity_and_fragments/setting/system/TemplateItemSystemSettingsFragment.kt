@@ -9,12 +9,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.databinding.FragmentReviewSystemSettingsBinding
+import com.example.test.databinding.FragmentTemplateItemSystemSettingsBinding
 import com.example.test.viewModels.GameSystemDAO
 import com.example.test.viewModels.SystemSettingsVM
 import com.example.test.views.HeaderView
 
 
-class ReviewSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
+class TemplateItemSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
 
     private val gameSystemDAO:GameSystemDAO by activityViewModels()
     private val systemSettingsVM:SystemSettingsVM by activityViewModels()
@@ -28,12 +29,12 @@ class ReviewSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_review_system_settings, container, false)
-        val binding = FragmentReviewSystemSettingsBinding.bind(view)
+        val view = inflater.inflate(R.layout.fragment_template_item_system_settings, container, false)
+        val binding = FragmentTemplateItemSystemSettingsBinding.bind(view)
         with(binding){
-            header.setBack(true, this@ReviewSystemSettingsFragment, requireActivity(), viewLifecycleOwner)
+            header.setBack(true, this@TemplateItemSystemSettingsFragment, requireActivity(), viewLifecycleOwner)
             next.setOnClickListener {
-                view.findNavController().navigate(R.id.action_reviewSystemSettingsFragment_to_nameSystemSettingsFragment2)
+                view.findNavController().navigate(R.id.action_templateItemSystemSettingsFragment_to_templateCharacterSystemSettingsFragment)
             }
         }
         return view
