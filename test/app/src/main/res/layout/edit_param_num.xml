@@ -8,7 +8,7 @@
     android:background="@color/dark"
     android:orientation="vertical">
 
-    <com.example.test.views.HeaderView
+    <com.example.test.components.views.HeaderView
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
         android:gravity="start"
         android:text="Введите начальное значение" />
 
-    <com.example.test.views.PlusMinusView
+    <com.example.test.components.views.PlusMinusView
         android:id="@+id/maxValue"
         android:layout_width="200dp"
         app:PM_small="false"
@@ -89,7 +89,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
-        <com.example.test.views.PlusMinusView
+        <com.example.test.components.views.PlusMinusView
             android:layout_width="200dp"
             app:PM_small="false"
             android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
-        <com.example.test.views.PlusMinusView
+        <com.example.test.components.views.PlusMinusView
             android:id="@+id/minValue"
             android:layout_width="200dp"
             app:PM_small="false"

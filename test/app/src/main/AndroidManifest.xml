@@ -21,7 +21,7 @@
         android:theme="@style/Theme.Test"
         android:fullBackupContent="@xml/backup_descriptor">
         <activity
-            android:name=".activity_and_fragments.MainActivity"
+            android:name=".main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,11 +29,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity_and_fragments.about.About" />
-        <activity android:name=".activity_and_fragments.hosts.PresentHost" />
-        <activity android:name=".activity_and_fragments.hosts.LoadHost" />
-        <activity android:name=".activity_and_fragments.hosts.NewHost" />
-        <activity android:name=".activity_and_fragments.hosts.FightHost" />
-        <activity android:name=".activity_and_fragments.hosts.SettingsHost" />
+        <activity android:name=".edit_fragments.about.About" />
+        <activity android:name="com.example.test.present_game.presentation.activity.PresentHost" />
+        <activity android:name=".load.presentaion.LoadHost" />
+        <activity android:name=".new_game.presentation.activity.NewHost" />
+        <activity android:name=".iniciative.presentation.activity.FightHost" />
+        <activity android:name=".settings.presentation.fragments.activity.SettingsHost" />
     </application>
 </manifest>

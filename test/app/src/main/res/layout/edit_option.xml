@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="40dp"
     android:background="#1B1A22"
-    tools:context=".activity_and_fragments.Edit_Options">
+    tools:context=".edit_fragments.Edit_Options">
 
     <TextView
         android:id="@+id/key"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.example.test.views.DropDownView
+    <com.example.test.components.views.DropDownView
         app:DD_color="@color/green"
         app:text_color="@color/black"
         app:main_text="Выберите параметр"

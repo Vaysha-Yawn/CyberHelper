@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_and_fragments.character_list.CharacterList"
+    tools:context=".character_list.presentation.fragments.CharacterList"
     android:background="#1B1A22">
 
-    <com.example.test.views.HeaderView
+    <com.example.test.components.views.HeaderView
         android:id="@+id/headerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

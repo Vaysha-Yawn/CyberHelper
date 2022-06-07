@@ -9,7 +9,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.data_base.Character
-import com.example.test.data_base.DTemplateParamStr
+import com.example.test.test_data.DTemplateParamStr
 import com.example.test.databinding.CardCharacterBinding
 
 

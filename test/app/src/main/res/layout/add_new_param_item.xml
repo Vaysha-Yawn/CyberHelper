@@ -6,7 +6,7 @@
     android:background="#1B1A22"
     android:orientation="vertical">
 
-    <com.example.test.views.HeaderView
+    <com.example.test.components.views.HeaderView
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/header"
@@ -55,7 +55,7 @@
                 android:text="Создать новую"
                 android:textSize="20sp" />
 
-            <com.example.test.views.DropDownView
+            <com.example.test.components.views.DropDownView
                 android:id="@+id/drop_down_fragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

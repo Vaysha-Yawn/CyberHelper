@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/dark">
 
-    <com.example.test.views.HeaderView
+    <com.example.test.components.views.HeaderView
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

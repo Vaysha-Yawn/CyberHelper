@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.data_base.DSpecialGameData
+import com.example.test.test_data.DSpecialGameData
 import com.example.test.data_base.Mod
 import com.example.test.databinding.CardModBinding
-import com.example.test.views.PlusMinusView
+import com.example.test.components.views.PlusMinusView
 
 
 class ModAdapterRV(

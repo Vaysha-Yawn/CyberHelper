@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1B1A22"
-    tools:context=".activity_and_fragments.new_character.NewCharacterByTemplate">
+    tools:context=".new_character.NewCharacterByTemplate">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.example.test.views.HeaderView
+        <com.example.test.components.views.HeaderView
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -98,7 +98,7 @@
                             android:text="Возраст"
                             android:textColor="@color/green" />
 
-                        <com.example.test.views.PlusMinusView
+                        <com.example.test.components.views.PlusMinusView
                             android:id="@+id/PM"
                             android:layout_width="170dp"
                             android:layout_height="match_parent"

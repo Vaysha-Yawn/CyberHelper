@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loadGame"
-        android:name="com.example.test.activity_and_fragments.LoadGame"
+        android:name="com.example.test.load.presentaion.LoadGame"
         android:label="LoadGame" >
         <action
             android:id="@+id/action_loadGame_to_delete4"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/delete4"
-        android:name="com.example.test.activity_and_fragments.Delete"
+        android:name="com.example.test.edit_fragments.Delete"
         android:label="Delete" >
         <action
             android:id="@+id/action_delete4_to_loadGame"

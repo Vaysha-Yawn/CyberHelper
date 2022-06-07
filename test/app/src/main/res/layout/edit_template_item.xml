@@ -6,7 +6,7 @@
     android:background="#1B1A22"
     android:orientation="vertical">
 
-    <com.example.test.views.HeaderView
+    <com.example.test.components.views.HeaderView
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/header"

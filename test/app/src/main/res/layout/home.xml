@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1B1A22"
-    tools:context=".activity_and_fragments.Home">
+    tools:context=".edit_fragments.Home">
 
-    <com.example.test.views.HeaderView
+    <com.example.test.components.views.HeaderView
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

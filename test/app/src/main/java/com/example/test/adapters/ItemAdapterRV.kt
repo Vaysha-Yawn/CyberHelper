@@ -12,6 +12,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
+import com.example.test.character_list.presentation.adapters.EffectAddAdapterRV
+import com.example.test.character_list.presentation.adapters.EffectWeaponAdapterRV
+import com.example.test.character_list.presentation.adapters.ParamOptionsAdapterRV
+import com.example.test.character_list.presentation.adapters.ParamStringAdapterRV
 import com.example.test.data_base.*
 import com.example.test.databinding.*
 import io.realm.RealmList

@@ -1,5 +1,6 @@
 package com.example.test.data_base
 
+import com.example.test.test_data.DTemplateParamNum
 import io.realm.RealmList
 
 class TemplateGameSystem {

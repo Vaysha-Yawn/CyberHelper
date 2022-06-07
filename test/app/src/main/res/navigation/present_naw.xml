@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/pres_delete"
-        android:name="com.example.test.activity_and_fragments.Delete"
+        android:name="com.example.test.edit_fragments.Delete"
         android:label="Delete">
         <action
             android:id="@+id/action_delete2_to_characterList2"
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/pres_itemEdit"
-        android:name="com.example.test.activity_and_fragments.EditItem"
+        android:name="com.example.test.edit_fragments.EditItem"
         android:label="WeaponEdit"
         tools:layout="@layout/edit_item">
         <action
@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/pres_edit_number"
-        android:name="com.example.test.activity_and_fragments.Edit_number"
+        android:name="com.example.test.edit_fragments.Edit_number"
         tools:layout="@layout/edit_number"
         android:label="edit_number">
         <action
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/pres_edit_string"
-        android:name="com.example.test.activity_and_fragments.Edit_string"
+        android:name="com.example.test.edit_fragments.Edit_string"
         tools:layout="@layout/edit_string"
         android:label="edit_string">
         <action
@@ -69,7 +69,7 @@
     </fragment>
     <fragment
         android:id="@+id/pres_characterList"
-        android:name="com.example.test.activity_and_fragments.character_list.CharacterList"
+        android:name="com.example.test.character_list.presentation.fragments.CharacterList"
         android:label="CharacterList">
         <action
             android:id="@+id/action_characterList_to_characterMenu"
@@ -98,7 +98,7 @@
     </fragment>
     <fragment
         android:id="@+id/pres_choiceTemplate"
-        android:name="com.example.test.activity_and_fragments.new_character.ChoiceTemplate"
+        android:name="com.example.test.new_character.ChoiceTemplate"
         android:label="ChoiceTemplate">
         <action
             android:id="@+id/action_choiceTemplate_to_home2"
@@ -109,7 +109,7 @@
     </fragment>
     <fragment
         android:id="@+id/pres_newCharacterByTemplate"
-        android:name="com.example.test.activity_and_fragments.new_character.NewCharacterByTemplate"
+        android:name="com.example.test.new_character.NewCharacterByTemplate"
         android:label="NewCharacterByTemplate">
         <action
             android:id="@+id/action_newCharacterByTemplate_to_choiceTemplate2"
@@ -120,7 +120,7 @@
     </fragment>
     <fragment
         android:id="@+id/characterMenu"
-        android:name="com.example.test.activity_and_fragments.CharacterMenu"
+        android:name="com.example.test.present_game.presentation.fragments.CharacterMenu"
         android:label="CharacterMenu">
         <action
             android:id="@+id/action_characterMenu_to_home2"
@@ -131,7 +131,7 @@
     </fragment>
      <fragment
         android:id="@+id/home2"
-        android:name="com.example.test.activity_and_fragments.Home"
+        android:name="com.example.test.edit_fragments.Home"
         android:label="Home">
         <action
             android:id="@+id/action_home2_to_choiceTemplate"
@@ -148,7 +148,7 @@
      </fragment>
     <fragment
         android:id="@+id/pres_dropDownEdit"
-        android:name="com.example.test.activity_and_fragments.Edit_Options"
+        android:name="com.example.test.edit_fragments.Edit_Options"
         android:label="drop_down_edit"
         tools:layout="@layout/edit_option" >
         <action
@@ -157,7 +157,7 @@
     </fragment>
     <fragment
         android:id="@+id/pres_editEffectAdd"
-        android:name="com.example.test.activity_and_fragments.EditEffectAdd"
+        android:name="com.example.test.edit_fragments.EditEffectAdd"
         android:label="EditEffectAdd" >
         <action
             android:id="@+id/action_pres_editEffectAdd_to_pres_itemEdit"
@@ -165,7 +165,7 @@
     </fragment>
     <fragment
         android:id="@+id/pres_editEffectWeapon"
-        android:name="com.example.test.activity_and_fragments.EditEffectWeapon"
+        android:name="com.example.test.edit_fragments.EditEffectWeapon"
         android:label="EditEffectWeapon" >
         <action
             android:id="@+id/action_pres_editEffectWeapon_to_pres_itemEdit"
@@ -173,7 +173,7 @@
     </fragment>
     <fragment
         android:id="@+id/pres_addNewParamItem"
-        android:name="com.example.test.activity_and_fragments.AddNewParam"
+        android:name="com.example.test.edit_fragments.AddNewParam"
         android:label="add_new_param_iem"
         tools:layout="@layout/add_new_param_item" >
         <action
@@ -191,7 +191,7 @@
     </fragment>
     <fragment
         android:id="@+id/addNewItem"
-        android:name="com.example.test.activity_and_fragments.AddNewItem"
+        android:name="com.example.test.edit_fragments.AddNewItem"
         android:label="AddNewItem" >
         <action
             android:id="@+id/action_addNewItem_to_pres_itemEdit"

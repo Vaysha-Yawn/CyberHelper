@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_and_fragments.setting.SettingsMainFragment"
+    tools:context=".settings.presentation.fragments.SettingsMainFragment"
     android:background="@color/dark"
     >
 
-    <com.example.test.views.HeaderView
+    <com.example.test.components.views.HeaderView
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

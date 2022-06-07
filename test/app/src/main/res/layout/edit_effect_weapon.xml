@@ -59,7 +59,7 @@
                 android:text="Тип урона"
                 android:textColor="@color/light_grey" />
 
-            <com.example.test.views.DropDownView
+            <com.example.test.components.views.DropDownView
                 android:layout_width="match_parent"
                 android:id="@+id/weapon_edit_type_RV"
                 android:layout_marginStart="10dp"
@@ -77,7 +77,7 @@
                 android:text="Количество кубиков урона"
                 android:textColor="@color/light_grey" />
 
-            <com.example.test.views.PlusMinusView
+            <com.example.test.components.views.PlusMinusView
                 android:id="@+id/weapon_edit_plus_and_minus_num_count"
                 android:layout_width="200dp"
                 app:PM_small="false"
@@ -95,7 +95,7 @@
                 android:text="Максимальный урон одного кубика (d X)"
                 android:textColor="@color/light_grey" />
 
-            <com.example.test.views.PlusMinusView
+            <com.example.test.components.views.PlusMinusView
                 android:id="@+id/weapon_edit_plus_and_minus_dx"
                 android:layout_width="200dp"
                 app:PM_small="false"

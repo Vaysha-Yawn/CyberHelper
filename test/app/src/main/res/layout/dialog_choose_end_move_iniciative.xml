@@ -15,7 +15,7 @@
         android:text="Выберите бой"
         android:gravity="start"/>
 
-    <com.example.test.views.DropDownView
+    <com.example.test.components.views.DropDownView
         android:id="@+id/DD"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"

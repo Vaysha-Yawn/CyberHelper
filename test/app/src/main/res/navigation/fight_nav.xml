@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/Initiative"
-        android:name="com.example.test.activity_and_fragments.fight.Initiative"
+        android:name="com.example.test.iniciative.presentation.fragments.Initiative"
         android:label="Initiative">
         <action
             android:id="@+id/action_Initiative_to_InitiativeResult"
@@ -15,6 +15,6 @@
     </fragment>
     <fragment
         android:id="@+id/InitiativeResult"
-        android:name="com.example.test.activity_and_fragments.fight.InitiativeResult"
+        android:name="com.example.test.iniciative.presentation.fragments.InitiativeResult"
         android:label="InitiativeResult" />
 </navigation>

@@ -3,6 +3,7 @@ package com.example.test.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.test.data_base.*
+import com.example.test.test_data.DSpecialGameData
 import io.realm.RealmList
 
 // для разных роллов разные классы, кроме произвольного число

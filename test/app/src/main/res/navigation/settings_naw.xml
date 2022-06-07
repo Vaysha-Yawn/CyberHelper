@@ -6,7 +6,7 @@
     app:startDestination="@id/settingsChoseSystem">
     <fragment
         android:id="@+id/settingsMainFragment"
-        android:name="com.example.test.activity_and_fragments.setting.SettingsMainFragment"
+        android:name="com.example.test.settings.presentation.fragments.SettingsMainFragment"
         android:label="fragment_settings_main"
         tools:layout="@layout/fragment_settings_main">
         <action
@@ -18,11 +18,11 @@
     </fragment>
     <fragment
         android:id="@+id/settingFightType2"
-        android:name="com.example.test.activity_and_fragments.setting.SettingFightType"
+        android:name="com.example.test.settings.presentation.fragments.SettingFightType"
         android:label="SettingFightType" />
     <fragment
         android:id="@+id/editTemplateItemFragment"
-        android:name="com.example.test.activity_and_fragments.setting.EditTemplateItemFragment"
+        android:name="com.example.test.settings.presentation.fragments.EditTemplateItemFragment"
         android:label="EditTemplateItemFragment">
         <action
             android:id="@+id/action_editTemplateItemFragment_to_editItem"
@@ -30,12 +30,12 @@
     </fragment>
     <fragment
         android:id="@+id/editItem"
-        android:name="com.example.test.activity_and_fragments.EditItem"
+        android:name="com.example.test.edit_fragments.EditItem"
         android:label="edit_item"
         tools:layout="@layout/edit_item" />
     <fragment
         android:id="@+id/settingsChoseSystem"
-        android:name="com.example.test.activity_and_fragments.setting.SettingsChoseSystem"
+        android:name="com.example.test.settings.presentation.fragments.SettingsChoseSystem"
         android:label="SettingsChoseSystem">
         <action
             android:id="@+id/action_settingsChoseSystem_to_settingsMainFragment"
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/reviewSystemSettingsFragment"
-        android:name="com.example.test.activity_and_fragments.setting.system.ReviewSystemSettingsFragment"
+        android:name="com.example.test.settings.presentation.fragments.system.ReviewSystemSettingsFragment"
         android:label="ReviewSystemSettingsFragment" >
         <action
             android:id="@+id/action_reviewSystemSettingsFragment_to_nameSystemSettingsFragment2"
@@ -54,7 +54,7 @@
     </fragment>
     <fragment
         android:id="@+id/nameSystemSettingsFragment"
-        android:name="com.example.test.activity_and_fragments.setting.system.NameSystemSettingsFragment"
+        android:name="com.example.test.settings.presentation.fragments.system.NameSystemSettingsFragment"
         android:label="NameSystemSettingsFragment" >
         <action
             android:id="@+id/action_nameSystemSettingsFragment_to_typeDamageSystemSettingsFragment"
@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/typeDamageSystemSettingsFragment"
-        android:name="com.example.test.activity_and_fragments.setting.system.TypeDamageSystemSettingsFragment"
+        android:name="com.example.test.settings.presentation.fragments.system.TypeDamageSystemSettingsFragment"
         android:label="TypeDamageSystemSettingsFragment" >
         <action
             android:id="@+id/action_typeDamageSystemSettingsFragment_to_groupSystemSettingsFragment"
@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/groupSystemSettingsFragment"
-        android:name="com.example.test.activity_and_fragments.setting.system.GroupSystemSettingsFragment"
+        android:name="com.example.test.settings.presentation.fragments.system.GroupSystemSettingsFragment"
         android:label="GroupSystemSettingsFragment" >
         <action
             android:id="@+id/action_groupSystemSettingsFragment_to_typeItemSystemSettingsFragment"
@@ -78,7 +78,7 @@
     </fragment>
     <fragment
         android:id="@+id/typeItemSystemSettingsFragment"
-        android:name="com.example.test.activity_and_fragments.setting.system.TypeItemSystemSettingsFragment"
+        android:name="com.example.test.settings.presentation.fragments.system.TypeItemSystemSettingsFragment"
         android:label="TypeItemSystemSettingsFragment" >
         <action
             android:id="@+id/action_typeItemSystemSettingsFragment_to_paramCharacterSystemSettingsFragment"
@@ -86,7 +86,7 @@
     </fragment>
     <fragment
         android:id="@+id/paramCharacterSystemSettingsFragment"
-        android:name="com.example.test.activity_and_fragments.setting.system.ParamCharacterSystemSettingsFragment"
+        android:name="com.example.test.settings.presentation.fragments.system.ParamCharacterSystemSettingsFragment"
         android:label="ParamCharacterSystemSettingsFragment" >
         <action
             android:id="@+id/action_paramCharacterSystemSettingsFragment_to_paramItemSystemSettingsFragment"
@@ -94,7 +94,7 @@
     </fragment>
     <fragment
         android:id="@+id/paramItemSystemSettingsFragment"
-        android:name="com.example.test.activity_and_fragments.setting.system.ParamItemSystemSettingsFragment"
+        android:name="com.example.test.settings.presentation.fragments.system.ParamItemSystemSettingsFragment"
         android:label="ParamItemSystemSettingsFragment" >
         <action
             android:id="@+id/action_paramItemSystemSettingsFragment_to_templateItemSystemSettingsFragment"
@@ -102,7 +102,7 @@
     </fragment>
     <fragment
         android:id="@+id/templateItemSystemSettingsFragment"
-        android:name="com.example.test.activity_and_fragments.setting.system.TemplateItemSystemSettingsFragment"
+        android:name="com.example.test.settings.presentation.fragments.system.TemplateItemSystemSettingsFragment"
         android:label="TemplateItemSystemSettingsFragment" >
         <action
             android:id="@+id/action_templateItemSystemSettingsFragment_to_templateCharacterSystemSettingsFragment"
@@ -110,6 +110,6 @@
     </fragment>
     <fragment
         android:id="@+id/templateCharacterSystemSettingsFragment"
-        android:name="com.example.test.activity_and_fragments.setting.system.TemplateCharacterSystemSettingsFragment"
+        android:name="com.example.test.settings.presentation.fragments.system.TemplateCharacterSystemSettingsFragment"
         android:label="TemplateCharacterSystemSettingsFragment" />
 </navigation>

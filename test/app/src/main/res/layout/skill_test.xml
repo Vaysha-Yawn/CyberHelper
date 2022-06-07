@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/dark">
 
-    <com.example.test.views.HeaderView
+    <com.example.test.components.views.HeaderView
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
-                <com.example.test.views.DropDownView
+                <com.example.test.components.views.DropDownView
                     android:id="@+id/DDDifficult"
                     android:layout_width="270dp"
                     android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Сколько очков удачи ипользовать?"/>
-                    <com.example.test.views.PlusMinusView
+                    <com.example.test.components.views.PlusMinusView
                         android:id="@+id/luckyPMfr"
                         android:layout_width="170dp"
                         android:layout_height="wrap_content"
