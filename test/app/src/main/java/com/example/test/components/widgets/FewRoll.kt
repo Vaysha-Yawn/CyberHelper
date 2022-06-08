@@ -1,4 +1,4 @@
-package com.example.test.iniciative.presentation
+package com.example.test.components.widgets
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,7 +18,6 @@ import com.example.test.viewModels.CharacterDAO
 import com.example.test.iniciative.presentation.view_model.FewRollVM
 import com.example.test.viewModels.FewRolls
 import com.example.test.viewModels.SkillTestVM
-import com.example.test.components.widgets.Roll
 
 // todo не переживает поворот экрана
 class FewRoll : Fragment() {

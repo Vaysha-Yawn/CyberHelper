@@ -3,11 +3,17 @@ package com.example.test.components.views
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import com.example.test.R
+import com.example.test.adapters.DropDownAdapterRV
+import com.example.test.databinding.CardRvCompactDdBinding
 import com.example.test.databinding.ViewCompactBinding
+import java.util.*
 
 class CompactView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
     LinearLayout(context, attrs, defStyleAttr, defStyleRes) {
@@ -70,19 +76,110 @@ class CompactView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, def
             title.text = titleText
 
             add.text = addText
-
+            val adapter = AdapterRV<List<String>>(
+                HolderData<List<String>>(
+                    object : TemplateHolder.Delete {
+                        override fun delete(position: Int) {
+                            //
+                        }
+                    },
+                    object: TemplateHolder.InitBinding<List<String>>{
+                        override fun funBinding(
+                            view: View,
+                            param: List<String>,
+                            delete: TemplateHolder.Delete,
+                            updView: TemplateHolder.UpdView
+                        ) {
+                            val binding = CardRvCompactDdBinding.bind(view)
+                            with(binding){
+                                DD.setMainText(param[0])
+                                DD.setDDArrayAndListener(param, object: DropDownAdapterRV.TemplateHolder.WhenValueTo{
+                                    override fun whenValueTo(position: Int) {
+                                        //
+                                    }
+                                }, null)
+                            }
+                        }
+                    },
+                    R.layout.card_rv_compact_dd
+                )
+            )
+            RV.adapter
         }
         typedArray.recycle()
 
     }
 
-    fun initRV(adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>){
-        with(binding){
-            RV.adapter = adapter
+    fun <T> setData(data: T) {
+        with(binding) {
+            //
         }
     }
 
-    fun getValue(){
+    fun getValue() {
+
+    }
+
+    class AdapterRV<T>(
+        private val holder: HolderData<T>,
+    ) :
+        RecyclerView.Adapter<TemplateHolder<T>>(), TemplateHolder.UpdView {
+        var list: MutableList<T> = mutableListOf<T>()
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TemplateHolder<T> {
+            val view =
+                LayoutInflater.from(parent.context).inflate(holder.layout, parent, false)
+            return TemplateHolder<T>(view, holder.delete, this, holder.funBinding)
+        }
+
+        override fun onBindViewHolder(holder: TemplateHolder<T>, position: Int) {
+            holder.bind(list[position])
+        }
+
+        override fun getItemCount(): Int {
+            return list.size
+        }
+
+        fun setData(list: MutableList<T>) {
+            this.list = list
+            notifyDataSetChanged()
+        }
+
+        override fun updateView() {
+            notifyDataSetChanged()
+        }
+
+    }
+
+    data class HolderData<T>(
+        val delete: TemplateHolder.Delete,
+        val funBinding: TemplateHolder.InitBinding<T>,
+        val layout: Int
+    )
+
+    class TemplateHolder<T>(
+        private val view: View,
+        private val delete: Delete,
+        private val updView: UpdView,
+        private val funBinding: InitBinding<T>,
+    ) : RecyclerView.ViewHolder(view) {
+
+        fun bind(param: T) {
+            funBinding.funBinding(view, param,  delete, updView)
+        }
+
+        interface UpdView {
+            fun updateView()
+        }
+
+        interface Delete {
+            fun delete(position: Int)
+
+        }
+
+        interface InitBinding<T> {
+            fun funBinding(view:View, param: T, delete: Delete, updView: UpdView)
+        }
 
     }
 
@@ -156,61 +253,7 @@ class CompactView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, def
 
     }
 
-    open abstract class AdapterRV() :
-        RecyclerView.Adapter<TemplateHolder>(), TemplateHolder.updView {
-        abstract val deleteMod: TemplateHolder.DeleteMod
-        abstract val list: MutableList<String>
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TemplateHolder {
-            val view =
-                LayoutInflater.from(parent.context).inflate(R.layout.card_mod, parent, false)
-            return TemplateHolder(view, deleteMod, this, listener)
-        }
-
-        override fun onBindViewHolder(holder: TemplateHolder, position: Int) {
-            holder.bind(list[position])
-        }
-
-        override fun getItemCount(): Int {
-            return list.size
-        }
-
-        fun setData(list: MutableList<String>) {
-            this.list = list
-            notifyDataSetChanged()
-        }
-
-        override fun updateView() {
-            notifyDataSetChanged()
-        }
-
-    }
-
-    open abstract class TemplateHolder(
-        view: View,
-        private val delete: DeleteMod,
-        private val updViewr: updView,
-        private val funBinding: InitBinding,
-    ) : RecyclerView.ViewHolder(view) {
-        abstract val binding :ViewCompactBinding
-
-        fun bind(){
-            funBinding.funBinding()
-        }
-
-        interface updView {
-            fun updateView()
-        }
-
-        interface DeleteMod {
-            fun deleteMod(position: Int)
-        }
-
-        interface InitBinding {
-            fun funBinding()
-        }
-
-    }
 
     class EditTextAdapterRV(
         private val deleteMod: EditTextTemplateHolder.DeleteMod,
@@ -356,6 +399,8 @@ class CompactView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, def
             listener.putModValue(adapterPosition, number)
         }
     }
+
+
 
     class DDTemplateHolder(
         view: View,

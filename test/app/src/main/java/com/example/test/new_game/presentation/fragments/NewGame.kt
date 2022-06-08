@@ -18,7 +18,7 @@ import com.example.test.databinding.DialogChooseAddModificationBinding
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameDAO
 import com.example.test.viewModels.GameSystemDAO
-import com.example.test.viewModels.NewCharacterVM
+import com.example.test.new_character.NewCharacterVM
 
 class NewGame : Fragment() {
 

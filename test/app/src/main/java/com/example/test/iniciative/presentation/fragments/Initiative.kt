@@ -19,7 +19,7 @@ import com.example.test.iniciative.presentation.view_model.FewRollVM
 import com.example.test.viewModels.FewRolls
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.components.views.HeaderView
-import com.example.test.iniciative.presentation.FewRoll
+import com.example.test.components.widgets.FewRoll
 import kotlin.collections.set
 
 class Initiative : Fragment(),

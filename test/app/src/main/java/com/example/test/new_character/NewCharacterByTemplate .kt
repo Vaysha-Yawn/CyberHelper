@@ -18,7 +18,6 @@ import com.example.test.R
 import com.example.test.data_base.GroupParam
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameSystemDAO
-import com.example.test.viewModels.NewCharacterVM
 import com.example.test.components.views.HeaderView
 import com.example.test.components.views.PlusMinusView
 import io.realm.RealmList
@@ -74,17 +73,17 @@ class NewCharacterByTemplate : Fragment(), HeaderView.HeaderBack {
                     val attributes = templateCharacter.attributes
                     attributes.forEach { gp ->
                         if (gp.title == "Базовые параметры") {
-                            gp.attributes!!.listParamStr.forEach { ps ->
+                            gp.attributes!!.listParamStr?.forEach { ps ->
                                 if (ps.name == "Имя персонажа") {
                                     ps.value = nameCharacter
                                 }
                             }
-                            gp.attributes!!.listParamNum.forEach { ps ->
+                            gp.attributes!!.listParamNum?.forEach { ps ->
                                 if (ps.name == "Возраст") {
                                     ps.value = age ?: 0
                                 }
                             }
-                            gp.attributes!!.listParamOptions.forEach { ps ->
+                            gp.attributes!!.listParamOptions?.forEach { ps ->
                                 if (ps.name == "Пол") {
                                     ps.value = gender
                                 }

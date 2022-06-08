@@ -12,7 +12,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.adapters.TemplateAdapterRecycler
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameSystemDAO
 import kotlin.Exception

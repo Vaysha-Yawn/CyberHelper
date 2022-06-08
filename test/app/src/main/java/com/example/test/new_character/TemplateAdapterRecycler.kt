@@ -1,4 +1,4 @@
-package com.example.test.adapters
+package com.example.test.new_character
 
 
 import android.os.Bundle
