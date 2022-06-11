@@ -32,7 +32,7 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sheet_example)
-        val binding = SheetExampleBinding.bind(findViewById(R.id.root))
+        /*val binding = SheetExampleBinding.bind(findViewById(R.id.root))
         with(binding) {
             try {
                 header.setBack(true, this@About, this@About, this@About)
@@ -79,7 +79,7 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
             } catch (e: Exception) {
                 Toast.makeText(this@About, "$e", Toast.LENGTH_SHORT).show()
             }
-        }
+        }*/
         /*
         название правила: "основное правило"
         подготовка: выбор предмета (тогда можно использовать характеристики выбранного предмета), можно указать конкретный тип предмета(только магическое, только оружие)
@@ -102,6 +102,8 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
         startActivity(i)
         finish()
     }
+}
+/*
 
     ///////////////////////////////////////////////// АДАПТЕР ДЛЯ ДИАЛОГА СТРОКОВОГО
 
@@ -323,4 +325,5 @@ class About : AppCompatActivity(), HeaderView.HeaderBack {
 // сделать по количеству строк (элементов столбца) отдельный рв с кнопками удалить строку
 
 
+*/
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/settings_naw"
-    app:startDestination="@id/settingsChoseSystem">
+    app:startDestination="@id/reviewSystemSettingsFragment">
     <fragment
         android:id="@+id/settingsMainFragment"
         android:name="com.example.test.settings.presentation.fragments.SettingsMainFragment"

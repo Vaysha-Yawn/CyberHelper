@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.example.test.R
@@ -38,7 +39,7 @@ class CompactViewDD(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
 
     init {
         val inflater = LayoutInflater.from(context)
-        inflater.inflate(R.layout.header, this, true)
+        inflater.inflate(R.layout.view_compact, this, true)
         binding = ViewCompactBinding.bind(this)
         initAttrs(attrs, defStyleAttr, defStyleRes)
     }
@@ -108,6 +109,8 @@ class CompactViewDD(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
                 },
                 R.layout.card_rv_compact_dd
             )
+            RV.layoutManager =
+                LinearLayoutManager(RV.context, LinearLayoutManager.VERTICAL, false)
             RV.adapter = adapterDD
 
             add.setOnClickListener {

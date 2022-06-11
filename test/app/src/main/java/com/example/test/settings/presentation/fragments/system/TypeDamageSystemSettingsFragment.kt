@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.databinding.FragmentTypeDamageSystemSettingsBinding
@@ -18,6 +19,7 @@ class TypeDamageSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
 
     private val gameSystemDAO:GameSystemDAO by activityViewModels()
     private val systemSettingsVM: SystemSettingsVM by activityViewModels()
+    private val list = mutableListOf<Int?>(null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,7 @@ class TypeDamageSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
             next.setOnClickListener {
                 view.findNavController().navigate(R.id.action_typeDamageSystemSettingsFragment_to_groupSystemSettingsFragment)
             }
+            CVDD.setData(list)
         }
         return view
     }

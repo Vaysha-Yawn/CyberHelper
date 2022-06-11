@@ -224,7 +224,7 @@ open class CharacterDAO : ViewModel() {
         }
         realm.executeTransaction {
             if (group?.attributes?.listItem?.get(index) != null){
-            group.attributes!!.listItem[index] = value
+                group.attributes!!.listItem?.set(index, value)
             }
         }
     }

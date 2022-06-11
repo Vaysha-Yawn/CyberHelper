@@ -126,7 +126,7 @@ class DTemplateParamOptions {
         var value = ""
         character.attributes.forEach { gp ->
             if (gp.title == titleGroup) {
-                gp.attributes!!.listParamOptions.forEach { ps ->
+                gp.attributes!!.listParamOptions!!.forEach { ps ->
                     if (ps.name == nameParam) {
                         value = ps.value
                     }
