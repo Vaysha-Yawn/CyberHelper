@@ -4,19 +4,15 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 import com.example.test.R
 import com.example.test.adapters.AbstractAdapterRV
 import com.example.test.adapters.AbstractTemplateHolder
 import com.example.test.adapters.DropDownAdapterRV
 import com.example.test.databinding.CardRvCompactDdBinding
 import com.example.test.databinding.ViewCompactBinding
-import java.util.*
 
 class CompactViewDD(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
     LinearLayout(context, attrs, defStyleAttr, defStyleRes) {
@@ -26,6 +22,8 @@ class CompactViewDD(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
     private var defMain: String = ""
     private var listDD = listOf<String>()
     private var values = mutableListOf<Int?>()
+    private var obj: OnDDSelected? = null
+    private lateinit var adapterDD: AbstractAdapterRV<Int?>
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : this(
         context,
@@ -76,13 +74,13 @@ class CompactViewDD(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
 
             add.text = addText
 
-            val adapterDD = AbstractAdapterRV<Int?>(
+            adapterDD = AbstractAdapterRV<Int?>(
                 object : AbstractTemplateHolder.InitBinding<Int?> {
                     override fun funBinding(
                         view: View,
-                        param:  Int?,
+                        param: Int?,
                         updView: AbstractTemplateHolder.UpdView,
-                        pos:Int
+                        pos: Int
                     ) {
                         val binding = CardRvCompactDdBinding.bind(view)
                         with(binding) {
@@ -100,6 +98,9 @@ class CompactViewDD(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
                                 object : DropDownAdapterRV.TemplateHolder.WhenValueTo {
                                     override fun whenValueTo(position: Int) {
                                         values[pos] = position
+                                        if (obj != null) {
+                                            obj?.onDDSelected(pos, position, listDD[position])
+                                        }
                                     }
                                 },
                                 null
@@ -125,10 +126,20 @@ class CompactViewDD(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
 
     fun setData(listValues: MutableList<Int?>) {
         values = listValues
+        adapterDD.setData(values)
     }
 
-    fun getData():MutableList<Int?>{
+    fun setListener(listVariants: List<String>, obj: OnDDSelected?) {
+        this.listDD = listVariants
+        this.obj = obj
+    }
+
+    fun getData(): MutableList<Int?> {
         return values
+    }
+
+    interface OnDDSelected {
+        fun onDDSelected(posDD: Int, positionAnswer: Int, result: String)
     }
 
 
