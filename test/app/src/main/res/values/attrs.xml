@@ -13,22 +13,22 @@
         <attr name="number_columns" format="color" />
     </declare-styleable>
     <declare-styleable name="CompactViewDD">
-        <attr name="CV_item_defMain" format="string" />
-        <attr name="CV_title" format="string" />
-        <attr name="CV_add_text" format="string" />
+        <attr name="CV_DD_item_defMain" format="string" />
+        <attr name="CV_DD_title" format="string" />
+        <attr name="CV_DD_add_text" format="string" />
     </declare-styleable>
     <declare-styleable name="CompactViewEdit">
-        <attr name="CV_item_hint" format="string" />
-        <attr name="CV_title" format="string" />
-        <attr name="CV_add_text" format="string" />
+        <attr name="CV_edit_item_hint" format="string" />
+        <attr name="CV_edit_title" format="string" />
+        <attr name="CV_edit_add_text" format="string" />
     </declare-styleable>
     <declare-styleable name="CompactViewPM">
-        <attr name="CV_title" format="string" />
-        <attr name="CV_add_text" format="string" />
+        <attr name="CV_PM_title" format="string" />
+        <attr name="CV_PM_add_text" format="string" />
     </declare-styleable>
     <declare-styleable name="CompactViewString">
-        <attr name="CV_item_hint" format="string" />
-        <attr name="CV_title" format="string" />
-        <attr name="CV_add_text" format="string" />
+        <attr name="CV_String_item_hint" format="string" />
+        <attr name="CV_String_title" format="string" />
+        <attr name="CV_String_add_text" format="string" />
     </declare-styleable>
 </resources>

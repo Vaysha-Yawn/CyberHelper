@@ -52,16 +52,15 @@
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
 
-    <com.example.test.components.views.CompactViewDD
+    <com.example.test.components.views.CompactViewEdit
         android:id="@+id/CVDD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="30dp"
-        app:CV_add_text="Добавить тип урона"
-        app:CV_item_color="@color/green"
-        app:CV_item_defMain="Выберите тип урона"
-        app:CV_title="Тип урона"
+        app:CV_edit_add_text="Добавить тип урона"
+        app:CV_edit_item_hint="Введите название типа урона"
+        app:CV_edit_title="Тип урона"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title2" />

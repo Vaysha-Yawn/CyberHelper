@@ -4,22 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.components.views.CompactViewDD
+import com.example.test.components.views.CompactViewEdit
 import com.example.test.components.views.HeaderView
 import com.example.test.databinding.FragmentTypeDamageSystemSettingsBinding
+import com.example.test.settings.presentation.view_model.CreateSystemVM
 import com.example.test.settings.presentation.view_model.SystemSettingsVM
 import com.example.test.viewModels.GameSystemDAO
 
 
 class TypeDamageSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
 
-    private val gameSystemDAO:GameSystemDAO by activityViewModels()
-    private val systemSettingsVM: SystemSettingsVM by activityViewModels()
-    private val list = mutableListOf<Int?>()
+    private val createSystemVM: CreateSystemVM by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,18 +35,30 @@ class TypeDamageSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                 requireActivity(),
                 viewLifecycleOwner
             )
+            createSystemVM.typesDamage.observe(viewLifecycleOwner){
+                CVDD.setData(it)
+            }
+            CVDD.setListener(
+                object: CompactViewEdit.OnStringEdited{
+                    override fun onStringEdited(
+                        posEdit: Int,
+                        text: String,
+                        start: Int,
+                        before: Int,
+                        count: Int
+                    ) {
+                        createSystemVM.typesDamage.value?.set(posEdit, text)
+                    //TODO: понять почему передает нул
+                        //Toast.makeText(context, "${createSystemVM.typesDamage.value?.get(posEdit)}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            )
+
             next.setOnClickListener {
+                createSystemVM.typesDamage.value?.removeAll(listOf(null))
                 view.findNavController()
                     .navigate(R.id.action_typeDamageSystemSettingsFragment_to_groupSystemSettingsFragment)
             }
-            CVDD.setData(list)
-            CVDD.setListener(
-                listOf("Физический", "Магический", "Некротический"),
-                object : CompactViewDD.OnDDSelected {
-                    override fun onDDSelected(posDD: Int, positionAnswer: Int, result: String) {
-                        //
-                    }
-                })
         }
         return view
     }

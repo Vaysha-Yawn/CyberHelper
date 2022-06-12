@@ -11,9 +11,9 @@ import com.example.test.databinding.CardFragmentsBinding
 
 
 class FragmentsAdapterRV(
-    private val list :List<String>,
-    private val listFr :List<Fragment>,
-    private val loadFragment: TemplateHolder.LoadFragment,
+    private val list : List<String>,
+    private val listFr : List<Fragment>,
+    private val loadFragment : TemplateHolder.LoadFragment,
 ) :
     RecyclerView.Adapter<FragmentsAdapterRV.TemplateHolder>() {
 

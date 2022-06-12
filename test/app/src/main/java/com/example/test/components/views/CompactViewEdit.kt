@@ -53,15 +53,15 @@ class CompactViewEdit(context: Context, attrs: AttributeSet?, defStyleAttr: Int,
         with(binding) {
 
             hint = typedArray.getString(
-                R.styleable.CompactViewEdit_CV_item_hint
+                R.styleable.CompactViewEdit_CV_edit_item_hint
             ) ?: ""
 
             val titleText = typedArray.getString(
-                R.styleable.CompactViewEdit_CV_title
+                R.styleable.CompactViewEdit_CV_edit_title
             )
 
             val addText = typedArray.getString(
-                R.styleable.CompactViewEdit_CV_add_text
+                R.styleable.CompactViewEdit_CV_edit_add_text
             )
 
             title.text = titleText
@@ -87,9 +87,9 @@ class CompactViewEdit(context: Context, attrs: AttributeSet?, defStyleAttr: Int,
                                 (editText as TextView).text = param
                             }
                             editText.doOnTextChanged { text, start, before, count ->
-                                values[pos] = text as String
+                                values[pos] = text.toString()
                                 if (obj != null) {
-                                    obj!!.onStringEdited(pos, text as String, start, before, count)
+                                    obj!!.onStringEdited(pos, text.toString(), start, before, count)
                                 }
                             }
                         }

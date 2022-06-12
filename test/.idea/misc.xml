@@ -30,8 +30,19 @@
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/drop_down_list_item.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/edit_template_item.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_edit_template_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_fight_effect_result.xml" value="0.2949978623343309" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_goal_compact.xml" value="0.36102564102564105" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_group_system_settings.xml" value="0.14023086789226166" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_name_system_settings.xml" value="0.2949978623343309" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_params_character_system_settings.xml" value="0.2949978623343309" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_params_item_system_settings.xml" value="0.2949978623343309" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_review_system_settings.xml" value="0.2949978623343309" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_settings_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_template_character_system_settings.xml" value="0.2949978623343309" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_template_item_system_settings.xml" value="0.2949978623343309" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_type_damage_system_settings.xml" value="0.1013253527148354" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/fragment_type_items_system_settings.xml" value="0.2949978623343309" />
+        <entry key="..\:/CyberHelper/test/app/src/main/res/layout/header.xml" value="0.2949978623343309" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/home.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/host_fight.xml" value="0.36666666666666664" />
         <entry key="..\:/CyberHelper/test/app/src/main/res/layout/iniciativa.xml" value="0.36666666666666664" />

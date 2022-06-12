@@ -12,12 +12,12 @@ import com.example.test.databinding.FragmentGroupSystemSettingsBinding
 import com.example.test.viewModels.GameSystemDAO
 import com.example.test.settings.presentation.view_model.SystemSettingsVM
 import com.example.test.components.views.HeaderView
+import com.example.test.settings.presentation.view_model.CreateSystemVM
 
 
 class GroupSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
 
-    private val gameSystemDAO:GameSystemDAO by activityViewModels()
-    private val systemSettingsVM: SystemSettingsVM by activityViewModels()
+    private val createSystemVM: CreateSystemVM by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +32,9 @@ class GroupSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
         val binding = FragmentGroupSystemSettingsBinding.bind(view)
         with(binding){
             header.setBack(true, this@GroupSystemSettingsFragment, requireActivity(), viewLifecycleOwner)
+
+
+
             next.setOnClickListener {
                 view.findNavController().navigate(R.id.action_groupSystemSettingsFragment_to_typeItemSystemSettingsFragment)
             }

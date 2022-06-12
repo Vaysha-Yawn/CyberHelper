@@ -54,13 +54,13 @@ class CompactViewString(context: Context, attrs: AttributeSet?, defStyleAttr: In
         with(binding) {
 
             val titleText = typedArray.getString(
-                R.styleable.CompactViewString_CV_title
+                R.styleable.CompactViewString_CV_String_title
             )
             hint = typedArray.getString(
-                R.styleable.CompactViewString_CV_item_hint
+                R.styleable.CompactViewString_CV_String_item_hint
             )?:""
             val addText = typedArray.getString(
-                R.styleable.CompactViewString_CV_add_text
+                R.styleable.CompactViewString_CV_String_add_text
             )
 
             title.text = titleText

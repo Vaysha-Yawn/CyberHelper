@@ -7,20 +7,20 @@ import io.realm.RealmList
 
 class CreateSystemVM : ViewModel() {
     // отображение, данные для RV
-    private var name = ""
-    private val typesDamage = MutableLiveData<MutableList<String>>()
-    private val groups = listOf<MutableLiveData<MutableList<String>>>(
+     var name = ""
+     val typesDamage = MutableLiveData<MutableList<String?>>()
+     val groups = listOf<MutableLiveData<MutableList<String>>>(
         MutableLiveData(),
         MutableLiveData(),
         MutableLiveData(),
         MutableLiveData(),
         MutableLiveData()
     )
-    private val typesItems = mutableMapOf<String, MutableLiveData<MutableList<String>>>()
-    private val characterParams = mutableMapOf<String, MutableLiveData<MutableList<String>>>()
-    private val itemParams = MutableLiveData<MutableList<String>>()
-    private val templateItems = mutableMapOf<String, MutableLiveData<MutableList<String>>>()
-
+     val typesItems = mutableMapOf<String, MutableLiveData<MutableList<String>>>()
+     val characterParams = mutableMapOf<String, MutableLiveData<MutableList<String>>>()
+     val itemParams = MutableLiveData<MutableList<String>>()
+     val templateItems = mutableMapOf<String, MutableLiveData<MutableList<String>>>()
+     val templateCharacter = MutableLiveData(mutableListOf<Character>())
     //сохранение данных, прим.: нужно лучше сохранять данные, потому что создаать систему долго, возможно не за один заход
 
 

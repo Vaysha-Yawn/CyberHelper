@@ -54,11 +54,11 @@ class CompactViewPM(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
         with(binding) {
 
             val titleText = typedArray.getString(
-                R.styleable.CompactViewPM_CV_title
+                R.styleable.CompactViewPM_CV_PM_title
             )
 
             val addText = typedArray.getString(
-                R.styleable.CompactViewPM_CV_add_text
+                R.styleable.CompactViewPM_CV_PM_add_text
             )
 
             title.text = titleText

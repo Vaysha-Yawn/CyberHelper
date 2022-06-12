@@ -53,15 +53,15 @@ class CompactViewDD(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
         with(binding) {
 
             defMain = typedArray.getString(
-                R.styleable.CompactViewDD_CV_item_defMain
+                R.styleable.CompactViewDD_CV_DD_item_defMain
             )?:""
 
             val titleText = typedArray.getString(
-                R.styleable.CompactViewDD_CV_title
+                R.styleable.CompactViewDD_CV_DD_title
             )
 
             val addText = typedArray.getString(
-                R.styleable.CompactViewDD_CV_add_text
+                R.styleable.CompactViewDD_CV_DD_add_text
             )
 
             title.text = titleText
