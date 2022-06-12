@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.test.R
 import com.example.test.main.MainActivity
+import com.example.test.settings.presentation.view_model.CreateSystemVM
 import com.example.test.settings.presentation.view_model.SystemSettingsVM
 import com.example.test.viewModels.GameSystemDAO
 
@@ -13,6 +14,7 @@ class SettingsHost : AppCompatActivity() {
 
     private val mGameSystemDAO: GameSystemDAO by viewModels()
     private val systemSettingsVM: SystemSettingsVM by viewModels()
+    private val createSystemVM: CreateSystemVM by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
