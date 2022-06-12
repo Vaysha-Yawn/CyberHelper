@@ -19,7 +19,6 @@ class CompactViewEdit(context: Context, attrs: AttributeSet?, defStyleAttr: Int,
     LinearLayout(context, attrs, defStyleAttr, defStyleRes) {
 
     private var binding: ViewCompactBinding
-    private var color: Int? = null
     private var hint: String = ""
     private var values = mutableListOf<String?>()
     private var obj: OnStringEdited? = null
@@ -52,11 +51,6 @@ class CompactViewEdit(context: Context, attrs: AttributeSet?, defStyleAttr: Int,
         )
 
         with(binding) {
-
-            color = typedArray.getColor(
-                R.styleable.CompactViewEdit_CV_item_color,
-                ContextCompat.getColor(context, R.color.green)
-            )
 
             hint = typedArray.getString(
                 R.styleable.CompactViewEdit_CV_item_hint

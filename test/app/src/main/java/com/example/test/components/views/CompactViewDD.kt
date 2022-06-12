@@ -18,7 +18,6 @@ class CompactViewDD(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
     LinearLayout(context, attrs, defStyleAttr, defStyleRes) {
 
     private var binding: ViewCompactBinding
-    private var color: Int? = null
     private var defMain: String = ""
     private var listDD = listOf<String>()
     private var values = mutableListOf<Int?>()
@@ -52,11 +51,6 @@ class CompactViewDD(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
         )
 
         with(binding) {
-
-            color = typedArray.getColor(
-                R.styleable.CompactViewDD_CV_item_color,
-                ContextCompat.getColor(context, R.color.green)
-            )
 
             defMain = typedArray.getString(
                 R.styleable.CompactViewDD_CV_item_defMain

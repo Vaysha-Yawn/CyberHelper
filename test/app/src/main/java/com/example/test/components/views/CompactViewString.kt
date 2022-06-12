@@ -22,6 +22,7 @@ class CompactViewString(context: Context, attrs: AttributeSet?, defStyleAttr: In
     private var binding: ViewCompactBinding
     private var values = mutableListOf<String?>()
     private var obj: OnClickEdit? = null
+    private var hint: String = ""
     private lateinit var adapter: AbstractAdapterRV<String?>
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : this(
@@ -55,7 +56,9 @@ class CompactViewString(context: Context, attrs: AttributeSet?, defStyleAttr: In
             val titleText = typedArray.getString(
                 R.styleable.CompactViewString_CV_title
             )
-
+            hint = typedArray.getString(
+                R.styleable.CompactViewString_CV_item_hint
+            )?:""
             val addText = typedArray.getString(
                 R.styleable.CompactViewString_CV_add_text
             )
@@ -81,7 +84,7 @@ class CompactViewString(context: Context, attrs: AttributeSet?, defStyleAttr: In
                             if (param != null) {
                                 stringEditableText.text = param
                             }else{
-                                stringEditableText.text = "Еще не создано"
+                                stringEditableText.text = hint
                             }
                             stringEditableEdit.setOnClickListener {
                                 if (obj != null) {

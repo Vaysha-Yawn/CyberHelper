@@ -71,6 +71,7 @@ class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, de
             more = ContextCompat.getDrawable(context, R.drawable.more).also {
                 it?.setTint(colorText)
             }!!
+
             less = ContextCompat.getDrawable(context, R.drawable.less).also {
                 it?.setTint(colorText)
             }!!
@@ -90,6 +91,11 @@ class DropDownView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, de
 
     fun setMainText(text:String){
         binding.main.text = text
+    }
+
+    fun setColor(colorText:Int, colorBack:Int){
+        this.colorText = colorText
+        this.colorBack = colorBack
     }
 
     fun setDDArrayAndListener(
