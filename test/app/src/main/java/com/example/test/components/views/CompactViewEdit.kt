@@ -92,8 +92,9 @@ class CompactViewEdit(context: Context, attrs: AttributeSet?, defStyleAttr: Int,
                             if (param != null) {
                                 (editText as TextView).text = param
                             }
-                            if (obj != null) {
-                                editText.doOnTextChanged { text, start, before, count ->
+                            editText.doOnTextChanged { text, start, before, count ->
+                                values[pos] = text as String
+                                if (obj != null) {
                                     obj!!.onStringEdited(pos, text as String, start, before, count)
                                 }
                             }

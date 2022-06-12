@@ -5,26 +5,24 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
 import com.example.test.adapters.AbstractAdapterRV
 import com.example.test.adapters.AbstractTemplateHolder
-import com.example.test.databinding.CardRvCompactPmBinding
+import com.example.test.databinding.CardRvCompactEditTextBinding
+import com.example.test.databinding.CardRvCompactStringBinding
 import com.example.test.databinding.ViewCompactBinding
 
-class CompactViewPM(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
+class CompactViewString(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
     LinearLayout(context, attrs, defStyleAttr, defStyleRes) {
 
     private var binding: ViewCompactBinding
-    private var color: Int? = null
-
-    private var values = mutableListOf<Int?>()
-    private var obj: OnNumberEdited? = null
-    private lateinit var adapter: AbstractAdapterRV<Int?>
-    private var maxValue: Int? = null
-    private var minValue: Int? = null
-
+    private var values = mutableListOf<String?>()
+    private var obj: OnClickEdit? = null
+    private lateinit var adapter: AbstractAdapterRV<String?>
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : this(
         context,
@@ -47,59 +45,53 @@ class CompactViewPM(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
         if (attrs == null) return
         val typedArray = context.obtainStyledAttributes(
             attrs,
-            R.styleable.CompactViewPM,
+            R.styleable.CompactViewString,
             defStyleAttr,
             defStyleRes
         )
 
         with(binding) {
 
-            color = typedArray.getColor(
-                R.styleable.CompactViewPM_CV_item_color,
-                ContextCompat.getColor(context, R.color.green)
-            )
-
             val titleText = typedArray.getString(
-                R.styleable.CompactViewPM_CV_title
+                R.styleable.CompactViewString_CV_title
             )
 
             val addText = typedArray.getString(
-                R.styleable.CompactViewPM_CV_add_text
+                R.styleable.CompactViewString_CV_add_text
             )
 
             title.text = titleText
 
             add.text = addText
 
-            adapter = AbstractAdapterRV<Int?>(
-                object : AbstractTemplateHolder.InitBinding<Int?> {
+            adapter = AbstractAdapterRV<String?>(
+                object : AbstractTemplateHolder.InitBinding<String?> {
                     override fun funBinding(
                         view: View,
-                        param: Int?,
+                        param: String?,
                         updView: AbstractTemplateHolder.UpdView,
                         pos: Int
                     ) {
-                        val binding = CardRvCompactPmBinding.bind(view)
+                        val binding = CardRvCompactStringBinding.bind(view)
                         with(binding) {
                             delete.setOnClickListener {
                                 values.removeAt(pos)
                                 updView.updateView()
                             }
                             if (param != null) {
-                                PM.setValue(param)
+                                stringEditableText.text = param
+                            }else{
+                                stringEditableText.text = "Еще не создано"
                             }
-                            PM.setListener(maxValue, minValue, object : PlusMinusView.NumberEvent {
-                                override fun numberEvent(number: Int) {
-                                    values[pos] = number
-                                    if (obj != null) {
-                                        obj!!.onNumberEdited(pos, number)
-                                    }
+                            stringEditableEdit.setOnClickListener {
+                                if (obj != null) {
+                                    obj!!.onClickEdit(pos)
                                 }
-                            })
+                            }
                         }
                     }
                 },
-                R.layout.card_rv_compact_pm
+                R.layout.card_rv_compact_string
             )
             RV.layoutManager =
                 LinearLayoutManager(RV.context, LinearLayoutManager.VERTICAL, false)
@@ -115,23 +107,21 @@ class CompactViewPM(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
 
     }
 
-    fun setData(listValues: MutableList<Int?>) {
+    fun setData(listValues: MutableList<String?>) {
         values = listValues
         adapter.setData(values)
     }
 
-    fun setListener(obj: OnNumberEdited?, maxValue: Int?, minValue: Int?) {
+    fun setListener(obj: OnClickEdit?) {
         this.obj = obj
-        this.maxValue = maxValue
-        this.minValue = minValue
     }
 
-    fun getData(): MutableList<Int?> {
+    fun getData(): MutableList<String?> {
         return values
     }
 
-    interface OnNumberEdited {
-        fun onNumberEdited(posEdit: Int, value: Int)
+    interface OnClickEdit {
+        fun onClickEdit(posEdit: Int)
     }
 
 

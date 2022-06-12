@@ -24,4 +24,13 @@
         <attr name="CV_title" format="string" />
         <attr name="CV_add_text" format="string" />
     </declare-styleable>
+    <declare-styleable name="CompactViewPM">
+        <attr name="CV_item_color" format="color" />
+        <attr name="CV_title" format="string" />
+        <attr name="CV_add_text" format="string" />
+    </declare-styleable>
+    <declare-styleable name="CompactViewString">
+        <attr name="CV_title" format="string" />
+        <attr name="CV_add_text" format="string" />
+    </declare-styleable>
 </resources>
