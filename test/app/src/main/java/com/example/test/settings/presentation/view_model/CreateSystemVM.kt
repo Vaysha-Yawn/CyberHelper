@@ -1,5 +1,6 @@
 package com.example.test.settings.presentation.view_model
 
+import androidx.constraintlayout.widget.Group
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.test.data_base.*
@@ -8,17 +9,17 @@ import io.realm.RealmList
 class CreateSystemVM : ViewModel() {
     // отображение, данные для RV
      var name = ""
-     val typesDamage = MutableLiveData<MutableList<String?>>()
-     val groups = listOf<MutableLiveData<MutableList<String>>>(
-        MutableLiveData(),
-        MutableLiveData(),
-        MutableLiveData(),
-        MutableLiveData(),
-        MutableLiveData()
+     val typesDamage = MutableLiveData<MutableList<String?>>(mutableListOf())
+     val groups = listOf<MutableLiveData<MutableList<Group>>>(
+        MutableLiveData(mutableListOf()),
+        MutableLiveData(mutableListOf()),
+        MutableLiveData(mutableListOf()),
+        MutableLiveData(mutableListOf()),
+        MutableLiveData(mutableListOf())
     )
      val typesItems = mutableMapOf<String, MutableLiveData<MutableList<String>>>()
-     val characterParams = mutableMapOf<String, MutableLiveData<MutableList<String>>>()
-     val itemParams = MutableLiveData<MutableList<String>>()
+     val characterParams = mutableMapOf<String, MutableLiveData<MutableList<String>>>()// обязательно поместить в liveData лист
+     val itemParams = MutableLiveData<MutableList<String>>(mutableListOf())
      val templateItems = mutableMapOf<String, MutableLiveData<MutableList<String>>>()
      val templateCharacter = MutableLiveData(mutableListOf<Character>())
     //сохранение данных, прим.: нужно лучше сохранять данные, потому что создаать систему долго, возможно не за один заход

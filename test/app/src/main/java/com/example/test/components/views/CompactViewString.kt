@@ -23,6 +23,8 @@ class CompactViewString(context: Context, attrs: AttributeSet?, defStyleAttr: In
     private var values = mutableListOf<String?>()
     private var obj: OnClickEdit? = null
     private var hint: String = ""
+    private var titleText: String = ""
+    private var addText: String = ""
     private lateinit var adapter: AbstractAdapterRV<String?>
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : this(
@@ -53,15 +55,15 @@ class CompactViewString(context: Context, attrs: AttributeSet?, defStyleAttr: In
 
         with(binding) {
 
-            val titleText = typedArray.getString(
+             titleText = typedArray.getString(
                 R.styleable.CompactViewString_CV_String_title
-            )
+            )?:""
             hint = typedArray.getString(
                 R.styleable.CompactViewString_CV_String_item_hint
             )?:""
-            val addText = typedArray.getString(
+             addText = typedArray.getString(
                 R.styleable.CompactViewString_CV_String_add_text
-            )
+            )?:""
 
             title.text = titleText
 
@@ -123,9 +125,20 @@ class CompactViewString(context: Context, attrs: AttributeSet?, defStyleAttr: In
         return values
     }
 
+    fun setTitle(title:String){
+        this.titleText = title
+    }
+
+    fun setAddText(addText:String){
+        this.addText = addText
+    }
+
     interface OnClickEdit {
         fun onClickEdit(posEdit: Int)
     }
 
+    fun setHint(hint:String){
+        this.hint = hint
+    }
 
 }

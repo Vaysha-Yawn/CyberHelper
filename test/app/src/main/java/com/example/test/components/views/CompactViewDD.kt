@@ -19,6 +19,8 @@ class CompactViewDD(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
 
     private var binding: ViewCompactBinding
     private var defMain: String = ""
+    private var titleText: String = ""
+    private var addText: String = ""
     private var listDD = listOf<String>()
     private var values = mutableListOf<Int?>()
     private var obj: OnDDSelected? = null
@@ -56,13 +58,13 @@ class CompactViewDD(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
                 R.styleable.CompactViewDD_CV_DD_item_defMain
             )?:""
 
-            val titleText = typedArray.getString(
+            titleText = typedArray.getString(
                 R.styleable.CompactViewDD_CV_DD_title
-            )
+            )?:""
 
-            val addText = typedArray.getString(
+            addText = typedArray.getString(
                 R.styleable.CompactViewDD_CV_DD_add_text
-            )
+            )?:""
 
             title.text = titleText
 
@@ -126,6 +128,18 @@ class CompactViewDD(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
     fun setListener(listVariants: List<String>, obj: OnDDSelected?) {
         this.listDD = listVariants
         this.obj = obj
+    }
+
+    fun setDefMain(defMain: String){
+        this.defMain = defMain
+    }
+
+    fun setTitle(title:String){
+        this.titleText = title
+    }
+
+    fun setAddText(addText:String){
+        this.addText = addText
     }
 
     fun getData(): MutableList<Int?> {

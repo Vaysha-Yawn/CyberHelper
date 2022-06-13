@@ -20,6 +20,8 @@ class CompactViewEdit(context: Context, attrs: AttributeSet?, defStyleAttr: Int,
 
     private var binding: ViewCompactBinding
     private var hint: String = ""
+    private var titleText: String = ""
+    private var addText: String = ""
     private var values = mutableListOf<String?>()
     private var obj: OnStringEdited? = null
     private lateinit var adapterEdit: AbstractAdapterRV<String?>
@@ -56,13 +58,13 @@ class CompactViewEdit(context: Context, attrs: AttributeSet?, defStyleAttr: Int,
                 R.styleable.CompactViewEdit_CV_edit_item_hint
             ) ?: ""
 
-            val titleText = typedArray.getString(
+             titleText = typedArray.getString(
                 R.styleable.CompactViewEdit_CV_edit_title
-            )
+            )?: ""
 
-            val addText = typedArray.getString(
+             addText = typedArray.getString(
                 R.styleable.CompactViewEdit_CV_edit_add_text
-            )
+            )?: ""
 
             title.text = titleText
 
@@ -118,6 +120,18 @@ class CompactViewEdit(context: Context, attrs: AttributeSet?, defStyleAttr: Int,
 
     fun setListener(obj: OnStringEdited?) {
         this.obj = obj
+    }
+
+    fun setTitle(title:String){
+        this.titleText = title
+    }
+
+    fun setAddText(addText:String){
+        this.addText = addText
+    }
+
+    fun setHint(hint:String){
+        this.hint = hint
     }
 
     fun getData(): MutableList<String?> {

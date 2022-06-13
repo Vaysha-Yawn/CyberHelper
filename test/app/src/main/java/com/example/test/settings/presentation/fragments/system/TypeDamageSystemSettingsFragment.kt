@@ -48,8 +48,6 @@ class TypeDamageSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                         count: Int
                     ) {
                         createSystemVM.typesDamage.value?.set(posEdit, text)
-                    //TODO: понять почему передает нул
-                        //Toast.makeText(context, "${createSystemVM.typesDamage.value?.get(posEdit)}", Toast.LENGTH_SHORT).show()
                     }
                 }
             )

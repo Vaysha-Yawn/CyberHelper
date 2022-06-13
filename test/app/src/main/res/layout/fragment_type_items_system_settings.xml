@@ -27,59 +27,59 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />
 
-    <TextView
-        android:id="@+id/title"
-        android:text="Типы
-        предметов"
-        style="@style/Text.H1"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="30dp"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:layout_constraintVertical_bias="0.0">
 
-    <TextView
-        android:id="@+id/title2"
-        style="@style/Text.H2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="40dp"
-        android:gravity="start"
-        android:text="Какие типы предметов встречаются в вашей системе?"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/title"
+                android:text="Типы предметов"
+                style="@style/Text.H1"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                 />
 
-    <!--Здесь должен быть Rv с CompactView с editText-->
+            <TextView
+                android:id="@+id/title2"
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="40dp"
+                android:gravity="start"
+                android:text="Какие типы предметов встречаются в вашей системе?"
+                />
 
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="@color/green"
-        android:hint="Введите название системы"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title2"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <Button
-        android:id="@+id/next"
-        android:text="Далее"
-        style="@style/Button_green_next"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        tools:ignore="SpeakableTextPresentCheck" />
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                android:id="@+id/addRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!--Здесь должен быть Rv с CompactView с editText-->
+            </LinearLayout>
+            <Button
+                android:id="@+id/next"
+                android:text="Далее"
+                style="@style/Button_green_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="30dp"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

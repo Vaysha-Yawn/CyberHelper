@@ -17,7 +17,8 @@ class CompactViewPM(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
     LinearLayout(context, attrs, defStyleAttr, defStyleRes) {
 
     private var binding: ViewCompactBinding
-
+    private var titleText: String = ""
+    private var addText: String = ""
     private var values = mutableListOf<Int?>()
     private var obj: OnNumberEdited? = null
     private lateinit var adapter: AbstractAdapterRV<Int?>
@@ -53,13 +54,13 @@ class CompactViewPM(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
 
         with(binding) {
 
-            val titleText = typedArray.getString(
+            titleText = typedArray.getString(
                 R.styleable.CompactViewPM_CV_PM_title
-            )
+            )?:""
 
-            val addText = typedArray.getString(
+            addText = typedArray.getString(
                 R.styleable.CompactViewPM_CV_PM_add_text
-            )
+            )?:""
 
             title.text = titleText
 
@@ -122,6 +123,14 @@ class CompactViewPM(context: Context, attrs: AttributeSet?, defStyleAttr: Int, d
 
     fun getData(): MutableList<Int?> {
         return values
+    }
+
+    fun setTitle(title:String){
+        this.titleText = title
+    }
+
+    fun setAddText(addText:String){
+        this.addText = addText
     }
 
     interface OnNumberEdited {
