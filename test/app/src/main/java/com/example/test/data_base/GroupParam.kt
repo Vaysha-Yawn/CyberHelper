@@ -5,7 +5,11 @@ import io.realm.RealmObject
 
 open class GroupParam(
     var title: String = "",
-    var attributes: GroupAttributes? = GroupAttributes()
+    var attributes: GroupAttributes? = GroupAttributes(),
+    var prefNum:Boolean = true,
+    var prefStr:Boolean = true,
+    var prefDD:Boolean = true,
+    var prefItem:Boolean = true,
 ) : RealmObject()
 
 open class GroupAttributes(

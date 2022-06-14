@@ -10,7 +10,7 @@ class CreateSystemVM : ViewModel() {
     // отображение, данные для RV
      var name = ""
      val typesDamage = MutableLiveData<MutableList<String?>>(mutableListOf())
-     val groups = listOf<MutableLiveData<MutableList<Group>>>(
+     val groups = listOf<MutableLiveData<MutableList<GroupParam>>>(
         MutableLiveData(mutableListOf()),
         MutableLiveData(mutableListOf()),
         MutableLiveData(mutableListOf()),
