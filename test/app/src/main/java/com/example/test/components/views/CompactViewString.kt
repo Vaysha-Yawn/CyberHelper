@@ -5,14 +5,10 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.core.content.ContextCompat
-import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
 import com.example.test.adapters.AbstractAdapterRV
 import com.example.test.adapters.AbstractTemplateHolder
-import com.example.test.databinding.CardRvCompactEditTextBinding
 import com.example.test.databinding.CardRvCompactStringBinding
 import com.example.test.databinding.ViewCompactBinding
 
@@ -21,7 +17,9 @@ class CompactViewString(context: Context, attrs: AttributeSet?, defStyleAttr: In
 
     private var binding: ViewCompactBinding
     private var values = mutableListOf<String?>()
-    private var obj: OnClickEdit? = null
+    private var objEdit: OnClickEdit? = null
+    private var objAdd: OnClickAdd? = null
+    private var objDel: OnClickDel? = null
     private var hint: String = ""
     private var titleText: String = ""
     private var addText: String = ""
@@ -80,6 +78,9 @@ class CompactViewString(context: Context, attrs: AttributeSet?, defStyleAttr: In
                         val binding = CardRvCompactStringBinding.bind(view)
                         with(binding) {
                             delete.setOnClickListener {
+                                if (objDel != null) {
+                                    objDel!!.onClickDel(pos)
+                                }
                                 values.removeAt(pos)
                                 updView.updateView()
                             }
@@ -89,8 +90,8 @@ class CompactViewString(context: Context, attrs: AttributeSet?, defStyleAttr: In
                                 stringEditableText.text = hint
                             }
                             stringEditableEdit.setOnClickListener {
-                                if (obj != null) {
-                                    obj!!.onClickEdit(pos)
+                                if (objEdit != null) {
+                                    objEdit!!.onClickEdit(pos)
                                 }
                             }
                         }
@@ -101,10 +102,14 @@ class CompactViewString(context: Context, attrs: AttributeSet?, defStyleAttr: In
             RV.layoutManager =
                 LinearLayoutManager(RV.context, LinearLayoutManager.VERTICAL, false)
             RV.adapter = adapter
+            adapter.setData(values)
 
             add.setOnClickListener {
                 values.add(null)
                 adapter.setData(values)
+                if (objAdd != null) {
+                    objAdd!!.onClickAdd()
+                }
             }
         }
 
@@ -117,28 +122,44 @@ class CompactViewString(context: Context, attrs: AttributeSet?, defStyleAttr: In
         adapter.setData(values)
     }
 
-    fun setListener(obj: OnClickEdit?) {
-        this.obj = obj
+    fun setListener(objEdit: OnClickEdit?, objAdd: OnClickAdd?, objDel: OnClickDel?) {
+        this.objEdit = objEdit
+        this.objAdd = objAdd
+        this.objDel = objDel
     }
 
-    fun getData(): MutableList<String?> {
-        return values
-    }
-
-    fun setTitle(title:String){
-        this.titleText = title
+    fun setTitle(titles:String){
+        this.titleText = titles
+        with(binding) {
+            title.text = titleText
+        }
     }
 
     fun setAddText(addText:String){
         this.addText = addText
+        with(binding) {
+            add.text = addText
+        }
+    }
+
+    fun setHint(hints:String){
+        this.hint = hints
     }
 
     interface OnClickEdit {
         fun onClickEdit(posEdit: Int)
     }
 
-    fun setHint(hint:String){
-        this.hint = hint
+    interface OnClickAdd {
+        fun onClickAdd()
+    }
+
+    interface OnClickDel {
+        fun onClickDel( pos:Int)
+    }
+
+    fun getData(): MutableList<String?> {
+        return values
     }
 
 }

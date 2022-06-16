@@ -50,14 +50,6 @@
                 android:layout_marginTop="30dp"
                 android:text="Группы характеристик"
                 />
-            <LinearLayout
-                android:layout_marginTop="30dp"
-                android:orientation="vertical"
-                android:id="@+id/addRV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <!--Здесь должен быть 5 CompactView с sting-->
-            </LinearLayout>
             <TextView
                 android:id="@+id/title2"
                 style="@style/Text.H2"
@@ -68,6 +60,57 @@
                 android:gravity="start"
                 android:text="Опишите группы характеристик для персонажа по разделам"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
+
+            <com.example.test.components.views.CompactViewString
+                android:id="@+id/CV1"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:CV_String_add_text="Добавить группу"
+                app:CV_String_item_hint="Название характеристики"
+                app:CV_String_title="1 Инфo"
+                android:layout_marginTop="30dp"
+                android:layout_marginHorizontal="30dp"
+                />
+            <com.example.test.components.views.CompactViewString
+                android:id="@+id/CV2"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:CV_String_add_text="Добавить группу"
+                app:CV_String_item_hint="Название характеристики"
+                app:CV_String_title="2 Параметры"
+                android:layout_marginTop="30dp"
+                android:layout_marginHorizontal="30dp"
+                />
+            <com.example.test.components.views.CompactViewString
+                android:id="@+id/CV3"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:CV_String_add_text="Добавить группу"
+                app:CV_String_item_hint="Название характеристики"
+                app:CV_String_title="3 Броня и оружие"
+                android:layout_marginTop="30dp"
+                android:layout_marginHorizontal="30dp"
+                />
+            <com.example.test.components.views.CompactViewString
+                android:id="@+id/CV4"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:CV_String_add_text="Добавить группу"
+                app:CV_String_item_hint="Название характеристики"
+                app:CV_String_title="4 Рюкзак"
+                android:layout_marginTop="30dp"
+                android:layout_marginHorizontal="30dp"
+                />
+            <com.example.test.components.views.CompactViewString
+                android:id="@+id/CV5"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:CV_String_add_text="Добавить группу"
+                app:CV_String_item_hint="Название характеристики"
+                app:CV_String_title="5 Биография"
+                android:layout_marginTop="30dp"
+                android:layout_marginHorizontal="30dp"
+                />
             <Button
                 android:id="@+id/next"
                 style="@style/Button_green_next"

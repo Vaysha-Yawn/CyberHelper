@@ -36,7 +36,7 @@ class TypeItemSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
             header.setBack(true, this@TypeItemSystemSettingsFragment, requireActivity(), viewLifecycleOwner)
             val listItemGroup = mutableListOf<String>()
             for ( i in createSystemVM.groups){
-                for (e in i.value!!){
+                for (e in i){
 
                 }
             }

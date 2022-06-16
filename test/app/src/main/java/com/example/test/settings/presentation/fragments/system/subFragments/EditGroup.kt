@@ -37,12 +37,12 @@ class EditGroup : Fragment(), HeaderView.HeaderBack {
         val binding = EditGroupBinding.bind(view)
         with(binding) {
             header.setBack(true, this@EditGroup, requireActivity(), viewLifecycleOwner)
-            if (posInSec == -1 || section != 6) {
+            if (posInSec == -1 || section == 6) {
                 Toast.makeText(requireContext(), "Ошибка", Toast.LENGTH_SHORT).show()
                 view.findNavController().popBackStack()
             }
-            var group = createSystemVM.groups[section].value?.get(posInSec)
-            if (group != null) {
+            var group = createSystemVM.groups[section][posInSec]
+            if (group !=null){
                 val name = group.title
                 val pefNum = group.prefNum
                 val prefDD = group.prefDD
@@ -53,13 +53,14 @@ class EditGroup : Fragment(), HeaderView.HeaderBack {
                 dd.isChecked = prefDD
                 str.isChecked = prefStr
                 item.isChecked = prefItem
-            } else {
+            }else{
                 group = GroupParam()
-                createSystemVM.groups[section].value?.set(posInSec, group)
+                createSystemVM.groups[section].set(posInSec, group)
             }
 
             editText.doOnTextChanged { text, start, before, count ->
                 group.title = text.toString()
+                createSystemVM.listGroupNames[section][posInSec] = group.title
             }
             num.setOnClickListener {
                 group.prefNum = num.isChecked
@@ -74,6 +75,10 @@ class EditGroup : Fragment(), HeaderView.HeaderBack {
                 group.prefItem = item.isChecked
             }
 
+            help.setOnClickListener {
+                view.findNavController().navigate(R.id.action_editGroup_to_tipTypeParam)
+            }
+
             next.setOnClickListener {
                 // проверка?
                 view.findNavController().popBackStack()
@@ -84,6 +89,13 @@ class EditGroup : Fragment(), HeaderView.HeaderBack {
 
     override fun back() {
         view?.findNavController()?.popBackStack()
+    }
+
+    fun getEditGroupBundle(section:Int, posInSec:Int):Bundle{
+        val bundle = Bundle()
+        bundle.putInt("section", section)
+        bundle.putInt("posInSec", section)
+        return bundle
     }
 
 }

@@ -171,17 +171,30 @@
             android:text="Предметов" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/help"
+        style="@style/Text"
+        android:text="Нажмите на этот тект, чтобы прочитать подсказку по типам характеристик"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
+        android:drawableEnd="@drawable/help"/>
+
     <Button
         android:id="@+id/next"
         style="@style/Button_green_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"
         android:text="Далее"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
         tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

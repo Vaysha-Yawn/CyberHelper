@@ -75,6 +75,9 @@
         <action
             android:id="@+id/action_groupSystemSettingsFragment_to_typeItemSystemSettingsFragment"
             app:destination="@id/typeItemSystemSettingsFragment" />
+        <action
+            android:id="@+id/action_groupSystemSettingsFragment_to_editGroup"
+            app:destination="@id/editGroup" />
     </fragment>
     <fragment
         android:id="@+id/typeItemSystemSettingsFragment"
@@ -112,4 +115,16 @@
         android:id="@+id/templateCharacterSystemSettingsFragment"
         android:name="com.example.test.settings.presentation.fragments.system.TemplateCharacterSystemSettingsFragment"
         android:label="TemplateCharacterSystemSettingsFragment" />
+    <fragment
+        android:id="@+id/tipTypeParam"
+        android:name="com.example.test.settings.presentation.fragments.system.subFragments.TipTypeParam"
+        android:label="TipTypeParam" />
+    <fragment
+        android:id="@+id/editGroup"
+        android:name="com.example.test.settings.presentation.fragments.system.subFragments.EditGroup"
+        android:label="EditGroup" >
+        <action
+            android:id="@+id/action_editGroup_to_tipTypeParam"
+            app:destination="@id/tipTypeParam" />
+    </fragment>
 </navigation>
