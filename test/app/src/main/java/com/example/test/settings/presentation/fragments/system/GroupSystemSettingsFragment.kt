@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
@@ -52,13 +53,14 @@ class GroupSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                     object : CompactViewString.OnClickAdd {
                         override fun onClickAdd() {
                             createSystemVM.groups[index].add(null)
-                            createSystemVM.listGroupNames[index].add(null)
+                            //createSystemVM.listGroupNames[index].add(null)
+                            //Toast.makeText(requireContext(), "${createSystemVM.listGroupNames[index].size}", Toast.LENGTH_SHORT).show()
                         }
                     },
                     object : CompactViewString.OnClickDel {
                         override fun onClickDel(pos: Int) {
                             createSystemVM.groups[index].removeAt(pos)
-                            createSystemVM.listGroupNames[index].removeAt(pos)
+                            //createSystemVM.listGroupNames[index].removeAt(pos)
                         }
                     }
                 )

@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
 import com.example.test.adapters.AbstractAdapterRV
@@ -106,10 +107,10 @@ class CompactViewString(context: Context, attrs: AttributeSet?, defStyleAttr: In
 
             add.setOnClickListener {
                 values.add(null)
-                adapter.setData(values)
                 if (objAdd != null) {
                     objAdd!!.onClickAdd()
                 }
+                adapter.setData(values)
             }
         }
 

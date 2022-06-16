@@ -16,6 +16,7 @@ class CreateSystemVM : ViewModel() {
         mutableListOf(),
         mutableListOf(),
     )
+
     val listGroupNames = listOf<MutableList<String?>>(
         mutableListOf(),
         mutableListOf(),
