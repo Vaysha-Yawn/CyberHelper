@@ -53,6 +53,7 @@ class GroupSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                     object : CompactViewString.OnClickAdd {
                         override fun onClickAdd() {
                             createSystemVM.groups[index].add(null)
+                            // я хз почему, но listGroupNames отслеживает добавления и удаления элементов из groups самостоятельно
                             //createSystemVM.listGroupNames[index].add(null)
                             //Toast.makeText(requireContext(), "${createSystemVM.listGroupNames[index].size}", Toast.LENGTH_SHORT).show()
                         }
