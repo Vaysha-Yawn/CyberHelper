@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.example.test.components.views.CompactViewString
+        android:id="@+id/str"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:CV_String_add_text="Добавить группу"
+        app:CV_String_item_hint="Название характеристики"
+        app:CV_String_title="3 Броня и оружие"
+        android:layout_marginTop="30dp"
+        />
+</LinearLayout>

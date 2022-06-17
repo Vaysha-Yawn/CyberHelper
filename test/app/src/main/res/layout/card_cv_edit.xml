@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.example.test.components.views.CompactViewEdit
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:CV_edit_add_text="Добавить группу"
+        app:CV_edit_item_hint="Название характеристики"
+        app:CV_edit_title="3 Броня и оружие"
+        android:layout_marginTop="30dp"
+        />
+</LinearLayout>

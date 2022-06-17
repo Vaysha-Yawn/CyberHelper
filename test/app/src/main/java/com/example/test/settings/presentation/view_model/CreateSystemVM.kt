@@ -25,7 +25,7 @@ class CreateSystemVM : ViewModel() {
         mutableListOf(),
     )
 
-    val typesItems = mutableMapOf<String, MutableLiveData<MutableList<String>>>()
+    val typesItems = mutableMapOf<String, MutableList<String?>>()
     val characterParams =
         mutableMapOf<String, MutableLiveData<MutableList<String>>>()// обязательно поместить в liveData лист
     val itemParams = MutableLiveData<MutableList<String>>(mutableListOf())

@@ -30,7 +30,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
+        android:layout_marginHorizontal="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,6 @@
                 android:id="@+id/title"
                 android:text="Типы предметов"
                 style="@style/Text.H1"
-                android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,27 +55,23 @@
                 style="@style/Text.H2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="40dp"
                 android:gravity="start"
                 android:text="Какие типы предметов встречаются в вашей системе?"
                 />
 
-            <LinearLayout
-                android:layout_marginTop="30dp"
-                android:orientation="vertical"
-                android:id="@+id/addRV"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RV"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <!--Здесь должен быть Rv с CompactView с editText-->
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                />
             <Button
                 android:id="@+id/next"
                 android:text="Далее"
                 style="@style/Button_green_next"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="30dp"
                 tools:ignore="SpeakableTextPresentCheck" />
         </LinearLayout>
