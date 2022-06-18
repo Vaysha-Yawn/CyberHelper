@@ -16,26 +16,27 @@ import com.example.test.databinding.CardCvEditBinding
 import io.realm.RealmList
 
 
-class CVAdapterRV :
+class CVAdapterRV(private var addText: String, private var hint: String) :
     RecyclerView.Adapter<CVAdapterRV.TemplateHolder>() {
+
     private var type = false
+
     private var list = mutableListOf<MutableList<String?>>()
     private var listTitle = mutableListOf<String>()
-    private var objEdit: CompactViewEdit.OnStringEdited? = null
-    private var objStrAdd: CompactViewString.OnClickAdd? = null
-    private var objStrDel: CompactViewString.OnClickDel? = null
-    private var objStrEdit: CompactViewString.OnClickEdit? = null
 
-    private var hint: String = ""
-    private var addText: String = ""
+    private var objEdit: CVAdapterRV.OnEdit? = null
+    private var objStrAdd: CVAdapterRV.OnStringAdd? = null
+    private var objStrDel: CVAdapterRV.OnStringDel? = null
+    private var objStrEdit: CVAdapterRV.OnStringEdit? = null
+
 
     class TemplateHolder(
         private val view: View,
         private val type: Boolean,
-        private var objEdit: CompactViewEdit.OnStringEdited? = null,
-        private var objStrAdd: CompactViewString.OnClickAdd? = null,
-        private var objStrDel: CompactViewString.OnClickDel? = null,
-        private var objStrEdit: CompactViewString.OnClickEdit? = null,
+        private var objEdit: CVAdapterRV.OnEdit? = null,
+        private var objStrAdd: CVAdapterRV.OnStringAdd? = null,
+        private var objStrDel: CVAdapterRV.OnStringDel? = null,
+        private var objStrEdit: CVAdapterRV.OnStringEdit? = null,
         private var hint: String,
         private var addText: String
     ) :
@@ -47,7 +48,27 @@ class CVAdapterRV :
                     with(binding) {
                         str.setTitle(title)
                         str.setData(list)
-                        str.setListener(objStrEdit, objStrAdd, objStrDel)
+                        str.setListener(object : CompactViewString.OnClickEdit {
+                            override fun onClickEdit(posEdit: Int) {
+                                if (objStrEdit != null) {
+                                    objStrEdit!!.onEdit(adapterPosition, posEdit, title)
+                                }
+                            }
+                        },
+                            object : CompactViewString.OnClickAdd {
+                                override fun onClickAdd() {
+                                    if (objStrAdd != null) {
+                                        objStrAdd!!.onAdd(adapterPosition, title)
+                                    }
+                                }
+                            },
+                            object : CompactViewString.OnClickDel {
+                                override fun onClickDel(pos: Int) {
+                                    if (objStrDel != null) {
+                                        objStrDel!!.onDel(adapterPosition, pos, title)
+                                    }
+                                }
+                            })
                         str.setHint(hint)
                         str.setAddText(addText)
                     }
@@ -57,7 +78,19 @@ class CVAdapterRV :
                     with(binding) {
                         edit.setTitle(title)
                         edit.setData(list)
-                        edit.setListener(objEdit)
+                        edit.setListener(object : CompactViewEdit.OnStringEdited {
+                            override fun onStringEdited(
+                                posEdit: Int,
+                                text: String,
+                                start: Int,
+                                before: Int,
+                                count: Int
+                            ) {
+                                if (objEdit != null) {
+                                    objEdit!!.onEdit(adapterPosition, posEdit, title, text)
+                                }
+                            }
+                        })
                         edit.setHint(hint)
                         edit.setAddText(addText)
                     }
@@ -94,30 +127,46 @@ class CVAdapterRV :
     }
 
     fun setData(
-        list: MutableList<MutableList<String?>>, type: Boolean, listTitle: MutableList<String>,
-        objEdit: CompactViewEdit.OnStringEdited? = null,
-        objStrAdd: CompactViewString.OnClickAdd? = null,
-        objStrDel: CompactViewString.OnClickDel? = null,
-        objStrEdit: CompactViewString.OnClickEdit? = null,
-        addText: String, hint: String
+        list: MutableList<MutableList<String?>>,
+        listTitle: MutableList<String>,
     ) {
-        this.addText = addText
-        this.hint = hint
-
-        this.type = type
         this.list = list
         this.listTitle = listTitle
 
-        this.objEdit = objEdit
+        notifyDataSetChanged()
+    }
+
+    fun setStrListener(
+        objStrAdd: CVAdapterRV.OnStringAdd? = null,
+        objStrDel: CVAdapterRV.OnStringDel? = null,
+        objStrEdit: CVAdapterRV.OnStringEdit? = null,
+    ) {
+        type = true
         this.objStrAdd = objStrAdd
         this.objStrDel = objStrDel
         this.objStrEdit = objStrEdit
         notifyDataSetChanged()
     }
 
-    interface OnEdit{
-        fun onEdit(){
+    fun setEditListener(objEdit: CVAdapterRV.OnEdit? = null) {
+        type = false
+        this.objEdit = objEdit
+        notifyDataSetChanged()
+    }
 
-        }
+    interface OnEdit {
+        fun onEdit(adapterPos: Int, editPos: Int, title: String, text: String)
+    }
+
+    interface OnStringEdit {
+        fun onEdit(adapterPos: Int, editPos: Int, title: String)
+    }
+
+    interface OnStringAdd {
+        fun onAdd(adapterPos: Int, title: String)
+    }
+
+    interface OnStringDel {
+        fun onDel(adapterPos: Int, editPos: Int, title: String)
     }
 }

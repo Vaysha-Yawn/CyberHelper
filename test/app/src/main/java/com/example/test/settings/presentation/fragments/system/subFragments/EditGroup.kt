@@ -1,6 +1,7 @@
 package com.example.test.settings.presentation.fragments.system.subFragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +28,7 @@ class EditGroup : Fragment(), HeaderView.HeaderBack {
         super.onCreate(savedInstanceState)
         section = arguments?.getInt("section") ?: 6
         posInSec = arguments?.getInt("posInSec") ?: -1
+        Log.e("e", "section $section , position $posInSec")
     }
 
     override fun onCreateView(
@@ -94,7 +96,7 @@ class EditGroup : Fragment(), HeaderView.HeaderBack {
     fun getEditGroupBundle(section:Int, posInSec:Int):Bundle{
         val bundle = Bundle()
         bundle.putInt("section", section)
-        bundle.putInt("posInSec", section)
+        bundle.putInt("posInSec", posInSec)
         return bundle
     }
 

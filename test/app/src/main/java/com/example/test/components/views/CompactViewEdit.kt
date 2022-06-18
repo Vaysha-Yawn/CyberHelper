@@ -122,16 +122,22 @@ class CompactViewEdit(context: Context, attrs: AttributeSet?, defStyleAttr: Int,
         this.obj = obj
     }
 
-    fun setTitle(title:String){
-        this.titleText = title
+    fun setTitle(titles:String){
+        this.titleText = titles
+        with(binding) {
+            title.text = titleText
+        }
     }
 
     fun setAddText(addText:String){
         this.addText = addText
+        with(binding) {
+            add.text = addText
+        }
     }
 
-    fun setHint(hint:String){
-        this.hint = hint
+    fun setHint(hints:String){
+        this.hint = hints
     }
 
     fun getData(): MutableList<String?> {

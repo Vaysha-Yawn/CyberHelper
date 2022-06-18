@@ -26,55 +26,58 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />
 
-    <TextView
-        android:id="@+id/title"
-        style="@style/Text.H1"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="30dp"
-        android:text="Типы урона"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:layout_constraintVertical_bias="0.0">
 
-    <TextView
-        android:id="@+id/title2"
-        style="@style/Text.H2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="40dp"
-        android:gravity="start"
-        android:text="Какие типы урона в вашей системе существуют? (фиический, магический, некротический и тд.)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/Text.H1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Типы урона" />
+
+            <TextView
+                android:id="@+id/title2"
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="start"
+                android:text="Какие типы урона в вашей системе существуют? (фиический, магический, некротический и тд.)" />
 
 
-    <com.example.test.components.views.CompactViewEdit
-        android:id="@+id/CVDD"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="30dp"
-        app:CV_edit_add_text="Добавить тип урона"
-        app:CV_edit_item_hint="Введите название типа урона"
-        app:CV_edit_title="Тип урона"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title2" />
+            <com.example.test.components.views.CompactViewEdit
+                android:id="@+id/CVDD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:CV_edit_add_text="Добавить тип урона"
+                app:CV_edit_item_hint="Введите название типа урона"
+                app:CV_edit_title="Тип урона" />
 
-    <Button
-        android:id="@+id/next"
-        style="@style/Button_green_next"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:text="Далее"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CVDD"
-        tools:ignore="SpeakableTextPresentCheck" />
+            <Button
+                android:id="@+id/next"
+                style="@style/Button_green_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="100dp"
+                android:text="Далее" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

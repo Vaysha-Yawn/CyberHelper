@@ -64,7 +64,6 @@
                 android:id="@+id/RV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 />
             <Button
                 android:id="@+id/next"
@@ -73,6 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:layout_marginBottom="100dp"
                 tools:ignore="SpeakableTextPresentCheck" />
         </LinearLayout>
     </ScrollView>

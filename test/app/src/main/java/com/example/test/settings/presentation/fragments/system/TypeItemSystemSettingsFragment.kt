@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
 import com.example.test.character_list.presentation.adapters.CVAdapterRV
 import com.example.test.components.views.CompactViewEdit
@@ -33,70 +34,56 @@ class TypeItemSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_type_items_system_settings, container, false)
         val binding = FragmentTypeItemsSystemSettingsBinding.bind(view)
-        with(binding){
-            header.setBack(true, this@TypeItemSystemSettingsFragment, requireActivity(), viewLifecycleOwner)
+        with(binding) {
+            header.setBack(
+                true,
+                this@TypeItemSystemSettingsFragment,
+                requireActivity(),
+                viewLifecycleOwner
+            )
             val groupItemsTitle = mutableListOf<String>()
-            for ( i in createSystemVM.groups){
-                for (e in i){
-                    if (e!=null && e.prefItem ){
+            for (i in createSystemVM.groups) {
+                for (e in i) {
+                    if (e != null && e.prefItem) {
                         groupItemsTitle.add(e.title)
                     }
                 }
             }
 
             // удостоверились, что соответствует реальнсти
-            if (createSystemVM.typesItems.keys.toMutableList() != groupItemsTitle){
-                for( i in groupItemsTitle){
-                    if (!createSystemVM.typesItems.keys.toMutableList().contains(i)){
+            if (createSystemVM.typesItems.keys.toMutableList() != groupItemsTitle) {
+                for (i in groupItemsTitle) {
+                    if (!createSystemVM.typesItems.keys.toMutableList().contains(i)) {
                         createSystemVM.typesItems[i] = mutableListOf()
                     }
                 }
             }
 
-            val adapter = CVAdapterRV()
-            adapter.setData(
-                createSystemVM.typesItems.values.toMutableList(),
-            false,
-            createSystemVM.typesItems.keys.toMutableList(),
-            object: CompactViewEdit.OnStringEdited{
-                override fun onStringEdited(
-                    posEdit: Int,
-                    text: String,
-                    start: Int,
-                    before: Int,
-                    count: Int
-                ) {
-                    // нужно сделать обертку, где мы добываем ключ
-                }
-
-            },
-            null,
-            null,
-            null,
+            val adapter = CVAdapterRV(
                 "Добавить тип предметов",
                 "Название типа предметов"
             )
-            /*for ( i in createSystemVM.groups){
-                val compactViewEdit = CompactViewEdit(requireContext())
-                compactViewEdit.setAddText("Добавить тип предметов")
-                compactViewEdit.setHint("Название типа предметов")
-                compactViewEdit.setTitle("")
-                compactViewEdit.setListener(  object : CompactViewEdit.OnStringEdited{
-                    override fun onStringEdited(
-                        posEdit: Int,
-                        text: String,
-                        start: Int,
-                        before: Int,
-                        count: Int
+            RV.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            RV.adapter = adapter
+            adapter.setData(
+                createSystemVM.typesItems.values.toMutableList(),
+                createSystemVM.typesItems.keys.toMutableList(),
+            )
+            adapter.setEditListener(
+                object : CVAdapterRV.OnEdit {
+                    override fun onEdit(
+                        adapterPos: Int,
+                        editPos: Int,
+                        title: String,
+                        text: String
                     ) {
-
+                        createSystemVM.typesItems[title]?.set(editPos, text)
                     }
-
                 })
-                RV.addView(compactViewEdit)
-            }*/
             next.setOnClickListener {
-                view.findNavController().navigate(R.id.action_typeItemSystemSettingsFragment_to_paramCharacterSystemSettingsFragment)
+                view.findNavController()
+                    .navigate(R.id.action_typeItemSystemSettingsFragment_to_paramCharacterSystemSettingsFragment)
             }
         }
         return view
