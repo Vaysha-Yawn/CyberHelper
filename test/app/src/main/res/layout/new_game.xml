@@ -5,8 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1B1A22"
-    tools:context=".edit_fragments.NewGame">
+    android:background="#1B1A22">
 
 
     <FrameLayout

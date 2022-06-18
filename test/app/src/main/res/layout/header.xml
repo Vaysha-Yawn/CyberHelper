@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:background="#050414"
-    tools:context=".widgets.Header">
+    android:background="#050414">
 
     <ImageButton
         android:visibility="visible"

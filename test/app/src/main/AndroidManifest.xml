@@ -29,7 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".edit_fragments.about.About" />
+        <activity android:name="com.example.test.about.view.About" />
         <activity android:name="com.example.test.present_game.presentation.activity.PresentHost" />
         <activity android:name=".load.presentaion.LoadHost" />
         <activity android:name=".new_game.presentation.activity.NewHost" />

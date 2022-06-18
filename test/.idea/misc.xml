@@ -119,12 +119,14 @@
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/card_cv.xml" value="0.2046875" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/card_cv_edit.xml" value="0.190625" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/card_item.xml" value="0.25" />
+        <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/choose_weapon.xml" value="0.1" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/edit_effect_add.xml" value="0.25" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/edit_group.xml" value="0.1765625" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/fight_attack.xml" value="0.25" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/fight_second.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/fight_three_goal.xml" value="0.190625" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/fragment_group_system_settings.xml" value="0.190625" />
+        <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/fragment_params_character_system_settings.xml" value="0.190625" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/fragment_type_damage_system_settings.xml" value="0.2046875" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/fragment_type_items_system_settings.xml" value="0.2046875" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/goals.xml" value="0.190625" />
@@ -132,6 +134,12 @@
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/home.xml" value="0.2046875" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/m1_d10.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/modificators.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/new_game.xml" value="0.1" />
+        <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/plus_and_minus_full_orange.xml" value="0.1" />
+        <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/plus_and_minus_small_blue.xml" value="0.1" />
+        <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/plus_and_minus_small_green.xml" value="0.1" />
+        <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/plus_and_minus_small_orange.xml" value="0.1" />
+        <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/plus_and_minus_small_yellow.xml" value="0.1" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/setting_fight_type.xml" value="0.2046875" />
         <entry key="..\:/Users/vikto/StudioProjects/CyberHelper/test/app/src/main/res/layout/skill_test.xml" value="0.20416666666666666" />
       </map>

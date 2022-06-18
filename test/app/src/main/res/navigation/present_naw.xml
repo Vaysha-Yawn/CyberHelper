@@ -131,7 +131,7 @@
     </fragment>
      <fragment
         android:id="@+id/home2"
-        android:name="com.example.test.edit_fragments.Home"
+        android:name="com.example.test.present_game.presentation.fragments.Home"
         android:label="Home">
         <action
             android:id="@+id/action_home2_to_choiceTemplate"

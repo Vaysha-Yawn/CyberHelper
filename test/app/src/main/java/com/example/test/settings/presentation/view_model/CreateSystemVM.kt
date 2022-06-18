@@ -17,21 +17,20 @@ class CreateSystemVM : ViewModel() {
         mutableListOf(),
     )
 
-    val listGroupNames = listOf<MutableList<String?>>(
-        mutableListOf(),
-        mutableListOf(),
-        mutableListOf(),
-        mutableListOf(),
-        mutableListOf(),
-    )
-
     val typesItems = mutableMapOf<String, MutableList<String?>>()
-    val characterParams =
-        mutableMapOf<String, MutableLiveData<MutableList<String>>>()// обязательно поместить в liveData лист
+
+    val characterParamsNum = mutableMapOf<String, MutableList<ParamNum>>()
+    val characterParamsStr = mutableMapOf<String, MutableList<ParamStr>>()
+    val characterParamsOptions = mutableMapOf<String, MutableList<ParamOptions>>()
+
     val itemParams = MutableLiveData<MutableList<String>>(mutableListOf())
     val templateItems = mutableMapOf<String, MutableLiveData<MutableList<String>>>()
     val templateCharacter = MutableLiveData(mutableListOf<Character>())
     //сохранение данных, прим.: нужно лучше сохранять данные, потому что создаать систему долго, возможно не за один заход
+
+    fun getListNameGroup(){
+
+    }
 
 
     fun <T> listToRealmList(

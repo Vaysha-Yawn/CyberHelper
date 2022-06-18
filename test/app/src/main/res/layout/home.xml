@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1B1A22"
-    tools:context=".edit_fragments.Home">
+    android:background="#1B1A22">
 
     <com.example.test.components.views.HeaderView
         android:id="@+id/header"

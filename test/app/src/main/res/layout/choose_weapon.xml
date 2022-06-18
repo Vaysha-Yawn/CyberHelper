@@ -5,8 +5,7 @@
     android:id="@+id/frameLayout7"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1B1A22"
-    tools:context=".iniciative.presentation.fragments.ChooseWeapon">
+    android:background="#1B1A22">
 
     <com.example.test.components.views.HeaderView
         android:id="@+id/header"

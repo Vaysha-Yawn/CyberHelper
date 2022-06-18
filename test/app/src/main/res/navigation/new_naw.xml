@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/newGame"
-        android:name="com.example.test.edit_fragments.NewGame"
+        android:name="com.example.test.new_game.presentation.fragments.NewGame"
         android:label="NewGame">
         <action
             android:id="@+id/action_newGame_to_new_choiceTemplate"
