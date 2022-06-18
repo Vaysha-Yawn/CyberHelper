@@ -23,7 +23,10 @@ class CompactViewEdit(context: Context, attrs: AttributeSet?, defStyleAttr: Int,
     private var titleText: String = ""
     private var addText: String = ""
     private var values = mutableListOf<String?>()
-    private var obj: OnStringEdited? = null
+    private var objEdit: OnClickEdit? = null
+    private var objAdd: OnClickAdd? = null
+    private var objDel: OnClickDel? = null
+
     private lateinit var adapterEdit: AbstractAdapterRV<String?>
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : this(
@@ -83,6 +86,9 @@ class CompactViewEdit(context: Context, attrs: AttributeSet?, defStyleAttr: Int,
                             editText.hint = hint
                             delete.setOnClickListener {
                                 values.removeAt(pos)
+                                if (objDel != null) {
+                                    objDel!!.onClickDel(pos)
+                                }
                                 updView.updateView()
                             }
                             if (param != null) {
@@ -90,8 +96,8 @@ class CompactViewEdit(context: Context, attrs: AttributeSet?, defStyleAttr: Int,
                             }
                             editText.doOnTextChanged { text, start, before, count ->
                                 values[pos] = text.toString()
-                                if (obj != null) {
-                                    obj!!.onStringEdited(pos, text.toString(), start, before, count)
+                                if (objEdit != null) {
+                                    objEdit!!.onClickEdit(pos, text.toString())
                                 }
                             }
                         }
@@ -105,6 +111,9 @@ class CompactViewEdit(context: Context, attrs: AttributeSet?, defStyleAttr: Int,
 
             add.setOnClickListener {
                 values.add(null)
+                if (objAdd != null) {
+                    objAdd!!.onClickAdd()
+                }
                 adapterEdit.setData(values)
             }
         }
@@ -118,8 +127,10 @@ class CompactViewEdit(context: Context, attrs: AttributeSet?, defStyleAttr: Int,
         adapterEdit.setData(values)
     }
 
-    fun setListener(obj: OnStringEdited?) {
-        this.obj = obj
+    fun setListener(objEdit: OnClickEdit?=null, objAdd: OnClickAdd? = null, objDel: OnClickDel?=null) {
+        this.objEdit = objEdit
+        this.objAdd = objAdd
+        this.objDel = objDel
     }
 
     fun setTitle(titles:String){
@@ -144,8 +155,16 @@ class CompactViewEdit(context: Context, attrs: AttributeSet?, defStyleAttr: Int,
         return values
     }
 
-    interface OnStringEdited {
-        fun onStringEdited(posEdit: Int, text: String, start: Int, before: Int, count: Int)
+    interface OnClickEdit {
+        fun onClickEdit(posEdit: Int, text: String,)
+    }
+
+    interface OnClickAdd {
+        fun onClickAdd()
+    }
+
+    interface OnClickDel {
+        fun onClickDel( pos:Int)
     }
 
 

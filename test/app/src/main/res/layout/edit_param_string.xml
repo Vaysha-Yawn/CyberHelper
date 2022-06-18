@@ -44,25 +44,6 @@
         android:hint="Название характеристики"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <TextView
-        style="@style/Text.H2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="40dp"
-        android:gravity="start"
-        android:text="Введите начальное значение" />
-
-    <EditText
-        android:id="@+id/value"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/green"
-        android:hint="Начальное значение"
-        tools:ignore="TouchTargetSizeCheck" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

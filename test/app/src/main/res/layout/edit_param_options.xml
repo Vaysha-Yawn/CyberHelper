@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,93 +15,104 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/title"
-        android:text="Настройка характеристики с выбором"
-        style="@style/Text.H1"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        style="@style/Text.H2"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="40dp"
-        android:gravity="start"
-        android:text="Введите название характеристики" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:layout_constraintVertical_bias="0.0">
 
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/green"
-        android:hint="Название характеристики"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <TextView
-        style="@style/Text.H2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="40dp"
-        android:gravity="start"
-        android:text="Введите начальное описание" />
-
-    <EditText
-        android:id="@+id/value"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/green"
-        android:hint="Например: Введите тип предмета"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <TextView
-        style="@style/Text.H2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="40dp"
-        android:gravity="start"
-        android:text="Варианты ответов" />
-
-    <!--здесь compact view с edittext-->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="40dp"
-        android:layout_marginHorizontal="30dp">
-        <TextView
-            style="@style/Text.H2"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start"
-            android:text="Эта характеристика обязательная?" />
+            android:orientation="vertical">
 
-        <CheckBox
-            android:id="@+id/removable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/green"
-            tools:ignore="TouchTargetSizeCheck" />
-    </LinearLayout>
-    <Button
-        android:id="@+id/next"
-        android:text="Продолжить"
-        android:drawableTint="@color/green"
-        style="@style/Button_green_next"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="40dp" />
+            <TextView
+                android:id="@+id/title"
+                style="@style/Text.H1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Настройка характеристики с выбором" />
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="start"
+                android:text="Введите название характеристики" />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/green"
+                android:hint="Название характеристики"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="start"
+                android:text="Введите начальное описание" />
+
+            <EditText
+                android:id="@+id/defMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/green"
+                android:hint="Например: Введите тип предмета"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <com.example.test.components.views.CompactViewEdit
+                android:id="@+id/CVEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:CV_edit_add_text="Добавить вариант"
+                app:CV_edit_title="Варианты ответов" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Text.H2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="Эта характеристика обязательная?" />
+
+                <CheckBox
+                    android:id="@+id/removable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/green"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/next"
+                style="@style/Button_green_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="100dp"
+                android:drawableTint="@color/green"
+                android:text="Продолжить" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
