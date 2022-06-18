@@ -19,7 +19,11 @@
     <fragment
         android:id="@+id/settingFightType2"
         android:name="com.example.test.settings.presentation.fragments.SettingFightType"
-        android:label="SettingFightType" />
+        android:label="SettingFightType" >
+        <action
+            android:id="@+id/action_settingFightType2_self"
+            app:destination="@id/settingFightType2" />
+    </fragment>
     <fragment
         android:id="@+id/editTemplateItemFragment"
         android:name="com.example.test.settings.presentation.fragments.EditTemplateItemFragment"
@@ -94,6 +98,18 @@
         <action
             android:id="@+id/action_paramCharacterSystemSettingsFragment_to_paramItemSystemSettingsFragment"
             app:destination="@id/paramItemSystemSettingsFragment" />
+        <action
+            android:id="@+id/action_paramCharacterSystemSettingsFragment_to_tipTypeParam"
+            app:destination="@id/tipTypeParam" />
+        <action
+            android:id="@+id/action_paramCharacterSystemSettingsFragment_to_editParamStr"
+            app:destination="@id/editParamStr" />
+        <action
+            android:id="@+id/action_paramCharacterSystemSettingsFragment_to_editParamNum"
+            app:destination="@id/editParamNum" />
+        <action
+            android:id="@+id/action_paramCharacterSystemSettingsFragment_to_editParamOption"
+            app:destination="@id/editParamOption" />
     </fragment>
     <fragment
         android:id="@+id/paramItemSystemSettingsFragment"
@@ -127,4 +143,16 @@
             android:id="@+id/action_editGroup_to_tipTypeParam"
             app:destination="@id/tipTypeParam" />
     </fragment>
+    <fragment
+        android:id="@+id/editParamStr"
+        android:name="com.example.test.settings.presentation.fragments.system.subFragments.EditParamStr"
+        android:label="EditParamStr" />
+    <fragment
+        android:id="@+id/editParamNum"
+        android:name="com.example.test.settings.presentation.fragments.system.subFragments.EditParamNum"
+        android:label="EditParamNum" />
+    <fragment
+        android:id="@+id/editParamOption"
+        android:name="com.example.test.settings.presentation.fragments.system.subFragments.EditParamOption"
+        android:label="EditParamOption" />
 </navigation>
