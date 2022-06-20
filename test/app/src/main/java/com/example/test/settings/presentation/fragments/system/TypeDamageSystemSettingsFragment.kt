@@ -39,13 +39,10 @@ class TypeDamageSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                 CVDD.setData(it)
             }
             CVDD.setListener(
-                object: CompactViewEdit.OnStringEdited{
-                    override fun onStringEdited(
+                object: CompactViewEdit.OnClickEdit{
+                    override fun onClickEdit(
                         posEdit: Int,
                         text: String,
-                        start: Int,
-                        before: Int,
-                        count: Int
                     ) {
                         createSystemVM.typesDamage.value?.set(posEdit, text)
                     }

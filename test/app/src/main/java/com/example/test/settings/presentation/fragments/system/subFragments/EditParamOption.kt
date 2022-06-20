@@ -26,16 +26,14 @@ import com.example.test.settings.presentation.view_model.CreateSystemVM
 class EditParamOption : Fragment(), HeaderView.HeaderBack {
 
     private val createSystemVM: CreateSystemVM by activityViewModels()
-    private var section = 6
     private var posInSec = -1
     private var groupTitle = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        section = arguments?.getInt("section") ?: 6
         posInSec = arguments?.getInt("posInSec") ?: -1
         groupTitle = arguments?.getString("groupTitle") ?: ""
-        Log.e("e", "section $section , position $posInSec")
+        Log.e("e", " position $posInSec")
     }
 
     override fun onCreateView(
@@ -46,24 +44,19 @@ class EditParamOption : Fragment(), HeaderView.HeaderBack {
         val binding = EditParamOptionsBinding.bind(view)
         with(binding) {
             header.setBack(true, this@EditParamOption, requireActivity(), viewLifecycleOwner)
-            if (posInSec == -1 || section == 6 || groupTitle == "") {
+            if (posInSec == -1 || groupTitle == "") {
                 Toast.makeText(requireContext(), "Ошибка", Toast.LENGTH_SHORT).show()
                 view.findNavController().popBackStack()
             }
-            var param = createSystemVM.characterParamsOptions[groupTitle]?.get(posInSec)
-            if (param != null) {
-                val names = param.name
-                val removables = param.removable
-                val defMains = param.defMain
-                val options = param.options
-                (name as TextView).text = names
-                (defMain as TextView).text = defMains
-                removable.isChecked = removables
-                CVEdit.setData(options)
-            } else {
-                param = ParamOptions()
-                createSystemVM.characterParamsOptions[groupTitle]?.set(posInSec, param)
-            }
+            var param = createSystemVM.characterParamsOptions.get(posInSec)
+            val names = param.name
+            val removables = param.removable
+            val defMains = param.defMain
+            val options = param.options
+            (name as TextView).text = names
+            (defMain as TextView).text = defMains
+            removable.isChecked = removables
+            CVEdit.setData(options)
 
             name.doOnTextChanged { text, start, before, count ->
                 param.name = text.toString()
@@ -108,9 +101,8 @@ class EditParamOption : Fragment(), HeaderView.HeaderBack {
         view?.findNavController()?.popBackStack()
     }
 
-    fun getBundle(section: Int, posInSec: Int, groupTitle: String): Bundle {
+    fun getBundle(posInSec: Int, groupTitle: String): Bundle {
         val bundle = Bundle()
-        bundle.putInt("section", section)
         bundle.putInt("posInSec", posInSec)
         bundle.putString("groupTitle", groupTitle)
         return bundle

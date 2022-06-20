@@ -23,16 +23,15 @@ import com.example.test.settings.presentation.view_model.CreateSystemVM
 class EditParamStr : Fragment(), HeaderView.HeaderBack {
 
     private val createSystemVM: CreateSystemVM by activityViewModels()
-    private var section = 6
     private var posInSec = -1
     private var groupTitle = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        section = arguments?.getInt("section") ?: 6
+
         posInSec = arguments?.getInt("posInSec") ?: -1
         groupTitle = arguments?.getString("groupTitle") ?: ""
-        Log.e("e", "section $section , position $posInSec")
+        Log.e("e", " position $posInSec")
     }
 
     override fun onCreateView(
@@ -43,20 +42,15 @@ class EditParamStr : Fragment(), HeaderView.HeaderBack {
         val binding = EditParamStringBinding.bind(view)
         with(binding) {
             header.setBack(true, this@EditParamStr, requireActivity(), viewLifecycleOwner)
-            if (posInSec == -1 || section == 6 || groupTitle=="") {
+            if (posInSec == -1 ||  groupTitle=="") {
                 Toast.makeText(requireContext(), "Ошибка", Toast.LENGTH_SHORT).show()
                 view.findNavController().popBackStack()
             }
-            var param = createSystemVM.characterParamsStr[groupTitle]?.get(posInSec)
-            if (param !=null){
-                val names = param.name
-                val removables = param.removable
-                (name as TextView).text = names
-                removable.isChecked = removables
-            }else{
-                param = ParamStr()
-                createSystemVM.characterParamsStr[groupTitle]?.set(posInSec, param)
-            }
+            var param = createSystemVM.characterParamsStr.get(posInSec)
+            val names = param.name
+            val removables = param.removable
+            (name as TextView).text = names
+            removable.isChecked = removables
 
             name.doOnTextChanged { text, start, before, count ->
                 param.name = text.toString()
@@ -77,9 +71,8 @@ class EditParamStr : Fragment(), HeaderView.HeaderBack {
         view?.findNavController()?.popBackStack()
     }
 
-    fun getBundle(section:Int, posInSec:Int, groupTitle:String):Bundle{
+    fun getBundle( posInSec:Int, groupTitle:String):Bundle{
         val bundle = Bundle()
-        bundle.putInt("section", section)
         bundle.putInt("posInSec", posInSec)
         bundle.putString("groupTitle", groupTitle)
         return bundle

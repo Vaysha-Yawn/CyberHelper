@@ -27,16 +27,14 @@ import com.example.test.settings.presentation.view_model.CreateSystemVM
 class EditParamNum : Fragment(), HeaderView.HeaderBack {
 
     private val createSystemVM: CreateSystemVM by activityViewModels()
-    private var section = 6
     private var posInSec = -1
     private var groupTitle = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        section = arguments?.getInt("section") ?: 6
         posInSec = arguments?.getInt("posInSec") ?: -1
         groupTitle = arguments?.getString("groupTitle") ?: ""
-        Log.e("e", "section $section , position $posInSec")
+        Log.e("e", " position $posInSec")
     }
 
     override fun onCreateView(
@@ -54,31 +52,26 @@ class EditParamNum : Fragment(), HeaderView.HeaderBack {
                     PM.visibility = View.GONE
                 }
             }
-            if (posInSec == -1 || section == 6 || groupTitle=="") {
+            if (posInSec == -1 || groupTitle=="") {
                 Toast.makeText(requireContext(), "Ошибка", Toast.LENGTH_SHORT).show()
                 view.findNavController().popBackStack()
             }
-            var param = createSystemVM.characterParamsNum[groupTitle]?.get(posInSec)
-            if (param !=null){
-                val names = param.name
-                val removables = param.removable
-                value.setValue(param.value)
-                if (param.maxValue != null){
-                    booleanMaxValue.isChecked = true
-                    maxValue.setValue(param.maxValue!!)
-                }
-                setVisible(booleanMaxValue, maxValue)
-                if (param.minValue != null){
-                    booleanMinValue.isChecked = true
-                    minValue.setValue(param.minValue!!)
-                }
-                setVisible(booleanMinValue, minValue)
-                (name as TextView).text = names
-                removable.isChecked = removables
-            }else{
-                param = ParamNum()
-                createSystemVM.characterParamsNum[groupTitle]?.set(posInSec, param)
+            var param = createSystemVM.characterParamsNum.get(posInSec)
+            val names = param.name
+            val removables = param.removable
+            value.setValue(param.value)
+            if (param.maxValue != null){
+                booleanMaxValue.isChecked = true
+                maxValue.setValue(param.maxValue!!)
             }
+            setVisible(booleanMaxValue, maxValue)
+            if (param.minValue != null){
+                booleanMinValue.isChecked = true
+                minValue.setValue(param.minValue!!)
+            }
+            setVisible(booleanMinValue, minValue)
+            (name as TextView).text = names
+            removable.isChecked = removables
 
             name.doOnTextChanged { text, start, before, count ->
                 param.name = text.toString()
@@ -125,9 +118,8 @@ class EditParamNum : Fragment(), HeaderView.HeaderBack {
         view?.findNavController()?.popBackStack()
     }
 
-    fun getBundle(section:Int, posInSec:Int, groupTitle:String):Bundle{
+    fun getBundle( posInSec:Int, groupTitle:String):Bundle{
         val bundle = Bundle()
-        bundle.putInt("section", section)
         bundle.putInt("posInSec", posInSec)
         bundle.putString("groupTitle", groupTitle)
         return bundle

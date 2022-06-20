@@ -78,13 +78,11 @@ class CVAdapterRV(private var addText: String, private var hint: String) :
                     with(binding) {
                         edit.setTitle(title)
                         edit.setData(list)
-                        edit.setListener(object : CompactViewEdit.OnStringEdited {
-                            override fun onStringEdited(
+                        edit.setListener(//TODO добавить ADD DEL
+                            object : CompactViewEdit.OnClickEdit {
+                            override fun onClickEdit(
                                 posEdit: Int,
                                 text: String,
-                                start: Int,
-                                before: Int,
-                                count: Int
                             ) {
                                 if (objEdit != null) {
                                     objEdit!!.onEdit(adapterPosition, posEdit, title, text)

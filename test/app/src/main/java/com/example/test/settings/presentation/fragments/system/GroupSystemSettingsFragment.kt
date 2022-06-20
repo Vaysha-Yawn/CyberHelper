@@ -65,7 +65,11 @@ class GroupSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                         }
                     }
                 )
-                compactViewString.setData(createSystemVM.listGroupNames[index])
+                val listGPTitle = mutableListOf<String?>()
+                for (gp in createSystemVM.groups[index]){
+                    listGPTitle.add(gp?.title)
+                }
+                compactViewString.setData(listGPTitle)
             }
 
             setListenerForCVStr(CV1, 0)

@@ -6,6 +6,11 @@ import com.example.test.data_base.*
 import io.realm.RealmList
 
 class CreateSystemVM : ViewModel() {
+
+    val OPTIONS:String = "OPTIONS"
+    val NUM:String = "NUMBER"
+    val STR:String = "STRING"
+
     // отображение, данные для RV
     var name = ""
     val typesDamage = MutableLiveData<MutableList<String?>>(mutableListOf())
@@ -32,6 +37,19 @@ class CreateSystemVM : ViewModel() {
 
     fun getListNameGroup() {
 
+    }
+
+    fun getGroup(title: String): GroupParam? {
+        var gp: GroupParam? = null
+        for (i in groups) {
+            for (e in i) {
+                if (e?.title == title) {
+                    gp = e
+                    return e
+                }
+            }
+        }
+        return gp
     }
 
 
