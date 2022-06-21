@@ -251,6 +251,7 @@ class ParamTypeDialogFragment(
 
             help.setOnClickListener {
                 objHelp.help()
+                dismiss()
             }
         }
         bind()

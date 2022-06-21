@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 app:CV_String_add_text="Добавить группу"
-                app:CV_String_item_hint="Название характеристики"
+                app:CV_String_item_hint="Название группы"
                 app:CV_String_title="1 Инфo"
                 android:layout_marginTop="30dp"
                 />
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 app:CV_String_add_text="Добавить группу"
-                app:CV_String_item_hint="Название характеристики"
+                app:CV_String_item_hint="Название группы"
                 app:CV_String_title="2 Параметры"
                 android:layout_marginTop="30dp"
                 />
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 app:CV_String_add_text="Добавить группу"
-                app:CV_String_item_hint="Название характеристики"
+                app:CV_String_item_hint="Название группы"
                 app:CV_String_title="3 Броня и оружие"
                 android:layout_marginTop="30dp"
                 />
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 app:CV_String_add_text="Добавить группу"
-                app:CV_String_item_hint="Название характеристики"
+                app:CV_String_item_hint="Название группы"
                 app:CV_String_title="4 Рюкзак"
                 android:layout_marginTop="30dp"
                 />
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 app:CV_String_add_text="Добавить группу"
-                app:CV_String_item_hint="Название характеристики"
+                app:CV_String_item_hint="Название группы"
                 app:CV_String_title="5 Биография"
                 android:layout_marginTop="30dp"
                 />

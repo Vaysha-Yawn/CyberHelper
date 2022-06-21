@@ -16,7 +16,6 @@ import com.example.test.settings.presentation.fragments.system.subFragments.Edit
 import com.example.test.settings.presentation.view_model.CreateSystemVM
 
 
-// TODO при редактировании сразу после добавоения все туглы активируются
 class GroupSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
 
     private val createSystemVM: CreateSystemVM by activityViewModels()

@@ -13,7 +13,7 @@
         style="@style/Text.H2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start"
+        android:gravity="center"
         android:text="Какой тип характеристики вы хотите добавить?"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,74 +23,81 @@
         android:id="@+id/linearLayout7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title2">
 
         <LinearLayout
+            android:layout_gravity="center"
             android:id="@+id/linStr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <Button
+                android:layout_gravity="center"
                 android:id="@+id/string"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
                 android:background="@drawable/btn_plus_string"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 style="@style/Text.H2"
-                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="Текстом" />
         </LinearLayout>
 
         <LinearLayout
+            android:layout_gravity="center"
             android:id="@+id/linNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <Button
+                android:layout_gravity="center"
                 android:id="@+id/number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
                 android:background="@drawable/btn_plus_number"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 style="@style/Text.H2"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
                 android:text="Числом" />
         </LinearLayout>
 
         <LinearLayout
+            android:layout_gravity="center"
             android:id="@+id/linDD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <Button
+                android:layout_gravity="center"
                 android:id="@+id/dd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
                 android:background="@drawable/ic_btn_plus_dd"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
+                android:layout_marginTop="10dp"
                 style="@style/Text.H2"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Выбором" />
         </LinearLayout>
@@ -100,7 +107,8 @@
         android:id="@+id/help"
         style="@style/Text"
         android:layout_marginTop="40dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:text="Подсказка по типам характеристик"
         android:drawableEnd="@drawable/ic_baseline_help_outline_24"
