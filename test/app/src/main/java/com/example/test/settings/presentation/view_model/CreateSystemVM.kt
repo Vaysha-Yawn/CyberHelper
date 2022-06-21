@@ -35,8 +35,40 @@ class CreateSystemVM : ViewModel() {
     val templateCharacter = MutableLiveData(mutableListOf<Character>())
     //сохранение данных, прим.: нужно лучше сохранять данные, потому что создаать систему долго, возможно не за один заход
 
-    fun getListNameGroup() {
+    fun getListNameGroup(index:Int): MutableList<String?> {
+        val listGPTitle = mutableListOf<String?>()
+        for (gp in groups[index]){
+            listGPTitle.add(gp?.title)
+        }
+        return listGPTitle
+    }
 
+    fun getListsParamCharacter():Pair<MutableList<MutableList<String?>>, MutableList<String>>{
+        val list = mutableListOf<MutableList<String?>>()
+        val listTitle = mutableListOf<String>()
+
+        for (i in mapParamCharacter.toList()){
+            listTitle.add(i.first)
+            val listParamName = mutableListOf<String?>()
+            for (e in i.second){
+                when(e.first){
+                    STR -> {
+                        val param = characterParamsStr[e.second]
+                        listParamName.add(param.name)
+                    }
+                    NUM -> {
+                        val param = characterParamsNum[e.second]
+                        listParamName.add(param.name)
+                    }
+                    OPTIONS -> {
+                        val param = characterParamsOptions[e.second]
+                        listParamName.add(param.name)
+                    }
+                }
+            }
+            list.add(listParamName)
+        }
+        return Pair(list, listTitle)
     }
 
     fun getGroup(title: String): GroupParam? {

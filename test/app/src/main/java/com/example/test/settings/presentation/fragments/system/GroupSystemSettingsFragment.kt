@@ -16,13 +16,13 @@ import com.example.test.settings.presentation.fragments.system.subFragments.Edit
 import com.example.test.settings.presentation.view_model.CreateSystemVM
 
 
+// TODO при редактировании сразу после добавоения все туглы активируются
 class GroupSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
 
     private val createSystemVM: CreateSystemVM by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -53,22 +53,15 @@ class GroupSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                     object : CompactViewString.OnClickAdd {
                         override fun onClickAdd() {
                             createSystemVM.groups[index].add(null)
-                            // я хз почему, но listGroupNames отслеживает добавления и удаления элементов из groups самостоятельно
-                            //createSystemVM.listGroupNames[index].add(null)
-                            //Toast.makeText(requireContext(), "${createSystemVM.listGroupNames[index].size}", Toast.LENGTH_SHORT).show()
                         }
                     },
                     object : CompactViewString.OnClickDel {
                         override fun onClickDel(pos: Int) {
                             createSystemVM.groups[index].removeAt(pos)
-                            //createSystemVM.listGroupNames[index].removeAt(pos)
                         }
                     }
                 )
-                val listGPTitle = mutableListOf<String?>()
-                for (gp in createSystemVM.groups[index]){
-                    listGPTitle.add(gp?.title)
-                }
+                val listGPTitle = createSystemVM.getListNameGroup(index)
                 compactViewString.setData(listGPTitle)
             }
 

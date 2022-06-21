@@ -34,7 +34,7 @@ class ParamCharacterSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
         // заполнить группами и списками , если не заполнено
         for (i in createSystemVM.groups){
             for (e in i){
-                if (!createSystemVM.mapParamCharacter.keys.contains(e?.title)&& e!=null){
+                if (!createSystemVM.mapParamCharacter.keys.contains(e?.title)&& e!=null &&(e.prefStr || e.prefNum || e.prefDD)){
                     createSystemVM.mapParamCharacter[e.title] = mutableListOf()
                 }
             }
@@ -56,15 +56,17 @@ class ParamCharacterSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                 viewLifecycleOwner
             )
             val adapter = CVAdapterRV(
-                "Добавить тип предметов",
-                "Название типа предметов"
+                "Добавить характеристику",
+                "Название характеристики"
             )
             RV.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             RV.adapter = adapter
+
+            val pair = createSystemVM.getListsParamCharacter()
             adapter.setData(
-                createSystemVM.typesItems.values.toMutableList(),
-                createSystemVM.typesItems.keys.toMutableList(),
+                pair.first,
+                pair.second,
             )
 
             adapter.setStrListener(
@@ -139,7 +141,6 @@ class ParamCharacterSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                             //Toast с ошибкой
                         }
                     }
-
                 },
                 object : CVAdapterRV.OnStringDel {
                     override fun onDel(adapterPos: Int, editPos: Int, title: String) {
@@ -207,6 +208,10 @@ class ParamTypeDialogFragment(
     private val str: Boolean, private val num: Boolean, private val options: Boolean
 ) : DialogFragment() {
 
+    val OPTIONS:String = "OPTIONS"
+    val NUM:String = "NUMBER"
+    val STR:String = "STRING"
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -230,17 +235,17 @@ class ParamTypeDialogFragment(
             setVisible(options, linDD)
 
             string.setOnClickListener {
-                add.add("str")
+                add.add(STR)
                 dismiss()
             }
 
             number.setOnClickListener {
-                add.add("num")
+                add.add(NUM)
                 dismiss()
             }
 
             dd.setOnClickListener {
-                add.add("options")
+                add.add(OPTIONS)
                 dismiss()
             }
 
