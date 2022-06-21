@@ -57,6 +57,10 @@ class EditGroup : Fragment(), HeaderView.HeaderBack {
                 item.isChecked = prefItem
             }else{
                 group = GroupParam()
+                group.prefNum = false
+                group.prefDD = false
+                group.prefStr = false
+                group.prefItem = false
                 createSystemVM.groups[section].set(posInSec, group)
             }
 

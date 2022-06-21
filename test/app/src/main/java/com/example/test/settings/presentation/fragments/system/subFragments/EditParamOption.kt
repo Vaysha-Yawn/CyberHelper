@@ -75,7 +75,7 @@ class EditParamOption : Fragment(), HeaderView.HeaderBack {
             },
                 object : CompactViewEdit.OnClickAdd {
                     override fun onClickAdd() {
-                        // хз почему, но ничего добавлять не нужно
+                        // ничего добавлять не нужно
                     }
                 },
                 object : CompactViewEdit.OnClickDel {
