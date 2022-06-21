@@ -118,6 +118,18 @@
         <action
             android:id="@+id/action_paramItemSystemSettingsFragment_to_templateItemSystemSettingsFragment"
             app:destination="@id/templateItemSystemSettingsFragment" />
+        <action
+            android:id="@+id/action_paramItemSystemSettingsFragment_to_editParamStr"
+            app:destination="@id/editParamStr" />
+        <action
+            android:id="@+id/action_paramItemSystemSettingsFragment_to_editParamOption"
+            app:destination="@id/editParamOption" />
+        <action
+            android:id="@+id/action_paramItemSystemSettingsFragment_to_editParamNum"
+            app:destination="@id/editParamNum" />
+        <action
+            android:id="@+id/action_paramItemSystemSettingsFragment_to_tipTypeParam"
+            app:destination="@id/tipTypeParam" />
     </fragment>
     <fragment
         android:id="@+id/templateItemSystemSettingsFragment"

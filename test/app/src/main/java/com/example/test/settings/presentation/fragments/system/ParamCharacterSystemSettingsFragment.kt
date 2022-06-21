@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
 import com.example.test.character_list.presentation.adapters.CVAdapterRV
 import com.example.test.components.views.HeaderView
-import com.example.test.data_base.GroupParam
 import com.example.test.data_base.ParamNum
 import com.example.test.data_base.ParamOptions
 import com.example.test.data_base.ParamStr
@@ -79,8 +78,8 @@ class ParamCharacterSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                                     override fun add(type: String) {
                                         when (type) {
                                             createSystemVM.STR -> {
-                                                createSystemVM.characterParamsStr.add(ParamStr())
-                                                val pos = createSystemVM.characterParamsStr.size - 1
+                                                createSystemVM.paramsStr.add(ParamStr())
+                                                val pos = createSystemVM.paramsStr.size - 1
                                                 createSystemVM.mapParamCharacter[title]?.add(
                                                     Pair(
                                                         createSystemVM.STR,
@@ -93,8 +92,9 @@ class ParamCharacterSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                                                 )
                                             }
                                             createSystemVM.NUM -> {
-                                                createSystemVM.characterParamsNum.add(ParamNum())
-                                                val pos = createSystemVM.characterParamsNum.size - 1
+                                                createSystemVM.paramsNum.add(ParamNum())
+                                                val pos = createSystemVM.paramsNum.size - 1
+
                                                 createSystemVM.mapParamCharacter[title]?.add(
                                                     Pair(
                                                         createSystemVM.NUM,
@@ -107,11 +107,11 @@ class ParamCharacterSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                                                 )
                                             }
                                             createSystemVM.OPTIONS -> {
-                                                createSystemVM.characterParamsOptions.add(
+                                                createSystemVM.paramsOptions.add(
                                                     ParamOptions()
                                                 )
                                                 val pos =
-                                                    createSystemVM.characterParamsOptions.size - 1
+                                                    createSystemVM.paramsOptions.size - 1
                                                 createSystemVM.mapParamCharacter[title]?.add(
                                                     Pair(
                                                         createSystemVM.OPTIONS,
@@ -148,13 +148,13 @@ class ParamCharacterSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                         val i = createSystemVM.mapParamCharacter[title]?.get(editPos)
                         when(i?.first){
                             createSystemVM.STR->{
-                                createSystemVM.characterParamsStr.removeAt(i.second)
+                                createSystemVM.paramsStr.removeAt(i.second)
                             }
                             createSystemVM.NUM->{
-                                createSystemVM.characterParamsNum.removeAt(i.second)
+                                createSystemVM.paramsNum.removeAt(i.second)
                             }
                             createSystemVM.OPTIONS->{
-                                createSystemVM.characterParamsOptions.removeAt(i.second)
+                                createSystemVM.paramsOptions.removeAt(i.second)
                             }
                         }
                         createSystemVM.mapParamCharacter[title]?.removeAt(editPos)
@@ -163,24 +163,24 @@ class ParamCharacterSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                 },
                 object : CVAdapterRV.OnStringEdit {
                     override fun onEdit(adapterPos: Int, editPos: Int, title: String) {
-                        val pair = createSystemVM.mapParamCharacter[title]?.get(editPos)
-                        when (pair?.first) {
+                        val pairQ = createSystemVM.mapParamCharacter[title]?.get(editPos)
+                        when (pairQ?.first) {
                             createSystemVM.STR -> {
                                 view.findNavController().navigate(
                                     R.id.action_paramCharacterSystemSettingsFragment_to_editParamStr,
-                                    EditParamStr().getBundle( pair.second, title)
+                                    EditParamStr().getBundle( pairQ.second, title)
                                 )
                             }
                             createSystemVM.NUM -> {
                                 view.findNavController().navigate(
                                     R.id.action_paramCharacterSystemSettingsFragment_to_editParamNum,
-                                    EditParamNum().getBundle( pair.second, title)
+                                    EditParamNum().getBundle( pairQ.second, title)
                                 )
                             }
                             createSystemVM.OPTIONS -> {
                                 view.findNavController().navigate(
                                     R.id.action_paramCharacterSystemSettingsFragment_to_editParamOption,
-                                    EditParamOption().getBundle(  pair.second, title)
+                                    EditParamOption().getBundle(  pairQ.second, title)
                                 )
                             }
                         }

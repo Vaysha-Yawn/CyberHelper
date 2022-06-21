@@ -7,9 +7,9 @@ import io.realm.RealmList
 
 class CreateSystemVM : ViewModel() {
 
-    val OPTIONS:String = "OPTIONS"
-    val NUM:String = "NUMBER"
-    val STR:String = "STRING"
+    val OPTIONS: String = "OPTIONS"
+    val NUM: String = "NUMBER"
+    val STR: String = "STRING"
 
     // отображение, данные для RV
     var name = ""
@@ -24,44 +24,47 @@ class CreateSystemVM : ViewModel() {
 
     val typesItems = mutableMapOf<String, MutableList<String?>>()
 
-    val characterParamsNum = mutableListOf<ParamNum>()
-    val characterParamsStr = mutableListOf<ParamStr>()
-    val characterParamsOptions = mutableListOf<ParamOptions>()
+    val paramsNum = mutableListOf<ParamNum>()
+    val paramsStr = mutableListOf<ParamStr>()
+    val paramsOptions = mutableListOf<ParamOptions>()
+
+    // у такой системы со статическим указанием индексов есть один большой минус - при удалении индексы не сдвигаются
+
     val mapParamCharacter =
         mutableMapOf<String, MutableList<Pair<String, Int>>>()// где мапа название группы - пара(тип, позиция)
+    val mapParamItems = mutableListOf<Pair<String, Int>>()
 
-    val itemParams = MutableLiveData<MutableList<String>>(mutableListOf())
-    val templateItems = mutableMapOf<String, MutableLiveData<MutableList<String>>>()
-    val templateCharacter = MutableLiveData(mutableListOf<Character>())
+    val templateItems = mutableMapOf<String, MutableList<String>>()
+    val templateCharacter = mutableListOf<Character>()
     //сохранение данных, прим.: нужно лучше сохранять данные, потому что создаать систему долго, возможно не за один заход
 
-    fun getListNameGroup(index:Int): MutableList<String?> {
+    fun getListNameGroup(index: Int): MutableList<String?> {
         val listGPTitle = mutableListOf<String?>()
-        for (gp in groups[index]){
+        for (gp in groups[index]) {
             listGPTitle.add(gp?.title)
         }
         return listGPTitle
     }
 
-    fun getListsParamCharacter():Pair<MutableList<MutableList<String?>>, MutableList<String>>{
+    fun getListsParamCharacter(): Pair<MutableList<MutableList<String?>>, MutableList<String>> {
         val list = mutableListOf<MutableList<String?>>()
         val listTitle = mutableListOf<String>()
 
-        for (i in mapParamCharacter.toList()){
+        for (i in mapParamCharacter.toList()) {
             listTitle.add(i.first)
             val listParamName = mutableListOf<String?>()
-            for (e in i.second){
-                when(e.first){
+            for (e in i.second) {
+                when (e.first) {
                     STR -> {
-                        val param = characterParamsStr[e.second]
+                        val param = paramsStr[e.second]
                         listParamName.add(param.name)
                     }
                     NUM -> {
-                        val param = characterParamsNum[e.second]
+                        val param = paramsNum[e.second]
                         listParamName.add(param.name)
                     }
                     OPTIONS -> {
-                        val param = characterParamsOptions[e.second]
+                        val param = paramsOptions[e.second]
                         listParamName.add(param.name)
                     }
                 }
@@ -69,6 +72,27 @@ class CreateSystemVM : ViewModel() {
             list.add(listParamName)
         }
         return Pair(list, listTitle)
+    }
+
+    fun getListsParamItem(): MutableList<String?> {
+        val list = mutableListOf<String?>()
+        for (i in mapParamItems) {
+            when (i.first) {
+                STR -> {
+                    val param = paramsStr[i.second]
+                    list.add(param.name)
+                }
+                NUM -> {
+                    val param = paramsNum[i.second]
+                    list.add(param.name)
+                }
+                OPTIONS -> {
+                    val param = paramsOptions[i.second]
+                    list.add(param.name)
+                }
+            }
+        }
+        return list
     }
 
     fun getGroup(title: String): GroupParam? {

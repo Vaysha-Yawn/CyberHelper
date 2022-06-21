@@ -14,12 +14,7 @@ import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.components.views.CompactViewEdit
 import com.example.test.components.views.HeaderView
-import com.example.test.data_base.GroupParam
-import com.example.test.data_base.ParamOptions
-import com.example.test.data_base.ParamStr
-import com.example.test.databinding.EditGroupBinding
 import com.example.test.databinding.EditParamOptionsBinding
-import com.example.test.databinding.EditParamStringBinding
 import com.example.test.settings.presentation.view_model.CreateSystemVM
 
 
@@ -48,7 +43,7 @@ class EditParamOption : Fragment(), HeaderView.HeaderBack {
                 Toast.makeText(requireContext(), "Ошибка", Toast.LENGTH_SHORT).show()
                 view.findNavController().popBackStack()
             }
-            var param = createSystemVM.characterParamsOptions.get(posInSec)
+            var param = createSystemVM.paramsOptions.get(posInSec)
             val names = param.name
             val removables = param.removable
             val defMains = param.defMain
