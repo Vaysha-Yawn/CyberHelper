@@ -5,8 +5,6 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
 open class GroupParam(
-    @PrimaryKey
-    var id: Int = 0,
     var title: String = "",
     var attributes: GroupAttributes? = GroupAttributes(),
     // может убрать префы и ориентироваться на то есть ли лист даже пустой или он равен нулл?
