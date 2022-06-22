@@ -29,9 +29,6 @@ class SettingsMainFragment : Fragment(), HeaderView.HeaderBack {
                 view.findNavController().navigate(R.id.action_settingsMainFragment_to_settingFightType2)
             }
 
-            templateItem.setOnClickListener {
-                view.findNavController().navigate(R.id.action_settingsMainFragment_to_editTemplateItemFragment)
-            }
             templateCharacter
             header.setBack( true, this@SettingsMainFragment, requireActivity(), viewLifecycleOwner)
         }

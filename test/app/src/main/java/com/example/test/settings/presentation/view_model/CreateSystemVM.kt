@@ -34,7 +34,17 @@ class CreateSystemVM : ViewModel() {
         mutableMapOf<String, MutableList<Pair<String, Int>>>()// где мапа название группы - пара(тип, позиция)
     val mapParamItems = mutableListOf<Pair<String, Int>>()
 
-    val templateItems = mutableMapOf<String, MutableList<String>>()
+    val templateItems = mutableListOf<Item>(Item(
+        "name",
+        "description",
+    true,
+    RealmList(),
+    RealmList(),
+    RealmList(),
+    RealmList(),
+    RealmList(),
+    "group",
+    "type"))
     val templateCharacter = mutableListOf<Character>()
     //сохранение данных, прим.: нужно лучше сохранять данные, потому что создаать систему долго, возможно не за один заход
 

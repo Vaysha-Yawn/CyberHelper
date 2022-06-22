@@ -12,9 +12,6 @@
         <action
             android:id="@+id/action_settingsMainFragment_to_settingFightType2"
             app:destination="@id/settingFightType2" />
-        <action
-            android:id="@+id/action_settingsMainFragment_to_editTemplateItemFragment"
-            app:destination="@id/editTemplateItemFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFightType2"
@@ -23,14 +20,6 @@
         <action
             android:id="@+id/action_settingFightType2_self"
             app:destination="@id/settingFightType2" />
-    </fragment>
-    <fragment
-        android:id="@+id/editTemplateItemFragment"
-        android:name="com.example.test.settings.presentation.fragments.EditTemplateItemFragment"
-        android:label="EditTemplateItemFragment">
-        <action
-            android:id="@+id/action_editTemplateItemFragment_to_editItem"
-            app:destination="@id/editItem" />
     </fragment>
     <fragment
         android:id="@+id/editItem"
@@ -138,6 +127,9 @@
         <action
             android:id="@+id/action_templateItemSystemSettingsFragment_to_templateCharacterSystemSettingsFragment"
             app:destination="@id/templateCharacterSystemSettingsFragment" />
+        <action
+            android:id="@+id/action_templateItemSystemSettingsFragment_to_editItem"
+            app:destination="@id/editItem" />
     </fragment>
     <fragment
         android:id="@+id/templateCharacterSystemSettingsFragment"
