@@ -7,19 +7,33 @@ class DTemplateParamStr {
 
     val mapParamStr = mapOf<String, ParamStr>(
         "Имя персонажа" to ParamStr(
-            "Имя персонажа",
-            "",
+            name = "Имя персонажа",
+            value = "",
             removable = false,
-            "Базовые параметры",
-            false
+            forItemOrCharacter = false
         ),
-        "Название игры" to ParamStr("Название игры", "", removable = false),
-        "Семья" to ParamStr("Семья", "", removable = false, "Биография", false),
-        "Мотивация" to ParamStr("Мотивация", "", removable = false, "Биография", false),
+        "Название игры" to ParamStr(name = "Название игры", value = "", removable = false),
+        "Семья" to ParamStr(
+            name = "Семья",
+            value = "",
+            removable = false,
+            forItemOrCharacter = false
+        ),
+        "Мотивация" to ParamStr(
+            name = "Мотивация",
+            value = "",
+            removable = false,
+            forItemOrCharacter = false
+        ),
     )
 
     val mapParamStrItem = mapOf<String, ParamStr>(
-        "Особенность" to ParamStr("Особенность", "", removable = true, "", true),
+        "Особенность" to ParamStr(
+            name = "Особенность",
+            value = "",
+            removable = true,
+            forItemOrCharacter = true
+        ),
     )
 
     fun initParamStr(param: ParamStr, value: String): ParamStr {

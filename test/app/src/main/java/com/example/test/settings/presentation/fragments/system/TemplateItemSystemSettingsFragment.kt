@@ -13,25 +13,23 @@ import com.example.test.R
 import com.example.test.adapters.DropDownAdapterRV
 import com.example.test.databinding.FragmentTemplateItemSystemSettingsBinding
 import com.example.test.components.views.HeaderView
+import com.example.test.data_base.Item
 import com.example.test.databinding.CardAddOrChooseBinding
 import com.example.test.edit_fragments.EditItem
 import com.example.test.settings.presentation.view_model.CreateSystemVM
 
 
 class TemplateItemSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
-    // добавить добавление групп из листа груп
+
     // оптимизировать под эту задачу editItem
     private val createSystemVM: CreateSystemVM by activityViewModels()
-    private val options = mutableMapOf<String, MutableList<String>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        for (i in createSystemVM.templateItems) {
-            if (options[i.group] == null) {
-                options[i.group] = mutableListOf(i.name)
-            } else {
-                options[i.group]?.add(i.name)
-            }
+        // актуализация групп
+        // добавление
+        for (i in createSystemVM.groups){
+
         }
     }
 
@@ -45,7 +43,7 @@ class TemplateItemSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
             header.setBack(true, this@TemplateItemSystemSettingsFragment, requireActivity(), viewLifecycleOwner)
             RV.layoutManager =
                 LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
-            val adapterRV = AdapterRV(options)
+            val adapterRV = AdapterRV(createSystemVM.templateItems)
             RV.adapter = adapterRV
             next.setOnClickListener {
                 view.findNavController().navigate(R.id.action_templateItemSystemSettingsFragment_to_templateCharacterSystemSettingsFragment)
@@ -59,7 +57,7 @@ class TemplateItemSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
     }
 
     class AdapterRV(
-        private val list: MutableMap<String, MutableList<String>>
+        private val list: MutableMap<String, MutableList<Item>>
     ) :
         RecyclerView.Adapter<AdapterRVTemplateHolder>() {
 
@@ -85,16 +83,15 @@ class TemplateItemSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
 
     class AdapterRVTemplateHolder(
         private val view: View,
-        private val map: MutableMap<String, MutableList<String>>
+        private val map: MutableMap<String, MutableList<Item>>
     ) : RecyclerView.ViewHolder(view), DropDownAdapterRV.TemplateHolder.WhenValueTo {
         private val binding = CardAddOrChooseBinding.bind(view)
-        private lateinit var pair : Pair<String, MutableList<String>>
+        private lateinit var pair : Pair<String, MutableList<Item>>
         private lateinit var groupTitle :String
-        private lateinit var list :MutableList<String>
+        private var list = mutableListOf<String>()
         fun bind(pos: Int) = with(binding) {
             pair = map.toList()[pos]
             groupTitle = pair.first
-            list = pair.second
             title.text = groupTitle
             add.text = "Создать новый"
             chooseDD.setMainText("Редактировать существующий")
@@ -102,6 +99,9 @@ class TemplateItemSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                 val bundle = EditItem().getEditItemBundleForTemplate(groupTitle, -1, null, true)
                 view.findNavController()
                     .navigate(R.id.action_templateItemSystemSettingsFragment_to_editItem, bundle)
+            }
+            for (i in pair.second){
+                list.add(i.name)
             }
             chooseDD.setDDArrayAndListener(list, this@AdapterRVTemplateHolder, null)
         }

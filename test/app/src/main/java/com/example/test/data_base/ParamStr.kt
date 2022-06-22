@@ -1,16 +1,12 @@
 package com.example.test.data_base
 
-import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 
 open class ParamStr(
-    var name: String = "",
+    @PrimaryKey
+    var id: Int = 0,
+    override var name: String = "",
     var value: String = "",
-    var removable: Boolean = true, //   Можно ли его удалить
-    var currentGroup: String = "",
-    var forItemOrCharacter: Boolean = false, //  true - Item, false - Character
-): RealmObject(){
-    fun getCopy():ParamStr{
-        return realm.copyFromRealm(this)
-    }
-}
-
+    override var removable: Boolean = true, //   Можно ли его удалить
+    override var forItemOrCharacter: Boolean = false, //  true - Item, false - Character
+): Param()

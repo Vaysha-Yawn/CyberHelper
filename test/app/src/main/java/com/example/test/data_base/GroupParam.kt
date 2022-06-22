@@ -2,10 +2,14 @@ package com.example.test.data_base
 
 import io.realm.RealmList
 import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 
 open class GroupParam(
+    @PrimaryKey
+    var id: Int = 0,
     var title: String = "",
     var attributes: GroupAttributes? = GroupAttributes(),
+    // может убрать префы и ориентироваться на то есть ли лист даже пустой или он равен нулл?
     var prefNum:Boolean = true,
     var prefStr:Boolean = true,
     var prefDD:Boolean = true,
@@ -16,6 +20,7 @@ open class GroupAttributes(
     var listParamNum: RealmList<ParamNum>? = RealmList<ParamNum>(),
     var listParamStr: RealmList<ParamStr>? = RealmList<ParamStr>(),
     var listParamOptions: RealmList<ParamOptions>? = RealmList<ParamOptions>(),
+    var listTypeItem: RealmList<String>? = RealmList<String>(),
     var listItem: RealmList<Item>? = RealmList<Item>(),
 ) : RealmObject()
 

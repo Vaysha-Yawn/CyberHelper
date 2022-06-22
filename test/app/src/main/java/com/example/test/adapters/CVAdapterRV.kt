@@ -1,19 +1,14 @@
-package com.example.test.character_list.presentation.adapters
+package com.example.test.adapters
 
 
-import android.annotation.SuppressLint
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.components.views.CompactViewEdit
 import com.example.test.components.views.CompactViewString
-import com.example.test.data_base.ParamNum
 import com.example.test.databinding.CardCvEditBinding
-import io.realm.RealmList
 
 
 class CVAdapterRV(private var addText: String, private var hint: String) :
@@ -24,19 +19,19 @@ class CVAdapterRV(private var addText: String, private var hint: String) :
     private var list = mutableListOf<MutableList<String?>>()
     private var listTitle = mutableListOf<String>()
 
-    private var objEdit: CVAdapterRV.OnEdit? = null
-    private var objStrAdd: CVAdapterRV.OnStringAdd? = null
-    private var objStrDel: CVAdapterRV.OnStringDel? = null
-    private var objStrEdit: CVAdapterRV.OnStringEdit? = null
+    private var objEdit: OnEdit? = null
+    private var objStrAdd: OnStringAdd? = null
+    private var objStrDel: OnStringDel? = null
+    private var objStrEdit: OnStringEdit? = null
 
 
     class TemplateHolder(
         private val view: View,
         private val type: Boolean,
-        private var objEdit: CVAdapterRV.OnEdit? = null,
-        private var objStrAdd: CVAdapterRV.OnStringAdd? = null,
-        private var objStrDel: CVAdapterRV.OnStringDel? = null,
-        private var objStrEdit: CVAdapterRV.OnStringEdit? = null,
+        private var objEdit: OnEdit? = null,
+        private var objStrAdd: OnStringAdd? = null,
+        private var objStrDel: OnStringDel? = null,
+        private var objStrEdit: OnStringEdit? = null,
         private var hint: String,
         private var addText: String
     ) :
@@ -51,7 +46,7 @@ class CVAdapterRV(private var addText: String, private var hint: String) :
                         str.setListener(object : CompactViewString.OnClickEdit {
                             override fun onClickEdit(posEdit: Int) {
                                 if (objStrEdit != null) {
-                                    objStrEdit!!.onEdit(adapterPosition, posEdit, title)
+                                    objStrEdit!!.onEdit(adapterPosition, posEdit,)
                                 }
                             }
                         },
@@ -65,7 +60,7 @@ class CVAdapterRV(private var addText: String, private var hint: String) :
                             object : CompactViewString.OnClickDel {
                                 override fun onClickDel(pos: Int) {
                                     if (objStrDel != null) {
-                                        objStrDel!!.onDel(adapterPosition, pos, title)
+                                        objStrDel!!.onDel(adapterPosition, pos, )
                                     }
                                 }
                             })
@@ -85,7 +80,7 @@ class CVAdapterRV(private var addText: String, private var hint: String) :
                                 text: String,
                             ) {
                                 if (objEdit != null) {
-                                    objEdit!!.onEdit(adapterPosition, posEdit, title, text)
+                                    objEdit!!.onEdit(adapterPosition, posEdit, text)
                                 }
                             }
                         })
@@ -135,9 +130,9 @@ class CVAdapterRV(private var addText: String, private var hint: String) :
     }
 
     fun setStrListener(
-        objStrAdd: CVAdapterRV.OnStringAdd? = null,
-        objStrDel: CVAdapterRV.OnStringDel? = null,
-        objStrEdit: CVAdapterRV.OnStringEdit? = null,
+        objStrAdd: OnStringAdd? = null,
+        objStrDel: OnStringDel? = null,
+        objStrEdit: OnStringEdit? = null,
     ) {
         type = true
         this.objStrAdd = objStrAdd
@@ -146,25 +141,25 @@ class CVAdapterRV(private var addText: String, private var hint: String) :
         notifyDataSetChanged()
     }
 
-    fun setEditListener(objEdit: CVAdapterRV.OnEdit? = null) {
+    fun setEditListener(objEdit: OnEdit? = null) {
         type = false
         this.objEdit = objEdit
         notifyDataSetChanged()
     }
 
     interface OnEdit {
-        fun onEdit(adapterPos: Int, editPos: Int, title: String, text: String)
+        fun onEdit(adapterPos: Int, editPos: Int, idGroup: Int, text: String)
     }
 
     interface OnStringEdit {
-        fun onEdit(adapterPos: Int, editPos: Int, title: String)
+        fun onEdit(adapterPos: Int, editPos: Int, idGroup: Int)
     }
 
     interface OnStringAdd {
-        fun onAdd(adapterPos: Int, title: String)
+        fun onAdd(adapterPos: Int, idGroup: Int)
     }
 
     interface OnStringDel {
-        fun onDel(adapterPos: Int, editPos: Int, title: String)
+        fun onDel(adapterPos: Int, editPos: Int, idGroup: Int)
     }
 }

@@ -9,12 +9,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
-import com.example.test.character_list.presentation.adapters.CVAdapterRV
-import com.example.test.components.views.CompactViewEdit
-import com.example.test.components.views.CompactViewString
+import com.example.test.adapters.CVAdapterRV
 import com.example.test.databinding.FragmentTypeItemsSystemSettingsBinding
-import com.example.test.viewModels.GameSystemDAO
-import com.example.test.settings.presentation.view_model.SystemSettingsVM
 import com.example.test.components.views.HeaderView
 import com.example.test.settings.presentation.view_model.CreateSystemVM
 
@@ -75,7 +71,7 @@ class TypeItemSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                     override fun onEdit(
                         adapterPos: Int,
                         editPos: Int,
-                        title: String,
+                        idGroup: Int,
                         text: String
                     ) {
                         createSystemVM.typesItems[title]?.set(editPos, text)

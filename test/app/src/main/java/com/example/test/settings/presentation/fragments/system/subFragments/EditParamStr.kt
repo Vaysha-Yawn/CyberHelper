@@ -20,15 +20,15 @@ import com.example.test.settings.presentation.view_model.CreateSystemVM
 class EditParamStr : Fragment(), HeaderView.HeaderBack {
 
     private val createSystemVM: CreateSystemVM by activityViewModels()
-    private var posInSec = -1
-    private var groupTitle = ""
+    private var idParam = -1
+    private var idGroup = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        posInSec = arguments?.getInt("posInSec") ?: -1
-        groupTitle = arguments?.getString("groupTitle") ?: ""
-        Log.e("e", " position $posInSec")
+        idParam = arguments?.getInt("idParam") ?: -1
+        idGroup = arguments?.getInt("groupTitle") ?: -1
+        //Log.e("e", " position $idParam")
     }
 
     override fun onCreateView(
@@ -39,7 +39,7 @@ class EditParamStr : Fragment(), HeaderView.HeaderBack {
         val binding = EditParamStringBinding.bind(view)
         with(binding) {
             header.setBack(true, this@EditParamStr, requireActivity(), viewLifecycleOwner)
-            if (posInSec == -1 ||  groupTitle=="") {
+            if (idParam == -1 ||  idGroup==-1) {
                 Toast.makeText(requireContext(), "Ошибка", Toast.LENGTH_SHORT).show()
                 view.findNavController().popBackStack()
             }
@@ -68,10 +68,10 @@ class EditParamStr : Fragment(), HeaderView.HeaderBack {
         view?.findNavController()?.popBackStack()
     }
 
-    fun getBundle( posInSec:Int, groupTitle:String):Bundle{
+    fun getBundle( idParam:Int, idGroup: Int):Bundle{
         val bundle = Bundle()
-        bundle.putInt("posInSec", posInSec)
-        bundle.putString("groupTitle", groupTitle)
+        bundle.putInt("idParam", idParam)
+        bundle.putInt("idGroup", idGroup)
         return bundle
     }
 

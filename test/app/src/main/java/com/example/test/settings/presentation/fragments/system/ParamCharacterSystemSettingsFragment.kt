@@ -11,11 +11,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
-import com.example.test.character_list.presentation.adapters.CVAdapterRV
+import com.example.test.adapters.CVAdapterRV
 import com.example.test.components.views.HeaderView
 import com.example.test.data_base.ParamNum
 import com.example.test.data_base.ParamOptions
-import com.example.test.data_base.ParamStr
 import com.example.test.databinding.ChooseTypeParamBinding
 import com.example.test.databinding.FragmentParamsCharacterSystemSettingsBinding
 import com.example.test.settings.presentation.fragments.system.subFragments.EditParamNum
@@ -30,14 +29,6 @@ class ParamCharacterSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // заполнить группами и списками , если не заполнено
-        for (i in createSystemVM.groups){
-            for (e in i){
-                if (!createSystemVM.mapParamCharacter.keys.contains(e?.title)&& e!=null &&(e.prefStr || e.prefNum || e.prefDD)){
-                    createSystemVM.mapParamCharacter[e.title] = mutableListOf()
-                }
-            }
-        }
     }
 
     override fun onCreateView(
@@ -70,57 +61,50 @@ class ParamCharacterSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
 
             adapter.setStrListener(
                 object : CVAdapterRV.OnStringAdd {
-                    override fun onAdd(adapterPos: Int, title: String) {
-                        val group = createSystemVM.getGroup(title)
+                    override fun onAdd(adapterPos: Int, idGroup: Int) {
+                        val group = createSystemVM.getGroup(idGroup)
                         if (group != null && (group.prefStr || group.prefNum || group.prefDD)) {
                             val dialogFragment = ParamTypeDialogFragment(
                                 object : ParamTypeDialogFragment.Add {
                                     override fun add(type: String) {
                                         when (type) {
                                             createSystemVM.STR -> {
-                                                createSystemVM.paramsStr.add(ParamStr())
-                                                val pos = createSystemVM.paramsStr.size - 1
-                                                createSystemVM.mapParamCharacter[title]?.add(
-                                                    Pair(
-                                                        createSystemVM.STR,
-                                                        pos
-                                                    )
-                                                )
+                                                val idParam = createSystemVM.addParamCharacter(type, idGroup)
                                                 view.findNavController().navigate(
                                                     R.id.action_paramCharacterSystemSettingsFragment_to_editParamStr,
-                                                    EditParamStr().getBundle( pos, title)
+                                                    EditParamStr().getBundle( idParam, title)
                                                 )
                                             }
                                             createSystemVM.NUM -> {
                                                 createSystemVM.paramsNum.add(ParamNum())
-                                                val pos = createSystemVM.paramsNum.size - 1
+                                                val idParam = createSystemVM.paramsNum.size - 1
 
                                                 createSystemVM.mapParamCharacter[title]?.add(
                                                     Pair(
                                                         createSystemVM.NUM,
-                                                        pos
+                                                        idParam
                                                     )
                                                 )
                                                 view.findNavController().navigate(
                                                     R.id.action_paramCharacterSystemSettingsFragment_to_editParamNum,
-                                                    EditParamNum().getBundle(pos, title)
+                                                    EditParamNum().getBundle(idParam, title)
                                                 )
                                             }
                                             createSystemVM.OPTIONS -> {
                                                 createSystemVM.paramsOptions.add(
                                                     ParamOptions()
                                                 )
-                                                val pos =
+                                                val idParam =
                                                     createSystemVM.paramsOptions.size - 1
                                                 createSystemVM.mapParamCharacter[title]?.add(
                                                     Pair(
                                                         createSystemVM.OPTIONS,
-                                                        pos
+                                                        idParam
                                                     )
                                                 )
                                                 view.findNavController().navigate(
                                                     R.id.action_paramCharacterSystemSettingsFragment_to_editParamOption,
-                                                    EditParamOption().getBundle( pos, title)
+                                                    EditParamOption().getBundle( idParam, title)
                                                 )
                                             }
                                         }
@@ -143,7 +127,7 @@ class ParamCharacterSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                     }
                 },
                 object : CVAdapterRV.OnStringDel {
-                    override fun onDel(adapterPos: Int, editPos: Int, title: String) {
+                    override fun onDel(adapterPos: Int, editPos: Int, idGroup: Int) {
                         // нам нужно удалить в группе и в листе
                         val i = createSystemVM.mapParamCharacter[title]?.get(editPos)
                         when(i?.first){
@@ -162,7 +146,7 @@ class ParamCharacterSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
 
                 },
                 object : CVAdapterRV.OnStringEdit {
-                    override fun onEdit(adapterPos: Int, editPos: Int, title: String) {
+                    override fun onEdit(adapterPos: Int, editPos: Int, idGroup: Int) {
                         val pairQ = createSystemVM.mapParamCharacter[title]?.get(editPos)
                         when (pairQ?.first) {
                             createSystemVM.STR -> {

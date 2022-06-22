@@ -21,30 +21,10 @@ class CreateSystemVM : ViewModel() {
         mutableListOf(),
         mutableListOf(),
     )
+    // GroupParam содержит атрибуты, которые содержат параметры персонажей, типы предметов и шаблоны предметов
 
-    val typesItems = mutableMapOf<String, MutableList<String?>>()
-
-    val paramsNum = mutableListOf<ParamNum>()
-    val paramsStr = mutableListOf<ParamStr>()
-    val paramsOptions = mutableListOf<ParamOptions>()
-
-    // у такой системы со статическим указанием индексов есть один большой минус - при удалении индексы не сдвигаются
-
-    val mapParamCharacter =
-        mutableMapOf<String, MutableList<Pair<String, Int>>>()// где мапа название группы - пара(тип, позиция)
     val mapParamItems = mutableListOf<Pair<String, Int>>()
 
-    val templateItems = mutableListOf<Item>(Item(
-        "name",
-        "description",
-    true,
-    RealmList(),
-    RealmList(),
-    RealmList(),
-    RealmList(),
-    RealmList(),
-    "group",
-    "type"))
     val templateCharacter = mutableListOf<Character>()
     //сохранение данных, прим.: нужно лучше сохранять данные, потому что создаать систему долго, возможно не за один заход
 
@@ -56,6 +36,7 @@ class CreateSystemVM : ViewModel() {
         return listGPTitle
     }
 
+    // эфта функция используется в ParamCharacterSystemSettingsFragment
     fun getListsParamCharacter(): Pair<MutableList<MutableList<String?>>, MutableList<String>> {
         val list = mutableListOf<MutableList<String?>>()
         val listTitle = mutableListOf<String>()
@@ -84,6 +65,48 @@ class CreateSystemVM : ViewModel() {
         return Pair(list, listTitle)
     }
 
+    // эта функция используется в ParamCharacterSystemSettingsFragment
+    // она получает на вход один из трех типов параметров персонажа (см консты в этом файле) и идентификатор группы
+    // и возвращает идентификатор нового параметра
+    fun addParamCharacter(type: String, idGroup:Int):Int{
+        when (type) {
+            STR -> {
+                createSystemVM.paramsStr.add(ParamStr())
+                val pos = createSystemVM.paramsStr.size - 1
+                createSystemVM.mapParamCharacter[title]?.add(
+                    Pair(
+                        createSystemVM.STR,
+                        pos
+                    )
+                )
+            }
+            NUM -> {
+                createSystemVM.paramsNum.add(ParamNum())
+                val pos = createSystemVM.paramsNum.size - 1
+
+                createSystemVM.mapParamCharacter[title]?.add(
+                    Pair(
+                        createSystemVM.NUM,
+                        pos
+                    )
+                )
+            }
+            OPTIONS -> {
+                createSystemVM.paramsOptions.add(
+                    ParamOptions()
+                )
+                val pos =
+                    createSystemVM.paramsOptions.size - 1
+                createSystemVM.mapParamCharacter[title]?.add(
+                    Pair(
+                        createSystemVM.OPTIONS,
+                        pos
+                    )
+                )
+            }
+        }
+    }
+
     fun getListsParamItem(): MutableList<String?> {
         val list = mutableListOf<String?>()
         for (i in mapParamItems) {
@@ -105,11 +128,24 @@ class CreateSystemVM : ViewModel() {
         return list
     }
 
-    fun getGroup(title: String): GroupParam? {
+    fun getGroup(idGroup: Int): GroupParam? {
         var gp: GroupParam? = null
         for (i in groups) {
             for (e in i) {
-                if (e?.title == title) {
+                if (e?.id == idGroup) {
+                    gp = e
+                    return e
+                }
+            }
+        }
+        return gp
+    }
+
+    fun getParamStr(idGroup: Int, idParam): GroupParam? {
+        var gp: GroupParam? = null
+        for (i in groups) {
+            for (e in i) {
+                if (e?.id == idGroup) {
                     gp = e
                     return e
                 }

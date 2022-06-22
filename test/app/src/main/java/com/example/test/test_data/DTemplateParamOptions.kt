@@ -7,65 +7,65 @@ import io.realm.RealmList
 class DTemplateParamOptions {
     val mapParamOptions = mapOf<String, ParamOptions>(
         "Пол" to ParamOptions(
-            "Пол",
-            "",
-            false,
-            "Выберите пол",
-            RealmList<String>("Мужской", "Женский"),
-            "Базовые параметры",
-            false
+            name = "Пол",
+            value = "",
+            removable = false,
+            defMain = "Выберите пол",
+            options = RealmList<String>("Мужской", "Женский"),
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
         ),
         "Роль" to ParamOptions(
-            "Роль",
-            "",
-            false,
-            "Выберите роль",
-            RealmList<String>("Рокер", "Соло", "Нетраннер", "Кочевник", "Техник", "Фиксер"),
-            "Базовые параметры",
-            false
+            name = "Роль",
+            value = "",
+            removable = false,
+            defMain = "Выберите роль",
+            options = RealmList<String>("Рокер", "Соло", "Нетраннер", "Кочевник", "Техник", "Фиксер"),
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
         ),
         "Значимость" to ParamOptions(
-            "Значимость",
-            "",
-            false,
-            "Выберите значимость",
-            RealmList<String>("Главный герой", "Второстепенный герой"),
-            "Базовые параметры", false
+            name = "Значимость",
+            value = "",
+            removable = false,
+            defMain = "Выберите значимость",
+            options = RealmList<String>("Главный герой", "Второстепенный герой"),
+            currentGroup = "Базовые параметры", forItemOrCharacter = false
         ),
     )
 
     val mapParamOptionsItem = mapOf<String, ParamOptions>(
         "Тип программы" to ParamOptions(
-            "Тип программы",
-            "",
-            true,
-            "Выберите тип программы",
-            RealmList<String>(
+            name = "Тип программы",
+            value = "",
+            removable = true,
+            defMain = "Выберите тип программы",
+            options = RealmList<String>(
                 "Усиление",
                 "Нападение",
                 "Защита",
                 "Противонетраннерский",
                 "Противопрограммный"
-            ), "", true
+            ), currentGroup = "", forItemOrCharacter = true
         ),
     )
 
     val mapParamOptionsSupporting = mapOf<String, ParamOptions>(
         "Тип оружия" to ParamOptions(
-            "Тип оружия",
-            "",
-            false,
-            "Выберите тип оружия",
-            RealmList<String>("Ближний бой", "Дальний бой", "Автоматический огонь", "Взрывчатка"),
-            "",
-            true
+            name = "Тип оружия",
+            value = "",
+            removable = false,
+            defMain = "Выберите тип оружия",
+            options = RealmList<String>("Ближний бой", "Дальний бой", "Автоматический огонь", "Взрывчатка"),
+            currentGroup = "",
+            forItemOrCharacter = true
         ),
         "Способность" to ParamOptions(
-            "Способность",
-            "",
-            false,
-            "Выберите способность",
-            RealmList<String>(
+            name = "Способность",
+            value = "",
+            removable = false,
+            defMain = "Выберите способность",
+            options = RealmList<String>(
                 "Детектор",
                 "Лазейка",
                 "Следопыт",
@@ -76,14 +76,14 @@ class DTemplateParamOptions {
                 "Вирус",
                 "Маскировка"
             ),
-            "", true
+            currentGroup = "", forItemOrCharacter = true
         ),
         "Проверка по навыку" to ParamOptions(
-            "Проверка по навыку",
-            "",
-            false,
-            "Выберите навык",
-            RealmList<String>(
+            name = "Проверка по навыку",
+            value = "",
+            removable = false,
+            defMain = "Выберите навык",
+            options = RealmList<String>(
                 "Внимательность",
                 "Выслеживание",
                 "Образование",
@@ -95,7 +95,7 @@ class DTemplateParamOptions {
                 "Атлетика",
                 "Скрытность",
             ),
-            "", true
+            currentGroup = "", forItemOrCharacter = true
         ),
     )
 

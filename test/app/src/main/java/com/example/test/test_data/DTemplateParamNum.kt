@@ -8,8 +8,20 @@ class DTemplateParamNum {
     val realm = Realm.getDefaultInstance()
 
     val mapSampleParamNum = mutableMapOf<String, ParamNum>(
-        "Параметр" to ParamNum("Параметр", 0, true, 10, 0),
-        "Навык" to ParamNum("Навык", 0, true, 10, 0),
+        "Параметр" to ParamNum(
+            name = "Параметр",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0
+        ),
+        "Навык" to ParamNum(
+            name = "Навык",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0
+        ),
     )
 
     fun initParamNumBySample(nameSample: String, nameParam: String): ParamNum {
@@ -21,85 +33,413 @@ class DTemplateParamNum {
     }
 
     val mapParamNum = mutableMapOf<String, ParamNum>(
-        "Здоровье" to ParamNum("Здоровье", 0, false, 100, 0, "Базовые параметры", false),
+        "Здоровье" to ParamNum(
+            name = "Здоровье",
+            value = 0,
+            removable = false,
+            maxValue = 100,
+            minValue = 0,
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
+        ),
         "Тяжелое ранение" to ParamNum(
-            "Тяжелое ранение",
-            0,
-            false,
-            50,
-            0,
-            "Базовые параметры",
-            false
+            name = "Тяжелое ранение",
+            value = 0,
+            removable = false,
+            maxValue = 50,
+            minValue = 0,
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
         ),
         "Испытание против смерти" to ParamNum(
-            "Испытание против смерти",
-            0,
-            false,
-            10,
-            0,
-            "Базовые параметры", false
+            name = "Испытание против смерти",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Базовые параметры", forItemOrCharacter = false
         ),
 
-        "Возраст" to ParamNum("Возраст", 0, false, null, 0, "Базовые параметры", false),
+        "Возраст" to ParamNum(
+            name = "Возраст",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
+        ),
 
         "Деньги, евробаксы" to ParamNum(
-            "Деньги, евробаксы",
-            0,
-            false,
-            null,
-            0,
-            "Базовые параметры", false
+            name = "Деньги, евробаксы",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Базовые параметры", forItemOrCharacter = false
         ),
 
-        "Броня для головы" to ParamNum("Броня для головы", 0, false, null, 0, "Броня", false),
-        "Броня для тела" to ParamNum("Броня для тела", 0, false, null, 0, "Броня", false),
+        "Броня для головы" to ParamNum(
+            name = "Броня для головы",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Броня",
+            forItemOrCharacter = false
+        ),
+        "Броня для тела" to ParamNum(
+            name = "Броня для тела",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Броня",
+            forItemOrCharacter = false
+        ),
 
-        "Интеллект" to ParamNum("Интеллект", 0, false, 10, 0, "Параметры", false),
-        "Воля" to ParamNum("Воля", 0, false, 10, 0, "Параметры", false),
-        "Харизма" to ParamNum("Харизма", 0, false, 10, 0, "Параметры", false),
-        "Эмпатия" to ParamNum("Эмпатия", 0, false, 10, 0, "Параметры", false),
-        "Техника" to ParamNum("Техника", 0, false, 10, 0, "Параметры", false),
-        "Реакция" to ParamNum("Реакция", 0, false, 10, 0, "Параметры", false),
-        "Удача" to ParamNum("Удача", 0, false, 10, 0, "Параметры", false),
-        "Телосложение" to ParamNum("Телосложение", 0, false, 10, 0, "Параметры", false),
-        "Ловкость" to ParamNum("Ловкость", 0, false, 10, 0, "Параметры", false),
-        "Скорость" to ParamNum("Скорость", 0, false, 10, 0, "Параметры", false),
+        "Интеллект" to ParamNum(
+            name = "Интеллект",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        "Воля" to ParamNum(
+            name = "Воля",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        "Харизма" to ParamNum(
+            name = "Харизма",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        "Эмпатия" to ParamNum(
+            name = "Эмпатия",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        "Техника" to ParamNum(
+            name = "Техника",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        "Реакция" to ParamNum(
+            name = "Реакция",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        "Удача" to ParamNum(
+            name = "Удача",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        "Телосложение" to ParamNum(
+            name = "Телосложение",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        "Ловкость" to ParamNum(
+            name = "Ловкость",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        "Скорость" to ParamNum(
+            name = "Скорость",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
 
-        "Внимательность" to ParamNum("Внимательность", 0, true, 10, 0, "Навыки", false),
-        "Выслеживание" to ParamNum("Выслеживание", 0, true, 10, 0, "Навыки", false),
-        "Образование" to ParamNum("Образование", 0, true, 10, 0, "Навыки", false),
-        "Знание местности" to ParamNum("Знание местности", 0, true, 10, 0, "Навыки", false),
-        "Интерфейс" to ParamNum("Интерфейс", 0, true, 10, 0, "Навыки", false),
-        "Стрельба" to ParamNum("Стрельба", 0, true, 10, 0, "Навыки", false),
-        "Вождение" to ParamNum("Вождение", 0, true, 10, 0, "Навыки", false),
-        "Уклонение" to ParamNum("Уклонение", 0, true, 10, 0, "Навыки", false),
-        "Атлетика" to ParamNum("Атлетика", 0, true, 10, 0, "Навыки", false),
-        "Скрытность" to ParamNum("Скрытность", 0, true, 10, 0, "Навыки", false),
-        "Рукопашный бой" to ParamNum("Рукопашный бой", 0, true, 10, 0, "Навыки", false),
-        "Оружие ближнего боя" to ParamNum("Оружие ближнего боя", 0, true, 10, 0, "Навыки", false),
-        "Знание техники" to ParamNum("Знание техники", 0, true, 10, 0, "Навыки", false),
-        "Кибертехника" to ParamNum("Кибертехника", 0, true, 10, 0, "Навыки", false),
-        "Первая помощь" to ParamNum("Первая помощь", 0, true, 10, 0, "Навыки", false),
-        "Подкуп" to ParamNum("Подкуп", 0, true, 10, 0, "Навыки", false),
-        "Допрос" to ParamNum("Допрос", 0, true, 10, 0, "Навыки", false),
-        "Убеждение" to ParamNum("Убеждение", 0, true, 10, 0, "Навыки", false),
-        "Концентрация" to ParamNum("Концентрация", 0, true, 10, 0, "Навыки", false),
-        "Общение" to ParamNum("Общение", 0, true, 10, 0, "Навыки", false),
-        "Проницательность" to ParamNum("Проницательность", 0, true, 10, 0, "Навыки", false),
-        "Игра на инструменте" to ParamNum("Игра на инструменте", 0, true, 10, 0, "Навыки", false),
+        "Внимательность" to ParamNum(
+            name = "Внимательность",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Выслеживание" to ParamNum(
+            name = "Выслеживание",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Образование" to ParamNum(
+            name = "Образование",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Знание местности" to ParamNum(
+            name = "Знание местности",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Интерфейс" to ParamNum(
+            name = "Интерфейс",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Стрельба" to ParamNum(
+            name = "Стрельба",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Вождение" to ParamNum(
+            name = "Вождение",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Уклонение" to ParamNum(
+            name = "Уклонение",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Атлетика" to ParamNum(
+            name = "Атлетика",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Скрытность" to ParamNum(
+            name = "Скрытность",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Рукопашный бой" to ParamNum(
+            name = "Рукопашный бой",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Оружие ближнего боя" to ParamNum(
+            name = "Оружие ближнего боя",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Знание техники" to ParamNum(
+            name = "Знание техники",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Кибертехника" to ParamNum(
+            name = "Кибертехника",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Первая помощь" to ParamNum(
+            name = "Первая помощь",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Подкуп" to ParamNum(
+            name = "Подкуп",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Допрос" to ParamNum(
+            name = "Допрос",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Убеждение" to ParamNum(
+            name = "Убеждение",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Концентрация" to ParamNum(
+            name = "Концентрация",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Общение" to ParamNum(
+            name = "Общение",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Проницательность" to ParamNum(
+            name = "Проницательность",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        "Игра на инструменте" to ParamNum(
+            name = "Игра на инструменте",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
 
-        "Итого репутация" to ParamNum("Итого репутация", 0, false, null, 0, "Репутация", false),
+        "Итого репутация" to ParamNum(
+            name = "Итого репутация",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Репутация",
+            forItemOrCharacter = false
+        ),
     )
 
     val mapParamNumItem = mutableMapOf<String, ParamNum>(
-        "Атака программы" to ParamNum("Атака программы", 0, false, 10, 0, "", true),
-        "Защита программы" to ParamNum("Защита программы", 0, false, 10, 0, "", true),
-        "Установка программы" to ParamNum("Установка программы", 0, false, 10, 0, "", true),
-        "Внимательность программы" to ParamNum(
-            "Внимательность программы", 0,
-            false, 10, 0, "", true
+        "Атака программы" to ParamNum(
+            name = "Атака программы",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "",
+            forItemOrCharacter = true
         ),
-        "Скорость программы" to ParamNum("Скорость программы", 0, false, 10, 0, "", true),
+        "Защита программы" to ParamNum(
+            name = "Защита программы",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "",
+            forItemOrCharacter = true
+        ),
+        "Установка программы" to ParamNum(
+            name = "Установка программы",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "",
+            forItemOrCharacter = true
+        ),
+        "Внимательность программы" to ParamNum(
+            name = "Внимательность программы", value = 0,
+            removable = false, maxValue = 10, minValue = 0, currentGroup = "", forItemOrCharacter = true
+        ),
+        "Скорость программы" to ParamNum(
+            name = "Скорость программы",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "",
+            forItemOrCharacter = true
+        ),
     )
 
     fun initParamNum(param: ParamNum, value: Int): ParamNum {

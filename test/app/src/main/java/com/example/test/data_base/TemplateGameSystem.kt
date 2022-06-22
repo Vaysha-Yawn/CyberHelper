@@ -137,124 +137,448 @@ class TemplateGameSystem {
         ),
     )
     val paramNumCyberPuckSystem = RealmList<ParamNum>(
-        ParamNum("Здоровье", 0, false, 100, 0, "Базовые параметры", false),
-        ParamNum("Тяжелое ранение", 0, false, 50, 0, "Базовые параметры", false),
         ParamNum(
-            "Испытание против смерти",
-            0,
-            false,
-            10,
-            0,
-            "Базовые параметры", false
+            name = "Здоровье",
+            value = 0,
+            removable = false,
+            maxValue = 100,
+            minValue = 0,
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Тяжелое ранение",
+            value = 0,
+            removable = false,
+            maxValue = 50,
+            minValue = 0,
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Испытание против смерти",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Базовые параметры", forItemOrCharacter = false
         ),
 
-        ParamNum("Возраст", 0, false, null, 0, "Базовые параметры", false),
-
         ParamNum(
-            "Деньги, евробаксы",
-            0,
-            false,
-            null,
-            0,
-            "Базовые параметры", false
+            name = "Возраст",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
         ),
 
-        ParamNum("Броня для головы", 0, false, null, 0, "Броня", false),
-        ParamNum("Броня для тела", 0, false, null, 0, "Броня", false),
+        ParamNum(
+            name = "Деньги, евробаксы",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Базовые параметры", forItemOrCharacter = false
+        ),
 
-        ParamNum("Интеллект", 0, false, 10, 0, "Параметры", false),
-        ParamNum("Воля", 0, false, 10, 0, "Параметры", false),
-        ParamNum("Эмпатия", 0, false, 10, 0, "Параметры", false),
-        ParamNum("Харизма", 0, false, 10, 0, "Параметры", false),
-        ParamNum("Техника", 0, false, 10, 0, "Параметры", false),
-        ParamNum("Реакция", 0, false, 10, 0, "Параметры", false),
-        ParamNum("Удача", 0, false, 10, 0, "Параметры", false),
-        ParamNum("Телосложение", 0, false, 10, 0, "Параметры", false),
-        ParamNum("Ловкость", 0, false, 10, 0, "Параметры", false),
-        ParamNum("Скорость", 0, false, 10, 0, "Параметры", false),
+        ParamNum(
+            name = "Броня для головы",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Броня",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Броня для тела",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Броня",
+            forItemOrCharacter = false
+        ),
 
-        ParamNum("Внимательность", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Выслеживание", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Образование", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Знание местности", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Интерфейс", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Стрельба", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Вождение", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Уклонение", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Атлетика", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Скрытность", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Рукопашный бой", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Оружие ближнего боя", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Знание техники", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Кибертехника", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Первая помощь", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Подкуп", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Допрос", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Убеждение", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Концентрация", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Общение", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Проницательность", 0, true, 10, 0, "Навыки", false),
-        ParamNum("Игра на инструменте", 0, true, 10, 0, "Навыки", false),
+        ParamNum(
+            name = "Интеллект",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Воля",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Эмпатия",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Харизма",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Техника",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Реакция",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Удача",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Телосложение",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Ловкость",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Скорость",
+            value = 0,
+            removable = false,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
 
-        ParamNum("Итого репутация", 0, false, null, 0, "Репутация", false),
+        ParamNum(
+            name = "Внимательность",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Выслеживание",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Образование",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Знание местности",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Интерфейс",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Стрельба",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Вождение",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Уклонение",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Атлетика",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Скрытность",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Рукопашный бой",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Оружие ближнего боя",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Знание техники",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Кибертехника",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Первая помощь",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Подкуп",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Допрос",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Убеждение",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Концентрация",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Общение",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Проницательность",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Игра на инструменте",
+            value = 0,
+            removable = true,
+            maxValue = 10,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+
+        ParamNum(
+            name = "Итого репутация",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Репутация",
+            forItemOrCharacter = false
+        ),
     )
 
     val paramOptionsCyberPuckSystem = RealmList<ParamOptions>(
         ParamOptions(
-            "Тип оружия",
-            "",
-            false,
-            "Выберите тип оружия",
-            RealmList<String>("Ближний бой", "Дальний бой", "Автоматический огонь", "Взрывчатка"),
-            "",
-            true
+            name = "Тип оружия",
+            value = "",
+            removable = false,
+            defMain = "Выберите тип оружия",
+            options = RealmList<String>("Ближний бой", "Дальний бой", "Автоматический огонь", "Взрывчатка"),
+            currentGroup = "",
+            forItemOrCharacter = true
         ),
         ParamOptions(
-            "Тип программы",
-            "",
-            true,
-            "Выберите тип программы",
-            RealmList<String>(
+            name = "Тип программы",
+            value = "",
+            removable = true,
+            defMain = "Выберите тип программы",
+            options = RealmList<String>(
                 "Усиление",
                 "Нападение",
                 "Защита",
                 "Противонетраннерский",
                 "Противопрограммный"
-            ), "", true
+            ), currentGroup = "", forItemOrCharacter = true
         ),
         ParamOptions(
-            "Значимость",
-            "",
-            false,
-            "Выберите значимость",
-            RealmList<String>("Главный герой", "Второстепенный герой"),
-            "Базовые параметры", false
+            name = "Значимость",
+            value = "",
+            removable = false,
+            defMain = "Выберите значимость",
+            options = RealmList<String>("Главный герой", "Второстепенный герой"),
+            currentGroup = "Базовые параметры", forItemOrCharacter = false
         ),
         ParamOptions(
-            "Роль",
-            "",
-            false,
-            "Выберите роль",
-            RealmList<String>("Рокер", "Соло", "Нетраннер", "Кочевник", "Техник", "Фиксер"),
-            "Базовые параметры",
-            false
+            name = "Роль",
+            value = "",
+            removable = false,
+            defMain = "Выберите роль",
+            options = RealmList<String>("Рокер", "Соло", "Нетраннер", "Кочевник", "Техник", "Фиксер"),
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
         ),
         ParamOptions(
-            "Пол",
-            "",
-            false,
-            "Выберите пол",
-            RealmList<String>("Мужской", "Женский"),
-            "Базовые параметры",
-            false
+            name = "Пол",
+            value = "",
+            removable = false,
+            defMain = "Выберите пол",
+            options = RealmList<String>("Мужской", "Женский"),
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
         ),
     )
     val paramStrCyberPuckSystem = RealmList<ParamStr>(
-        ParamStr("Имя персонажа", "", removable = false, "Базовые параметры", false),
-        ParamStr("Название игры", "", removable = false),
-        ParamStr("Семья", "", removable = false, "Биография", false),
-        ParamStr("Мотивация", "", removable = false, "Биография", false),
-        ParamStr("Особенность", "", removable = true, "", true),
+        ParamStr(
+            name = "Имя персонажа",
+            value = "",
+            removable = false,
+            forItemOrCharacter = false
+        ),
+        ParamStr(name = "Название игры", value = "", removable = false),
+        ParamStr(
+            name = "Семья",
+            value = "",
+            removable = false,
+            forItemOrCharacter = false
+        ),
+        ParamStr(
+            name = "Мотивация",
+            value = "",
+            removable = false,
+            forItemOrCharacter = false
+        ),
+        ParamStr(
+            name = "Особенность",
+            value = "",
+            removable = true,
+            forItemOrCharacter = true
+        ),
     )
 
     val cyberPuckSystem = GameSystem(
@@ -395,73 +719,417 @@ class TemplateGameSystem {
 
     /////// дозаполнять
     val paramNumDnDSystem = RealmList<ParamNum>(
-        ParamNum("Возраст", 0, false, null, 0, "Базовые параметры", false),
-        ParamNum("Уровень", 0, false, null, 0, "Базовые параметры", false),
-        ParamNum("Опыт", 0, false, null, 0, "Базовые параметры", false),
+        ParamNum(
+            name = "Возраст",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Уровень",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Опыт",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
+        ),
 
-        ParamNum("Вдохновение", 0, false, null, 0, "Базовые параметры", false),
-        ParamNum("Бонус мастерства", 0, false, null, 0, "Базовые параметры", false),
+        ParamNum(
+            name = "Вдохновение",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Бонус мастерства",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
+        ),
 
-        ParamNum("Текущие хиты", 0, false, null, 0, "Базовые параметры", false),
-        ParamNum("Временные хиты", 0, false, null, 0, "Базовые параметры", false),
-        ParamNum("Максимальные хиты", 0, false, null, 0, "Базовые параметры", false),
-        ParamNum("Бонус к инициативе", 0, false, null, 0, "Базовые параметры", false),
-        ParamNum("Скорость", 0, false, null, 0, "Базовые параметры", false),
+        ParamNum(
+            name = "Текущие хиты",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Временные хиты",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Максимальные хиты",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Бонус к инициативе",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Скорость",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
+        ),
 
-        ParamNum("Класс доспеха", 0, false, null, 0, "Базовые параметры", false),
+        ParamNum(
+            name = "Класс доспеха",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
+        ),
 
-        ParamNum("Сила", 0, false, null, 0, "Параметры", false),
-        ParamNum("Ловкость", 0, false, null, 0, "Параметры", false),
-        ParamNum("Телосложение", 0, false, null, 0, "Параметры", false),
-        ParamNum("Интеллект", 0, false, null, 0, "Параметры", false),
-        ParamNum("Мудрость", 0, false, null, 0, "Параметры", false),
-        ParamNum("Харизма", 0, false, null, 0, "Параметры", false),
+        ParamNum(
+            name = "Сила",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Ловкость",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Телосложение",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Интеллект",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Мудрость",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Харизма",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Параметры",
+            forItemOrCharacter = false
+        ),
 
-        ParamNum("Сила спасбросок", 0, false, null, 0, "Спасброски", false),
-        ParamNum("Ловкость спасбросок", 0, false, null, 0, "Спасброски", false),
-        ParamNum("Телосложение спасбросок", 0, false, null, 0, "Спасброски", false),
-        ParamNum("Интеллект спасбросок", 0, false, null, 0, "Спасброски", false),
-        ParamNum("Мудрость спасбросок", 0, false, null, 0, "Спасброски", false),
-        ParamNum("Харизма спасбросок", 0, false, null, 0, "Спасброски", false),
+        ParamNum(
+            name = "Сила спасбросок",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Спасброски",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Ловкость спасбросок",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Спасброски",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Телосложение спасбросок",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Спасброски",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Интеллект спасбросок",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Спасброски",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Мудрость спасбросок",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Спасброски",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Харизма спасбросок",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Спасброски",
+            forItemOrCharacter = false
+        ),
 
-        ParamNum("Акробатика", 0, false, 30, 0, "Навыки", false),
-        ParamNum("Анализ", 0, false, 30, 0, "Навыки", false),
-        ParamNum("Атлетика", 0, false, 30, 0, "Навыки", false),
-        ParamNum("Внимательность", 0, false, 30, 0, "Навыки", false),
-        ParamNum("Выживание", 0, false, 30, 0, "Навыки", false),
-        ParamNum("Выступление", 0, false, 30, 0, "Навыки", false),
-        ParamNum("Запугивание", 0, false, 30, 0, "Навыки", false),
-        ParamNum("Истроия", 0, false, 30, 0, "Навыки", false),
-        ParamNum("Ловкость рук", 0, false, 30, 0, "Навыки", false),
-        ParamNum("Магия", 0, false, 30, 0, "Навыки", false),
-        ParamNum("Проницательность", 0, false, 30, 0, "Навыки", false),
-        ParamNum("Религия", 0, false, 30, 0, "Навыки", false),
-        ParamNum("Скрытность", 0, false, 30, 0, "Навыки", false),
-        ParamNum("Убеждение", 0, false, 30, 0, "Навыки", false),
-        ParamNum("Уход за животными", 0, false, 30, 0, "Навыки", false),
+        ParamNum(
+            name = "Акробатика",
+            value = 0,
+            removable = false,
+            maxValue = 30,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Анализ",
+            value = 0,
+            removable = false,
+            maxValue = 30,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Атлетика",
+            value = 0,
+            removable = false,
+            maxValue = 30,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Внимательность",
+            value = 0,
+            removable = false,
+            maxValue = 30,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Выживание",
+            value = 0,
+            removable = false,
+            maxValue = 30,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Выступление",
+            value = 0,
+            removable = false,
+            maxValue = 30,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Запугивание",
+            value = 0,
+            removable = false,
+            maxValue = 30,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Истроия",
+            value = 0,
+            removable = false,
+            maxValue = 30,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Ловкость рук",
+            value = 0,
+            removable = false,
+            maxValue = 30,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Магия",
+            value = 0,
+            removable = false,
+            maxValue = 30,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Проницательность",
+            value = 0,
+            removable = false,
+            maxValue = 30,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Религия",
+            value = 0,
+            removable = false,
+            maxValue = 30,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Скрытность",
+            value = 0,
+            removable = false,
+            maxValue = 30,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Убеждение",
+            value = 0,
+            removable = false,
+            maxValue = 30,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Уход за животными",
+            value = 0,
+            removable = false,
+            maxValue = 30,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
 
-        ParamNum("Пассивная мудрость(внимательность)", 0, false, null, 0, "Навыки", false),
-        ParamNum("Медные", 0, false, null, 0, "Деньги", false),
-        ParamNum("Серебрянные", 0, false, null, 0, "Деньги", false),
-        ParamNum("Золотые", 0, false, null, 0, "Деньги", false),
-        ParamNum("Платиновые", 0, false, null, 0, "Деньги", false),
+        ParamNum(
+            name = "Пассивная мудрость(внимательность)",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Навыки",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Медные",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Деньги",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Серебрянные",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Деньги",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Золотые",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Деньги",
+            forItemOrCharacter = false
+        ),
+        ParamNum(
+            name = "Платиновые",
+            value = 0,
+            removable = false,
+            maxValue = null,
+            minValue = 0,
+            currentGroup = "Деньги",
+            forItemOrCharacter = false
+        ),
     )
 
     val paramOptionsDnDSystem = RealmList<ParamOptions>(
         ParamOptions(
-            "Значимость",
-            "",
-            false,
-            "Выберите значимость",
-            RealmList<String>("Главный герой", "Второстепенный герой"),
-            "Базовые параметры", false
+            name = "Значимость",
+            value = "",
+            removable = false,
+            defMain = "Выберите значимость",
+            options = RealmList<String>("Главный герой", "Второстепенный герой"),
+            currentGroup = "Базовые параметры", forItemOrCharacter = false
         ),
         ParamOptions(
-            "Класс",
-            "",
-            false,
-            "Выберите класс",
-            RealmList<String>(
+            name = "Класс",
+            value = "",
+            removable = false,
+            defMain = "Выберите класс",
+            options = RealmList<String>(
                 "Колдун",
                 "Бард",
                 "Варвар",
@@ -476,24 +1144,24 @@ class TemplateGameSystem {
                 "Следопыт",
                 "Чародей"
             ),
-            "Базовые параметры",
-            false
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
         ),
         ParamOptions(
-            "Пол",
-            "",
-            false,
-            "Выберите пол",
-            RealmList<String>("Мужской", "Женский"),
-            "Базовые параметры",
-            false
+            name = "Пол",
+            value = "",
+            removable = false,
+            defMain = "Выберите пол",
+            options = RealmList<String>("Мужской", "Женский"),
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
         ),
         ParamOptions(
-            "Раса",
-            "",
-            false,
-            "Выберите класс",
-            RealmList<String>(
+            name = "Раса",
+            value = "",
+            removable = false,
+            defMain = "Выберите класс",
+            options = RealmList<String>(
                 "Эльф",
                 "Дварф",
                 "Гном",
@@ -506,15 +1174,15 @@ class TemplateGameSystem {
                 "Дженази",
                 "Полуорк"
             ),
-            "Базовые параметры",
-            false
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
         ),
         ParamOptions(
-            "Мировоззрение",
-            "",
-            false,
-            "Выберите мировоззрение",
-            RealmList<String>(
+            name = "Мировоззрение",
+            value = "",
+            removable = false,
+            defMain = "Выберите мировоззрение",
+            options = RealmList<String>(
                 "Законопослушный-добрый",
                 "Законопослушный-нейтральный",
                 "Законопослушный-злой",
@@ -525,19 +1193,49 @@ class TemplateGameSystem {
                 "Хаотично-нейтральный",
                 "Хаотично-злой"
             ),
-            "Базовые параметры",
-            false
+            currentGroup = "Базовые параметры",
+            forItemOrCharacter = false
         ),
     )
 
     val paramStrDnDSystem = RealmList<ParamStr>(
-        ParamStr("Имя персонажа", "", removable = false, "Базовые параметры", false),
-        ParamStr("Название игры", "", removable = false),
-        ParamStr("Кость хитов", "1д6", removable = false, "Базовые параметры", false),
-        ParamStr("Черты характера", "", removable = false, "Биография", false),
-        ParamStr("Идеалы", "", removable = false, "Биография", false),
-        ParamStr("Привязанности", "", removable = false, "Биография", false),
-        ParamStr("Слабости", "", removable = false, "Биография", false),
+        ParamStr(
+            name = "Имя персонажа",
+            value = "",
+            removable = false,
+            forItemOrCharacter = false
+        ),
+        ParamStr(name = "Название игры", value = "", removable = false),
+        ParamStr(
+            name = "Кость хитов",
+            value = "1д6",
+            removable = false,
+            forItemOrCharacter = false
+        ),
+        ParamStr(
+            name = "Черты характера",
+            value = "",
+            removable = false,
+            forItemOrCharacter = false
+        ),
+        ParamStr(
+            name = "Идеалы",
+            value = "",
+            removable = false,
+            forItemOrCharacter = false
+        ),
+        ParamStr(
+            name = "Привязанности",
+            value = "",
+            removable = false,
+            forItemOrCharacter = false
+        ),
+        ParamStr(
+            name = "Слабости",
+            value = "",
+            removable = false,
+            forItemOrCharacter = false
+        ),
     )
 
 
