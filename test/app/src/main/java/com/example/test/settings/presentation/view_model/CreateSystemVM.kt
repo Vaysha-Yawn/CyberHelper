@@ -3,6 +3,7 @@ package com.example.test.settings.presentation.view_model
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.test.data_base.*
+import io.realm.Realm
 import io.realm.RealmList
 
 class CreateSystemVM : ViewModel() {
@@ -10,6 +11,8 @@ class CreateSystemVM : ViewModel() {
     val OPTIONS: String = "OPTIONS"
     val NUM: String = "NUMBER"
     val STR: String = "STRING"
+
+    private val realm = Realm.getDefaultInstance()
 
     // отображение, данные для RV
     var name = ""
@@ -23,7 +26,9 @@ class CreateSystemVM : ViewModel() {
     )
     // GroupParam содержит атрибуты, которые содержат параметры персонажей, типы предметов и шаблоны предметов
 
-    val mapParamItems = mutableListOf<Pair<String, Int>>()
+    val listParamItemsStr = mutableListOf<ParamStr>()
+    val listParamItemsOptions = mutableListOf<ParamOptions>()
+    val listParamItemsNum = mutableListOf<ParamNum>()
 
     val templateCharacter = mutableListOf<Character>()
     //сохранение данных, прим.: нужно лучше сохранять данные, потому что создаать систему долго, возможно не за один заход
@@ -36,122 +41,153 @@ class CreateSystemVM : ViewModel() {
         return listGPTitle
     }
 
-    // эфта функция используется в ParamCharacterSystemSettingsFragment
+
+    fun getGroup(title: String): GroupParam? {
+        var gp: GroupParam? = null
+        for (i in groups) {
+            for (e in i) {
+                if (e?.title == title) {
+                    gp = e
+                    return e
+                }
+            }
+        }
+        return gp
+    }
+
+    fun getParamStr(titleGroup: String, idParam: Int): ParamStr? {
+        var param: ParamStr? = null
+        val group = getGroup(titleGroup)
+        if (group?.attributes?.listParamStr != null) {
+            for (i in group.attributes!!.listParamStr!!) {
+                if (i.id == idParam) {
+                    param = i
+                }
+            }
+        }
+        return param
+    }
+
+    fun getParamNum(titleGroup: String, idParam: Int): ParamNum? {
+        var param: ParamNum? = null
+        val group = getGroup(titleGroup)
+        if (group?.attributes?.listParamNum != null) {
+            for (i in group.attributes!!.listParamNum!!) {
+                if (i.id == idParam) {
+                    param = i
+                }
+            }
+        }
+        return param
+    }
+
+    fun getParamOption(titleGroup: String, idParam: Int): ParamOptions? {
+        var param: ParamOptions? = null
+        val group = getGroup(titleGroup)
+        if (group?.attributes?.listParamOptions != null) {
+            for (i in group.attributes!!.listParamOptions!!) {
+                if (i.id == idParam) {
+                    param = i
+                }
+            }
+        }
+        return param
+    }
+
+    // эта функция используется в ParamCharacterSystemSettingsFragment
+    // нам нужен 2 MutableList<String>> - лист названий групп, которые подходят для параетров персонажа
+    // нам нужен 1 MutableList<MutableList<String?>> - лист с листами названий параметров
     fun getListsParamCharacter(): Pair<MutableList<MutableList<String?>>, MutableList<String>> {
         val list = mutableListOf<MutableList<String?>>()
         val listTitle = mutableListOf<String>()
-
-        for (i in mapParamCharacter.toList()) {
-            listTitle.add(i.first)
-            val listParamName = mutableListOf<String?>()
-            for (e in i.second) {
-                when (e.first) {
-                    STR -> {
-                        val param = paramsStr[e.second]
-                        listParamName.add(param.name)
+        for (i in groups) {
+            for (group in i) {
+                if (group != null && (group.prefDD || group.prefNum || group.prefStr)) {
+                    listTitle.add(group.title)
+                    val lists = mutableListOf<String?>()
+                    for (str in group.attributes?.listParamStr!!) {
+                        lists.add(str.name)
                     }
-                    NUM -> {
-                        val param = paramsNum[e.second]
-                        listParamName.add(param.name)
+                    for (num in group.attributes?.listParamNum!!) {
+                        lists.add(num.name)
                     }
-                    OPTIONS -> {
-                        val param = paramsOptions[e.second]
-                        listParamName.add(param.name)
+                    for (options in group.attributes?.listParamOptions!!) {
+                        lists.add(options.name)
                     }
                 }
             }
-            list.add(listParamName)
         }
         return Pair(list, listTitle)
     }
 
     // эта функция используется в ParamCharacterSystemSettingsFragment
     // она получает на вход один из трех типов параметров персонажа (см консты в этом файле) и идентификатор группы
-    // и возвращает идентификатор нового параметра
-    fun addParamCharacter(type: String, idGroup:Int):Int{
+    // и возвращает id нового параметра
+    fun getNewIdParam(type: String): Int {
+        var id = 0
         when (type) {
             STR -> {
-                createSystemVM.paramsStr.add(ParamStr())
-                val pos = createSystemVM.paramsStr.size - 1
-                createSystemVM.mapParamCharacter[title]?.add(
-                    Pair(
-                        createSystemVM.STR,
-                        pos
-                    )
-                )
-            }
-            NUM -> {
-                createSystemVM.paramsNum.add(ParamNum())
-                val pos = createSystemVM.paramsNum.size - 1
-
-                createSystemVM.mapParamCharacter[title]?.add(
-                    Pair(
-                        createSystemVM.NUM,
-                        pos
-                    )
-                )
+                id = (realm.where(ParamStr::class.java).max("id")?.toInt() ?: 0) + 1
             }
             OPTIONS -> {
-                createSystemVM.paramsOptions.add(
-                    ParamOptions()
-                )
-                val pos =
-                    createSystemVM.paramsOptions.size - 1
-                createSystemVM.mapParamCharacter[title]?.add(
-                    Pair(
-                        createSystemVM.OPTIONS,
-                        pos
-                    )
-                )
+                id = (realm.where(ParamOptions::class.java).max("id")?.toInt() ?: 0) + 1
+            }
+            NUM -> {
+                id = (realm.where(ParamNum::class.java).max("id")?.toInt() ?: 0) + 1
+            }
+        }
+        return id
+
+    }
+
+    fun addParamCharacter(type: String, titleGroup: String): Int {
+        val id = getNewIdParam(type)
+        when (type) {
+            STR -> {
+                val list = getGroup(titleGroup)?.attributes?.listParamStr
+                list?.add(ParamStr(id))
+            }
+            NUM -> {
+                val list = getGroup(titleGroup)?.attributes?.listParamNum
+                list?.add(ParamNum(id))
+            }
+            OPTIONS -> {
+                val list = getGroup(titleGroup)?.attributes?.listParamOptions
+                list?.add(ParamOptions(id))
+            }
+        }
+        return id
+    }
+
+    fun delParamCharacter(title: String, idParam: Int, type: String){
+        when (type) {
+            STR -> {
+                val param = getParamStr(title, idParam)
+                getGroup(title)?.attributes?.listParamStr?.remove(param)
+            }
+            NUM -> {
+                val param = getParamNum(title, idParam)
+                getGroup(title)?.attributes?.listParamNum?.remove(param)
+            }
+            OPTIONS -> {
+                val param = getParamOption(title, idParam)
+                getGroup(title)?.attributes?.listParamOptions?.remove(param)
             }
         }
     }
 
     fun getListsParamItem(): MutableList<String?> {
         val list = mutableListOf<String?>()
-        for (i in mapParamItems) {
-            when (i.first) {
-                STR -> {
-                    val param = paramsStr[i.second]
-                    list.add(param.name)
-                }
-                NUM -> {
-                    val param = paramsNum[i.second]
-                    list.add(param.name)
-                }
-                OPTIONS -> {
-                    val param = paramsOptions[i.second]
-                    list.add(param.name)
-                }
-            }
+        for (str in listParamItemsStr) {
+            list.add(str.name)
+        }
+        for (num in listParamItemsNum) {
+            list.add(num.name)
+        }
+        for (options in listParamItemsOptions) {
+            list.add(options.name)
         }
         return list
-    }
-
-    fun getGroup(idGroup: Int): GroupParam? {
-        var gp: GroupParam? = null
-        for (i in groups) {
-            for (e in i) {
-                if (e?.id == idGroup) {
-                    gp = e
-                    return e
-                }
-            }
-        }
-        return gp
-    }
-
-    fun getParamStr(idGroup: Int, idParam): GroupParam? {
-        var gp: GroupParam? = null
-        for (i in groups) {
-            for (e in i) {
-                if (e?.id == idGroup) {
-                    gp = e
-                    return e
-                }
-            }
-        }
-        return gp
     }
 
 

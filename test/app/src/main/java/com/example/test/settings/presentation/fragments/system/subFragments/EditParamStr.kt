@@ -20,15 +20,13 @@ import com.example.test.settings.presentation.view_model.CreateSystemVM
 class EditParamStr : Fragment(), HeaderView.HeaderBack {
 
     private val createSystemVM: CreateSystemVM by activityViewModels()
-    private var idParam = -1
-    private var idGroup = -1
+    private var pos = -1
+    private var tileGroup = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        idParam = arguments?.getInt("idParam") ?: -1
-        idGroup = arguments?.getInt("groupTitle") ?: -1
-        //Log.e("e", " position $idParam")
+        pos = arguments?.getInt("pos") ?: -1
+        tileGroup = arguments?.getString("tileGroup") ?: ""
     }
 
     override fun onCreateView(
@@ -39,21 +37,23 @@ class EditParamStr : Fragment(), HeaderView.HeaderBack {
         val binding = EditParamStringBinding.bind(view)
         with(binding) {
             header.setBack(true, this@EditParamStr, requireActivity(), viewLifecycleOwner)
-            if (idParam == -1 ||  idGroup==-1) {
+            if (pos == -1 ||  tileGroup=="") {
                 Toast.makeText(requireContext(), "Ошибка", Toast.LENGTH_SHORT).show()
                 view.findNavController().popBackStack()
             }
-            var param = createSystemVM.paramsStr.get(posInSec)
-            val names = param.name
-            val removables = param.removable
-            (name as TextView).text = names
-            removable.isChecked = removables
+            val param = createSystemVM.getParamStr(tileGroup, pos)
+            if (param!=null){
+                val names = param.name
+                val removables = param.removable
+                (name as TextView).text = names
+                removable.isChecked = removables
+            }
 
             name.doOnTextChanged { text, start, before, count ->
-                param.name = text.toString()
+                param?.name = text.toString()
             }
             removable.setOnClickListener {
-                param.removable = removable.isChecked
+                param?.removable = removable.isChecked
             }
 
             next.setOnClickListener {
@@ -68,10 +68,10 @@ class EditParamStr : Fragment(), HeaderView.HeaderBack {
         view?.findNavController()?.popBackStack()
     }
 
-    fun getBundle( idParam:Int, idGroup: Int):Bundle{
+    fun getBundle( pos:Int, tileGroup: String):Bundle{
         val bundle = Bundle()
-        bundle.putInt("idParam", idParam)
-        bundle.putInt("idGroup", idGroup)
+        bundle.putInt("pos", pos)
+        bundle.putString("tileGroup", tileGroup)
         return bundle
     }
 

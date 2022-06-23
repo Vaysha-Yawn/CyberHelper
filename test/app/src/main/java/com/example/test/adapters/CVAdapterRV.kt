@@ -46,7 +46,7 @@ class CVAdapterRV(private var addText: String, private var hint: String) :
                         str.setListener(object : CompactViewString.OnClickEdit {
                             override fun onClickEdit(posEdit: Int) {
                                 if (objStrEdit != null) {
-                                    objStrEdit!!.onEdit(adapterPosition, posEdit,)
+                                    objStrEdit!!.onEdit(adapterPosition, posEdit,title)
                                 }
                             }
                         },
@@ -60,7 +60,7 @@ class CVAdapterRV(private var addText: String, private var hint: String) :
                             object : CompactViewString.OnClickDel {
                                 override fun onClickDel(pos: Int) {
                                     if (objStrDel != null) {
-                                        objStrDel!!.onDel(adapterPosition, pos, )
+                                        objStrDel!!.onDel(adapterPosition, pos, title)
                                     }
                                 }
                             })
@@ -80,7 +80,7 @@ class CVAdapterRV(private var addText: String, private var hint: String) :
                                 text: String,
                             ) {
                                 if (objEdit != null) {
-                                    objEdit!!.onEdit(adapterPosition, posEdit, text)
+                                    objEdit!!.onEdit(adapterPosition, posEdit, text, title)
                                 }
                             }
                         })
@@ -148,18 +148,18 @@ class CVAdapterRV(private var addText: String, private var hint: String) :
     }
 
     interface OnEdit {
-        fun onEdit(adapterPos: Int, editPos: Int, idGroup: Int, text: String)
+        fun onEdit(adapterPos: Int, editPos: Int, title: String, text: String)
     }
 
     interface OnStringEdit {
-        fun onEdit(adapterPos: Int, editPos: Int, idGroup: Int)
+        fun onEdit(adapterPos: Int, editPos: Int, title: String)
     }
 
     interface OnStringAdd {
-        fun onAdd(adapterPos: Int, idGroup: Int)
+        fun onAdd(adapterPos: Int, title: String)
     }
 
     interface OnStringDel {
-        fun onDel(adapterPos: Int, editPos: Int, idGroup: Int)
+        fun onDel(adapterPos: Int, editPos: Int, title: String)
     }
 }
