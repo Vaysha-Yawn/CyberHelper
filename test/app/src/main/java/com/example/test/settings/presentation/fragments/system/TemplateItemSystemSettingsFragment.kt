@@ -26,11 +26,7 @@ class TemplateItemSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // актуализация групп
-        // добавление
-        for (i in createSystemVM.groups){
 
-        }
     }
 
     override fun onCreateView(
@@ -43,7 +39,7 @@ class TemplateItemSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
             header.setBack(true, this@TemplateItemSystemSettingsFragment, requireActivity(), viewLifecycleOwner)
             RV.layoutManager =
                 LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
-            val adapterRV = AdapterRV(createSystemVM.templateItems)
+            val adapterRV = AdapterRV(createSystemVM.getMapTemplateItem())
             RV.adapter = adapterRV
             next.setOnClickListener {
                 view.findNavController().navigate(R.id.action_templateItemSystemSettingsFragment_to_templateCharacterSystemSettingsFragment)

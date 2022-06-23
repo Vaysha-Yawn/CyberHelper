@@ -181,6 +181,22 @@ class CreateSystemVM : ViewModel() {
         }
     }
 
+    fun getMapTemplateItem():MutableMap<String, MutableList<Item>>{
+        val map = mutableMapOf<String, MutableList<Item>>()
+        for (i in groups){
+            for(group in i){
+                if (group!=null && group.prefItem && group.attributes?.listItem!=null){
+                    val list = mutableListOf<Item>()
+                    for (item in group.attributes!!.listItem!!){
+                        list.add(item)
+                    }
+                    map[group.title] = list
+                }
+            }
+        }
+        return map
+    }
+
     fun getListsParamItem(): MutableList<String?> {
         val list = mutableListOf<String?>()
         for (str in listParamItemsStr) {
