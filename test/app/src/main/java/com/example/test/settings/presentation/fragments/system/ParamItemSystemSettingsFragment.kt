@@ -42,11 +42,17 @@ class ParamItemSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                 requireActivity(),
                 viewLifecycleOwner
             )
-            CV.setData(createSystemVM.getListsParamItem())
+            val pairList = createSystemVM.getListsParamItem()
+
+            fun getPair(posEdit:Int):Pair<String, Int>{
+                return pairList.second[posEdit]
+            }
+
+            CV.setData(pairList.first)
             CV.setListener(
                 object : CompactViewString.OnClickEdit {
                     override fun onClickEdit(posEdit: Int) {
-                        val pairQ = createSystemVM.mapParamItems[posEdit]
+                        val pairQ = getPair(posEdit)
                         when (pairQ.first) {
                             createSystemVM.STR -> {
                                 view.findNavController().navigate(
@@ -74,50 +80,24 @@ class ParamItemSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                         val dialogFragment = ParamTypeDialogFragment(
                             object : ParamTypeDialogFragment.Add {
                                 override fun add(type: String) {
+                                    val id = createSystemVM.addParamItem(type)
                                     when (type) {
                                         createSystemVM.STR -> {
-                                            createSystemVM.paramsStr.add(ParamStr())
-                                            val pos = createSystemVM.paramsStr.size - 1
-                                            createSystemVM.mapParamItems.add(
-                                                Pair(
-                                                    createSystemVM.STR,
-                                                    pos
-                                                )
-                                            )
                                             view.findNavController().navigate(
                                                 R.id.action_paramItemSystemSettingsFragment_to_editParamStr,
-                                                EditParamStr().getBundle(pos, Title)
+                                                EditParamStr().getBundle(id, Title)
                                             )
                                         }
                                         createSystemVM.NUM -> {
-                                            createSystemVM.paramsNum.add(ParamNum())
-                                            val pos = createSystemVM.paramsNum.size - 1
-                                            createSystemVM.mapParamItems.add(
-                                                Pair(
-                                                    createSystemVM.NUM,
-                                                    pos
-                                                )
-                                            )
                                             view.findNavController().navigate(
                                                 R.id.action_paramItemSystemSettingsFragment_to_editParamNum,
-                                                EditParamNum().getBundle(pos, Title)
+                                                EditParamNum().getBundle(id, Title)
                                             )
                                         }
                                         createSystemVM.OPTIONS -> {
-                                            createSystemVM.paramsOptions.add(
-                                                ParamOptions()
-                                            )
-                                            val pos =
-                                                createSystemVM.paramsOptions.size - 1
-                                            createSystemVM.mapParamItems.add(
-                                                Pair(
-                                                    createSystemVM.OPTIONS,
-                                                    pos
-                                                )
-                                            )
                                             view.findNavController().navigate(
                                                 R.id.action_paramItemSystemSettingsFragment_to_editParamOption,
-                                                EditParamOption().getBundle(pos, Title)
+                                                EditParamOption().getBundle(id, Title)
                                             )
                                         }
                                     }
@@ -138,19 +118,8 @@ class ParamItemSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                 },
                 object : CompactViewString.OnClickDel {
                     override fun onClickDel(pos: Int) {
-                        val i = createSystemVM.mapParamItems[pos]
-                        when (i.first) {
-                            createSystemVM.STR -> {
-                                createSystemVM.paramsStr.removeAt(i.second)
-                            }
-                            createSystemVM.NUM -> {
-                                createSystemVM.paramsNum.removeAt(i.second)
-                            }
-                            createSystemVM.OPTIONS -> {
-                                createSystemVM.paramsOptions.removeAt(i.second)
-                            }
-                        }
-                        createSystemVM.mapParamItems.removeAt(pos)
+                        val pairQ = getPair(pos)
+                        createSystemVM.delParamItem(pairQ.second, pairQ.first)
                     }
                 },
             )

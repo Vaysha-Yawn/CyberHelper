@@ -49,13 +49,13 @@ class AddNewParam : Fragment(), HeaderView.HeaderBack,
             "options" -> {
                 if (mod == 0 || mod == 1) {
                     for (i in mGameSystemDAO.currentGameSystem!!.templateParamOptions){
-                        if (i.forItemOrCharacter == false && !arr.contains(i.name) && i.currentGroup == groupTitle){
+                        if (i.forItemOrCharacter == false && !arr.contains(i.name)){
                             options.add(i.name)
                         }
                     }
                 } else {
                     for (i in mGameSystemDAO.currentGameSystem!!.templateParamOptions){
-                        if (i.forItemOrCharacter == true && !arr.contains(i.name) && i.currentGroup == groupTitle){
+                        if (i.forItemOrCharacter == true && !arr.contains(i.name) ){
                             options.add(i.name)
                         }
                     }
@@ -64,13 +64,13 @@ class AddNewParam : Fragment(), HeaderView.HeaderBack,
             "num" -> {
                 if (mod == 0 || mod == 1) {
                     for (i in mGameSystemDAO.currentGameSystem!!.templateParamNum){
-                        if (i.forItemOrCharacter == false && !arr.contains(i.name) && i.currentGroup == groupTitle){
+                        if (i.forItemOrCharacter == false && !arr.contains(i.name) ){
                             options.add(i.name)
                         }
                     }
                 } else {
                     for (i in mGameSystemDAO.currentGameSystem!!.templateParamNum){
-                        if (i.forItemOrCharacter == true && !arr.contains(i.name) && i.currentGroup == groupTitle){
+                        if (i.forItemOrCharacter == true && !arr.contains(i.name) ){
                             options.add(i.name)
                         }
                     }
@@ -79,13 +79,13 @@ class AddNewParam : Fragment(), HeaderView.HeaderBack,
             "string" -> {
                 if (mod == 0 || mod == 1) {
                     for (i in mGameSystemDAO.currentGameSystem!!.templateParamStr){
-                        if (i.forItemOrCharacter == false && !arr.contains(i.name) && i.currentGroup == groupTitle){
+                        if (i.forItemOrCharacter == false && !arr.contains(i.name) ){
                             options.add(i.name)
                         }
                     }
                 } else {
                     for (i in mGameSystemDAO.currentGameSystem!!.templateParamStr){
-                        if (i.forItemOrCharacter == true && !arr.contains(i.name) && i.currentGroup == groupTitle){
+                        if (i.forItemOrCharacter == true && !arr.contains(i.name) ){
                             options.add(i.name)
                         }
                     }

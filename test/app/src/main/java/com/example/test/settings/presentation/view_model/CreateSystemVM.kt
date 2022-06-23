@@ -33,6 +33,8 @@ class CreateSystemVM : ViewModel() {
     val templateCharacter = mutableListOf<Character>()
     //сохранение данных, прим.: нужно лучше сохранять данные, потому что создаать систему долго, возможно не за один заход
 
+
+
     fun getListNameGroup(index: Int): MutableList<String?> {
         val listGPTitle = mutableListOf<String?>()
         for (gp in groups[index]) {
@@ -180,6 +182,53 @@ class CreateSystemVM : ViewModel() {
             }
         }
     }
+    fun addParamItem(type: String): Int {
+        val id = getNewIdParam(type)
+        when (type) {
+            STR -> {
+                listParamItemsStr.add(ParamStr(id))
+            }
+            NUM -> {
+                listParamItemsNum.add(ParamNum(id))
+            }
+            OPTIONS -> {
+                listParamItemsOptions.add(ParamOptions(id))
+            }
+        }
+        return id
+    }
+
+    fun delParamItem(idParam: Int, type: String){
+        when (type) {
+            STR -> {
+                var param:ParamStr? = null
+                for (i in listParamItemsStr){
+                    if (i.id == idParam){
+                        param = i
+                    }
+                }
+                listParamItemsStr.remove(param)
+            }
+            NUM -> {
+                var param:ParamNum? = null
+                for (i in listParamItemsNum){
+                    if (i.id == idParam){
+                        param = i
+                    }
+                }
+                listParamItemsNum.remove(param)
+            }
+            OPTIONS -> {
+                var param:ParamOptions? = null
+                for (i in listParamItemsOptions){
+                    if (i.id == idParam){
+                        param = i
+                    }
+                }
+                listParamItemsOptions.remove(param)
+            }
+        }
+    }
 
     fun getMapTemplateItem():MutableMap<String, MutableList<Item>>{
         val map = mutableMapOf<String, MutableList<Item>>()
@@ -197,18 +246,42 @@ class CreateSystemVM : ViewModel() {
         return map
     }
 
-    fun getListsParamItem(): MutableList<String?> {
+    fun getMapTypeItem():MutableMap<String, MutableList<String?>>{
+        val map = mutableMapOf<String, MutableList<String?>>()
+        for (i in groups){
+            for(group in i){
+                if (group!=null && group.prefItem && group.attributes?.listTypeItem!=null){
+                    val list = mutableListOf<String?>()
+                    for (item in group.attributes!!.listTypeItem!!){
+                        list.add(item)
+                    }
+                    map[group.title] = list
+                }
+            }
+        }
+        return map
+    }
+
+    fun editTypeItem(titleGroup: String, editPos:Int, value:String){
+        getGroup(titleGroup)?.attributes?.listTypeItem?.set(editPos, value)
+    }
+
+    fun getListsParamItem(): Pair<MutableList<String?>, MutableList<Pair<String, Int>>> {
         val list = mutableListOf<String?>()
+        val listTI = mutableListOf<Pair<String, Int>>()
         for (str in listParamItemsStr) {
             list.add(str.name)
+            listTI.add(Pair(STR, str.id))
         }
         for (num in listParamItemsNum) {
             list.add(num.name)
+            listTI.add(Pair(NUM, num.id))
         }
         for (options in listParamItemsOptions) {
             list.add(options.name)
+            listTI.add(Pair(OPTIONS, options.id))
         }
-        return list
+        return Pair(list, listTI)
     }
 
 

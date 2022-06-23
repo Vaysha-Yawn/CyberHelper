@@ -143,7 +143,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 100,
             minValue = 0,
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -152,7 +151,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 50,
             minValue = 0,
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -161,7 +159,7 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Базовые параметры", forItemOrCharacter = false
+            forItemOrCharacter = false
         ),
 
         ParamNum(
@@ -170,7 +168,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
 
@@ -180,7 +177,7 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Базовые параметры", forItemOrCharacter = false
+            forItemOrCharacter = false
         ),
 
         ParamNum(
@@ -189,7 +186,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Броня",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -198,7 +194,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Броня",
             forItemOrCharacter = false
         ),
 
@@ -208,7 +203,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -217,7 +211,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -226,7 +219,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -235,7 +227,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -244,7 +235,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -253,7 +243,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -262,7 +251,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -271,7 +259,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -280,7 +267,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -289,7 +275,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
 
@@ -299,7 +284,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -308,7 +292,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -317,7 +300,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -326,7 +308,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -335,7 +316,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -344,7 +324,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -353,7 +332,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -362,7 +340,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -371,7 +348,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -380,7 +356,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -389,7 +364,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -398,7 +372,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -407,7 +380,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -416,7 +388,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -425,7 +396,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -434,7 +404,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -443,7 +412,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -452,7 +420,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -461,7 +428,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -470,7 +436,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -479,7 +444,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -488,7 +452,6 @@ class TemplateGameSystem {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
 
@@ -498,7 +461,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Репутация",
             forItemOrCharacter = false
         ),
     )
@@ -510,7 +472,6 @@ class TemplateGameSystem {
             removable = false,
             defMain = "Выберите тип оружия",
             options = RealmList<String>("Ближний бой", "Дальний бой", "Автоматический огонь", "Взрывчатка"),
-            currentGroup = "",
             forItemOrCharacter = true
         ),
         ParamOptions(
@@ -524,7 +485,7 @@ class TemplateGameSystem {
                 "Защита",
                 "Противонетраннерский",
                 "Противопрограммный"
-            ), currentGroup = "", forItemOrCharacter = true
+            ), forItemOrCharacter = true
         ),
         ParamOptions(
             name = "Значимость",
@@ -532,7 +493,7 @@ class TemplateGameSystem {
             removable = false,
             defMain = "Выберите значимость",
             options = RealmList<String>("Главный герой", "Второстепенный герой"),
-            currentGroup = "Базовые параметры", forItemOrCharacter = false
+            forItemOrCharacter = false
         ),
         ParamOptions(
             name = "Роль",
@@ -540,7 +501,6 @@ class TemplateGameSystem {
             removable = false,
             defMain = "Выберите роль",
             options = RealmList<String>("Рокер", "Соло", "Нетраннер", "Кочевник", "Техник", "Фиксер"),
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
         ParamOptions(
@@ -549,7 +509,6 @@ class TemplateGameSystem {
             removable = false,
             defMain = "Выберите пол",
             options = RealmList<String>("Мужской", "Женский"),
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
     )
@@ -725,7 +684,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -734,7 +692,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -743,7 +700,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
 
@@ -753,7 +709,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -762,7 +717,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
 
@@ -772,7 +726,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -781,7 +734,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -790,7 +742,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -799,7 +750,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -808,7 +758,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
 
@@ -818,7 +767,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
 
@@ -828,7 +776,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -837,7 +784,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -846,7 +792,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -855,7 +800,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -864,7 +808,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -873,7 +816,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
 
@@ -883,7 +825,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Спасброски",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -892,7 +833,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Спасброски",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -901,7 +841,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Спасброски",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -910,7 +849,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Спасброски",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -919,7 +857,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Спасброски",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -928,7 +865,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Спасброски",
             forItemOrCharacter = false
         ),
 
@@ -938,7 +874,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 30,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -947,7 +882,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 30,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -956,7 +890,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 30,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -965,7 +898,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 30,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -974,7 +906,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 30,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -983,7 +914,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 30,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -992,7 +922,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 30,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -1001,7 +930,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 30,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -1010,7 +938,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 30,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -1019,7 +946,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 30,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -1028,7 +954,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 30,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -1037,7 +962,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 30,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -1046,7 +970,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 30,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -1055,7 +978,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 30,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -1064,7 +986,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = 30,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
 
@@ -1074,7 +995,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -1083,7 +1003,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Деньги",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -1092,7 +1011,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Деньги",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -1101,7 +1019,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Деньги",
             forItemOrCharacter = false
         ),
         ParamNum(
@@ -1110,7 +1027,6 @@ class TemplateGameSystem {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Деньги",
             forItemOrCharacter = false
         ),
     )
@@ -1122,7 +1038,7 @@ class TemplateGameSystem {
             removable = false,
             defMain = "Выберите значимость",
             options = RealmList<String>("Главный герой", "Второстепенный герой"),
-            currentGroup = "Базовые параметры", forItemOrCharacter = false
+            forItemOrCharacter = false
         ),
         ParamOptions(
             name = "Класс",
@@ -1144,7 +1060,6 @@ class TemplateGameSystem {
                 "Следопыт",
                 "Чародей"
             ),
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
         ParamOptions(
@@ -1153,7 +1068,6 @@ class TemplateGameSystem {
             removable = false,
             defMain = "Выберите пол",
             options = RealmList<String>("Мужской", "Женский"),
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
         ParamOptions(
@@ -1174,7 +1088,6 @@ class TemplateGameSystem {
                 "Дженази",
                 "Полуорк"
             ),
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
         ParamOptions(
@@ -1193,7 +1106,6 @@ class TemplateGameSystem {
                 "Хаотично-нейтральный",
                 "Хаотично-злой"
             ),
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
     )

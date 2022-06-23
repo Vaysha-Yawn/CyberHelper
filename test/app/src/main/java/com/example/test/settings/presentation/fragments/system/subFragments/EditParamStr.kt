@@ -1,7 +1,6 @@
 package com.example.test.settings.presentation.fragments.system.subFragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,12 +19,12 @@ import com.example.test.settings.presentation.view_model.CreateSystemVM
 class EditParamStr : Fragment(), HeaderView.HeaderBack {
 
     private val createSystemVM: CreateSystemVM by activityViewModels()
-    private var pos = -1
+    private var idParam = -1
     private var tileGroup = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pos = arguments?.getInt("pos") ?: -1
+        idParam = arguments?.getInt("idParam") ?: -1
         tileGroup = arguments?.getString("tileGroup") ?: ""
     }
 
@@ -37,11 +36,11 @@ class EditParamStr : Fragment(), HeaderView.HeaderBack {
         val binding = EditParamStringBinding.bind(view)
         with(binding) {
             header.setBack(true, this@EditParamStr, requireActivity(), viewLifecycleOwner)
-            if (pos == -1 ||  tileGroup=="") {
+            if (idParam == -1 ||  tileGroup=="") {
                 Toast.makeText(requireContext(), "Ошибка", Toast.LENGTH_SHORT).show()
                 view.findNavController().popBackStack()
             }
-            val param = createSystemVM.getParamStr(tileGroup, id)
+            val param = createSystemVM.getParamStr(tileGroup, idParam)
 
             if (param!=null){
                 val names = param.name
@@ -69,9 +68,9 @@ class EditParamStr : Fragment(), HeaderView.HeaderBack {
         view?.findNavController()?.popBackStack()
     }
 
-    fun getBundle( pos:Int, tileGroup: String):Bundle{
+    fun getBundle( idParam:Int, tileGroup: String):Bundle{
         val bundle = Bundle()
-        bundle.putInt("pos", pos)
+        bundle.putInt("idParam", idParam)
         bundle.putString("tileGroup", tileGroup)
         return bundle
     }

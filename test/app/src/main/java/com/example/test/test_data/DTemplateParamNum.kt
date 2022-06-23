@@ -39,7 +39,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = 100,
             minValue = 0,
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
         "Тяжелое ранение" to ParamNum(
@@ -48,7 +47,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = 50,
             minValue = 0,
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
         "Испытание против смерти" to ParamNum(
@@ -57,7 +55,7 @@ class DTemplateParamNum {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Базовые параметры", forItemOrCharacter = false
+            forItemOrCharacter = false
         ),
 
         "Возраст" to ParamNum(
@@ -66,7 +64,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
 
@@ -76,7 +73,7 @@ class DTemplateParamNum {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Базовые параметры", forItemOrCharacter = false
+            forItemOrCharacter = false
         ),
 
         "Броня для головы" to ParamNum(
@@ -85,7 +82,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Броня",
             forItemOrCharacter = false
         ),
         "Броня для тела" to ParamNum(
@@ -94,7 +90,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Броня",
             forItemOrCharacter = false
         ),
 
@@ -104,7 +99,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         "Воля" to ParamNum(
@@ -113,7 +107,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         "Харизма" to ParamNum(
@@ -122,7 +115,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         "Эмпатия" to ParamNum(
@@ -131,7 +123,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         "Техника" to ParamNum(
@@ -140,7 +131,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         "Реакция" to ParamNum(
@@ -149,7 +139,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         "Удача" to ParamNum(
@@ -158,7 +147,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         "Телосложение" to ParamNum(
@@ -167,7 +155,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         "Ловкость" to ParamNum(
@@ -176,7 +163,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
         "Скорость" to ParamNum(
@@ -185,7 +171,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Параметры",
             forItemOrCharacter = false
         ),
 
@@ -195,7 +180,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Выслеживание" to ParamNum(
@@ -204,7 +188,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Образование" to ParamNum(
@@ -213,7 +196,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Знание местности" to ParamNum(
@@ -222,7 +204,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Интерфейс" to ParamNum(
@@ -231,7 +212,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Стрельба" to ParamNum(
@@ -240,7 +220,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Вождение" to ParamNum(
@@ -249,7 +228,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Уклонение" to ParamNum(
@@ -258,7 +236,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Атлетика" to ParamNum(
@@ -267,7 +244,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Скрытность" to ParamNum(
@@ -276,7 +252,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Рукопашный бой" to ParamNum(
@@ -285,7 +260,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Оружие ближнего боя" to ParamNum(
@@ -294,7 +268,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Знание техники" to ParamNum(
@@ -303,7 +276,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Кибертехника" to ParamNum(
@@ -312,7 +284,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Первая помощь" to ParamNum(
@@ -321,7 +292,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Подкуп" to ParamNum(
@@ -330,7 +300,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Допрос" to ParamNum(
@@ -339,7 +308,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Убеждение" to ParamNum(
@@ -348,7 +316,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Концентрация" to ParamNum(
@@ -357,7 +324,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Общение" to ParamNum(
@@ -366,7 +332,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Проницательность" to ParamNum(
@@ -375,7 +340,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
         "Игра на инструменте" to ParamNum(
@@ -384,7 +348,6 @@ class DTemplateParamNum {
             removable = true,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "Навыки",
             forItemOrCharacter = false
         ),
 
@@ -394,7 +357,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = null,
             minValue = 0,
-            currentGroup = "Репутация",
             forItemOrCharacter = false
         ),
     )
@@ -406,7 +368,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "",
             forItemOrCharacter = true
         ),
         "Защита программы" to ParamNum(
@@ -415,7 +376,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "",
             forItemOrCharacter = true
         ),
         "Установка программы" to ParamNum(
@@ -424,12 +384,11 @@ class DTemplateParamNum {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "",
             forItemOrCharacter = true
         ),
         "Внимательность программы" to ParamNum(
             name = "Внимательность программы", value = 0,
-            removable = false, maxValue = 10, minValue = 0, currentGroup = "", forItemOrCharacter = true
+            removable = false, maxValue = 10, minValue = 0, forItemOrCharacter = true
         ),
         "Скорость программы" to ParamNum(
             name = "Скорость программы",
@@ -437,7 +396,6 @@ class DTemplateParamNum {
             removable = false,
             maxValue = 10,
             minValue = 0,
-            currentGroup = "",
             forItemOrCharacter = true
         ),
     )

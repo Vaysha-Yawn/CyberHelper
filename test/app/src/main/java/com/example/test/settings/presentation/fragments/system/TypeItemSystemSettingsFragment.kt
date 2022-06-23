@@ -37,23 +37,6 @@ class TypeItemSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                 requireActivity(),
                 viewLifecycleOwner
             )
-            val groupItemsTitle = mutableListOf<String>()
-            for (i in createSystemVM.groups) {
-                for (e in i) {
-                    if (e != null && e.prefItem) {
-                        groupItemsTitle.add(e.title)
-                    }
-                }
-            }
-
-            // удостоверились, что соответствует реальнсти
-            if (createSystemVM.typesItems.keys.toMutableList() != groupItemsTitle) {
-                for (i in groupItemsTitle) {
-                    if (!createSystemVM.typesItems.keys.toMutableList().contains(i)) {
-                        createSystemVM.typesItems[i] = mutableListOf()
-                    }
-                }
-            }
 
             val adapter = CVAdapterRV(
                 "Добавить тип предметов",
@@ -63,18 +46,17 @@ class TypeItemSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             RV.adapter = adapter
             adapter.setData(
-                createSystemVM.typesItems.values.toMutableList(),
-                createSystemVM.typesItems.keys.toMutableList(),
+                createSystemVM.getMapTypeItem()
             )
             adapter.setEditListener(
                 object : CVAdapterRV.OnEdit {
                     override fun onEdit(
                         adapterPos: Int,
                         editPos: Int,
-                        idGroup: Int,
+                        title: String,
                         text: String
                     ) {
-                        createSystemVM.typesItems[title]?.set(editPos, text)
+                        createSystemVM.editTypeItem(title, editPos, text)
                     }
                 })
             next.setOnClickListener {

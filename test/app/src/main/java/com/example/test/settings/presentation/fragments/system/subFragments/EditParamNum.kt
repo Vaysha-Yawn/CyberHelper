@@ -22,14 +22,14 @@ import com.example.test.settings.presentation.view_model.CreateSystemVM
 class EditParamNum : Fragment(), HeaderView.HeaderBack {
 
     private val createSystemVM: CreateSystemVM by activityViewModels()
-    private var posInSec = -1
+    private var idParam = -1
     private var groupTitle = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        posInSec = arguments?.getInt("posInSec") ?: -1
+        idParam = arguments?.getInt("idParam") ?: -1
         groupTitle = arguments?.getString("groupTitle") ?: ""
-        Log.e("e", " position $posInSec")
+        Log.e("e", " position $idParam")
     }
 
     override fun onCreateView(
@@ -47,32 +47,34 @@ class EditParamNum : Fragment(), HeaderView.HeaderBack {
                     PM.visibility = View.GONE
                 }
             }
-            if (posInSec == -1 || groupTitle=="") {
+            if (idParam == -1 || groupTitle=="") {
                 Toast.makeText(requireContext(), "Ошибка", Toast.LENGTH_SHORT).show()
                 view.findNavController().popBackStack()
             }
-            var param = createSystemVM.paramsNum.get(posInSec)
-            val names = param.name
-            val removables = param.removable
-            value.setValue(param.value)
-            if (param.maxValue != null){
+            val param = createSystemVM.getParamNum(groupTitle, idParam)
+            val names = param?.name
+            val removables = param?.removable
+            value.setValue(param?.value?:0)
+            if (param?.maxValue != null){
                 booleanMaxValue.isChecked = true
                 maxValue.setValue(param.maxValue!!)
             }
             setVisible(booleanMaxValue, maxValue)
-            if (param.minValue != null){
+            if (param?.minValue != null){
                 booleanMinValue.isChecked = true
                 minValue.setValue(param.minValue!!)
             }
             setVisible(booleanMinValue, minValue)
             (name as TextView).text = names
-            removable.isChecked = removables
+            if (removables != null) {
+                removable.isChecked = removables
+            }
 
             name.doOnTextChanged { text, start, before, count ->
-                param.name = text.toString()
+                param?.name = text.toString()
             }
             removable.setOnClickListener {
-                param.removable = removable.isChecked
+                param?.removable = removable.isChecked
             }
             booleanMinValue.setOnClickListener {
                 setVisible(booleanMinValue, minValue)
@@ -82,26 +84,26 @@ class EditParamNum : Fragment(), HeaderView.HeaderBack {
             }
             value.setListener(null, null, object: PlusMinusView.NumberEvent{
                 override fun numberEvent(number: Int) {
-                    param.value = number
+                    param?.value = number
                 }
             })
             maxValue.setListener(null, null, object: PlusMinusView.NumberEvent{
                 override fun numberEvent(number: Int) {
-                    param.maxValue = number
+                    param?.maxValue = number
                 }
             })
             minValue.setListener(null, null, object: PlusMinusView.NumberEvent{
                 override fun numberEvent(number: Int) {
-                    param.minValue = number
+                    param?.minValue = number
                 }
             })
             next.setOnClickListener {
                 // проверка?
                 if (!booleanMinValue.isChecked){
-                    param.minValue = null
+                    param?.minValue = null
                 }
                 if (!booleanMaxValue.isChecked){
-                    param.maxValue = null
+                    param?.maxValue = null
                 }
                 view.findNavController().popBackStack()
             }
@@ -113,9 +115,9 @@ class EditParamNum : Fragment(), HeaderView.HeaderBack {
         view?.findNavController()?.popBackStack()
     }
 
-    fun getBundle( posInSec:Int, groupTitle:String):Bundle{
+    fun getBundle(idParam:Int, groupTitle:String):Bundle{
         val bundle = Bundle()
-        bundle.putInt("posInSec", posInSec)
+        bundle.putInt("idParam", idParam)
         bundle.putString("groupTitle", groupTitle)
         return bundle
     }

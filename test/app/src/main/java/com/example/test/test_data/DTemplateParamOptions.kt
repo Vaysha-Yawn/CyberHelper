@@ -12,7 +12,6 @@ class DTemplateParamOptions {
             removable = false,
             defMain = "Выберите пол",
             options = RealmList<String>("Мужской", "Женский"),
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
         "Роль" to ParamOptions(
@@ -21,7 +20,6 @@ class DTemplateParamOptions {
             removable = false,
             defMain = "Выберите роль",
             options = RealmList<String>("Рокер", "Соло", "Нетраннер", "Кочевник", "Техник", "Фиксер"),
-            currentGroup = "Базовые параметры",
             forItemOrCharacter = false
         ),
         "Значимость" to ParamOptions(
@@ -30,7 +28,7 @@ class DTemplateParamOptions {
             removable = false,
             defMain = "Выберите значимость",
             options = RealmList<String>("Главный герой", "Второстепенный герой"),
-            currentGroup = "Базовые параметры", forItemOrCharacter = false
+            forItemOrCharacter = false
         ),
     )
 
@@ -46,7 +44,7 @@ class DTemplateParamOptions {
                 "Защита",
                 "Противонетраннерский",
                 "Противопрограммный"
-            ), currentGroup = "", forItemOrCharacter = true
+            ), forItemOrCharacter = true
         ),
     )
 
@@ -57,7 +55,6 @@ class DTemplateParamOptions {
             removable = false,
             defMain = "Выберите тип оружия",
             options = RealmList<String>("Ближний бой", "Дальний бой", "Автоматический огонь", "Взрывчатка"),
-            currentGroup = "",
             forItemOrCharacter = true
         ),
         "Способность" to ParamOptions(
@@ -76,7 +73,7 @@ class DTemplateParamOptions {
                 "Вирус",
                 "Маскировка"
             ),
-            currentGroup = "", forItemOrCharacter = true
+            forItemOrCharacter = true
         ),
         "Проверка по навыку" to ParamOptions(
             name = "Проверка по навыку",
@@ -95,7 +92,7 @@ class DTemplateParamOptions {
                 "Атлетика",
                 "Скрытность",
             ),
-            currentGroup = "", forItemOrCharacter = true
+            forItemOrCharacter = true
         ),
     )
 

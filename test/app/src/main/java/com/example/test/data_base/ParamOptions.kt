@@ -12,7 +12,6 @@ open class ParamOptions(
     var removable: Boolean = true, //   Можно ли его удалить
     var defMain: String = "",// например, Выберите пол персонажа
     var options: RealmList<String> = RealmList<String>(),
-    var currentGroup: String = "",
     var forItemOrCharacter: Boolean = false, //  true - Item, false - Character
 ): RealmObject(){
     fun getCopy():ParamOptions{
