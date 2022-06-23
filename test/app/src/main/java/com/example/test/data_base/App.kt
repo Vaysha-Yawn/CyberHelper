@@ -10,7 +10,7 @@ class App:Application() {
         Realm.init(this)
 
         val config = RealmConfiguration.Builder()
-            .name("aaaa")
+            .name("qqq")
             .allowQueriesOnUiThread(true)
             .allowWritesOnUiThread(true)
             .deleteRealmIfMigrationNeeded()

@@ -1,6 +1,7 @@
 package com.example.test.data_base
 
 import com.example.test.test_data.DTemplateParamNum
+import io.realm.Realm
 import io.realm.RealmList
 
 class TemplateGameSystem {
@@ -8,6 +9,32 @@ class TemplateGameSystem {
     val distant_battle = "Дальний бой"
     val automatic_fire = "Автоматический огонь"
     val explosive = "Взрывчатка"
+
+    val STR = "String"
+    val NUM = "Number"
+    val OPTIONS = "Options"
+
+    private val realm: Realm = Realm.getDefaultInstance()
+    private var lastId = 8
+    /*fun getNewIdParam(type: String):Int{
+        var id = 0
+        when (type) {
+            STR -> {
+                id = (realm.where(ParamStr::class.java).max("id")?.toInt() ?: 0) + 1
+            }
+            OPTIONS -> {
+                id = (realm.where(ParamOptions::class.java).max("id")?.toInt() ?: 0) + 1
+            }
+            NUM -> {
+                id = (realm.where(ParamNum::class.java).max("id")?.toInt() ?: 0) + 1
+            }
+        }
+        return id
+    }*/
+    private fun getNewIdParam(type: String):Int{
+        lastId+=1
+        return lastId
+    }
 
     val paramItemCyberPuckSystem = RealmList<Item>(
         Item(
@@ -138,6 +165,7 @@ class TemplateGameSystem {
     )
     val paramNumCyberPuckSystem = RealmList<ParamNum>(
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Здоровье",
             value = 0,
             removable = false,
@@ -146,6 +174,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Тяжелое ранение",
             value = 0,
             removable = false,
@@ -154,6 +183,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Испытание против смерти",
             value = 0,
             removable = false,
@@ -163,6 +193,7 @@ class TemplateGameSystem {
         ),
 
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Возраст",
             value = 0,
             removable = false,
@@ -172,6 +203,7 @@ class TemplateGameSystem {
         ),
 
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Деньги, евробаксы",
             value = 0,
             removable = false,
@@ -181,6 +213,7 @@ class TemplateGameSystem {
         ),
 
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Броня для головы",
             value = 0,
             removable = false,
@@ -189,6 +222,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Броня для тела",
             value = 0,
             removable = false,
@@ -198,6 +232,7 @@ class TemplateGameSystem {
         ),
 
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Интеллект",
             value = 0,
             removable = false,
@@ -206,6 +241,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Воля",
             value = 0,
             removable = false,
@@ -214,6 +250,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Эмпатия",
             value = 0,
             removable = false,
@@ -222,6 +259,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Харизма",
             value = 0,
             removable = false,
@@ -230,6 +268,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Техника",
             value = 0,
             removable = false,
@@ -238,6 +277,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Реакция",
             value = 0,
             removable = false,
@@ -246,6 +286,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Удача",
             value = 0,
             removable = false,
@@ -254,6 +295,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Телосложение",
             value = 0,
             removable = false,
@@ -262,6 +304,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Ловкость",
             value = 0,
             removable = false,
@@ -270,6 +313,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Скорость",
             value = 0,
             removable = false,
@@ -279,6 +323,7 @@ class TemplateGameSystem {
         ),
 
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Внимательность",
             value = 0,
             removable = true,
@@ -287,6 +332,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Выслеживание",
             value = 0,
             removable = true,
@@ -295,6 +341,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Образование",
             value = 0,
             removable = true,
@@ -303,6 +350,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Знание местности",
             value = 0,
             removable = true,
@@ -311,6 +359,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Интерфейс",
             value = 0,
             removable = true,
@@ -319,6 +368,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Стрельба",
             value = 0,
             removable = true,
@@ -327,6 +377,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Вождение",
             value = 0,
             removable = true,
@@ -335,6 +386,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Уклонение",
             value = 0,
             removable = true,
@@ -343,6 +395,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Атлетика",
             value = 0,
             removable = true,
@@ -351,6 +404,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Скрытность",
             value = 0,
             removable = true,
@@ -359,6 +413,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Рукопашный бой",
             value = 0,
             removable = true,
@@ -367,6 +422,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Оружие ближнего боя",
             value = 0,
             removable = true,
@@ -375,6 +431,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Знание техники",
             value = 0,
             removable = true,
@@ -383,6 +440,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Кибертехника",
             value = 0,
             removable = true,
@@ -391,6 +449,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Первая помощь",
             value = 0,
             removable = true,
@@ -399,6 +458,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Подкуп",
             value = 0,
             removable = true,
@@ -407,6 +467,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Допрос",
             value = 0,
             removable = true,
@@ -415,6 +476,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Убеждение",
             value = 0,
             removable = true,
@@ -423,6 +485,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Концентрация",
             value = 0,
             removable = true,
@@ -431,6 +494,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Общение",
             value = 0,
             removable = true,
@@ -439,6 +503,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Проницательность",
             value = 0,
             removable = true,
@@ -447,6 +512,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Игра на инструменте",
             value = 0,
             removable = true,
@@ -456,6 +522,7 @@ class TemplateGameSystem {
         ),
 
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Итого репутация",
             value = 0,
             removable = false,
@@ -467,6 +534,7 @@ class TemplateGameSystem {
 
     val paramOptionsCyberPuckSystem = RealmList<ParamOptions>(
         ParamOptions(
+            id = getNewIdParam(OPTIONS),
             name = "Тип оружия",
             value = "",
             removable = false,
@@ -475,6 +543,7 @@ class TemplateGameSystem {
             forItemOrCharacter = true
         ),
         ParamOptions(
+            id = getNewIdParam(OPTIONS),
             name = "Тип программы",
             value = "",
             removable = true,
@@ -488,6 +557,7 @@ class TemplateGameSystem {
             ), forItemOrCharacter = true
         ),
         ParamOptions(
+            id = getNewIdParam(OPTIONS),
             name = "Значимость",
             value = "",
             removable = false,
@@ -496,6 +566,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamOptions(
+            id = getNewIdParam(OPTIONS),
             name = "Роль",
             value = "",
             removable = false,
@@ -504,6 +575,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamOptions(
+            id = getNewIdParam(OPTIONS),
             name = "Пол",
             value = "",
             removable = false,
@@ -514,6 +586,7 @@ class TemplateGameSystem {
     )
     val paramStrCyberPuckSystem = RealmList<ParamStr>(
         ParamStr(
+            id = getNewIdParam(STR),
             name = "Имя персонажа",
             value = "",
             removable = false,
@@ -521,18 +594,21 @@ class TemplateGameSystem {
         ),
         ParamStr(name = "Название игры", value = "", removable = false),
         ParamStr(
+            id = getNewIdParam(STR),
             name = "Семья",
             value = "",
             removable = false,
             forItemOrCharacter = false
         ),
         ParamStr(
+            id = getNewIdParam(STR),
             name = "Мотивация",
             value = "",
             removable = false,
             forItemOrCharacter = false
         ),
         ParamStr(
+            id = getNewIdParam(STR),
             name = "Особенность",
             value = "",
             removable = true,
@@ -669,7 +745,6 @@ class TemplateGameSystem {
                 )
             )
         ),
-
         templateItem = paramItemCyberPuckSystem,
         templateParamNum = paramNumCyberPuckSystem,
         templateParamStr = paramStrCyberPuckSystem,
@@ -679,6 +754,7 @@ class TemplateGameSystem {
     /////// дозаполнять
     val paramNumDnDSystem = RealmList<ParamNum>(
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Возраст",
             value = 0,
             removable = false,
@@ -687,6 +763,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Уровень",
             value = 0,
             removable = false,
@@ -695,6 +772,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Опыт",
             value = 0,
             removable = false,
@@ -704,6 +782,7 @@ class TemplateGameSystem {
         ),
 
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Вдохновение",
             value = 0,
             removable = false,
@@ -712,6 +791,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Бонус мастерства",
             value = 0,
             removable = false,
@@ -721,6 +801,7 @@ class TemplateGameSystem {
         ),
 
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Текущие хиты",
             value = 0,
             removable = false,
@@ -729,6 +810,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Временные хиты",
             value = 0,
             removable = false,
@@ -737,6 +819,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Максимальные хиты",
             value = 0,
             removable = false,
@@ -745,6 +828,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Бонус к инициативе",
             value = 0,
             removable = false,
@@ -753,6 +837,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Скорость",
             value = 0,
             removable = false,
@@ -762,6 +847,7 @@ class TemplateGameSystem {
         ),
 
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Класс доспеха",
             value = 0,
             removable = false,
@@ -771,6 +857,7 @@ class TemplateGameSystem {
         ),
 
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Сила",
             value = 0,
             removable = false,
@@ -779,6 +866,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Ловкость",
             value = 0,
             removable = false,
@@ -787,6 +875,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Телосложение",
             value = 0,
             removable = false,
@@ -795,6 +884,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Интеллект",
             value = 0,
             removable = false,
@@ -803,6 +893,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Мудрость",
             value = 0,
             removable = false,
@@ -811,6 +902,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Харизма",
             value = 0,
             removable = false,
@@ -820,6 +912,7 @@ class TemplateGameSystem {
         ),
 
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Сила спасбросок",
             value = 0,
             removable = false,
@@ -828,6 +921,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Ловкость спасбросок",
             value = 0,
             removable = false,
@@ -836,6 +930,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Телосложение спасбросок",
             value = 0,
             removable = false,
@@ -844,6 +939,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Интеллект спасбросок",
             value = 0,
             removable = false,
@@ -852,6 +948,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Мудрость спасбросок",
             value = 0,
             removable = false,
@@ -860,6 +957,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Харизма спасбросок",
             value = 0,
             removable = false,
@@ -869,6 +967,7 @@ class TemplateGameSystem {
         ),
 
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Акробатика",
             value = 0,
             removable = false,
@@ -877,6 +976,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Анализ",
             value = 0,
             removable = false,
@@ -885,6 +985,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Атлетика",
             value = 0,
             removable = false,
@@ -893,6 +994,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Внимательность",
             value = 0,
             removable = false,
@@ -901,6 +1003,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Выживание",
             value = 0,
             removable = false,
@@ -909,6 +1012,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Выступление",
             value = 0,
             removable = false,
@@ -917,6 +1021,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Запугивание",
             value = 0,
             removable = false,
@@ -925,6 +1030,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Истроия",
             value = 0,
             removable = false,
@@ -933,6 +1039,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Ловкость рук",
             value = 0,
             removable = false,
@@ -941,6 +1048,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Магия",
             value = 0,
             removable = false,
@@ -949,6 +1057,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Проницательность",
             value = 0,
             removable = false,
@@ -957,6 +1066,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Религия",
             value = 0,
             removable = false,
@@ -965,6 +1075,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Скрытность",
             value = 0,
             removable = false,
@@ -973,6 +1084,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Убеждение",
             value = 0,
             removable = false,
@@ -981,6 +1093,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Уход за животными",
             value = 0,
             removable = false,
@@ -990,6 +1103,7 @@ class TemplateGameSystem {
         ),
 
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Пассивная мудрость(внимательность)",
             value = 0,
             removable = false,
@@ -998,6 +1112,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Медные",
             value = 0,
             removable = false,
@@ -1006,6 +1121,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Серебрянные",
             value = 0,
             removable = false,
@@ -1014,6 +1130,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Золотые",
             value = 0,
             removable = false,
@@ -1022,6 +1139,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamNum(
+            id = getNewIdParam(NUM),
             name = "Платиновые",
             value = 0,
             removable = false,
@@ -1033,6 +1151,7 @@ class TemplateGameSystem {
 
     val paramOptionsDnDSystem = RealmList<ParamOptions>(
         ParamOptions(
+            id = getNewIdParam(OPTIONS),
             name = "Значимость",
             value = "",
             removable = false,
@@ -1041,6 +1160,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamOptions(
+            id = getNewIdParam(OPTIONS),
             name = "Класс",
             value = "",
             removable = false,
@@ -1063,6 +1183,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamOptions(
+            id = getNewIdParam(OPTIONS),
             name = "Пол",
             value = "",
             removable = false,
@@ -1071,6 +1192,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamOptions(
+            id = getNewIdParam(OPTIONS),
             name = "Раса",
             value = "",
             removable = false,
@@ -1091,6 +1213,7 @@ class TemplateGameSystem {
             forItemOrCharacter = false
         ),
         ParamOptions(
+            id = getNewIdParam(OPTIONS),
             name = "Мировоззрение",
             value = "",
             removable = false,
@@ -1112,37 +1235,43 @@ class TemplateGameSystem {
 
     val paramStrDnDSystem = RealmList<ParamStr>(
         ParamStr(
+            id = getNewIdParam(STR),
             name = "Имя персонажа",
             value = "",
             removable = false,
             forItemOrCharacter = false
         ),
-        ParamStr(name = "Название игры", value = "", removable = false),
+        ParamStr(id = getNewIdParam(STR), name = "Название игры", value = "", removable = false),
         ParamStr(
+            id = getNewIdParam(STR),
             name = "Кость хитов",
             value = "1д6",
             removable = false,
             forItemOrCharacter = false
         ),
         ParamStr(
+            id = getNewIdParam(STR),
             name = "Черты характера",
             value = "",
             removable = false,
             forItemOrCharacter = false
         ),
         ParamStr(
+            id = getNewIdParam(STR),
             name = "Идеалы",
             value = "",
             removable = false,
             forItemOrCharacter = false
         ),
         ParamStr(
+            id = getNewIdParam(STR),
             name = "Привязанности",
             value = "",
             removable = false,
             forItemOrCharacter = false
         ),
         ParamStr(
+            id = getNewIdParam(STR),
             name = "Слабости",
             value = "",
             removable = false,
