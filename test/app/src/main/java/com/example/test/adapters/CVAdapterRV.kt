@@ -16,8 +16,7 @@ class CVAdapterRV(private var addText: String, private var hint: String) :
 
     private var type = false
 
-    private var list = mutableListOf<MutableList<String?>>()
-    private var listTitle = mutableListOf<String>()
+    private var map = mutableMapOf<String, MutableList<String?>>()
 
     private var objEdit: OnEdit? = null
     private var objStrAdd: OnStringAdd? = null
@@ -112,19 +111,18 @@ class CVAdapterRV(private var addText: String, private var hint: String) :
     }
 
     override fun onBindViewHolder(holder: TemplateHolder, position: Int) {
-        holder.bind(listTitle[position], list[position])
+        val pair = map.toList()[position]
+        holder.bind(pair.first, pair.second)
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return map.toList().size
     }
 
     fun setData(
-        list: MutableList<MutableList<String?>>,
-        listTitle: MutableList<String>,
+        map: MutableMap<String, MutableList<String?>>
     ) {
-        this.list = list
-        this.listTitle = listTitle
+        this.map = map
 
         notifyDataSetChanged()
     }

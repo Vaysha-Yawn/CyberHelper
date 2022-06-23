@@ -41,7 +41,8 @@ class EditParamStr : Fragment(), HeaderView.HeaderBack {
                 Toast.makeText(requireContext(), "Ошибка", Toast.LENGTH_SHORT).show()
                 view.findNavController().popBackStack()
             }
-            val param = createSystemVM.getParamStr(tileGroup, pos)
+            val param = createSystemVM.getParamStr(tileGroup, id)
+
             if (param!=null){
                 val names = param.name
                 val removables = param.removable

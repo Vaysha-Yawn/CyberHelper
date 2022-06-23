@@ -97,27 +97,32 @@ class CreateSystemVM : ViewModel() {
     // эта функция используется в ParamCharacterSystemSettingsFragment
     // нам нужен 2 MutableList<String>> - лист названий групп, которые подходят для параетров персонажа
     // нам нужен 1 MutableList<MutableList<String?>> - лист с листами названий параметров
-    fun getListsParamCharacter(): Pair<MutableList<MutableList<String?>>, MutableList<String>> {
-        val list = mutableListOf<MutableList<String?>>()
-        val listTitle = mutableListOf<String>()
+    fun getListsParamCharacter(): Pair<MutableMap<String, MutableList<String?>>, MutableMap<String, MutableList<Pair<String, Int>>>> {
+        val map = mutableMapOf<String, MutableList<String?>>()
+        val mapTypeToId = mutableMapOf<String, MutableList<Pair<String, Int>>>()
         for (i in groups) {
             for (group in i) {
                 if (group != null && (group.prefDD || group.prefNum || group.prefStr)) {
-                    listTitle.add(group.title)
                     val lists = mutableListOf<String?>()
+                    val listsPair = mutableListOf<Pair<String, Int>>()
                     for (str in group.attributes?.listParamStr!!) {
                         lists.add(str.name)
+                        listsPair.add(Pair(STR, str.id))
                     }
                     for (num in group.attributes?.listParamNum!!) {
                         lists.add(num.name)
+                        listsPair.add(Pair(NUM, num.id))
                     }
                     for (options in group.attributes?.listParamOptions!!) {
                         lists.add(options.name)
+                        listsPair.add(Pair(OPTIONS, options.id))
                     }
+                    map[group.title] = lists
+                    mapTypeToId[group.title] = listsPair
                 }
             }
         }
-        return Pair(list, listTitle)
+        return Pair(map, mapTypeToId)
     }
 
     // эта функция используется в ParamCharacterSystemSettingsFragment
