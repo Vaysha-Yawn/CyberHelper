@@ -62,12 +62,15 @@ open class GameSystemDAO : ViewModel() {
         }
     }
 
-    fun addTemplateItem(item: Item, gameSystemId: Int, groupTitle: String) {
+    fun addTemplateItem(item: Item, gameSystemId: Int, titleGroup:String) {
         val gameSystem =
             realm.where(GameSystem::class.java).equalTo("id", gameSystemId).findFirst()!!
         realm.executeTransaction { transactionRealm ->
-            item.group = groupTitle
-            gameSystem.templateItem.add(item)
+            for (i in gameSystem.groups){
+                if (i.title ==titleGroup){
+                    i.attributes?.listItem?.add(item)
+                }
+            }
         }
     }
 

@@ -9,10 +9,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.adapters.DropDownAdapterRV
+import com.example.test.components.views.HeaderView
 import com.example.test.databinding.AddNewParamItemBinding
 import com.example.test.viewModels.CharacterDAO
 import com.example.test.viewModels.GameSystemDAO
-import com.example.test.components.views.HeaderView
 
 class AddNewItem : Fragment(), HeaderView.HeaderBack,
     DropDownAdapterRV.TemplateHolder.WhenValueTo {
@@ -36,12 +36,14 @@ class AddNewItem : Fragment(), HeaderView.HeaderBack,
         val gameId = mCharacterVM.gameId
         val r = requireContext().getSharedPreferences("id", 0).getString("newGameId", "0")!!.toInt()
         newOrPres = gameId == r
-        val templateItems = mGameSystemDAO.currentGameSystem!!.templateItem
-        for (item in templateItems) {
-            if (item.group == groupTitle){
-                options.add(item.name)
+        for (i in mGameSystemDAO.currentGameSystem!!.groups) {
+            if (i.title == groupTitle && i.attributes?.listItem != null) {
+                for (item in i.attributes?.listItem!!) {
+                    options.add(item.name)
+                }
             }
         }
+
     }
 
     override fun onCreateView(

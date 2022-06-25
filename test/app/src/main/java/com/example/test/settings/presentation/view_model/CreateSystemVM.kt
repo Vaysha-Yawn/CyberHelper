@@ -297,7 +297,7 @@ class CreateSystemVM : ViewModel() {
 
     fun getSystem(
         name: String,
-        groups: RealmList<String>,
+        groups: RealmList<GroupParam>,
         typesItem: RealmList<RealmPair>,
         typesAttack: RealmList<String>,
         tabsToGroup: RealmList<RealmSomething>,

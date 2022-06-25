@@ -46,7 +46,7 @@ class EditItem : Fragment() {
         if (index != -1) {
             if (template != "") {
                 editItem = mGameSystemVM.currentGameSystem!!.templateItem.singleOrNull {
-                    it.group == groupTitle && it.name == template
+                    it.name == template
                 }!!
             } else {
                 editItem = mCharacterVM.characterList.value!!.singleOrNull { character ->
@@ -62,7 +62,7 @@ class EditItem : Fragment() {
         } else {
             if (template != "") {
                 editItem = mGameSystemVM.currentGameSystem!!.templateItem.singleOrNull {
-                    it.group == groupTitle && it.name == template
+    it.name == template
                 }!!
             } else {
                 mCharacterVM.item.value = Item()

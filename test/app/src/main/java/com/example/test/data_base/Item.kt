@@ -3,8 +3,11 @@ package com.example.test.data_base
 import com.example.test.test_data.DTemplateParamNum
 import io.realm.RealmList
 import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 
 open class Item(
+    @PrimaryKey
+    var id:Int = 0,
     var name: String = "",
     var description: String = "", // Например имплант или другое
     var removable: Boolean = true, //   Можно ли его удалить
@@ -13,7 +16,6 @@ open class Item(
     var otherParamNum: RealmList<ParamNum> = RealmList<ParamNum>(),
     var otherParamStr: RealmList<ParamStr> = RealmList<ParamStr>(),
     var otherParamOptions: RealmList<ParamOptions> = RealmList<ParamOptions>(),
-    var group: String = "",
     var type: String = ""
 ) : RealmObject(){
     fun getCopy():Item{
@@ -32,9 +34,9 @@ class DTemplateItem {
         "Оружие" to mutableMapOf<String, Item>(
 
             "Киберрука" to Item(
-                "Киберрука",
-                "",
-                true,
+                name = "Киберрука",
+                description = "",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(EffectDamage(
                     "Киберрука",
                     melle,
@@ -44,9 +46,9 @@ class DTemplateItem {
             ),
 
             "Нож" to Item(
-                "Нож",
-                "",
-                true,
+                name = "Нож",
+                description = "",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(EffectDamage(
                     "Нож",
                     melle,
@@ -56,9 +58,9 @@ class DTemplateItem {
             ),
 
             "Большие костяшки" to Item(
-                "Большие костяшки",
-                "",
-                true,
+                name = "Большие костяшки",
+                description = "",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(
                     EffectDamage(
                         "Большие костяшки",
@@ -70,9 +72,9 @@ class DTemplateItem {
             ),
 
             "Пистолет среднего калибра" to Item(
-                "Пистолет среднего калибра",
-                "",
-                true,
+                name = "Пистолет среднего калибра",
+                description = "",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(
                     EffectDamage(
                         "Пистолет среднего калибра",
@@ -84,9 +86,9 @@ class DTemplateItem {
             ),
 
             "Пистолет-пулемёт среднего калибра" to Item(
-                "Пистолет-пулемёт среднего калибра",
-                "",
-                true,
+                name = "Пистолет-пулемёт среднего калибра",
+                description = "",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(
                     EffectDamage(
                         "Пистолет-пулемёт среднего калибра",
@@ -98,9 +100,9 @@ class DTemplateItem {
             ),
 
             "Потрошители" to Item(
-                "Потрошители",
-                "",
-                true,
+                name = "Потрошители",
+                description = "",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(EffectDamage(
                     "Потрошители",
                     melle,
@@ -110,9 +112,9 @@ class DTemplateItem {
             ),
 
             "Моноструна" to Item(
-                "Моноструна",
-                "",
-                true,
+                name = "Моноструна",
+                description = "",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(EffectDamage(
                     "Моноструна",
                     melle,
@@ -122,9 +124,9 @@ class DTemplateItem {
             ),
 
             "Пистолет крупного калибра" to Item(
-                "Пистолет крупного калибра",
-                "",
-                true,
+                name = "Пистолет крупного калибра",
+                description = "",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(
                     EffectDamage(
                         "Пистолет крупного калибра",
@@ -136,9 +138,9 @@ class DTemplateItem {
             ),
 
             "Пистолет сверхкрупного калибра" to Item(
-                "Пистолет сверхкрупного калибра",
-                "",
-                true,
+                name = "Пистолет сверхкрупного калибра",
+                description = "",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(
                     EffectDamage(
                         "Пистолет сверхкрупного калибра",
@@ -150,9 +152,9 @@ class DTemplateItem {
             ),
 
             "Автомат" to Item(
-                "Автомат",
-                "",
-                true,
+                name = "Автомат",
+                description = "",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(
                     EffectDamage(
                         "Автомат",
@@ -164,9 +166,9 @@ class DTemplateItem {
             ),
 
             "Дробовик" to Item(
-                "Дробовик",
-                "",
-                true,
+                name = "Дробовик",
+                description = "",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(
                     EffectDamage(
                         "Дробовик",
@@ -178,9 +180,9 @@ class DTemplateItem {
             ),
 
             "Ракетная установка" to Item(
-                "Ракетная установка",
-                "",
-                true,
+                name = "Ракетная установка",
+                description = "",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(
                     EffectDamage(
                         "Ракетная установка",
@@ -192,9 +194,9 @@ class DTemplateItem {
             ),
 
             "Взрывчатка С9" to Item(
-                "Взрывчатка С9",
-                "",
-                true,
+                name = "Взрывчатка С9",
+                description = "",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(
                     EffectDamage(
                         "Взрывчатка С9",
@@ -208,9 +210,9 @@ class DTemplateItem {
             ),
         "Киберимпланты" to mutableMapOf<String, Item>(
             "Большие костяшки (пара)" to Item(
-                "Большие костяшки (пара)",
-                "Усиленные остяшки пальцев наносят такие же тяжёлые удары,как костеты",
-                true,
+                name = "Большие костяшки (пара)",
+                description = "Усиленные остяшки пальцев наносят такие же тяжёлые удары,как костеты",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(
                     EffectDamage(
                         "Большие костяшки (пара)",
@@ -221,9 +223,9 @@ class DTemplateItem {
                 )
             ),
             "Киберрука (Потрошители)" to Item(
-                "Киеррука (Потрошители)",
-                "Киберрука, в которой спрятаны потрошители",
-                true,
+                name = "Киеррука (Потрошители)",
+                description = "Киберрука, в которой спрятаны потрошители",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(
                     EffectDamage(
                         "Киберрука (Потрошители)",
@@ -234,9 +236,9 @@ class DTemplateItem {
                 )
             ),
             "Моноструна (одна)" to Item(
-                "Моноструна (одна)",
-                "Прикрепленная к пальцу проволока из моноволокна режет любые органические материалы и пластик. Может служить удавкой, резиком или кнутом",
-                true,
+                name = "Моноструна (одна)",
+                description = "Прикрепленная к пальцу проволока из моноволокна режет любые органические материалы и пластик. Может служить удавкой, резиком или кнутом",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(
                     EffectDamage(
                         "Моноструна (одна)",
@@ -247,9 +249,9 @@ class DTemplateItem {
                 )
             ),
             "Потрошители (пара)" to Item(
-                "Потрошители (пара)",
-                "Трехдюймовые когти из карбостекла наносят режущие и колющие удары",
-                true,
+                name = "Потрошители (пара)",
+                description = "Трехдюймовые когти из карбостекла наносят режущие и колющие удары",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(
                     EffectDamage(
                         "Потрошители (пара)",
@@ -261,35 +263,38 @@ class DTemplateItem {
             ),
 
             "Кибероптика (прицел)" to Item(
-                "Кибероптика (прицел)", "Встроенный прицел дает бонус +1 к атакам дальнего боя",
+                name = "Кибероптика (прицел)",
+                description = "Встроенный прицел дает бонус +1 к атакам дальнего боя",
                 effectsAdd = RealmList<EffectAdd>(EffectAdd(true, "Дальний бой", 1, true))
             ),
         ),
 
         "Снаряжение" to mutableMapOf<String, Item>(
             "100 евробаксов немаркированными купюрами" to Item(
-                "100 евробаксов немаркированными купюрами", "money", true,
+                name = "100 евробаксов немаркированными купюрами",
+                description = "money",
+                removable = true,
                 effectsAdd = RealmList<EffectAdd>(EffectAdd(false, "Деньги, евробаксы", 100, true))
             ),
             "Agent w/ Pseudo AI Secretary" to Item(
-                "Agent w/ Pseudo AI Secretary",
-                "A pocket sized machine which functions as a computer and a phone. This Agent has a secretary program.",
-                true
+                name = "Agent w/ Pseudo AI Secretary",
+                description = "A pocket sized machine which functions as a computer and a phone. This Agent has a secretary program.",
+                removable = true
             ),
             "Agent" to Item(
-                "Agent",
-                "A pocket-sized machine which functions as a computer and a phone.",
-                true
+                name = "Agent",
+                description = "A pocket-sized machine which functions as a computer and a phone.",
+                removable = true
             ),
             "Guitar" to Item(
-                "Guitar",
-                "Forty’s instrument of choice and most prized possession.",
-                true
+                name = "Guitar",
+                description = "Forty’s instrument of choice and most prized possession.",
+                removable = true
             ),
             "Поступок" to Item(
-                "Название поступка",
-                "Описание поступка",
-                true,
+                name = "Название поступка",
+                description = "Описание поступка",
+                removable = true,
                 effectsAdd = RealmList<EffectAdd>(
                     EffectAdd(true, "Итого репутация", 1, true)
                 )
@@ -297,9 +302,9 @@ class DTemplateItem {
         ),
         "Программы" to mutableMapOf<String, Item>(
             "Speedy Gonzalvez" to Item(
-                "Speedy Gonzalvez",
-                "Increases your SPD by +4 as long as this program remains rezzed.",
-                true,
+                name = "Speedy Gonzalvez",
+                description = "Increases your SPD by +4 as long as this program remains rezzed.",
+                removable = true,
                 effectsAdd = RealmList(EffectAdd(true, "move", 4, true, null, null)),
                 otherParamNum = RealmList<ParamNum>(
                     DTemplateParamNum().initParamNum(
@@ -317,9 +322,9 @@ class DTemplateItem {
                 )
             ),
             "Banhammer" to Item(
-                "Banhammer",
-                "Does 3d6 REZ to Hellhounds, 2d6 REZ to all others. Can only hurt programs.",
-                false,
+                name = "Banhammer",
+                description = "Does 3d6 REZ to Hellhounds, 2d6 REZ to all others. Can only hurt programs.",
+                removable = false,
                 effectsDamage = RealmList<EffectDamage>(
                     EffectDamage(
                         "Banhammer против адских гончих",
@@ -350,9 +355,9 @@ class DTemplateItem {
                 )
             ),
             "Flack" to Item(
-                "Flack",
-                "Stops the first successful non–Hellhound attack from dealing brain damage. After stopping this attack, the Flack derezzes itself.",
-                true,
+                name = "Flack",
+                description = "Stops the first successful non–Hellhound attack from dealing brain damage. After stopping this attack, the Flack derezzes itself.",
+                removable = true,
                 otherParamNum = RealmList<ParamNum>(
                     DTemplateParamNum().initParamNum(
                         DTemplateParamNum().mapParamNumItem["Атака программы"]!!,
@@ -370,9 +375,9 @@ class DTemplateItem {
                 // хз
             ),
             "Hellhound" to Item(
-                "Hellhound",
-                "Does 3d6 Damage direct to a runner’s brain. Can only hurt Netrunners. Brain damage isn’t modified by location.",
-                true,
+                name = "Hellhound",
+                description = "Does 3d6 Damage direct to a runner’s brain. Can only hurt Netrunners. Brain damage isn’t modified by location.",
+                removable = true,
                 effectsDamage = RealmList<EffectDamage>(
                     EffectDamage(
                         "Hellhound",

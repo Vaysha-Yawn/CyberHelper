@@ -129,11 +129,11 @@ class ChooseSystemDialogFragment : DialogFragment() {
             variant1.text = "Киберпанк"
             variant2.text = "ДнД"
             variant1.setOnClickListener {
-                mGameSystemDAO.currentGameSystem = TemplateGameSystem().cyberPuckSystem
+                //mGameSystemDAO.currentGameSystem = TemplateGameSystem().cyberPuckSystem
                 dismiss()
             }
             variant2.setOnClickListener {
-                mGameSystemDAO.currentGameSystem = TemplateGameSystem().DnDSystem
+               // mGameSystemDAO.currentGameSystem = TemplateGameSystem().DnDSystem
                 dismiss()
             }
         }

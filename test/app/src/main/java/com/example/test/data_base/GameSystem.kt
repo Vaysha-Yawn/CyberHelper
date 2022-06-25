@@ -8,7 +8,7 @@ open class GameSystem(
     @PrimaryKey
     var id: Int = 2,
     var name: String = "",
-    var groups: RealmList<String> = RealmList<String>(),
+    var groups: RealmList<GroupParam> = RealmList<GroupParam>(),
     var typesItem: RealmList<RealmPair> = RealmList<RealmPair>(),
     // где первая строка - название группы, вторая название типа
     var typesAttack: RealmList<String> = RealmList<String>(),

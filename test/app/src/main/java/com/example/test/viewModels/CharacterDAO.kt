@@ -349,7 +349,6 @@ open class CharacterDAO : ViewModel() {
             gp.title == groupTitle
         }
         realm.executeTransaction {
-            item.group = groupTitle
             group?.attributes?.listItem?.add(item)
         }
     }

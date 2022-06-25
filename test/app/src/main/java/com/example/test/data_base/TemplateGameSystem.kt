@@ -5,6 +5,7 @@ import io.realm.Realm
 import io.realm.RealmList
 
 class TemplateGameSystem {
+/*
     val melle = "Ближний бой"
     val distant_battle = "Дальний бой"
     val automatic_fire = "Автоматический огонь"
@@ -16,7 +17,8 @@ class TemplateGameSystem {
 
     private val realm: Realm = Realm.getDefaultInstance()
     private var lastId = 8
-    /*fun getNewIdParam(type: String):Int{
+    */
+/*fun getNewIdParam(type: String):Int{
         var id = 0
         when (type) {
             STR -> {
@@ -30,7 +32,8 @@ class TemplateGameSystem {
             }
         }
         return id
-    }*/
+    }*//*
+
     private fun getNewIdParam(type: String):Int{
         lastId+=1
         return lastId
@@ -38,28 +41,26 @@ class TemplateGameSystem {
 
     val paramItemCyberPuckSystem = RealmList<Item>(
         Item(
-            "Киберрука",
-            "",
-            true,
+            name = "Киберрука",
+            description = "",
+            removable = true,
             effectsDamage = RealmList<EffectDamage>(EffectDamage(
                 "Киберрука",
                 melle,
                 numCount = 1,
                 dX = 6
-            )),
-            group = "Оружие"
+            ))
         ),
         Item(
-            "Нож",
-            "",
-            true,
-            effectsDamage = RealmList<EffectDamage>(EffectDamage("Нож", melle, numCount = 1, dX = 6)),
-            group = "Оружие"
+            name = "Нож",
+            description = "",
+            removable = true,
+            effectsDamage = RealmList<EffectDamage>(EffectDamage("Нож", melle, numCount = 1, dX = 6))
         ),
         Item(
-            "Большие костяшки",
-            "",
-            true,
+            name = "Большие костяшки",
+            description = "",
+            removable = true,
             effectsDamage = RealmList<EffectDamage>(
                 EffectDamage(
                     "Большие костяшки",
@@ -67,13 +68,12 @@ class TemplateGameSystem {
                     numCount = 2,
                     dX = 6
                 )
-            ),
-            group = "Оружие"
+            )
         ),
         Item(
-            "Пистолет среднего калибра",
-            "",
-            true,
+            name = "Пистолет среднего калибра",
+            description = "",
+            removable = true,
             effectsDamage = RealmList<EffectDamage>(
                 EffectDamage(
                     "Пистолет среднего калибра",
@@ -81,13 +81,12 @@ class TemplateGameSystem {
                     numCount = 2,
                     dX = 6
                 )
-            ),
-            group = "Оружие"
+            )
         ),
         Item(
-            "Большие костяшки (пара)",
-            "Усиленные остяшки пальцев наносят такие же тяжёлые удары,как костеты",
-            true,
+            name = "Большие костяшки (пара)",
+            description = "Усиленные остяшки пальцев наносят такие же тяжёлые удары,как костеты",
+            removable = true,
             effectsDamage = RealmList<EffectDamage>(
                 EffectDamage(
                     "Большие костяшки (пара)",
@@ -95,13 +94,12 @@ class TemplateGameSystem {
                     numCount = 2,
                     dX = 6
                 )
-            ),
-            group = "Киберимпланты"
+            )
         ),
         Item(
-            "Киеррука (Потрошители)",
-            "Киберрука, в которой спрятаны потрошители",
-            true,
+            name = "Киеррука (Потрошители)",
+            description = "Киберрука, в которой спрятаны потрошители",
+            removable = true,
             effectsDamage = RealmList<EffectDamage>(
                 EffectDamage(
                     "Киберрука (Потрошители)",
@@ -109,13 +107,12 @@ class TemplateGameSystem {
                     numCount = 2,
                     dX = 6
                 )
-            ),
-            group = "Киберимпланты"
+            )
         ),
         Item(
-            "Моноструна (одна)",
-            "Прикрепленная к пальцу проволока из моноволокна режет любые органические материалы и пластик. Может служить удавкой, резиком или кнутом",
-            true,
+            name = "Моноструна (одна)",
+            description = "Прикрепленная к пальцу проволока из моноволокна режет любые органические материалы и пластик. Может служить удавкой, резиком или кнутом",
+            removable = true,
             effectsDamage = RealmList<EffectDamage>(
                 EffectDamage(
                     "Моноструна (одна)",
@@ -123,28 +120,27 @@ class TemplateGameSystem {
                     numCount = 2,
                     dX = 6
                 )
-            ),
-            group = "Киберимпланты"
+            )
         ),
 
         Item(
-            "100 евробаксов немаркированными купюрами", "money", true,
-            effectsAdd = RealmList<EffectAdd>(EffectAdd(false, "Деньги, евробаксы", 100, true)),
-            group = "Снаряжение"
+            name = "100 евробаксов немаркированными купюрами",
+            description = "money",
+            removable = true,
+            effectsAdd = RealmList<EffectAdd>(EffectAdd(false, "Деньги, евробаксы", 100, true))
         ),
         Item(
-            "Название поступка",
-            "Описание поступка",
-            true,
+            name = "Название поступка",
+            description = "Описание поступка",
+            removable = true,
             effectsAdd = RealmList<EffectAdd>(
                 EffectAdd(true, "Итого репутация", 1, true)
-            ),
-            group = "Репутация"
+            )
         ),
         Item(
-            "Speedy Gonzalvez",
-            "Increases your SPD by +4 as long as this program remains rezzed.",
-            true,
+            name = "Speedy Gonzalvez",
+            description = "Increases your SPD by +4 as long as this program remains rezzed.",
+            removable = true,
             effectsAdd = RealmList(EffectAdd(true, "move", 4, true, null, null)),
             otherParamNum = RealmList<ParamNum>(
                 DTemplateParamNum().initParamNum(
@@ -160,7 +156,6 @@ class TemplateGameSystem {
                     7
                 )
             ),
-            group = "Программы"
         ),
     )
     val paramNumCyberPuckSystem = RealmList<ParamNum>(
@@ -1583,6 +1578,7 @@ class TemplateGameSystem {
         }
         return ga
     }
+*/
 
 }
 

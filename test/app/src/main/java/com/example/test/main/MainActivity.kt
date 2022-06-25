@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         val load = findViewById<Button>(R.id.Main_Load)
 
-        if (mGameSystemDAO.findGameSystemId("cyberPuckSystem") == null) {
+        /*if (mGameSystemDAO.findGameSystemId("cyberPuckSystem") == null) {
             mGameSystemDAO.addGameSystem(TemplateGameSystem().cyberPuckSystem)
             Log.d("aaaaa", "Система киберпанк создана")
         }
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         if (mGameSystemDAO.findGameSystemId("DnDSystem") == null) {
             mGameSystemDAO.addGameSystem(TemplateGameSystem().DnDSystem)
             Log.d("aaaaa", "Система днд создана")
-        }
+        }*/
 
         val vContinue = findViewById<Button>(R.id.Main_Continue)
         if (haveGamesBoolean == false) {
