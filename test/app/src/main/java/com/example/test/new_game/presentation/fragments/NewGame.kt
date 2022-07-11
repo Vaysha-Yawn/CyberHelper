@@ -12,13 +12,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.new_game.presentation.activity.NewHost
-import com.example.test.adapters.CharacterAdapter
-import com.example.test.data_base.TemplateGameSystem
+import com.example.test.characters_grid.CharacterAdapter
 import com.example.test.databinding.DialogChooseAddModificationBinding
-import com.example.test.viewModels.CharacterDAO
-import com.example.test.viewModels.GameDAO
-import com.example.test.viewModels.GameSystemDAO
-import com.example.test.new_character.NewCharacterVM
+import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.game.GameDAO
+import com.example.test.data_base.realm.game_system.GameSystemDAO
+import com.example.test.characters_grid.new_character.NewCharacterVM
 
 class NewGame : Fragment() {
 
@@ -129,7 +128,7 @@ class ChooseSystemDialogFragment : DialogFragment() {
             variant1.text = "Киберпанк"
             variant2.text = "ДнД"
             variant1.setOnClickListener {
-                //mGameSystemDAO.currentGameSystem = TemplateGameSystem().cyberPuckSystem
+                //mGameSystemDAO.currentGameSystem = TemplateGameSystem().cyberPunkSystem
                 dismiss()
             }
             variant2.setOnClickListener {

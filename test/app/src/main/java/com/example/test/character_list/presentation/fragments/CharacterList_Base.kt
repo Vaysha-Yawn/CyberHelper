@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.character_list.presentation.adapters.GroupAdapterRV
-import com.example.test.data_base.GroupParam
-import com.example.test.viewModels.CharacterDAO
-import com.example.test.viewModels.GameDAO
-import com.example.test.viewModels.GameSystemDAO
+import com.example.test.data_base.realm.other_realm_object.GroupParam
+import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.game.GameDAO
+import com.example.test.data_base.realm.game_system.GameSystemDAO
 
 
 class CharacterList_Base : Fragment() {

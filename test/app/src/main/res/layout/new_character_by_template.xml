@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1B1A22"
-    tools:context=".new_character.NewCharacterByTemplate">
+    tools:context=".characters_grid.new_character.NewCharacterByTemplate">
 
     <LinearLayout
         android:layout_width="match_parent"

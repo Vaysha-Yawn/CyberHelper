@@ -2,7 +2,6 @@ package com.example.test.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View.GONE
 import android.widget.Button
 import androidx.activity.viewModels
@@ -13,9 +12,8 @@ import com.example.test.load.presentaion.LoadHost
 import com.example.test.new_game.presentation.activity.NewHost
 import com.example.test.present_game.presentation.activity.PresentHost
 import com.example.test.settings.presentation.fragments.activity.SettingsHost
-import com.example.test.data_base.TemplateGameSystem
-import com.example.test.viewModels.GameDAO
-import com.example.test.viewModels.GameSystemDAO
+import com.example.test.data_base.realm.game.GameDAO
+import com.example.test.data_base.realm.game_system.GameSystemDAO
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,8 +29,8 @@ class MainActivity : AppCompatActivity() {
 
         val load = findViewById<Button>(R.id.Main_Load)
 
-        /*if (mGameSystemDAO.findGameSystemId("cyberPuckSystem") == null) {
-            mGameSystemDAO.addGameSystem(TemplateGameSystem().cyberPuckSystem)
+        /*if (mGameSystemDAO.findGameSystemId("cyberPunkSystem") == null) {
+            mGameSystemDAO.addGameSystem(TemplateGameSystem().cyberPunkSystem)
             Log.d("aaaaa", "Система киберпанк создана")
         }
 

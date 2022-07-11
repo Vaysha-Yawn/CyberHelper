@@ -3,19 +3,15 @@ package com.example.test.settings.presentation.fragments.system
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.databinding.FragmentNameSystemSettingsBinding
-import com.example.test.viewModels.GameSystemDAO
-import com.example.test.settings.presentation.view_model.SystemSettingsVM
 import com.example.test.components.views.HeaderView
 import com.example.test.settings.presentation.view_model.CreateSystemVM
 

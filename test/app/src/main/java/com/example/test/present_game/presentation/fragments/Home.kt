@@ -14,13 +14,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.present_game.presentation.activity.PresentHost
-import com.example.test.adapters.CharacterAdapter
-import com.example.test.data_base.Character
-import com.example.test.iniciative.model.InitiativeFight
+import com.example.test.characters_grid.CharacterAdapter
+import com.example.test.data_base.realm.character.Character
+import com.example.test.data_base.realm.iniciative_fight.InitiativeFight
 import com.example.test.databinding.CardInitiativeFightBinding
 import com.example.test.databinding.HomeBinding
-import com.example.test.viewModels.CharacterDAO
-import com.example.test.viewModels.GameDAO
+import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.game.GameDAO
 import com.example.test.iniciative.presentation.view_model.InitiativeFightVM
 import com.example.test.components.views.HeaderView
 

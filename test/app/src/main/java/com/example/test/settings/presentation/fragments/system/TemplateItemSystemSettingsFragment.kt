@@ -10,10 +10,10 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.adapters.DropDownAdapterRV
+import com.example.test.components.views.drop_down.DropDownAdapterRV
 import com.example.test.databinding.FragmentTemplateItemSystemSettingsBinding
 import com.example.test.components.views.HeaderView
-import com.example.test.data_base.Item
+import com.example.test.data_base.realm.other_realm_object.Item
 import com.example.test.databinding.CardAddOrChooseBinding
 import com.example.test.edit_fragments.EditItem
 import com.example.test.settings.presentation.view_model.CreateSystemVM

@@ -10,8 +10,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.adapters.ItemAdapterRV
-import com.example.test.data_base.GroupParam
+import com.example.test.data_base.realm.other_realm_object.GroupParam
 import com.example.test.databinding.CardGroupParamBinding
 
 

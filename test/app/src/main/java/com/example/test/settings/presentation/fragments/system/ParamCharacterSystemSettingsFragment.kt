@@ -11,7 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
-import com.example.test.adapters.CVAdapterRV
+import com.example.test.components.views.compact_view.CVAdapterRV
 import com.example.test.components.views.HeaderView
 import com.example.test.databinding.ChooseTypeParamBinding
 import com.example.test.databinding.FragmentParamsCharacterSystemSettingsBinding
@@ -162,7 +162,7 @@ class ParamTypeDialogFragment(
     private val str: Boolean, private val num: Boolean, private val options: Boolean
 ) : DialogFragment() {
 
-    val OPTIONS:String = "OPTIONS"
+    val OPTIONS:String = "OPT"
     val NUM:String = "NUMBER"
     val STR:String = "STRING"
 

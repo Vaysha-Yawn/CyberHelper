@@ -75,7 +75,7 @@
                 android:text="Тип предмета"
                 android:textColor="@color/light_grey" />
 
-            <com.example.test.components.views.DropDownView
+            <com.example.test.components.views.drop_down.DropDownView
                 android:id="@+id/typeItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

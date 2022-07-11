@@ -57,7 +57,7 @@
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
-                <com.example.test.components.views.DropDownView
+                <com.example.test.components.views.drop_down.DropDownView
                     android:id="@+id/DDDifficult"
                     android:layout_width="270dp"
                     android:layout_height="wrap_content"

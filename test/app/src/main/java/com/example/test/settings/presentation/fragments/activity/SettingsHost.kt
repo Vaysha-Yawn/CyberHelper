@@ -8,7 +8,7 @@ import com.example.test.R
 import com.example.test.main.MainActivity
 import com.example.test.settings.presentation.view_model.CreateSystemVM
 import com.example.test.settings.presentation.view_model.SystemSettingsVM
-import com.example.test.viewModels.GameSystemDAO
+import com.example.test.data_base.realm.game_system.GameSystemDAO
 
 class SettingsHost : AppCompatActivity() {
 

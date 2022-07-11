@@ -2,8 +2,11 @@ package com.example.test.viewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.test.data_base.*
-import com.example.test.test_data.DSpecialGameData
+import com.example.test.data_base.realm.character.Character
+import com.example.test.data_base.data_sample.test_data.DSpecialGameData
+import com.example.test.data_base.realm.other_realm_object.Goal
+import com.example.test.data_base.realm.other_realm_object.GroupParam
+import com.example.test.data_base.realm.other_realm_object.Mod
 import io.realm.RealmList
 
 // для разных роллов разные классы, кроме произвольного число

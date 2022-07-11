@@ -11,9 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.data_base.ParamNum
-import com.example.test.viewModels.CharacterDAO
-import com.example.test.viewModels.GameSystemDAO
+import com.example.test.data_base.realm.other_realm_object.ParamNum
+import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.game_system.GameSystemDAO
 import com.example.test.components.views.PlusMinusView
 
 

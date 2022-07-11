@@ -59,7 +59,7 @@
                 android:text="Какие типы урона в вашей системе существуют? (фиический, магический, некротический и тд.)" />
 
 
-            <com.example.test.components.views.CompactViewEdit
+            <com.example.test.components.views.compact_view.CompactViewEdit
                 android:id="@+id/CVDD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

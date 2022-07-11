@@ -2,9 +2,9 @@ package com.example.test.iniciative.presentation.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.test.data_base.Character
-import com.example.test.iniciative.model.InitiativeFight
-import com.example.test.iniciative.model.InitiativeFightDAO
+import com.example.test.data_base.realm.character.Character
+import com.example.test.data_base.realm.iniciative_fight.InitiativeFight
+import com.example.test.data_base.realm.iniciative_fight.InitiativeFightDAO
 import io.realm.Realm
 import io.realm.RealmList
 

@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/new_choiceTemplate"
-        android:name="com.example.test.new_character.ChoiceTemplate"
+        android:name="com.example.test.characters_grid.new_character.ChoiceTemplateFragment"
         android:label="ChoiceTemplate" >
         <action
             android:id="@+id/action_new_choiceTemplate_to_newGame"
@@ -72,7 +72,7 @@
     </fragment>
     <fragment
         android:id="@+id/new_newCharacterByTemplate"
-        android:name="com.example.test.new_character.NewCharacterByTemplate"
+        android:name="com.example.test.characters_grid.new_character.NewCharacterByTemplate"
         android:label="NewCharacterByTemplate" >
         <action
             android:id="@+id/action_new_newCharacterByTemplate_to_new_choiceTemplate"

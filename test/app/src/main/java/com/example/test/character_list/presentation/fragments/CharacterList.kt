@@ -12,10 +12,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.test_data.DTemplateParamStr
-import com.example.test.viewModels.CharacterDAO
-import com.example.test.viewModels.GameDAO
-import com.example.test.viewModels.GameSystemDAO
+import com.example.test.data_base.data_sample.test_data.DTemplateParamStr
+import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.game.GameDAO
+import com.example.test.data_base.realm.game_system.GameSystemDAO
 import com.example.test.components.views.HeaderView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

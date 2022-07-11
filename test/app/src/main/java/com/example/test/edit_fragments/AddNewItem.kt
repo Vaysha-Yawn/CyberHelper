@@ -8,11 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.adapters.DropDownAdapterRV
+import com.example.test.components.views.drop_down.DropDownAdapterRV
 import com.example.test.components.views.HeaderView
 import com.example.test.databinding.AddNewParamItemBinding
-import com.example.test.viewModels.CharacterDAO
-import com.example.test.viewModels.GameSystemDAO
+import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.game_system.GameSystemDAO
 
 class AddNewItem : Fragment(), HeaderView.HeaderBack,
     DropDownAdapterRV.TemplateHolder.WhenValueTo {

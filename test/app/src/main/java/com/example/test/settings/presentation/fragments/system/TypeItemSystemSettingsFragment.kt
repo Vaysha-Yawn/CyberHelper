@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.R
-import com.example.test.adapters.CVAdapterRV
+import com.example.test.components.views.compact_view.CVAdapterRV
 import com.example.test.databinding.FragmentTypeItemsSystemSettingsBinding
 import com.example.test.components.views.HeaderView
 import com.example.test.settings.presentation.view_model.CreateSystemVM

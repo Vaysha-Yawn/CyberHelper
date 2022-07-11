@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.test.R
 import com.example.test.main.MainActivity
-import com.example.test.viewModels.GameDAO
+import com.example.test.data_base.realm.game.GameDAO
 
 class LoadHost : AppCompatActivity() {
 

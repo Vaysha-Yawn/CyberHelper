@@ -12,14 +12,14 @@ import androidx.fragment.app.commit
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.iniciative.presentation.activity.FightHost
-import com.example.test.data_base.Goal
+import com.example.test.data_base.realm.other_realm_object.Goal
 import com.example.test.databinding.IniciativaBinding
-import com.example.test.viewModels.CharacterDAO
-import com.example.test.iniciative.presentation.view_model.FewRollVM
+import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.components.few_roll.FewRollVM
 import com.example.test.viewModels.FewRolls
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.components.views.HeaderView
-import com.example.test.components.widgets.FewRoll
+import com.example.test.components.few_roll.FewRoll
 import kotlin.collections.set
 
 class Initiative : Fragment(),

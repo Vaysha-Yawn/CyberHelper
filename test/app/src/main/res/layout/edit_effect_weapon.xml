@@ -59,7 +59,7 @@
                 android:text="Тип урона"
                 android:textColor="@color/light_grey" />
 
-            <com.example.test.components.views.DropDownView
+            <com.example.test.components.views.drop_down.DropDownView
                 android:layout_width="match_parent"
                 android:id="@+id/weapon_edit_type_RV"
                 android:layout_marginStart="10dp"

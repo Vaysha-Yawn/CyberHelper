@@ -13,7 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.components.views.HeaderView
-import com.example.test.data_base.GroupParam
+import com.example.test.data_base.realm.other_realm_object.GroupParam
 import com.example.test.databinding.EditGroupBinding
 import com.example.test.settings.presentation.view_model.CreateSystemVM
 

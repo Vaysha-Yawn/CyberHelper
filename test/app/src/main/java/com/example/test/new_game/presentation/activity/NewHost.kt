@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.test.R
 import com.example.test.present_game.presentation.activity.PresentHost
 import com.example.test.main.MainActivity
-import com.example.test.viewModels.CharacterDAO
-import com.example.test.viewModels.GameDAO
-import com.example.test.viewModels.GameSystemDAO
+import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.game.GameDAO
+import com.example.test.data_base.realm.game_system.GameSystemDAO
 
 class NewHost : AppCompatActivity() {
 

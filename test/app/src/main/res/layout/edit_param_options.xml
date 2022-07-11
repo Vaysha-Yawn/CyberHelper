@@ -72,7 +72,7 @@
                 android:hint="Например: Введите тип предмета"
                 tools:ignore="TouchTargetSizeCheck" />
 
-            <com.example.test.components.views.CompactViewEdit
+            <com.example.test.components.views.compact_view.CompactViewEdit
                 android:id="@+id/CVEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.data_base.ParamOptions
+import com.example.test.data_base.realm.other_realm_object.ParamOptions
 import com.example.test.databinding.EditOptionBinding
-import com.example.test.viewModels.CharacterDAO
-import com.example.test.viewModels.GameSystemDAO
+import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.game_system.GameSystemDAO
 
 class Edit_Options : Fragment(){
 

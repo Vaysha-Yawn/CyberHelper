@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <com.example.test.components.views.CompactViewEdit
+    <com.example.test.components.views.compact_view.CompactViewEdit
         android:id="@+id/edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -10,7 +10,7 @@ import android.widget.*
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.present_game.presentation.activity.PresentHost
-import com.example.test.data_base.Game
+import com.example.test.data_base.realm.game.Game
 
 class LoadAdapter() : BaseAdapter() {
 

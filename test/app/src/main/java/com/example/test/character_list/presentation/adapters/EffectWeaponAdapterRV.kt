@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.data_base.EffectDamage
+import com.example.test.data_base.realm.other_realm_object.EffectDamage
 import io.realm.RealmList
 
 

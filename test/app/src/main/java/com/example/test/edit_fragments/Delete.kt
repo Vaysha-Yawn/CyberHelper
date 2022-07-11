@@ -13,8 +13,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.viewModels.CharacterDAO
-import com.example.test.viewModels.GameDAO
+import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.game.GameDAO
 import com.example.test.iniciative.presentation.view_model.InitiativeFightVM
 
 class Delete : Fragment() {

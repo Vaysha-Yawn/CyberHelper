@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.data_base.ParamOptions
+import com.example.test.data_base.realm.other_realm_object.ParamOptions
 import com.example.test.databinding.CardStringBinding
 import io.realm.RealmList
 

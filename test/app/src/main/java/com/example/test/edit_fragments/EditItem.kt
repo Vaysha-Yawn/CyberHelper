@@ -13,12 +13,12 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.adapters.*
 import com.example.test.character_list.presentation.adapters.*
-import com.example.test.data_base.Item
-import com.example.test.viewModels.CharacterDAO
-import com.example.test.viewModels.GameSystemDAO
-import com.example.test.components.views.DropDownView
+import com.example.test.components.views.drop_down.DropDownAdapterRV
+import com.example.test.data_base.realm.other_realm_object.Item
+import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.game_system.GameSystemDAO
+import com.example.test.components.views.drop_down.DropDownView
 
 class EditItem : Fragment() {
 

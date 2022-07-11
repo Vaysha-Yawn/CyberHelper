@@ -59,7 +59,7 @@
                 android:text="Опишите группы характеристик для персонажа по разделам"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
 
-            <com.example.test.components.views.CompactViewString
+            <com.example.test.components.views.compact_view.CompactViewString
                 android:id="@+id/CV1"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                 app:CV_String_title="1 Инфo"
                 android:layout_marginTop="30dp"
                 />
-            <com.example.test.components.views.CompactViewString
+            <com.example.test.components.views.compact_view.CompactViewString
                 android:id="@+id/CV2"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
@@ -77,7 +77,7 @@
                 app:CV_String_title="2 Параметры"
                 android:layout_marginTop="30dp"
                 />
-            <com.example.test.components.views.CompactViewString
+            <com.example.test.components.views.compact_view.CompactViewString
                 android:id="@+id/CV3"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
@@ -86,7 +86,7 @@
                 app:CV_String_title="3 Броня и оружие"
                 android:layout_marginTop="30dp"
                 />
-            <com.example.test.components.views.CompactViewString
+            <com.example.test.components.views.compact_view.CompactViewString
                 android:id="@+id/CV4"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
@@ -95,7 +95,7 @@
                 app:CV_String_title="4 Рюкзак"
                 android:layout_marginTop="30dp"
                 />
-            <com.example.test.components.views.CompactViewString
+            <com.example.test.components.views.compact_view.CompactViewString
                 android:id="@+id/CV5"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"

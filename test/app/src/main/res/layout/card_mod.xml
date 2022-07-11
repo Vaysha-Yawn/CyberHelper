@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 
-        <com.example.test.components.views.DropDownView
+        <com.example.test.components.views.drop_down.DropDownView
             android:id="@+id/DD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

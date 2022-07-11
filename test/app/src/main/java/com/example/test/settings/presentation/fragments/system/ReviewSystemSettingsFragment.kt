@@ -9,14 +9,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.databinding.FragmentReviewSystemSettingsBinding
-import com.example.test.viewModels.GameSystemDAO
+import com.example.test.data_base.realm.game_system.GameSystemDAO
 import com.example.test.settings.presentation.view_model.SystemSettingsVM
 import com.example.test.components.views.HeaderView
 
 
 class ReviewSystemSettingsFragment : Fragment(), HeaderView.HeaderBack {
 
-    private val gameSystemDAO:GameSystemDAO by activityViewModels()
+    private val gameSystemDAO: GameSystemDAO by activityViewModels()
     private val systemSettingsVM: SystemSettingsVM by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {

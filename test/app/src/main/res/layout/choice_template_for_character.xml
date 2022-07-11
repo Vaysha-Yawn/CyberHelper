@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".new_character.ChoiceTemplate"
+    tools:context=".characters_grid.new_character.ChoiceTemplateFragment"
     android:background="#1B1A22"
     android:orientation="vertical">
 

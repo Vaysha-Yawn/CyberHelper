@@ -13,10 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.iniciative.presentation.activity.FightHost
-import com.example.test.data_base.Goal
+import com.example.test.data_base.realm.other_realm_object.Goal
 import com.example.test.databinding.CardIniciativaBinding
 import com.example.test.databinding.IniciativaResultBinding
-import com.example.test.viewModels.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterDAO
 import com.example.test.iniciative.presentation.view_model.InitiativeFightVM
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.components.views.HeaderView

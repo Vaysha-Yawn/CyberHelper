@@ -8,11 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
-import com.example.test.components.views.CompactViewString
+import com.example.test.components.views.compact_view.CompactViewString
 import com.example.test.components.views.HeaderView
-import com.example.test.data_base.ParamNum
-import com.example.test.data_base.ParamOptions
-import com.example.test.data_base.ParamStr
 import com.example.test.databinding.FragmentParamsItemSystemSettingsBinding
 import com.example.test.settings.presentation.fragments.system.subFragments.EditParamNum
 import com.example.test.settings.presentation.fragments.system.subFragments.EditParamOption

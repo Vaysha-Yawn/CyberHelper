@@ -3,12 +3,14 @@ package com.example.test.settings.presentation.view_model
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.test.data_base.*
+import com.example.test.data_base.realm.character.Character
+import com.example.test.data_base.realm.other_realm_object.*
 import io.realm.Realm
 import io.realm.RealmList
 
 class CreateSystemVM : ViewModel() {
 
-    val OPTIONS: String = "OPTIONS"
+    val OPTIONS: String = "OPT"
     val NUM: String = "NUMBER"
     val STR: String = "STRING"
 
@@ -201,7 +203,7 @@ class CreateSystemVM : ViewModel() {
     fun delParamItem(idParam: Int, type: String){
         when (type) {
             STR -> {
-                var param:ParamStr? = null
+                var param: ParamStr? = null
                 for (i in listParamItemsStr){
                     if (i.id == idParam){
                         param = i
@@ -210,7 +212,7 @@ class CreateSystemVM : ViewModel() {
                 listParamItemsStr.remove(param)
             }
             NUM -> {
-                var param:ParamNum? = null
+                var param: ParamNum? = null
                 for (i in listParamItemsNum){
                     if (i.id == idParam){
                         param = i
@@ -219,7 +221,7 @@ class CreateSystemVM : ViewModel() {
                 listParamItemsNum.remove(param)
             }
             OPTIONS -> {
-                var param:ParamOptions? = null
+                var param: ParamOptions? = null
                 for (i in listParamItemsOptions){
                     if (i.id == idParam){
                         param = i
