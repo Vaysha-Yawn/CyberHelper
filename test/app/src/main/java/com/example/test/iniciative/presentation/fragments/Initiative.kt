@@ -14,7 +14,7 @@ import com.example.test.R
 import com.example.test.iniciative.presentation.activity.FightHost
 import com.example.test.data_base.realm.other_realm_object.Goal
 import com.example.test.databinding.IniciativaBinding
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.components.few_roll.FewRollVM
 import com.example.test.viewModels.FewRolls
 import com.example.test.viewModels.SkillTestVM
@@ -25,7 +25,7 @@ import kotlin.collections.set
 class Initiative : Fragment(),
     HeaderView.HeaderBack {
 
-    private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mCharacterVM: CharacterVM by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
     private val VM: FewRollVM by activityViewModels()
 

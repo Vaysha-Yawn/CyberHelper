@@ -11,13 +11,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.data_base.realm.other_realm_object.ParamStr
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.data_base.realm.game.GameDAO
 import com.example.test.data_base.realm.game_system.GameSystemDAO
 
 class Edit_string : Fragment() {
 
-    private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mCharacterVM: CharacterVM by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
     private val mGameSystemVM: GameSystemDAO by activityViewModels()
 

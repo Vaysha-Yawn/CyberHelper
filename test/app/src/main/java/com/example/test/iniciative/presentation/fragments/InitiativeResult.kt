@@ -16,7 +16,7 @@ import com.example.test.iniciative.presentation.activity.FightHost
 import com.example.test.data_base.realm.other_realm_object.Goal
 import com.example.test.databinding.CardIniciativaBinding
 import com.example.test.databinding.IniciativaResultBinding
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.iniciative.presentation.view_model.InitiativeFightVM
 import com.example.test.viewModels.SkillTestVM
 import com.example.test.components.views.HeaderView
@@ -27,7 +27,7 @@ private var list = mutableListOf<String>()
 
 class InitiativeResult : Fragment(), HeaderView.HeaderBack {
 
-    private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mCharacterVM: CharacterVM by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
     private lateinit var mInitiativeFightVM: InitiativeFightVM
 

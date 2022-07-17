@@ -13,7 +13,7 @@ import com.example.test.R
 import com.example.test.components.views.drop_down.DropDownAdapterRV
 import com.example.test.data_base.realm.other_realm_object.EffectAdd
 import com.example.test.databinding.EditEffectAddBinding
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.data_base.realm.game.GameDAO
 import com.example.test.data_base.realm.game_system.GameSystemDAO
 import com.example.test.components.views.drop_down.DropDownView
@@ -23,7 +23,7 @@ import com.example.test.components.views.PlusMinusView
 class EditEffectAdd : Fragment(), HeaderView.HeaderBack,
     DropDownAdapterRV.TemplateHolder.WhenValueTo {
 
-    private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mCharacterVM: CharacterVM by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
     private val mGameSystemDAO: GameSystemDAO by activityViewModels()
 

@@ -7,13 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.test.R
 import com.example.test.present_game.presentation.activity.PresentHost
 import com.example.test.main.MainActivity
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.data_base.realm.game.GameDAO
 import com.example.test.data_base.realm.game_system.GameSystemDAO
 
 class NewHost : AppCompatActivity() {
 
-    private val mCharacterVM: CharacterDAO by viewModels()
+    private val mCharacterVM: CharacterVM by viewModels()
     private val mGameVM: GameDAO by viewModels()
     private val mGameSystemVM: GameSystemDAO by viewModels()
 

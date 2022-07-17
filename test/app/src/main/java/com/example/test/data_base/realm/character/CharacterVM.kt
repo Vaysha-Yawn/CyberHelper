@@ -6,7 +6,7 @@ import com.example.test.data_base.realm.other_realm_object.*
 import io.realm.Realm
 import io.realm.RealmList
 
-class CharacterDAO :ViewModel(){
+class CharacterVM :ViewModel(){
 
     /*
     Небольшая инструкция по применению во избежание недопонимания

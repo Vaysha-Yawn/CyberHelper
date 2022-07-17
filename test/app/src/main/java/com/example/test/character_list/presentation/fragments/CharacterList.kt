@@ -13,7 +13,7 @@ import androidx.fragment.app.commit
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.data_base.data_sample.test_data.DTemplateParamStr
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.data_base.realm.game.GameDAO
 import com.example.test.data_base.realm.game_system.GameSystemDAO
 import com.example.test.components.views.HeaderView
@@ -22,7 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class CharacterList : Fragment(), HeaderView.HeaderBack {
 
-    private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mCharacterVM: CharacterVM by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
     private val mGameSystemVM: GameSystemDAO by activityViewModels()
 

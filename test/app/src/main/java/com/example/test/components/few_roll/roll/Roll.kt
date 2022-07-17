@@ -13,7 +13,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.test.R
 import com.example.test.components.views.drop_down.DropDownAdapterRV
 import com.example.test.data_base.realm.other_realm_object.Goal
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.components.few_roll.FewRollVM
 import com.example.test.viewModels.OneRoll
 import com.example.test.viewModels.SkillTestVM
@@ -26,7 +26,7 @@ class Roll : Fragment(), DropDownAdapterRV.TemplateHolder.WhenValueTo,
     DropDownAdapterRV.TemplateHolder.CheckChoose {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
-    private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mCharacterVM: CharacterVM by activityViewModels()
     private val VM: FewRollVM by activityViewModels()
 
     private var goal = ""

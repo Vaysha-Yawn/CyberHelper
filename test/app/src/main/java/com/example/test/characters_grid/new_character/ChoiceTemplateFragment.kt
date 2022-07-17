@@ -12,14 +12,14 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.data_base.realm.game_system.GameSystemDAO
 import kotlin.Exception
 
 
 class ChoiceTemplateFragment : Fragment() {
 
-    private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mCharacterVM: CharacterVM by activityViewModels()
     private val mGameSystemVM: GameSystemDAO by activityViewModels()
 
     override fun onCreateView(

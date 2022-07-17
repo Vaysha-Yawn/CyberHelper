@@ -12,14 +12,14 @@ import com.example.test.R
 import com.example.test.components.views.drop_down.DropDownAdapterRV
 import com.example.test.data_base.realm.other_realm_object.Goal
 import com.example.test.databinding.FragmentGoalCompactBinding
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.viewModels.SkillTestVM
 
 class GoalCompactFragment : Fragment(), GoalCompactTemplateHolder.DeleteGoalCompact,
     GoalCompactTemplateHolder.PutGoalCompactValue,
     DropDownAdapterRV.TemplateHolder.CheckChoose {
 
-    private val mCharacterDAO: CharacterDAO by activityViewModels()
+    private val mCharacterVM: CharacterVM by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
     private var keyListGoal = 0
     private val allGoalsList = mutableListOf<Goal>()
@@ -31,9 +31,9 @@ class GoalCompactFragment : Fragment(), GoalCompactTemplateHolder.DeleteGoalComp
     ): View? {
         val view = inflater.inflate(R.layout.fragment_goal_compact, container, false)
         //mSkillVM.mapGoal[keyListGoal]?.value =  mutableListOf<Goal>()
-        mCharacterDAO.characterList.value?.forEach {
-            if (it.gameId == mCharacterDAO.gameId) {
-                if (it.id != mCharacterDAO.characterId) {
+        mCharacterVM.characterList.value?.forEach {
+            if (it.gameId == mCharacterVM.gameId) {
+                if (it.id != mCharacterVM.characterId) {
                     val goal = Goal()
                     goal.characterId = it.id
                     val name = it.attributes.singleOrNull { gp ->

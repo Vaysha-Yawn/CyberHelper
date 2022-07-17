@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.test.components.few_roll.roll.Roll
 import com.example.test.data_base.realm.other_realm_object.Goal
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.viewModels.OneRoll
 
 class FewRollVM : ViewModel() {
@@ -24,7 +24,7 @@ class FewRollVM : ViewModel() {
 
     val allGoals = mutableListOf<Goal>()
 
-    fun setAllGoals(mCharacterVM: CharacterDAO) {
+    fun setAllGoals(mCharacterVM: CharacterVM) {
         mCharacterVM.characterList.value?.forEach {
             if (it.gameId == mCharacterVM.gameId) {
                 if (it.id != mCharacterVM.characterId) {

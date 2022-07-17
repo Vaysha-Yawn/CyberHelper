@@ -11,7 +11,7 @@ import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.components.views.drop_down.DropDownAdapterRV
 import com.example.test.data_base.data_sample.test_data.DTemplateParamOptions
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.data_base.realm.game_system.GameSystemDAO
 import com.example.test.components.views.drop_down.DropDownView
 import com.example.test.components.views.HeaderView
@@ -19,7 +19,7 @@ import com.example.test.components.views.HeaderView
 class AddNewParam : Fragment(), HeaderView.HeaderBack,
     DropDownAdapterRV.TemplateHolder.WhenValueTo {
 
-    private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mCharacterVM: CharacterVM by activityViewModels()
     private val mGameSystemDAO: GameSystemDAO by activityViewModels()
 
     private var type: String = ""

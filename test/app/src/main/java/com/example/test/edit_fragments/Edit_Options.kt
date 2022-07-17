@@ -13,12 +13,12 @@ import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.data_base.realm.other_realm_object.ParamOptions
 import com.example.test.databinding.EditOptionBinding
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.data_base.realm.game_system.GameSystemDAO
 
 class Edit_Options : Fragment(){
 
-    private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mCharacterVM: CharacterVM by activityViewModels()
     private val mGameSystemVM: GameSystemDAO by activityViewModels()
 
     override fun onCreateView(

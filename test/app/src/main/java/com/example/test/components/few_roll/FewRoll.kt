@@ -14,7 +14,7 @@ import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.test.R
 import com.example.test.components.few_roll.roll.Roll
 import com.example.test.databinding.FewRollBinding
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.viewModels.FewRolls
 import com.example.test.viewModels.SkillTestVM
 
@@ -22,7 +22,7 @@ import com.example.test.viewModels.SkillTestVM
 class FewRoll : Fragment() {
 
     private val mSkillVM: SkillTestVM by activityViewModels()
-    private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mCharacterVM: CharacterVM by activityViewModels()
     private val VM: FewRollVM by activityViewModels()
 
     private lateinit var ViewPager2: ViewPager2

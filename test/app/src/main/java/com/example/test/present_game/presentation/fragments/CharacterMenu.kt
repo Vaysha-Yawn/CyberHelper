@@ -14,7 +14,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.data_base.data_sample.test_data.DTemplateParamStr
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.data_base.realm.game.GameDAO
 import com.example.test.iniciative.presentation.view_model.InitiativeFightVM
 import com.example.test.viewModels.SkillTestVM
@@ -23,7 +23,7 @@ import com.example.test.components.views.HeaderView
 
 class CharacterMenu : Fragment(), HeaderView.HeaderBack {
 
-    private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mCharacterVM: CharacterVM by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
     private val mSkillVM: SkillTestVM by activityViewModels()
     private val mInitiativeFightVM: InitiativeFightVM by activityViewModels()

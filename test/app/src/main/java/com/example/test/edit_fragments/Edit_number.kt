@@ -12,14 +12,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.test.R
 import com.example.test.data_base.realm.other_realm_object.ParamNum
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.data_base.realm.game_system.GameSystemDAO
 import com.example.test.components.views.PlusMinusView
 
 
 class Edit_number : Fragment() {
 
-    private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mCharacterVM: CharacterVM by activityViewModels()
     private val mGameSystemVM: GameSystemDAO by activityViewModels()
 
     override fun onCreateView(

@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.test.R
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.data_base.realm.game.GameDAO
 import com.example.test.data_base.realm.game_system.GameSystemDAO
 import com.example.test.iniciative.presentation.activity.FightHost
@@ -16,7 +16,7 @@ import com.example.test.viewModels.*
 class PresentHost : AppCompatActivity() {
 
     private val mSkillVM: SkillTestVM by viewModels()
-    private val mCharacterVM: CharacterDAO by viewModels()
+    private val mCharacterVM: CharacterVM by viewModels()
     private val mGameVM: GameDAO by viewModels()
     private val mGameSystemVM: GameSystemDAO by viewModels()
     private val mInitiativeFightVM: InitiativeFightVM by viewModels()

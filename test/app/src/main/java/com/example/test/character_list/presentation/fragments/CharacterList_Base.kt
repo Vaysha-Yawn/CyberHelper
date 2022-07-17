@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.character_list.presentation.adapters.GroupAdapterRV
 import com.example.test.data_base.realm.other_realm_object.GroupParam
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.data_base.realm.game.GameDAO
 import com.example.test.data_base.realm.game_system.GameSystemDAO
 
@@ -21,7 +21,7 @@ class CharacterList_Base : Fragment() {
 
     private val KEY = "groupNumber"
 
-    private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mCharacterVM: CharacterVM by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
     private val mGameSystemVM: GameSystemDAO by activityViewModels()
 

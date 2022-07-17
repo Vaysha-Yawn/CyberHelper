@@ -19,7 +19,7 @@ import com.example.test.data_base.realm.character.Character
 import com.example.test.data_base.realm.iniciative_fight.InitiativeFight
 import com.example.test.databinding.CardInitiativeFightBinding
 import com.example.test.databinding.HomeBinding
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.data_base.realm.game.GameDAO
 import com.example.test.iniciative.presentation.view_model.InitiativeFightVM
 import com.example.test.components.views.HeaderView
@@ -27,7 +27,7 @@ import com.example.test.components.views.HeaderView
 class Home : Fragment(), HeaderView.HeaderBack,
     AdapterInitiativeFightTemplateHolder.DeleteInitiativeFight {
 
-    private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mCharacterVM: CharacterVM by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
     private val mInitiativeFightVM: InitiativeFightVM by activityViewModels()
 

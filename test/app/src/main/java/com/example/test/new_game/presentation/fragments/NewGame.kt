@@ -14,14 +14,14 @@ import com.example.test.R
 import com.example.test.new_game.presentation.activity.NewHost
 import com.example.test.characters_grid.CharacterAdapter
 import com.example.test.databinding.DialogChooseAddModificationBinding
-import com.example.test.data_base.realm.character.CharacterDAO
+import com.example.test.data_base.realm.character.CharacterVM
 import com.example.test.data_base.realm.game.GameDAO
 import com.example.test.data_base.realm.game_system.GameSystemDAO
 import com.example.test.characters_grid.new_character.NewCharacterVM
 
 class NewGame : Fragment() {
 
-    private val mCharacterVM: CharacterDAO by activityViewModels()
+    private val mCharacterVM: CharacterVM by activityViewModels()
     private val mGameVM: GameDAO by activityViewModels()
     private val mNewVM: NewCharacterVM by activityViewModels()
     private val mGameSystemDAO: GameSystemDAO by activityViewModels()
